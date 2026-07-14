@@ -1,0 +1,1392 @@
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
+import { ArrowLeft, BookOpen, CheckCircle, HelpCircle, Lightbulb, ShieldAlert, Sparkles, Terminal, Award, Brain } from 'lucide-react';
+import { Topic, MindmapNode } from '../types';
+import { notesByTopicId } from '../notes';
+
+// Set at the top of each NotesView render pass. The `pre` renderer (defined at
+// module scope) reads this to decide whether the "fake diagram" rule applies.
+// ReactMarkdown renders synchronously within NotesView, so this is always the
+// current page's value while its code blocks are being rendered.
+let googlePageActive = false;
+
+const generateAnchorId = (text?: string) => {
+  if (!text) return '';
+  let id = text.toLowerCase().trim();
+  if (id.includes('room 1')) return 'room-1--offensive-security-intro';
+  if (id.includes('room 2')) return 'room-2--defensive-security-intro';
+  if (id.includes('room 3') && id.includes('extra')) return 'room-3-extra--interactive-career-quiz';
+  if (id.includes('room 3')) return 'room-3--careers-in-cyber';
+  
+  return id
+    .replace(/[–—]/g, '-')
+    .replace(/[()]/g, '')
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+};
+
+const emojiToNumberMap: Record<string, string> = {
+  '1️⃣': '01',
+  '2️⃣': '02',
+  '3️⃣': '03',
+  '4️⃣': '04',
+  '5️⃣': '05',
+  '6️⃣': '06',
+  '7️⃣': '07',
+  '8️⃣': '08',
+  '9️⃣': '09',
+  '0️⃣': '00',
+};
+
+const parseHeading = (rawText: string) => {
+  let text = rawText.trim();
+  let sectionNumber = '';
+
+  for (const [emoji, num] of Object.entries(emojiToNumberMap)) {
+    if (text.startsWith(emoji)) {
+      sectionNumber = num;
+      text = text.substring(emoji.length).trim();
+      break;
+    }
+  }
+
+  text = text
+    .replace(/^#+\s*/, '')
+    .replace(/[*_`]/g, '')
+    .trim();
+
+  return { text, sectionNumber };
+};
+
+const extractText = (children: React.ReactNode): string => {
+  if (typeof children === 'string' || typeof children === 'number') {
+    return String(children);
+  }
+  if (Array.isArray(children)) {
+    return children.map(extractText).join('');
+  }
+  if (React.isValidElement(children)) {
+    const props = children.props as any;
+    if (props && props.children) {
+      return extractText(props.children);
+    }
+  }
+  return '';
+};
+
+const renderBashLines = (code: string) => {
+  return code.split('\n').map((line, idx) => {
+    if (line.trim().startsWith('#')) {
+      return (
+        <div key={idx} className="text-gray-500 font-mono select-none">
+          {line}
+        </div>
+      );
+    }
+    const parts = line.split(' ');
+    const cmd = parts[0];
+    const rest = parts.slice(1).join(' ');
+    if (cmd === 'dirb' || cmd === 'python3' || cmd === 'docker' || cmd === 'nmap') {
+      return (
+        <div key={idx} className="font-mono">
+          <span className="text-[#9fef00] font-bold">{cmd}</span>{' '}
+          <span className="text-emerald-200">{rest}</span>
+        </div>
+      );
+    }
+    return (
+      <div key={idx} className="text-emerald-300 font-mono">
+        {line}
+      </div>
+    );
+  });
+};
+
+// Python keyword / builtin sets for syntax highlighting.
+const PY_KEYWORDS = new Set([
+  'if', 'elif', 'else', 'for', 'while', 'def', 'return', 'in', 'not', 'and',
+  'or', 'import', 'from', 'as', 'with', 'try', 'except', 'finally', 'raise',
+  'class', 'lambda', 'pass', 'break', 'continue', 'is', 'global', 'nonlocal',
+  'yield', 'assert', 'del', 'True', 'False', 'None',
+]);
+const PY_BUILTINS = new Set([
+  'print', 'type', 'str', 'int', 'float', 'bool', 'len', 'max', 'min',
+  'sorted', 'range', 'open', 'list', 'dict', 'set', 'tuple', 'input',
+  'sum', 'abs', 'round', 'enumerate', 'zip', 'map', 'filter',
+]);
+
+// A folded code fence often begins with a plain title line (e.g.
+// "CONDITIONAL STATEMENTS — if / elif / else..." or "DEFINING AND CALLING
+// FUNCTIONS"). Such a line is NOT Python — keep it plain. Detect it as the
+// first line only: it either contains an em dash, or is a heading-like line
+// with no code punctuation. Real code lines never contain an em dash.
+const isPythonTitleLine = (line: string): boolean => {
+  const t = line.trim();
+  if (!t) return false;
+  if (t.startsWith('#')) return false;
+  if (/[—–]/.test(t)) return true;
+  // All-caps heading style: only uppercase letters, digits, spaces, and a few
+  // punctuation marks, with no assignment/expression punctuation.
+  if (/^[A-Z0-9][A-Z0-9 ,.&:/'()\-]*$/.test(t) && !/[=;{}[\]]/.test(t) && t.split(/\s+/).length > 1) {
+    return true;
+  }
+  return false;
+};
+
+// Tokenize and color a single line of Python (no triple-string state here).
+const tokenizePythonLine = (line: string, keyPrefix: string): React.ReactNode[] => {
+  const nodes: React.ReactNode[] = [];
+  // Whole-line comment
+  if (line.trim().startsWith('#')) {
+    return [<span key={keyPrefix} className="text-gray-500 italic">{line}</span>];
+  }
+  const tokenRe = /("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|#.*$|\d+\.\d+|\d+|[A-Za-z_]\w*|\s+|[^\sA-Za-z_0-9])/g;
+  let m: RegExpExecArray | null;
+  let k = 0;
+  while ((m = tokenRe.exec(line)) !== null) {
+    const tok = m[0];
+    const key = `${keyPrefix}-${k++}`;
+    if (tok.startsWith('#')) {
+      nodes.push(<span key={key} className="text-gray-500 italic">{tok}</span>);
+    } else if (tok[0] === '"' || tok[0] === "'") {
+      nodes.push(<span key={key} className="text-amber-300">{tok}</span>);
+    } else if (/^\d/.test(tok)) {
+      nodes.push(<span key={key} className="text-orange-400">{tok}</span>);
+    } else if (/^[A-Za-z_]/.test(tok)) {
+      if (PY_KEYWORDS.has(tok)) {
+        nodes.push(<span key={key} className="text-pink-400 font-semibold">{tok}</span>);
+      } else if (PY_BUILTINS.has(tok)) {
+        nodes.push(<span key={key} className="text-cyan-300">{tok}</span>);
+      } else {
+        nodes.push(<span key={key} className="text-gray-200">{tok}</span>);
+      }
+    } else {
+      // operators, punctuation, whitespace
+      nodes.push(<span key={key} className="text-sky-300/80">{tok}</span>);
+    }
+  }
+  return nodes;
+};
+
+// Render a full Python code block with per-line syntax highlighting.
+// Preserves indentation exactly (whitespace-pre on the container). Tracks
+// multi-line triple-quoted strings (docstrings) across lines. The first line
+// is kept plain when it is a folded diagram/section title.
+const renderPythonLines = (code: string) => {
+  const lines = code.split('\n');
+  let inTriple = false;
+  let tripleDelim = '';
+  return lines.map((line, idx) => {
+    // Plain title line (only the very first line of the block)
+    if (idx === 0 && !inTriple && isPythonTitleLine(line)) {
+      return (
+        <div key={idx} className="text-gray-400 font-semibold select-none">
+          {line}
+        </div>
+      );
+    }
+
+    if (inTriple) {
+      const closeIdx = line.indexOf(tripleDelim);
+      if (closeIdx === -1) {
+        return <div key={idx} className="text-amber-300">{line || '\u00a0'}</div>;
+      }
+      const strPart = line.slice(0, closeIdx + 3);
+      const rest = line.slice(closeIdx + 3);
+      inTriple = false;
+      return (
+        <div key={idx}>
+          <span className="text-amber-300">{strPart}</span>
+          {tokenizePythonLine(rest, `${idx}-r`)}
+        </div>
+      );
+    }
+
+    // Detect a triple-quote that opens but does not close on this line
+    const openMatch = /"""|'''/.exec(line);
+    if (openMatch) {
+      const delim = openMatch[0];
+      const p = openMatch.index;
+      const closeIdx = line.indexOf(delim, p + 3);
+      if (closeIdx === -1) {
+        const before = line.slice(0, p);
+        const strPart = line.slice(p);
+        inTriple = true;
+        tripleDelim = delim;
+        return (
+          <div key={idx}>
+            {tokenizePythonLine(before, `${idx}-b`)}
+            <span className="text-amber-300">{strPart}</span>
+          </div>
+        );
+      }
+    }
+
+    const rendered = tokenizePythonLine(line, `${idx}`);
+    return <div key={idx}>{rendered.length ? rendered : '\u00a0'}</div>;
+  });
+};
+
+// Does a fenced block contain GENUINE diagram structure (boxes, flows, trees,
+// aligned columns)? If so it must stay an atomic monospace card. This is the
+// guardrail for the "fake diagram" rule below — when in doubt this returns
+// true so the safe monospace default wins.
+const hasDiagramStructure = (content: string): boolean => {
+  const lines = content.split('\n');
+  const markers = [
+    /\+[-=]{2,}\+/,                              // closed box border  +----+
+    /--+>|<--+/,                                 // ascii flow arrows  --> <--
+    /[│┃┌┐└┘├┤┬┴┼─━►▶◄→←↑↓⟶⟵]/,                   // unicode box / arrows
+  ];
+  if (markers.some(re => re.test(content))) return true;
+  // A line that is ONLY a flow connector (| v ^) indicates a flow diagram.
+  if (lines.some(l => /^\s*[|vV^]\s*$/.test(l))) return true;
+  // Two or more pipes on a single line = columns / box walls.
+  if (lines.some(l => (l.match(/\|/g) || []).length >= 2)) return true;
+  return false;
+};
+
+// "FAKE DIAGRAM" = a fenced block that is only prose + simple bullet markers
+// (+--, *, -) with NO visual structure. These read like a raw .md dump inside a
+// monospace card, so we render them as native styled content instead. Trigger
+// requires at least one bullet marker; pure-prose blocks (which may rely on
+// column alignment) keep the monospace default.
+const isFakeDiagram = (content: string): boolean => {
+  if (hasDiagramStructure(content)) return false;
+  const lines = content.split('\n').filter(l => l.trim().length > 0);
+  if (lines.length < 2) return false;
+  const hasBullets = lines.some(l => /^\s*(\+--|\*|-)\s+\S/.test(l));
+  return hasBullets;
+};
+
+// Render a fake-diagram block as native styled content:
+//   heading lines (LABEL: ...) -> bold lead-ins
+//   +-- / * / - items          -> styled bullet list
+//   RULE / summary lines       -> green-bordered callout
+// Every word verbatim, order unchanged.
+const renderFakeDiagram = (content: string): React.ReactNode => {
+  const rawLines = content.split('\n');
+  const blocks: React.ReactNode[] = [];
+  let bullets: string[] = [];
+  let key = 0;
+
+  const flushBullets = () => {
+    if (bullets.length) {
+      const items = bullets.slice();
+      blocks.push(
+        <ul key={`fd-ul-${key++}`} className="list-disc pl-5 space-y-1.5 my-2 text-gray-300 text-xs md:text-sm leading-relaxed">
+          {items.map((b, i) => <li key={i} className="leading-relaxed">{b}</li>)}
+        </ul>
+      );
+      bullets = [];
+    }
+  };
+
+  rawLines.forEach((raw) => {
+    const line = raw.trim();
+    if (!line) { flushBullets(); return; }
+
+    const bulletMatch = line.match(/^(\+--|\*|-)\s+(.*)$/);
+    if (bulletMatch) { bullets.push(bulletMatch[2]); return; }
+
+    flushBullets();
+
+    // Rule / summary / solution line -> green-bordered callout
+    if (/\bRULE\b\s*:/i.test(line) || /^(RULE|STANDARD|SOLUTION|KEY|NOTE)\b[^:]*:/i.test(line)) {
+      blocks.push(
+        <div key={`fd-rule-${key++}`} className="bg-[#1c2538]/60 border-l-4 border-[#9fef00] px-3 py-2 my-2 rounded-r text-xs md:text-sm text-gray-200 font-medium leading-relaxed shadow-[0_0_15px_rgba(159,239,0,0.03)] border-y border-r border-[#2d3a54]/40">
+          {line}
+        </div>
+      );
+      return;
+    }
+
+    // Heading / label lead-in: ends with a colon, or an ALL-CAPS label followed
+    // by a colon, or the folded card title (contains an em/en dash).
+    const isHeading = /:$/.test(line)
+      || /^[A-Z0-9][A-Z0-9 \-\/&.()']*:/.test(line)
+      || /[—–]/.test(line);
+    if (isHeading) {
+      blocks.push(
+        <p key={`fd-h-${key++}`} className="text-white font-bold text-xs md:text-sm mt-3 mb-1 leading-relaxed">
+          {line}
+        </p>
+      );
+      return;
+    }
+
+    // Plain prose
+    blocks.push(
+      <p key={`fd-p-${key++}`} className="text-gray-300 text-xs md:text-sm leading-relaxed my-1">
+        {line}
+      </p>
+    );
+  });
+  flushBullets();
+
+  return (
+    <div className="my-4 bg-[#161c2c]/40 border border-[#2d3a54]/40 rounded-lg px-4 py-3">
+      {blocks}
+    </div>
+  );
+};
+
+// Detect if content is a PURE ASCII grid table (all-or-nothing).
+// A block only qualifies if EVERY non-empty line is part of the grid — either an
+// ASCII border line (+---+) or an ASCII pipe row (|...|). If ANY line is prose,
+// a diagram fragment, or box-drawing art, the whole block stays as a monospace
+// diagram card (safe default). This guarantees we never partially convert a block
+// or drop trailing prose.
+const isAsciiTable = (content: string): boolean => {
+  const lines = content.split('\n').filter(l => l.trim().length > 0);
+  if (lines.length < 3) return false;
+
+  const isBorderLine = (l: string) => {
+    const t = l.trim();
+    return t.startsWith('+') && t.endsWith('+') && /^[+\-]+$/.test(t.replace(/\s/g, ''));
+  };
+  const isPipeRow = (l: string) => {
+    const t = l.trim();
+    // ASCII pipe row: starts and ends with '|' and contains no box-drawing chars
+    return t.startsWith('|') && t.endsWith('|');
+  };
+
+  let borderCount = 0;
+  let rowCount = 0;
+  for (const line of lines) {
+    if (isBorderLine(line)) {
+      borderCount++;
+    } else if (isPipeRow(line)) {
+      rowCount++;
+    } else {
+      // Any non-grid line (prose, diagram fragment, box-drawing) disqualifies the block
+      return false;
+    }
+  }
+
+  // Need real borders and at least a header + one data row
+  return borderCount >= 1 && rowCount >= 2;
+};
+
+// Parse ASCII table into structured data
+// Handles multi-line cells by joining wrapped text
+const parseAsciiTable = (content: string): { headers: string[], rows: string[][] } | null => {
+  const lines = content.split('\n').filter(l => l.trim().length > 0);
+  
+  // Find first border line
+  let startIdx = lines.findIndex(l => {
+    const trimmed = l.trim();
+    return trimmed.startsWith('+') && trimmed.includes('---') && trimmed.endsWith('+');
+  });
+  
+  if (startIdx === -1) return null;
+  
+  // Find header row (first row with | separators after the border)
+  let headerIdx = -1;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.includes('|') && !line.startsWith('+')) {
+      headerIdx = i;
+      break;
+    }
+  }
+  
+  if (headerIdx === -1) return null;
+  
+  // Parse headers
+  const headerLine = lines[headerIdx];
+  const headers = headerLine
+    .split('|')
+    .map(h => h.trim())
+    .filter((h, idx, arr) => {
+      // Filter out empty cells at start/end from outer pipes
+      if (idx === 0 && h === '') return false;
+      if (idx === arr.length - 1 && h === '') return false;
+      return h.length > 0;
+    });
+  
+  // Parse rows, combining multi-line cells
+  const rows: string[][] = [];
+  let currentRow: string[] | null = null;
+  
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Skip border lines
+    if (line.startsWith('+')) {
+      // If we have a current row, push it
+      if (currentRow && currentRow.length > 0) {
+        rows.push(currentRow);
+        currentRow = null;
+      }
+      continue;
+    }
+    
+    // Skip non-table lines
+    if (!line.includes('|')) continue;
+    
+    // Parse cells
+    const cells = line
+      .split('|')
+      .map(c => c.trim())
+      .filter((c, idx, arr) => {
+        // Filter out empty cells at start/end from outer pipes
+        if (idx === 0 && c === '') return false;
+        if (idx === arr.length - 1 && c === '') return false;
+        return true;
+      });
+    
+    if (cells.length === 0) continue;
+    
+    // If this looks like a new row (has content in first cell), start new row
+    if (cells[0].length > 0 && cells.length === headers.length) {
+      if (currentRow && currentRow.length > 0) {
+        rows.push(currentRow);
+      }
+      currentRow = cells;
+    } else if (currentRow) {
+      // This might be a continuation line - append to current row
+      for (let j = 0; j < cells.length && j < currentRow.length; j++) {
+        if (cells[j].length > 0) {
+          currentRow[j] = currentRow[j] + ' ' + cells[j];
+        }
+      }
+    }
+  }
+  
+  // Push final row
+  if (currentRow && currentRow.length > 0) {
+    rows.push(currentRow);
+  }
+  
+  return { headers, rows };
+};
+
+// Extract prose/notes that appear after ASCII tables
+const extractTrailingProse = (content: string): string[] => {
+  const lines = content.split('\n');
+  const proseLines: string[] = [];
+  let inTable = false;
+  let tableEnded = false;
+  
+  for (const line of lines) {
+    const trimmed = line.trim();
+    
+    // Detect table boundaries
+    if (trimmed.startsWith('+') || trimmed.startsWith('|')) {
+      inTable = true;
+      continue;
+    }
+    
+    // After table ends, collect prose
+    if (inTable && trimmed.length > 0 && !trimmed.startsWith('+') && !trimmed.startsWith('|')) {
+      tableEnded = true;
+    }
+    
+    if (tableEnded && trimmed.length > 0) {
+      proseLines.push(trimmed);
+    }
+  }
+  
+  return proseLines;
+};
+
+const markdownComponents: import('react-markdown').Components = {
+  h1: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText, sectionNumber } = parseHeading(rawText);
+    return (
+      <h1 className="text-xl md:text-2xl font-extrabold text-white border-l-4 border-[#9fef00] pl-3 mt-8 mb-4 font-sans scroll-mt-24 flex items-center flex-wrap gap-2" id={generateAnchorId(rawText)}>
+        {sectionNumber && (
+          <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-mono font-bold bg-[#9fef00]/10 text-[#9fef00] border border-[#9fef00]/30 rounded">
+            {sectionNumber}
+          </span>
+        )}
+        <span>{cleanText}</span>
+      </h1>
+    );
+  },
+  h2: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText, sectionNumber } = parseHeading(rawText);
+    return (
+      <h2 className="text-lg md:text-xl font-bold text-white border-b border-[#2d3a54] pb-2 mt-8 mb-4 font-sans scroll-mt-24 flex items-center flex-wrap gap-2" id={generateAnchorId(rawText)}>
+        <span className="text-[#9fef00] mr-1">✦</span>
+        {sectionNumber && (
+          <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-mono font-bold bg-[#9fef00]/10 text-[#9fef00] border border-[#9fef00]/30 rounded">
+            {sectionNumber}
+          </span>
+        )}
+        <span>{cleanText}</span>
+      </h2>
+    );
+  },
+  h3: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText, sectionNumber } = parseHeading(rawText);
+    return (
+      <h3 className="text-base font-bold text-[#9fef00] mt-6 mb-3 font-sans scroll-mt-24 flex items-center flex-wrap gap-2" id={generateAnchorId(rawText)}>
+        {sectionNumber && (
+          <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#9fef00]/10 text-[#9fef00] border border-[#9fef00]/20 rounded">
+            {sectionNumber}
+          </span>
+        )}
+        <span>{cleanText}</span>
+      </h3>
+    );
+  },
+    pre: ({node, children, ...props}: any) => {
+    let isBash = false;
+    let isPython = false;
+    let className = '';
+    
+    // Check if the child is a code element and extract language
+    if (children && typeof children === 'object' && 'props' in children && children.props.className) {
+      className = children.props.className;
+      const match = /language-(\w+)/.exec(className);
+      isBash = match && match[1] === 'bash';
+      isPython = match && match[1] === 'python';
+    }
+
+    const content = extractText(children).replace(/\n$/, '');
+
+    if (isPython) {
+      return (
+        <div className="bg-[#0b0f19] rounded-xl border border-[#2d3a54] my-6 overflow-hidden shadow-xl font-mono text-xs leading-relaxed select-all">
+          <div className="bg-[#111827] px-4 py-2 flex items-center justify-between border-b border-[#2d3a54]/80">
+            <div className="flex space-x-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/75" />
+            </div>
+            <span className="text-[10px] text-gray-400 font-bold select-none tracking-wider uppercase">Python</span>
+            <span className="w-12" />
+          </div>
+          <pre className="p-4 overflow-x-auto whitespace-pre leading-relaxed bg-[#0b0f19] font-mono select-all">
+            {renderPythonLines(content)}
+          </pre>
+        </div>
+      );
+    }
+
+    if (isBash) {
+      return (
+        <div className="bg-[#0b0f19] rounded-xl border border-[#2d3a54] my-6 overflow-hidden shadow-xl font-mono text-xs leading-relaxed select-all">
+          <div className="bg-[#111827] px-4 py-2 flex items-center justify-between border-b border-[#2d3a54]/80">
+            <div className="flex space-x-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/75" />
+            </div>
+            <span className="text-[10px] text-gray-400 font-bold select-none tracking-wider uppercase">Bash Terminal</span>
+            <span className="w-12" />
+          </div>
+          <pre className="p-4 overflow-x-auto whitespace-pre leading-relaxed bg-[#0b0f19] font-mono select-all">
+            {renderBashLines(content)}
+          </pre>
+        </div>
+      );
+    }
+    
+    // Check if this is an ASCII table (tabular data with borders)
+    if (isAsciiTable(content)) {
+      const tableData = parseAsciiTable(content);
+      
+      if (tableData) {
+        return (
+          <div className="my-6 overflow-hidden rounded-xl border border-[#2d3a54] shadow-md shadow-black/20">
+            <table className="w-full text-left border-collapse font-sans text-xs">
+              <thead className="bg-[#9fef00]/10 border-b border-[#9fef00]/20 text-[#9fef00]">
+                <tr>
+                  {tableData.headers.map((header, idx) => (
+                    <th key={idx} className="px-4 py-3 font-bold uppercase tracking-wider font-mono">
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#2d3a54]/50">
+                {tableData.rows.map((row, rowIdx) => (
+                  <tr key={rowIdx} className="even:bg-[#1c2538]/40 odd:bg-[#161c2c]/40 hover:bg-[#1c2538]/60 transition-colors">
+                    {row.map((cell, cellIdx) => (
+                      <td key={cellIdx} className="px-4 py-3 text-gray-300 leading-relaxed">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+    }
+    
+    // THIRD RULE: a "fake diagram" (prose + simple bullets, no visual
+    // structure) renders as NATIVE styled content, not a monospace card.
+    // Scoped to Google course pages; genuine diagrams stay monospace.
+    if (googlePageActive && isFakeDiagram(content)) {
+      return renderFakeDiagram(content);
+    }
+
+    // ATOMIC RULE: every other fenced code block renders byte-for-byte in one
+    // monospace diagram card. No line dropping, joining, or reformatting — the
+    // content is preserved exactly as written in the source. Horizontal scroll
+    // (whitespace-pre) keeps ASCII alignment intact for diagrams.
+    return (
+      <div className="font-mono text-xs bg-[#111827]/90 border-l-4 border-[#9fef00] p-4 rounded-r-lg my-4 overflow-x-auto whitespace-pre leading-relaxed text-gray-300 shadow-[0_0_15px_rgba(159,239,0,0.03)] border-y border-r border-[#2d3a54]/40 select-all">
+        {content}
+      </div>
+    );
+  },
+  code: ({node, className, children, ...props}: any) => {
+    return (
+      <code className="bg-[#9fef00]/10 text-[#9fef00] px-1.5 py-0.5 rounded font-mono text-xs mx-0.5 border border-[#9fef00]/20 font-medium select-all" {...props}>
+        {children}
+      </code>
+    );
+  },
+  blockquote: ({node, children, ...props}) => (
+    <div className="bg-[#1c2538]/60 border-l-4 border-[#9fef00] p-4 my-5 rounded-r-lg shadow-[0_0_15px_rgba(159,239,0,0.03)] border-y border-r border-[#2d3a54]/40">
+      <div className="flex items-start space-x-2.5">
+        <div className="mt-0.5 text-[#9fef00] select-none font-sans font-bold">💡</div>
+        <div className="text-xs md:text-sm font-sans text-gray-300 leading-relaxed italic blockquote-content">
+          {children}
+        </div>
+      </div>
+    </div>
+  ),
+  table: ({node, children, ...props}) => (
+    <div className="my-6 overflow-hidden rounded-xl border border-[#2d3a54] shadow-md shadow-black/20">
+      <table className="w-full text-left border-collapse font-sans text-xs" {...props}>
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({node, children, ...props}) => (
+    <thead className="bg-[#9fef00]/10 border-b border-[#9fef00]/20 text-[#9fef00]" {...props}>
+      {children}
+    </thead>
+  ),
+  tbody: ({node, children, ...props}) => (
+    <tbody className="divide-y divide-[#2d3a54]/50" {...props}>
+      {children}
+    </tbody>
+  ),
+  tr: ({node, children, ...props}) => (
+    <tr className="even:bg-[#1c2538]/40 odd:bg-[#161c2c]/40 hover:bg-[#1c2538]/60 transition-colors" {...props}>
+      {children}
+    </tr>
+  ),
+  th: ({node, children, ...props}) => (
+    <th className="px-4 py-3 font-bold uppercase tracking-wider font-mono" {...props}>
+      {children}
+    </th>
+  ),
+  td: ({node, children, ...props}) => (
+    <td className="px-4 py-3 text-gray-300 leading-relaxed" {...props}>
+      {children}
+    </td>
+  ),
+  hr: () => (
+    <hr className="border-[#2d3a54] my-8 border-t-[1.5px] opacity-50" />
+  ),
+  p: ({node, children, ...props}) => {
+    // If the paragraph only contains an image, we can style it differently, but default is fine.
+    return (
+      <p className="text-gray-300 text-xs md:text-sm leading-relaxed my-3 font-sans" {...props}>
+        {children}
+      </p>
+    );
+  },
+  ul: ({node, children, ...props}) => (
+    <ul className="list-disc pl-5 space-y-2.5 my-4 text-gray-300 text-xs md:text-sm leading-relaxed" {...props}>
+      {children}
+    </ul>
+  ),
+  ol: ({node, children, ...props}) => (
+    <ol className="list-decimal pl-5 space-y-2.5 my-4 text-gray-300 text-xs md:text-sm leading-relaxed" {...props}>
+      {children}
+    </ol>
+  ),
+  li: ({node, children, ...props}) => (
+    <li className="leading-relaxed" {...props}>
+      {children}
+    </li>
+  ),
+  a: ({node, children, ...props}) => (
+    <a className="text-[#9fef00] hover:underline font-semibold font-mono" target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  ),
+  strong: ({node, children, ...props}) => (
+    <strong className="text-white font-semibold" {...props}>
+      {children}
+    </strong>
+  ),
+};
+
+interface ParsedSection {
+  type: 'markdown' | 'revision';
+  content: string;
+  title?: string;
+}
+
+// Google notes author diagram titles/column-headers as a blockquote placed
+// immediately before the diagram's fenced code block. To keep each diagram
+// ATOMIC (title + labels + art in ONE aligned monospace card), we fold such a
+// title blockquote into the top of its following code fence. This is applied
+// ONLY to Google course pages; TryHackMe rendering is left untouched.
+//
+// Heuristic (reliable for Google notes): a blockquote whose next non-blank line
+// opens a code fence is a diagram title. Genuine prose callouts are always
+// followed by tables/headings/other blockquotes, never directly by a fence.
+const foldDiagramTitlesIntoFences = (md: string): string => {
+  const lines = md.split('\n');
+  const out: string[] = [];
+  let i = 0;
+  const isBlockquote = (l: string) => /^\s*>/.test(l);
+  const isFence = (l: string) => l.trim().startsWith('```');
+
+  // A diagram title/label line is authored fully bold (e.g. **THREE CONTROL
+  // CATEGORIES**). Prose callouts have a bold header followed by plain-text
+  // sentences, so they are NOT fully bold on every line — those must stay as
+  // callouts, never folded into a diagram.
+  const stripQuote = (l: string) => l.replace(/^\s*>\s?/, '').replace(/\s+$/, '');
+  const isFullyBold = (l: string) => /^\*\*.*\*\*$/.test(stripQuote(l).trim());
+
+  while (i < lines.length) {
+    if (isBlockquote(lines[i])) {
+      // Gather the consecutive blockquote lines
+      const bq: string[] = [];
+      while (i < lines.length && isBlockquote(lines[i])) {
+        bq.push(lines[i]);
+        i++;
+      }
+      // Look ahead past blank lines for a fence
+      let j = i;
+      while (j < lines.length && lines[j].trim() === '') j++;
+
+      // Only fold when this is truly a diagram title: it directly precedes a
+      // fence AND every non-empty line is fully bold (a title/label, not prose).
+      const nonEmpty = bq.filter(l => stripQuote(l).trim().length > 0);
+      const allBold = nonEmpty.length > 0 && nonEmpty.every(isFullyBold);
+
+      if (j < lines.length && isFence(lines[j]) && allBold) {
+        // Diagram title → fold into the fence
+        const fenceOpen = lines[j];
+        let k = j + 1;
+        const body: string[] = [];
+        while (k < lines.length && !isFence(lines[k])) {
+          body.push(lines[k]);
+          k++;
+        }
+        const fenceClose = k < lines.length ? lines[k] : '```';
+
+        // Strip '> ' prefixes and bold markers so the title reads cleanly in monospace
+        const titleLines = bq.map(l =>
+          l.replace(/^\s*>\s?/, '').replace(/\*\*/g, '').replace(/\s+$/, '')
+        );
+        while (titleLines.length && titleLines[titleLines.length - 1].trim() === '') {
+          titleLines.pop();
+        }
+
+        out.push(fenceOpen);
+        for (const t of titleLines) out.push(t);
+        out.push('');
+        for (const b of body) out.push(b);
+        out.push(fenceClose);
+        i = k + 1;
+        continue;
+      }
+
+      // Not a diagram title — emit the blockquote unchanged
+      for (const b of bq) out.push(b);
+      continue;
+    }
+
+    out.push(lines[i]);
+    i++;
+  }
+
+  return out.join('\n');
+};
+
+const parseIntoSections = (rawContent: string): ParsedSection[] => {
+  const lines = rawContent.split('\n');
+  const sections: ParsedSection[] = [];
+  let currentMarkdownLines: string[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    if (lines[i].startsWith('## ') && lines[i].includes('Contents')) {
+      i++;
+      while (i < lines.length && !lines[i].startsWith('## ') && !lines[i].startsWith('# ')) {
+        i++;
+      }
+      continue;
+    }
+    if (lines[i].startsWith('## ') && lines[i].includes('Revision')) {
+      if (currentMarkdownLines.length > 0) {
+        sections.push({ type: 'markdown', content: currentMarkdownLines.join('\n') });
+        currentMarkdownLines = [];
+      }
+      const revTitle = lines[i].substring(3).trim();
+      let revLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].startsWith('## ') && !lines[i].startsWith('# ')) {
+        revLines.push(lines[i]);
+        i++;
+      }
+      sections.push({ type: 'revision', content: revLines.join('\n'), title: revTitle });
+      continue;
+    }
+    currentMarkdownLines.push(lines[i]);
+    i++;
+  }
+
+  if (currentMarkdownLines.length > 0) {
+    sections.push({ type: 'markdown', content: currentMarkdownLines.join('\n') });
+  }
+
+  return sections;
+};
+
+interface NotesViewProps {
+  topic: Topic;
+  onBack: () => void;
+  onCompleteTopic: (topicId: string, earnedPoints: number) => void;
+  userPoints: number;
+}
+
+export default function NotesView({
+  topic,
+  onBack,
+  userPoints,
+}: NotesViewProps) {
+  const rawContentSource = notesByTopicId[topic.id] || topic.content || '';
+  const isGoogleCourse = (topic.moduleId || '').startsWith('google-course-');
+  googlePageActive = isGoogleCourse;
+  const rawContent = isGoogleCourse
+    ? foldDiagramTitlesIntoFences(rawContentSource)
+    : rawContentSource;
+  const sections = parseIntoSections(rawContent);
+  const [isTocExpanded, setIsTocExpanded] = useState(false);
+
+  // TOC parsing
+  const tocItems: any[] = [];
+  rawContent.split('\n').forEach(line => {
+    if (line.startsWith('## ') && !line.startsWith('### ')) {
+      const rawText = line.substring(3).trim();
+      if (rawText.includes('Contents')) return;
+      const { text: cleanText } = parseHeading(rawText);
+      tocItems.push({
+        rawText,
+        cleanText,
+        anchor: generateAnchorId(rawText)
+      });
+    }
+  });
+
+  const renderTOC = () => {
+    if (tocItems.length <= 1) return null;
+    
+    const itemsToShow = isTocExpanded ? tocItems : tocItems.slice(0, 8);
+    const hasMore = tocItems.length > 8;
+    
+    return (
+      <div className="bg-[#161c2c]/80 border border-[#2d3a54] rounded-xl p-5 mb-8 text-left backdrop-blur-md">
+        <div className="flex items-center space-x-2 text-[#9fef00] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+          <Terminal className="w-4 h-4" />
+          <span>Table of Contents</span>
+        </div>
+        <ul className="space-y-1.5">
+          {itemsToShow.map((item, idx) => (
+            <li 
+              key={idx} 
+              className="pl-2 text-gray-400 hover:text-[#9fef00] transition-colors text-[11px] font-sans border-l border-[#2d3a54] hover:border-[#9fef00]"
+            >
+              <a 
+                href={`#${item.anchor}`} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById(item.anchor);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="hover:underline flex items-center space-x-2 py-0.5"
+              >
+                <span>{item.cleanText}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        {hasMore && (
+          <button
+            onClick={() => setIsTocExpanded(!isTocExpanded)}
+            className="mt-4 text-[10px] font-mono text-gray-400 hover:text-[#9fef00] transition-colors flex items-center space-x-1"
+          >
+            <span>{isTocExpanded ? 'Collapse list' : `Show all (${tocItems.length} sections) ▾`}</span>
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  // Measured mindmap container size — drives aspect-fill so the tree fills the
+  // card identically regardless of how many nodes / how deep the tree is.
+  const mindmapContainerRef = React.useRef<HTMLDivElement>(null);
+  const [mmSize, setMmSize] = useState<{ w: number; h: number }>({ w: 640, h: 400 });
+  React.useEffect(() => {
+    const el = mindmapContainerRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const update = () => setMmSize({ w: el.clientWidth || 640, h: el.clientHeight || 400 });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // ---- Tidy-tree layout for the mindmap (self-contained, no dependency) ----
+  // Reingold–Tilford style: leaves are slotted sequentially, internal nodes are
+  // centered on their children. Produces an overlap-free horizontal tree. After
+  // layout, spacing (never node size) is stretched so the tree's bounding box
+  // matches the container aspect ratio — so meet-scaling then fills the card the
+  // same way for a flat 5-node tree or a deep 15-node one.
+  const treeLayout = React.useMemo(() => {
+    const nodes = topic.mindmap || [];
+    if (nodes.length === 0) {
+      return { positioned: [] as any[], edges: [] as any[], parentOf: {} as Record<string, string>, width: 100, height: 100, rootId: '' };
+    }
+
+    const byId: Record<string, MindmapNode> = {};
+    nodes.forEach(n => { byId[n.id] = n; });
+
+    const childrenMap: Record<string, string[]> = {};
+    const parentOf: Record<string, string> = {};
+    nodes.forEach(n => { childrenMap[n.id] = []; });
+    nodes.forEach(n => {
+      (n.connections || []).forEach(cid => {
+        if (byId[cid] && cid !== n.id) childrenMap[n.id].push(cid);
+      });
+    });
+
+    // Root = a node never referenced as someone's child
+    const referenced = new Set<string>();
+    nodes.forEach(n => (n.connections || []).forEach(c => referenced.add(c)));
+    const root = nodes.find(n => !referenced.has(n.id)) || nodes[0];
+
+    // Longest-path depth from root so that convergent (multi-parent) nodes
+    // land in the deepest column — never in the same column as a parent.
+    const depthOf: Record<string, number> = {};
+    nodes.forEach(n => { depthOf[n.id] = 0; });
+    for (let iter = 0; iter <= nodes.length; iter++) {
+      let changed = false;
+      nodes.forEach(n => {
+        for (const cid of childrenMap[n.id]) {
+          if (depthOf[cid] < depthOf[n.id] + 1) { depthOf[cid] = depthOf[n.id] + 1; changed = true; }
+        }
+      });
+      if (!changed) break;
+    }
+
+    // Spanning tree for vertical slotting: each non-root node gets exactly ONE
+    // layout parent (a connector one level shallower). All original edges are
+    // still drawn — this only decides which parent owns the node's row slot.
+    const slotChildren: Record<string, string[]> = {};
+    nodes.forEach(n => { slotChildren[n.id] = []; });
+    nodes.forEach(n => {
+      if (n.id === root.id) return;
+      let chosen: string | undefined;
+      nodes.forEach(p => {
+        if (!chosen && childrenMap[p.id].includes(n.id) && depthOf[p.id] === depthOf[n.id] - 1) chosen = p.id;
+      });
+      if (!chosen) nodes.forEach(p => { if (!chosen && childrenMap[p.id].includes(n.id)) chosen = p.id; });
+      if (!chosen) { chosen = root.id; depthOf[n.id] = Math.max(depthOf[n.id], 1); }
+      parentOf[n.id] = chosen;
+      slotChildren[chosen].push(n.id);
+    });
+
+    // Word-wrap a label into up to 2 lines
+    const wrap = (label: string): string[] => {
+      const words = (label || '').split(/\s+/);
+      const lines: string[] = [];
+      let cur = '';
+      const MAX = 15;
+      for (const w of words) {
+        if (cur && (cur + ' ' + w).length > MAX) { lines.push(cur); cur = w; }
+        else { cur = cur ? cur + ' ' + w : w; }
+      }
+      if (cur) lines.push(cur);
+      if (lines.length > 2) return [lines[0], lines.slice(1).join(' ')];
+      return lines.length ? lines : [''];
+    };
+
+    const CHAR_W = 6.2, PAD_X = 14, LINE_H = 13;
+    const H_GAP = 46;                       // horizontal gap between columns
+    const ROW_STEP = LINE_H * 2 + 16 + 22;  // tallest node + vertical gap
+
+    type P = MindmapNode & { depth: number; lines: string[]; w: number; h: number; cx: number; cy: number };
+    const meta: Record<string, P> = {};
+    nodes.forEach(n => {
+      const lines = wrap(n.label);
+      const longest = Math.max(...lines.map(l => l.length), 1);
+      const w = Math.min(200, Math.max(66, longest * CHAR_W + PAD_X * 2));
+      const h = lines.length * LINE_H + 16;
+      meta[n.id] = { ...n, depth: depthOf[n.id], lines, w, h, cx: 0, cy: 0 };
+    });
+
+    const maxDepth = Math.max(...nodes.map(n => depthOf[n.id]));
+    const colW: number[] = [];
+    for (let d = 0; d <= maxDepth; d++) {
+      colW[d] = Math.max(40, ...nodes.filter(n => depthOf[n.id] === d).map(n => meta[n.id].w));
+    }
+    const colCenterX: number[] = [];
+    let acc = 24;
+    for (let d = 0; d <= maxDepth; d++) {
+      colCenterX[d] = acc + colW[d] / 2;
+      acc += colW[d] + H_GAP;
+    }
+
+    // Assign y by DFS leaf-slotting; parents centered on their children
+    let leafCursor = 0;
+    const assignY = (id: string): number => {
+      const kids = slotChildren[id];
+      if (!kids || kids.length === 0) {
+        const yy = 34 + leafCursor * ROW_STEP;
+        meta[id].cy = yy;
+        leafCursor += 1;
+        return yy;
+      }
+      const ys = kids.map(assignY);
+      meta[id].cy = (ys[0] + ys[ys.length - 1]) / 2;
+      return meta[id].cy;
+    };
+    assignY(root.id);
+    nodes.forEach(n => { meta[n.id].cx = colCenterX[meta[n.id].depth]; });
+
+    const positioned = nodes.map(n => meta[n.id]);
+    const height = 34 + Math.max(1, leafCursor) * ROW_STEP - (ROW_STEP - 40);
+    const width = acc - H_GAP + 24;
+
+    const edges = nodes.flatMap(n =>
+      childrenMap[n.id].map(cid => ({ from: n.id, to: cid, depth: depthOf[n.id] }))
+    );
+
+    return { positioned, edges, parentOf, width, height, rootId: root.id };
+  }, [topic.mindmap]);
+
+  // Deterministic fit: 1 viewBox unit == 1 px at scale 1. Only scale DOWN to
+  // fit an oversized tree (cap = 1, never inflate). Node/font/stroke sizes are
+  // fixed units, so a small tree renders at its natural (Google) size and the
+  // card height shrinks to hug it — identical look on both sides.
+  const MM_MAX_H = 460, MM_MIN_H = 200, MM_PAD = 24;
+  const mmFit = React.useMemo(() => {
+    const availW = Math.max(200, (mmSize.w || 640) - MM_PAD);
+    let scale = Math.min(1, availW / treeLayout.width);
+    if (treeLayout.height * scale > MM_MAX_H) scale = MM_MAX_H / treeLayout.height;
+    const renderedH = Math.min(MM_MAX_H, Math.max(MM_MIN_H, treeLayout.height * scale + MM_PAD));
+    return { scale, renderedH };
+  }, [mmSize, treeLayout]);
+
+  const [selectedNode, setSelectedNode] = useState<MindmapNode | null>(topic.mindmap[0] || null);
+  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [hintsShown, setHintsShown] = useState<{ [id: string]: boolean }>({});
+
+  // The set of nodes + edges on the path from the selected node back to the root
+  const highlight = React.useMemo(() => {
+    const ids = new Set<string>();
+    const edgeKeys = new Set<string>();
+    if (selectedNode) {
+      let cur: string | undefined = selectedNode.id;
+      ids.add(cur);
+      while (cur && treeLayout.parentOf[cur]) {
+        const p = treeLayout.parentOf[cur];
+        edgeKeys.add(`${p}->${cur}`);
+        ids.add(p);
+        cur = p;
+      }
+    }
+    return { ids, edgeKeys };
+  }, [selectedNode, treeLayout]);
+
+  const toggleHint = (qId: string) => {
+    setHintsShown(prev => ({ ...prev, [qId]: !prev[qId] }));
+  };
+
+  return (
+    <div className="flex-1 flex flex-col space-y-8" id="notes-view-root">
+      <div className="flex items-center justify-between border-b border-[#2d3a54] pb-5 text-left" id="notes-header">
+        <button
+          onClick={onBack}
+          className="flex items-center space-x-2 text-gray-400 hover:text-[#9fef00] transition-colors font-mono text-sm cursor-pointer"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Learning Path</span>
+        </button>
+        <div className="text-right">
+          <span className="text-[10px] text-[#9fef00] font-mono uppercase tracking-widest block">Pre Security Pathway</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 text-left">
+        <div className="xl:col-span-2 space-y-8" id="notes-study-column">
+          <div className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border border-[#2d3a54] p-6 shadow-xl relative overflow-hidden">
+            <div className="absolute right-0 top-0 opacity-5 w-44 pointer-events-none select-none">
+              <BookOpen className="w-32 h-32 text-white" />
+            </div>
+
+            <div className="flex items-center space-x-2 text-[#9fef00] font-mono text-xs font-bold uppercase tracking-widest">
+              <Terminal className="w-4 h-4" />
+              <span>Cyber Study Notes Room</span>
+            </div>
+            
+            <h1 className="text-2xl md:text-3xl font-extrabold text-white mt-1.5 font-sans leading-tight">
+              {topic.title}
+            </h1>
+            <p className="text-gray-400 text-sm mt-1.5 font-mono">
+              Topic Room Description: {topic.description}
+            </p>
+
+            {renderTOC()}
+
+            <article className="mt-8 prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6 text-sm">
+              {sections.map((section, idx) => {
+                if (section.type === 'revision') {
+                  return (
+                    <div key={idx} className="bg-gradient-to-br from-[#1c2538] to-[#161c2c] border-2 border-dashed border-[#9fef00]/30 rounded-xl p-6 my-8 relative overflow-hidden shadow-xl shadow-[#9fef00]/5">
+                      <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 text-9xl text-[#9fef00]/5 select-none font-sans font-bold pointer-events-none">
+                        REV
+                      </div>
+                      <div className="flex items-center space-x-2 text-[#9fef00] font-sans font-extrabold text-base uppercase tracking-wider mb-4 border-b border-[#2d3a54] pb-2">
+                        <Award className="w-5 h-5 text-[#9fef00]" />
+                        <span>{section.title}</span>
+                      </div>
+                      <div className="space-y-4">
+                        <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={markdownComponents}>
+                          {section.content}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <ReactMarkdown key={idx} remarkPlugins={[remarkGfm, remarkBreaks]} components={markdownComponents}>
+                    {section.content}
+                  </ReactMarkdown>
+                );
+              })}
+            </article>
+          </div>
+
+          <div className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border border-[#2d3a54] p-6 shadow-xl text-left">
+            <h3 className="text-white font-bold text-lg flex items-center space-x-2">
+              <Sparkles className="w-5 h-5 text-[#9fef00]" />
+              <span>Interactive Notes Mindmap</span>
+            </h3>
+            <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+              Explore the conceptual flowchart. Click on any node below to load its dedicated note details in the explorer panel.
+            </p>
+
+            <div className="mt-6">
+              <div ref={mindmapContainerRef} className="relative bg-[#111622] rounded-xl border border-[#2d3a54]/60 overflow-hidden shadow-inner flex items-center justify-center" style={{ height: mmFit.renderedH }}>
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#9fef00_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+                {treeLayout.positioned.length > 0 && (
+                  <svg
+                    className="relative z-10"
+                    width={treeLayout.width * mmFit.scale}
+                    height={treeLayout.height * mmFit.scale}
+                    viewBox={`0 0 ${treeLayout.width} ${treeLayout.height}`}
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    {/* Connectors: node edge -> node edge, bezier, accent green */}
+                    {treeLayout.edges.map((e: any) => {
+                      const p = treeLayout.positioned.find((n: any) => n.id === e.from);
+                      const c = treeLayout.positioned.find((n: any) => n.id === e.to);
+                      if (!p || !c) return null;
+                      const x1 = p.cx + p.w / 2, y1 = p.cy;
+                      const x2 = c.cx - c.w / 2, y2 = c.cy;
+                      const mx = (x1 + x2) / 2;
+                      const isOn = highlight.edgeKeys.has(`${e.from}->${e.to}`);
+                      const sw = Math.max(1.3, 3.2 - e.depth * 0.7); // thicker near root
+                      return (
+                        <path
+                          key={`${e.from}-${e.to}`}
+                          d={`M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`}
+                          fill="none"
+                          stroke="#9fef00"
+                          strokeWidth={isOn ? sw + 1 : sw}
+                          strokeLinecap="round"
+                          opacity={isOn ? 1 : 0.3}
+                          filter={isOn ? 'drop-shadow(0 0 3px rgba(159,239,0,0.8))' : 'none'}
+                          className="transition-all duration-300"
+                        />
+                      );
+                    })}
+
+                    {/* Nodes: root (green filled) > section (bordered) > child */}
+                    {treeLayout.positioned.map((n: any) => {
+                      const isSel = selectedNode?.id === n.id;
+                      const isHover = hoveredNodeId === n.id;
+                      const onPath = highlight.ids.has(n.id);
+                      const isRoot = n.depth === 0;
+                      const isSection = n.depth === 1;
+                      let fill = '#161c2c', stroke = '#2d3a54', textFill = '#cbd5e1';
+                      if (isRoot) { fill = '#16250f'; stroke = '#9fef00'; textFill = '#e9ffd6'; }
+                      else if (isSection) { fill = '#1c2538'; stroke = '#3f6f2a'; textFill = '#e2e8f0'; }
+                      if (onPath && !isSel) stroke = '#9fef00';
+                      if (isSel) { fill = '#9fef00'; stroke = '#9fef00'; textFill = '#0b1220'; }
+                      const fontSize = isRoot ? 11.5 : isSection ? 10.5 : 10;
+                      return (
+                        <g
+                          key={n.id}
+                          className="cursor-pointer transition-all duration-200"
+                          onClick={() => setSelectedNode(n)}
+                          onMouseEnter={() => setHoveredNodeId(n.id)}
+                          onMouseLeave={() => setHoveredNodeId(null)}
+                        >
+                          <rect
+                            x={n.cx - n.w / 2}
+                            y={n.cy - n.h / 2}
+                            width={n.w}
+                            height={n.h}
+                            rx={isRoot ? 9 : 7}
+                            fill={fill}
+                            stroke={stroke}
+                            strokeWidth={isSel || onPath ? 2 : isRoot ? 1.8 : 1.2}
+                            filter={isSel || isHover ? 'drop-shadow(0 0 6px rgba(159,239,0,0.55))' : 'none'}
+                          />
+                          {n.lines.map((ln: string, i: number) => (
+                            <text
+                              key={i}
+                              x={n.cx}
+                              y={n.cy - (n.lines.length - 1) * 6.5 + i * 13 + 3.6}
+                              textAnchor="middle"
+                              fontFamily="ui-monospace, monospace"
+                              fontSize={fontSize}
+                              fontWeight={isRoot ? 800 : 600}
+                              fill={textFill}
+                              style={{ pointerEvents: 'none' }}
+                            >
+                              {ln}
+                            </text>
+                          ))}
+                        </g>
+                      );
+                    })}
+                  </svg>
+                )}
+
+                <div className="absolute top-2 left-3 flex items-center space-x-1.5 pointer-events-none z-20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9fef00]" />
+                  <span className="text-[9px] text-gray-500 font-mono uppercase tracking-wider">Root → Sections → Topics</span>
+                </div>
+              </div>
+
+              {/* Explorer Panel */}
+              <div className="mt-3 bg-[#1c2538]/95 backdrop-blur-md rounded-lg border border-[#2d3a54]/80 p-4 text-left shadow-md shadow-black/40">
+                <div className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9fef00] animate-pulse" />
+                  <span className="text-[10px] text-[#9fef00] font-mono uppercase tracking-wider font-bold">Explorer Panel</span>
+                </div>
+                <h4 className="text-white text-xs font-bold font-mono mt-1 flex items-center space-x-2">
+                  <span>{selectedNode ? selectedNode.label : 'Select a node to inspect...'}</span>
+                </h4>
+                <p className="text-[11px] text-gray-300 mt-1 leading-relaxed">
+                  {selectedNode ? selectedNode.description : 'Click any node in the mindmap to reveal its core study details here.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6" id="notes-interactive-column">
+          {topic.realWorldCallout && (
+            <div className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border-l-4 border-l-[#9fef00] border-y border-r border-[#2d3a54] p-5 shadow-lg relative">
+              <h4 className="text-[#9fef00] text-sm font-bold flex items-center space-x-2">
+                <ShieldAlert className="w-4 h-4" />
+                <span>Real-World Scenario</span>
+              </h4>
+              <div className="mt-3 text-left">
+                <h5 className="text-white text-xs font-extrabold font-mono uppercase tracking-wide">
+                  Case Study: {topic.realWorldCallout.title}
+                </h5>
+                <div className="bg-[#161c2c]/60 rounded p-3 border border-[#2d3a54] mt-2 space-y-2">
+                  <p className="text-[11px] text-[#00b2ff] font-mono uppercase leading-none">The Attack Concept:</p>
+                  <p className="text-xs text-gray-300 font-semibold leading-relaxed">
+                    {topic.realWorldCallout.concept}
+                  </p>
+                  <p className="text-[11px] text-orange-400 font-mono uppercase leading-none pt-1">The Practical Scenario:</p>
+                  <p className="text-xs text-gray-400 leading-relaxed italic">
+                    "{topic.realWorldCallout.scenario}"
+                  </p>
+                </div>
+                <p className="text-[11px] text-gray-400 mt-3 leading-relaxed">
+                  <strong className="text-white">Significance:</strong> {topic.realWorldCallout.relevance}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {topic.keyTakeaways && topic.keyTakeaways.length > 0 && (
+            <div className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border border-[#2d3a54] p-5 shadow-lg text-left">
+              <h4 className="text-white text-sm font-bold flex items-center space-x-2">
+                <CheckCircle className="w-4 h-4 text-[#9fef00]" />
+                <span>Key Takeaways</span>
+              </h4>
+              <ul className="mt-3.5 space-y-3">
+                {topic.keyTakeaways?.map((takeaway, idx) => (
+                  <li key={idx} className="flex items-start space-x-2.5 text-xs text-gray-300">
+                    <span className="text-[#9fef00] font-bold mt-0.5 select-none">&bull;</span>
+                    <span className="leading-relaxed">{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border border-[#2d3a54] p-5 shadow-lg text-left">
+            <h4 className="text-white text-sm font-bold flex items-center space-x-2 mb-4">
+              <Brain className="w-4 h-4 text-sky-400" />
+              <span>Practice Questions</span>
+            </h4>
+            <div className="space-y-6">
+              {topic.quiz.map((question, qIdx) => {
+                const isHintOpen = !!hintsShown[question.id];
+                return (
+                  <div key={question.id} className="p-4 rounded-lg border transition-all duration-150 bg-[#161c2c]/60 backdrop-blur-md border-[#2d3a54]">
+                    <span className="text-[10px] text-gray-400 font-mono block">QUESTION {qIdx + 1}</span>
+                    <p className="text-xs text-white font-bold mt-1 leading-relaxed">
+                      {question.question}
+                    </p>
+                    <div className="mt-3 flex items-center space-x-3">
+                      <button
+                        onClick={() => toggleHint(question.id)}
+                        className="text-[10px] font-mono text-gray-400 hover:text-white flex items-center space-x-1 cursor-pointer"
+                      >
+                        <Lightbulb className="w-3 h-3 text-yellow-500" />
+                        <span>{isHintOpen ? 'Hide Hint' : 'Show Hint'}</span>
+                      </button>
+                    </div>
+                    {isHintOpen && (
+                      <div className="mt-2 bg-[#1c2538]/60 backdrop-blur-md p-2 rounded-md border border-[#2d3a54] text-[11px] text-yellow-400 font-mono">
+                        <span className="font-bold uppercase text-[9px] block text-gray-400 mb-0.5">Hint:</span>
+                        {question.hint || 'No hint available. Check the notes text block for answers!'}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

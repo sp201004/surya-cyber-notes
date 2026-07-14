@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Ubuntu", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Disable font ligatures for ALL monospace / code contexts site-wide.
+   JetBrains Mono renders == != <= >= -> as ligature glyphs, which corrupts
+   code (a beginner copying ≠ gets broken Python). Force every character to
+   appear exactly as typed across all courses and TryHackMe. */
+code,
+pre,
+kbd,
+samp,
+.font-mono,
+[class*="font-mono"] {
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "calt" 0 !important;
+  -webkit-font-feature-settings: "liga" 0, "calt" 0 !important;
+}
+
+@layer utilities {
+  .glow-green {
+    text-shadow: 0 0 8px rgba(159, 239, 0, 0.6);
+  }
+  .box-glow {
+    box-shadow: 0 0 15px rgba(159, 239, 0, 0.25);
+  }
+  .box-glow-hover:hover {
+    box-shadow: 0 0 20px rgba(159, 239, 0, 0.4);
+    border-color: #9fef00;
+  }
+}
+
+/* Custom scrollbar for TryHackMe styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #161c2c;
+}
+::-webkit-scrollbar-thumb {
+  background: #253147;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9fef00;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.15s ease-in-out 0s 2;
+}
+
+
