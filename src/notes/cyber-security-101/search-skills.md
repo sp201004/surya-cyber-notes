@@ -116,23 +116,23 @@ Unlike Google, which searches **content**, Shodan searches **devices**.
 
 **Google searches:**
 
-- ✔ Websites
-- ✔ Images
-- ✔ Videos
-- ✔ Documents
+- Websites
+- Images
+- Videos
+- Documents
 
 **Shodan searches:**
 
-- ✔ Servers
-- ✔ Routers
-- ✔ Firewalls
-- ✔ CCTV Cameras
-- ✔ Databases
-- ✔ IoT Devices
-- ✔ Printers
-- ✔ NAS Devices
-- ✔ Industrial Control Systems (ICS)
-- ✔ Smart Devices
+- Servers
+- Routers
+- Firewalls
+- CCTV Cameras
+- Databases
+- IoT Devices
+- Printers
+- NAS Devices
+- Industrial Control Systems (ICS)
+- Smart Devices
 
 > **Memory Trick:** Google searches **CONTENT** — Shodan searches **DEVICES**.
 
