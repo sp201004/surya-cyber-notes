@@ -1,6 +1,6 @@
 {
-  "name": "Pre Security - Study Notes",
-  "description": "My personal cybersecurity notes — concepts, mindmaps, and real-world examples from my learning journey.",
+  "name": "Surya's Cyber Notes",
+  "description": "Interactive cybersecurity study notes — TryHackMe & Google Cybersecurity Certificate.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }
