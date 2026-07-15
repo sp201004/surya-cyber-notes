@@ -136,13 +136,9 @@ By the end of this room you should be able to:
 Whenever you switch on your laptop...
 
  Browser opens.
-
  Music starts.
-
  Wi-Fi connects.
-
  Files appear.
-
  USB works.
 
 Everything feels automatic.
@@ -300,16 +296,12 @@ Let's expand it.
 
 ```
 Airport
-
 Passengers
 ↓
-
 Airlines
 ↓
-
 Air Traffic Control
 ↓
-
 Runway
 ```
 
@@ -318,13 +310,10 @@ Computer equivalent
 ```
 User
 ↓
-
 Applications
 ↓
-
 Operating System
 ↓
-
 Hardware
 ```
 
@@ -475,17 +464,11 @@ Instead...
 
 ```
 Chrome
-
 ↓
-
 System Call
-
 ↓
-
 Kernel
-
 ↓
-
 CPU
 ```
 
@@ -500,9 +483,7 @@ If Chrome had direct hardware access...
 
 ```
 Chrome Crash
-
 ↓
-
 Entire Operating System Crash
 ```
 
@@ -510,13 +491,9 @@ With User Space...
 
 ```
 Chrome Crash
-
 ↓
-
 Chrome Closes
-
 ↓
-
 Operating System Continues Running
 ```
 
