@@ -329,6 +329,92 @@ const hasDiagramStructure = (content: string): boolean => {
   return false;
 };
 
+// ---------------------------------------------------------------------------
+// SEGMENT-LEVEL SPLIT: a single fenced card may contain BOTH a real diagram
+// (box-drawing / flow) AND trailing prose sentences or bullet lists. Only the
+// diagram belongs in a monospace card; the prose/list content must render as
+// native styled markdown. We segment the block into blank-line-separated
+// chunks, classify each as diagram vs prose, and (only when the block is truly
+// mixed) return ordered segments. Pure diagrams, flowcharts, logs and code all
+// return null here → they keep the untouched atomic-card behaviour.
+// ---------------------------------------------------------------------------
+const isBoxLine = (l: string): boolean =>
+  (l.match(/\|/g) || []).length >= 2 ||
+  /\+[-]{3,}/.test(l) ||
+  /[┌┐└┘├┤┬┴┼─│╔╗╚╝║═╠╣╦╩╬]/.test(l);
+
+const isFlowLine = (l: string): boolean =>
+  /--+>|<--+|──|=>|[↓↑→←▼▲⟶⟵►◄]/.test(l) ||
+  /(^|[^A-Za-z])->([^A-Za-z]|$)/.test(l) ||
+  /^\s*[|vV^]\s*$/.test(l);
+
+// A "prose" line: a real sentence, an asterisk bullet, or a LABEL: clause.
+// Diagram/flow lines and short node labels are deliberately excluded.
+const isProseLine = (l: string): boolean => {
+  const s = l.trim();
+  if (!s) return false;
+  if (isBoxLine(l) || isFlowLine(l)) return false;
+  if (/^\*\s+\S/.test(s)) return true;
+  const words = s.split(/\s+/);
+  if (words.length >= 5 && /[.!?]$/.test(s)) return true;
+  if (s.includes(':') && words.length >= 6 && /[a-z]/.test(s)) return true;
+  return false;
+};
+
+// Log / code lines that legitimately belong in a monospace card (never split).
+const LOGCODE_RE = /^\s*\$ |^\s*<\d+>|CEF:|^\s*alert (http|tcp|udp|ip) |\| stats |\| search |index=|sourcetype=/i;
+
+type BlockSeg = { type: 'diagram' | 'prose'; text: string };
+
+// Returns ordered segments ONLY when the block mixes a diagram with a separate
+// prose/bullet chunk; otherwise null (caller keeps the single atomic card).
+const segmentDiagramProse = (content: string): BlockSeg[] | null => {
+  const allLines = content.split('\n');
+  if (allLines.some(l => LOGCODE_RE.test(l))) return null;
+
+  // Group into blank-line-separated chunks.
+  const chunks: string[][] = [];
+  let cur: string[] = [];
+  for (const l of allLines) {
+    if (l.trim() === '') { if (cur.length) { chunks.push(cur); cur = []; } }
+    else cur.push(l);
+  }
+  if (cur.length) chunks.push(cur);
+  if (chunks.length < 2) return null;
+
+  const classify = (c: string[]): 'diagram' | 'prose' => {
+    const prose = c.filter(isProseLine).length;
+    const box = c.filter(isBoxLine).length;
+    return prose >= 2 && box === 0 ? 'prose' : 'diagram';
+  };
+
+  const typed = chunks.map(c => ({ t: classify(c), c }));
+  if (!typed.some(x => x.t === 'diagram') || !typed.some(x => x.t === 'prose')) return null;
+
+  // Merge consecutive same-type chunks (preserve blank line between them).
+  const segs: BlockSeg[] = [];
+  for (const { t, c } of typed) {
+    const text = c.join('\n');
+    if (segs.length && segs[segs.length - 1].type === t) {
+      segs[segs.length - 1].text += '\n\n' + text;
+    } else {
+      segs.push({ type: t, text });
+    }
+  }
+  return segs;
+};
+
+// Convert a pulled-out prose segment into clean markdown: dedent, turn '* '
+// bullets into '- ', and bold a leading LABEL: so it reads like the rest of the
+// site. Verbatim words are preserved.
+const normalizeProseSegment = (text: string): string =>
+  text.split('\n').map(l => {
+    let s = l.replace(/^\s+/, '');
+    s = s.replace(/^\*\s+/, '- ');
+    s = s.replace(/^([A-Z][A-Za-z0-9 /()\-]*[?:])(\s)/, '**$1**$2');
+    return s;
+  }).join('\n');
+
 // "FAKE DIAGRAM" = a fenced block that is only prose + simple bullet markers
 // (+--, *, -) with NO visual structure. These read like a raw .md dump inside a
 // monospace card, so we render them as native styled content instead. Trigger
@@ -731,6 +817,33 @@ const markdownComponents: import('react-markdown').Components = {
     // Scoped to Google course pages; genuine diagrams stay monospace.
     if (googlePageActive && isFakeDiagram(content)) {
       return renderFakeDiagram(content);
+    }
+
+    // SEGMENT-LEVEL RULE: if the card mixes a real diagram with a separate
+    // prose/bullet chunk, split it — diagram stays a monospace card, prose/list
+    // content renders as native styled markdown, original order preserved.
+    const segs = segmentDiagramProse(content);
+    if (segs) {
+      return (
+        <>
+          {segs.map((seg, i) =>
+            seg.type === 'diagram' ? (
+              <div
+                key={i}
+                className="font-mono text-xs bg-[#111827]/90 border-l-4 border-[#9fef00] p-4 rounded-r-lg my-4 overflow-x-auto whitespace-pre leading-relaxed text-gray-300 shadow-[0_0_15px_rgba(159,239,0,0.03)] border-y border-r border-[#2d3a54]/40 select-all"
+              >
+                {seg.text}
+              </div>
+            ) : (
+              <div key={i} className="my-4">
+                <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={markdownComponents}>
+                  {normalizeProseSegment(seg.text)}
+                </ReactMarkdown>
+              </div>
+            )
+          )}
+        </>
+      );
     }
 
     // ATOMIC RULE: every other fenced code block renders byte-for-byte in one

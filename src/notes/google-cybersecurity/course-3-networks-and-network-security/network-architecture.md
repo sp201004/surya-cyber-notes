@@ -123,17 +123,14 @@
   | * TTL countdown  | * Video stream chunk     |   checksum (CRC)   |
   | * Packet size    |                          |                    |
   +------------------+--------------------------+--------------------+
-
-  WHY PACKETS? Large files are broken into thousands of packets.
-  Each packet may take a DIFFERENT route to the destination.
-  The destination reassembles them in the correct order.
-  If a packet is lost, only THAT packet is re-sent -- not the whole file.
-
-  SECURITY RELEVANCE: Analysts examine packet HEADERS to detect:
-  * Spoofed source IPs (IP spoofing attacks)
-  * Unusual TTL values (traceroute-based reconnaissance)
-  * Fragmented packets (evasion of IDS/firewall inspection)
 ```
+
+**WHY PACKETS?** Large files are broken into thousands of packets. Each packet may take a DIFFERENT route to the destination. The destination reassembles them in the correct order. If a packet is lost, only THAT packet is re-sent -- not the whole file.
+
+**SECURITY RELEVANCE:** Analysts examine packet HEADERS to detect:
+- Spoofed source IPs (IP spoofing attacks)
+- Unusual TTL values (traceroute-based reconnaissance)
+- Fragmented packets (evasion of IDS/firewall inspection)
 
 ### IPv4 Packet Header — Key Fields Analysts Read
 
@@ -173,14 +170,14 @@
   | 1. PHYSICAL             |--> | 1. NETWORK ACCESS      |   ARP, Ethernet frames,
   |                         |    |                        |   cables, Wi-Fi radio
   +-------------------------+    +------------------------+
-
-  ATTACK EXAMPLES BY LAYER:
-  Layer 1 (Physical): Cutting cables, unauthorized physical access to hardware
-  Layer 2 (Data Link): ARP poisoning, MAC flooding attacks
-  Layer 3 (Network): IP spoofing, ICMP flood, Ping of Death
-  Layer 4 (Transport): SYN flood, port scanning
-  Layer 7 (Application): SQL injection, XSS, HTTP DDoS, phishing
 ```
+
+**ATTACK EXAMPLES BY LAYER:**
+- **Layer 1 (Physical):** Cutting cables, unauthorized physical access to hardware
+- **Layer 2 (Data Link):** ARP poisoning, MAC flooding attacks
+- **Layer 3 (Network):** IP spoofing, ICMP flood, Ping of Death
+- **Layer 4 (Transport):** SYN flood, port scanning
+- **Layer 7 (Application):** SQL injection, XSS, HTTP DDoS, phishing
 
 ## TCP vs. UDP — When to Use Each
 
