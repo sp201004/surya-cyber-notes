@@ -440,6 +440,7 @@ function NotesRoute() {
         <NotesView
           key={topic.id}
           topic={topic}
+          pathwayLabel={`${course.name.replace(/^.*?—\s*/, '')} Pathway`}
           onBack={() => {
             // "Back to Learning Path": use real back nav so the course/map
             // scroll position is restored (POP). Fall back to a fresh push

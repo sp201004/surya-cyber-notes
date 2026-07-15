@@ -93,6 +93,9 @@ import becomeAHacker from './module7-attacks-and-defenses/become-a-hacker.md?raw
 import becomeADefender from './module7-attacks-and-defenses/become-a-defender.md?raw';
 import mysteryChestAttacks from './module7-attacks-and-defenses/mystery-chest.md?raw';
 
+import cs101SearchSkills from './cyber-security-101/search-skills.md?raw';
+import cs101MysteryChest from './cyber-security-101/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -186,4 +189,7 @@ export const notesByTopicId: Record<string, string> = {
   'become-a-hacker': becomeAHacker,
   'become-a-defender': becomeADefender,
   'mystery-chest-attacks': mysteryChestAttacks,
+
+  'search-skills': cs101SearchSkills,
+  'mystery-chest-cs101': cs101MysteryChest,
 };

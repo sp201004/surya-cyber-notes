@@ -393,6 +393,7 @@ const renderUniqueIsometricObject = (
     case 'mystery-chest-gc6':
     case 'mystery-chest-gc7':
     case 'mystery-chest-gc8':
+    case 'mystery-chest-cs101':
       return (
         <g id="mystery-chest-scene">
           <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
@@ -1509,6 +1510,27 @@ const renderUniqueIsometricObject = (
           <ellipse cx={x} cy={y - 1} rx={14} ry={5} fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.4" />
           {/* SQL text */}
           <text x={x - 7} y={y + 2} fill="#9fef00" fontSize="6" fontFamily="monospace" fontWeight="bold">SQL</text>
+        </g>
+      );
+
+    // CS101 M1 — Search Skills: isometric magnifier/search glass over a target
+    case 'search-skills':
+      return (
+        <g id="search-magnifier-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={7} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          {/* Isometric base plate */}
+          <path d={`M ${x} ${y + 9} L ${x - 14} ${y + 2} L ${x} ${y - 5} L ${x + 14} ${y + 2} Z`} fill="#1e293b" stroke="#0f172a" strokeWidth="0.5" />
+          {/* Radar-style target rings on the plate */}
+          <ellipse cx={x} cy={y + 2} rx={9} ry={4.5} fill="none" stroke="#0ea5e9" strokeWidth="0.6" opacity="0.6" />
+          <ellipse cx={x} cy={y + 2} rx={5} ry={2.5} fill="none" stroke="#38bdf8" strokeWidth="0.6" opacity="0.7" />
+          {/* Magnifier handle (points to lower-right) */}
+          <line x1={x + 4} y1={y - 3} x2={x + 12} y2={y + 9} stroke="#475569" strokeWidth="3" strokeLinecap="round" />
+          <line x1={x + 4} y1={y - 3} x2={x + 12} y2={y + 9} stroke="#64748b" strokeWidth="1.4" strokeLinecap="round" />
+          {/* Magnifier lens */}
+          <circle cx={x - 1} cy={y - 8} r={7.5} fill="rgba(56, 189, 248, 0.35)" stroke="#e2e8f0" strokeWidth="2" filter="drop-shadow(0 0 3px rgba(56,189,248,0.9))" />
+          <circle cx={x - 1} cy={y - 8} r={7.5} fill="none" stroke="#0ea5e9" strokeWidth="0.5" />
+          {/* Lens glare */}
+          <path d={`M ${x - 5} ${y - 10} Q ${x - 1} ${y - 13} ${x + 3} ${y - 10}`} fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
         </g>
       );
 

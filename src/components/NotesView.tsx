@@ -925,12 +925,14 @@ interface NotesViewProps {
   onBack: () => void;
   onCompleteTopic: (topicId: string, earnedPoints: number) => void;
   userPoints: number;
+  pathwayLabel?: string;
 }
 
 export default function NotesView({
   topic,
   onBack,
   userPoints,
+  pathwayLabel = 'Pre Security Pathway',
 }: NotesViewProps) {
   const rawContentSource = notesByTopicId[topic.id] || topic.content || '';
   const isGoogleCourse = (topic.moduleId || '').startsWith('google-course-');
@@ -1197,7 +1199,7 @@ export default function NotesView({
           <span>Back to Learning Path</span>
         </button>
         <div className="text-right">
-          <span className="text-[10px] text-[#9fef00] font-mono uppercase tracking-widest block">Pre Security Pathway</span>
+          <span className="text-[10px] text-[#9fef00] font-mono uppercase tracking-widest block">{pathwayLabel}</span>
         </div>
       </div>
 
