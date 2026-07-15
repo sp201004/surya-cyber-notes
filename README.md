@@ -1,6 +1,8 @@
 <div align="center">
 
-# `>_` Surya's Cyber Notes
+<img src="public/favicon.svg" alt="Surya's Cyber Notes logo" width="90" height="90" />
+
+# Surya's Cyber Notes
 
 **A personal cybersecurity study-notes platform — my TryHackMe & Google Cybersecurity journey, turned into an interactive, gamified learning site.**
 
