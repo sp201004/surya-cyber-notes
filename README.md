@@ -20,18 +20,11 @@
 
 ## 📸 Screenshots
 
-<!-- Recommended size: 1280×800 (16:10), PNG. Drop images in a /screenshots folder and update the paths. -->
+<div align="center">
 
-<!-- Landing page -->
-<!-- ![Landing page](screenshots/landing.png) -->
+<img src="https://github.com/user-attachments/assets/928637fb-ca7a-414a-94df-38b87d3e8552" alt="Surya's Cyber Notes — landing page" width="100%" />
 
-<!-- Course map (isometric room path) -->
-<!-- ![Course map](screenshots/course-map.png) -->
-
-<!-- Room / notes page (notes + mindmap + sidebar) -->
-<!-- ![Room page](screenshots/room.png) -->
-
-> _Screenshots coming soon — landing page, a course map, and a room page._
+</div>
 
 ---
 
