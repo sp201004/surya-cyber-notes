@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import { 
   Shield, 
   Terminal, 
@@ -1622,79 +1622,6 @@ export default function ModuleMap({
   onTopicClick,
 }: ModuleMapProps) {
   const [hoveredTopicId, setHoveredTopicId] = useState<string | null>(null);
-  const [mobileSegments, setMobileSegments] = useState<{ [moduleId: string]: LineSegment[] }>({});
-
-  const measureMobileLines = useCallback(() => {
-    const newMobileSegments: typeof mobileSegments = {};
-
-    modules.forEach((module) => {
-      const containerId = `mobile-path-container-${module.id}`;
-      const container = document.getElementById(containerId);
-      if (!container) return;
-
-      const containerRect = container.getBoundingClientRect();
-      const centers: { x: number, y: number }[] = [];
-
-      module.topics.forEach((topic) => {
-        const elId = `platform-top-mobile-${topic.id}`;
-        const el = document.getElementById(elId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          // Find the center of the platform relative to the container
-          centers.push({
-            x: rect.left - containerRect.left + rect.width / 2,
-            y: rect.top - containerRect.top + rect.height / 2
-          });
-        }
-      });
-
-      const segments: LineSegment[] = [];
-      const offset = 22; // trim on mobile (smaller platforms)
-      for (let i = 0; i < centers.length - 1; i++) {
-        const p1 = centers[i];
-        const p2 = centers[i + 1];
-        const dx = p2.x - p1.x;
-        const dy = p2.y - p1.y;
-        const D = Math.sqrt(dx * dx + dy * dy);
-
-        if (D > 2 * offset) {
-          const ux = dx / D;
-          const uy = dy / D;
-          segments.push({
-            x1: p1.x + offset * ux,
-            y1: p1.y + offset * uy,
-            x2: p2.x - offset * ux,
-            y2: p2.y - offset * uy
-          });
-        } else {
-          segments.push({
-            x1: p1.x,
-            y1: p1.y,
-            x2: p2.x,
-            y2: p2.y
-          });
-        }
-      }
-
-      newMobileSegments[module.id] = segments;
-    });
-
-    setMobileSegments(newMobileSegments);
-  }, [modules]);
-
-  useEffect(() => {
-    // Measure on mount, and after any layout updates
-    const handle = requestAnimationFrame(() => {
-      measureMobileLines();
-    });
-
-    // Recalculate on window resize
-    window.addEventListener('resize', measureMobileLines);
-    return () => {
-      cancelAnimationFrame(handle);
-      window.removeEventListener('resize', measureMobileLines);
-    };
-  }, [measureMobileLines]);
 
   return (
     <div className="flex-1 flex flex-col space-y-12 py-4 animate-fadeIn" id="module-map-container">
@@ -1872,6 +1799,29 @@ export default function ModuleMap({
             return segments;
           };
           const segments = getDesktopSegments();
+
+          // Compact mobile zigzag geometry (smaller horizontal amplitude ~29/71%,
+          // so the alternating path survives on narrow screens instead of collapsing)
+          const mLeftX = 100;
+          const mRightX = 240;
+          const mYSpacing = 145;
+          const mMapHeight = totalCount > 0 ? 150 + (totalCount - 1) * mYSpacing : 120;
+          const mPoints = module.topics.map((_, idx) => ({
+            x: idx % 2 === 0 ? mLeftX : mRightX,
+            y: 60 + idx * mYSpacing,
+          }));
+          const mSegments: LineSegment[] = [];
+          for (let i = 0; i < mPoints.length - 1; i++) {
+            const startOnLeft = i % 2 === 0;
+            const y1 = mPoints[i].y + 17;
+            const y2 = mPoints[i + 1].y + 17;
+            mSegments.push({
+              x1: startOnLeft ? mPoints[i].x + 42 : mPoints[i].x - 42,
+              y1,
+              x2: startOnLeft ? mPoints[i + 1].x - 42 : mPoints[i + 1].x + 42,
+              y2,
+            });
+          }
 
           return (
             <div 
@@ -2053,13 +2003,17 @@ export default function ModuleMap({
                     </svg>
                   </div>
 
-                  {/* MOBILE VIEW: Beautifully Stacked Vertical Layout */}
-                  <div className="md:hidden flex flex-col items-center py-6 relative" id={`mobile-path-container-${module.id}`}>
-                    
-                    {/* Dynamic SVG Connection Line Background */}
-                    {mobileSegments[module.id] && (
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
-                        {mobileSegments[module.id].map((seg, sIdx) => (
+                  {/* MOBILE VIEW: Compact SVG zigzag (same alternating path as desktop, smaller amplitude) */}
+                  <div className="md:hidden flex justify-center w-full" id={`mobile-path-container-${module.id}`}>
+                    <svg
+                      width="340"
+                      height={mMapHeight}
+                      viewBox={`0 0 340 ${mMapHeight}`}
+                      className="w-full max-w-[340px] h-auto drop-shadow-lg overflow-visible"
+                    >
+                      {/* Ground Layer Connection Cable Paths */}
+                      <g id={`mobile-path-connection-lines-${module.id}`}>
+                        {mSegments.map((seg, sIdx) => (
                           <g key={sIdx} id={`mobile-segment-${module.id}-${sIdx}`}>
                             {/* Underglow Cable */}
                             <line
@@ -2086,52 +2040,48 @@ export default function ModuleMap({
                             />
                           </g>
                         ))}
-                      </svg>
-                    )}
+                      </g>
 
-                    <div className="space-y-12 w-full max-w-xs z-10">
+                      {/* Interactive 3D Nodes */}
                       {module.topics.map((topic, idx) => {
-                                                const isCompleted = false;
+                        const isCompleted = false;
                         const isHovered = hoveredTopicId === topic.id;
-                        
+                        const x = mPoints[idx].x;
+                        const y = mPoints[idx].y;
+
                         return (
-                          <div
+                          <g
                             key={topic.id}
                             onClick={() => onTopicClick(topic)}
                             onMouseEnter={() => setHoveredTopicId(topic.id)}
                             onMouseLeave={() => setHoveredTopicId(null)}
-                            className="flex flex-col items-center justify-center cursor-pointer group text-center"
-                            id={`mobile-topic-${topic.id}`}
+                            className="cursor-pointer group"
+                            id={`mobile-node-${topic.id}`}
                           >
-                            {/* 3D Isometric Cube Container */}
-                            <div className="relative w-24 h-24 flex items-center justify-center">
-                              <svg 
-                                width="90" 
-                                height="90" 
-                                viewBox="0 0 90 90" 
-                                className="overflow-visible"
-                              >
-                                {renderIsometricRoom(topic.id, 45, 45, isCompleted, isHovered, 'mobile')}
-                              </svg>
-                            </div>
+                            {renderIsometricRoom(topic.id, x, y, isCompleted, isHovered, 'mobile')}
 
-                            {/* Centered Name Label */}
-                            <div className="mt-1 space-y-1 px-4 max-w-[200px] select-none">
-                              <div className="flex items-center justify-center space-x-1.5">
-                                <span className={`text-xs font-extrabold tracking-tight transition-colors duration-200 leading-snug font-sans ${
-                                  isHovered ? 'text-[#9fef00]' : 'text-gray-200'
+                            {/* Centered label beneath each icon (wraps to 2 lines, no clipping) */}
+                            <foreignObject
+                              x={x - 80}
+                              y={y + 32}
+                              width={160}
+                              height={46}
+                              className="pointer-events-none"
+                            >
+                              <div className="flex items-start justify-center h-full text-center px-1 select-none">
+                                <span className={`text-[13px] font-extrabold tracking-tight leading-snug font-sans line-clamp-2 transition-colors duration-200 ${
+                                  isHovered
+                                    ? 'text-[#9fef00] drop-shadow-[0_0_8px_rgba(159,239,0,0.6)]'
+                                    : 'text-gray-200'
                                 }`}>
                                   {topic.title}
                                 </span>
-                                
                               </div>
-
-                              
-                            </div>
-                          </div>
+                            </foreignObject>
+                          </g>
                         );
                       })}
-                    </div>
+                    </svg>
                   </div>
 
                 </div>
