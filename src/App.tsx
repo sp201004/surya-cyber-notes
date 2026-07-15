@@ -243,12 +243,6 @@ function LandingPage() {
         </motion.div>
       </div>
 
-      {/* Bottom metadata tag */}
-      <div className="w-full flex justify-center z-10 opacity-20 select-none">
-        <span className="font-mono text-[10px] tracking-widest text-gray-400">
-          PORT 3000 // NODE AUTH: COMPLETED
-        </span>
-      </div>
     </motion.div>
   );
 }
