@@ -230,6 +230,86 @@ const renderPythonLines = (code: string) => {
   });
 };
 
+// SQL keyword / function sets for syntax highlighting (matched case-insensitively).
+const SQL_KEYWORDS = new Set([
+  'SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'NOT', 'LIKE', 'BETWEEN', 'IN', 'IS',
+  'NULL', 'ORDER', 'BY', 'GROUP', 'HAVING', 'JOIN', 'INNER', 'LEFT', 'RIGHT',
+  'FULL', 'OUTER', 'CROSS', 'ON', 'AS', 'INSERT', 'INTO', 'VALUES', 'UPDATE',
+  'SET', 'DELETE', 'CREATE', 'ALTER', 'DROP', 'TABLE', 'DATABASE', 'VIEW',
+  'INDEX', 'PRIMARY', 'KEY', 'FOREIGN', 'REFERENCES', 'DISTINCT', 'LIMIT',
+  'OFFSET', 'ASC', 'DESC', 'UNION', 'ALL', 'EXISTS', 'CASE', 'WHEN', 'THEN',
+  'ELSE', 'END', 'DEFAULT', 'CONSTRAINT', 'ADD', 'COLUMN', 'INT', 'VARCHAR',
+  'TEXT', 'DATE', 'DATETIME', 'BOOLEAN', 'LEFT OUTER', 'USING',
+]);
+const SQL_FUNCTIONS = new Set([
+  'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'ROUND', 'UPPER', 'LOWER', 'LENGTH',
+  'NOW', 'SUBSTRING', 'CONCAT', 'COALESCE', 'CAST', 'TRIM',
+]);
+
+// The first line of a folded SQL fence is often a heading/annotation (e.g.
+// "BASIC QUERY STRUCTURE:", "WHERE EXAMPLES (...):", "LOGICAL OPERATORS — ...").
+// Keep it plain so it reads like a caption, not code.
+const isSqlTitleLine = (line: string): boolean => {
+  const t = line.trim();
+  if (!t) return false;
+  if (/[—–]/.test(t)) return true;
+  if (t.endsWith(':') && !t.includes(';') && !/\bSELECT\b/i.test(t) && t.split(/\s+/).length > 1) return true;
+  if (/^[A-Z0-9][A-Z0-9 ,.&:/'()\-]*$/.test(t) && !/[=;]/.test(t) && t.split(/\s+/).length > 1) return true;
+  return false;
+};
+
+// Tokenize and color a single line of SQL. `--` starts a line comment; single
+// quotes are string literals; keywords are matched case-insensitively.
+const tokenizeSqlLine = (line: string, keyPrefix: string): React.ReactNode[] => {
+  const nodes: React.ReactNode[] = [];
+  if (line.trimStart().startsWith('--')) {
+    return [<span key={keyPrefix} className="text-gray-500 italic">{line}</span>];
+  }
+  const tokenRe = /(--.*$|'(?:[^'\\]|\\.)*'|\d+\.\d+|\d+|[A-Za-z_]\w*|\s+|[^\sA-Za-z_0-9])/g;
+  let m: RegExpExecArray | null;
+  let k = 0;
+  while ((m = tokenRe.exec(line)) !== null) {
+    const tok = m[0];
+    const key = `${keyPrefix}-${k++}`;
+    if (tok.startsWith('--')) {
+      nodes.push(<span key={key} className="text-gray-500 italic">{tok}</span>);
+    } else if (tok[0] === "'") {
+      nodes.push(<span key={key} className="text-amber-300">{tok}</span>);
+    } else if (/^\d/.test(tok)) {
+      nodes.push(<span key={key} className="text-orange-400">{tok}</span>);
+    } else if (/^[A-Za-z_]/.test(tok)) {
+      const up = tok.toUpperCase();
+      if (SQL_KEYWORDS.has(up)) {
+        nodes.push(<span key={key} className="text-pink-400 font-semibold">{tok}</span>);
+      } else if (SQL_FUNCTIONS.has(up)) {
+        nodes.push(<span key={key} className="text-cyan-300">{tok}</span>);
+      } else {
+        nodes.push(<span key={key} className="text-gray-200">{tok}</span>);
+      }
+    } else {
+      nodes.push(<span key={key} className="text-sky-300/80">{tok}</span>);
+    }
+  }
+  return nodes;
+};
+
+// Render a full SQL code block with per-line syntax highlighting, preserving
+// indentation exactly. First line kept plain when it is a caption/heading.
+const renderSqlLines = (code: string) => {
+  const lines = code.split('\n');
+  return lines.map((line, idx) => {
+    if (idx === 0 && isSqlTitleLine(line)) {
+      return (
+        <div key={idx} className="text-gray-400 font-semibold select-none">
+          {line}
+        </div>
+      );
+    }
+    const rendered = tokenizeSqlLine(line, `${idx}`);
+    return <div key={idx}>{rendered.length ? rendered : '\u00a0'}</div>;
+  });
+};
+
 // Does a fenced block contain GENUINE diagram structure (boxes, flows, trees,
 // aligned columns)? If so it must stay an atomic monospace card. This is the
 // guardrail for the "fake diagram" rule below — when in doubt this returns
@@ -541,6 +621,7 @@ const markdownComponents: import('react-markdown').Components = {
     pre: ({node, children, ...props}: any) => {
     let isBash = false;
     let isPython = false;
+    let isSql = false;
     let className = '';
     
     // Check if the child is a code element and extract language
@@ -549,6 +630,7 @@ const markdownComponents: import('react-markdown').Components = {
       const match = /language-(\w+)/.exec(className);
       isBash = match && match[1] === 'bash';
       isPython = match && match[1] === 'python';
+      isSql = match && match[1] === 'sql';
     }
 
     const content = extractText(children).replace(/\n$/, '');
@@ -586,6 +668,25 @@ const markdownComponents: import('react-markdown').Components = {
           </div>
           <pre className="p-4 overflow-x-auto whitespace-pre leading-relaxed bg-[#0b0f19] font-mono select-all">
             {renderBashLines(content)}
+          </pre>
+        </div>
+      );
+    }
+
+    if (isSql) {
+      return (
+        <div className="bg-[#0b0f19] rounded-xl border border-[#2d3a54] my-6 overflow-hidden shadow-xl font-mono text-xs leading-relaxed select-all">
+          <div className="bg-[#111827] px-4 py-2 flex items-center justify-between border-b border-[#2d3a54]/80">
+            <div className="flex space-x-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/75" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/75" />
+            </div>
+            <span className="text-[10px] text-gray-400 font-bold select-none tracking-wider uppercase">SQL</span>
+            <span className="w-12" />
+          </div>
+          <pre className="p-4 overflow-x-auto whitespace-pre leading-relaxed bg-[#0b0f19] font-mono select-all">
+            {renderSqlLines(content)}
           </pre>
         </div>
       );

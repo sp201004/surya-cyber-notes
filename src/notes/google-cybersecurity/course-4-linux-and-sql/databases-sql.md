@@ -68,7 +68,7 @@ TABLE: employees                    TABLE: machines
 > 2. Semicolon at end: Always end queries with ; to signal the statement is complete.
 > 3. Case-insensitive: SQL keywords work in any case, but data values are often case-sensitive.
 
-```
+```sql
 BASIC QUERY STRUCTURE:
 
 SELECT  column1, column2        <-- WHAT columns to return
@@ -118,7 +118,7 @@ FROM employees;
 | **>=** | Greater than OR equal to | WHERE age >= 18 |
 | **<=** | Less than OR equal to | WHERE priority_score <= 3 |
 
-```
+```sql
 WHERE EXAMPLES (Real Security Analyst Queries):
 
 -- Find all login attempts AFTER business hours (6PM):
@@ -151,7 +151,7 @@ WHERE success = 0;
 > %  (Percent)    = Substitutes ANY number of characters (zero or more).
 > _ (Underscore) = Substitutes EXACTLY ONE character.
 
-```
+```sql
 LIKE PATTERN EXAMPLES:
 
 -- Find all offices in the East building (East-120, East-290, East-450):
@@ -187,7 +187,7 @@ WHERE username LIKE '%admin%';
 > OR   = EITHER condition can be true (broadens results)
 > NOT = EXCLUDE records matching a condition
 
-```
+```sql
 LOGICAL OPERATORS — AND, OR, NOT, BETWEEN
 
 AND OPERATOR -- Both conditions must be TRUE simultaneously:
@@ -242,7 +242,7 @@ WHERE hire_year BETWEEN 2020 AND 2022;
 
 ## Sorting & Aggregate Functions
 
-```
+```sql
 ORDER BY -- Sort results by a column:
 
 -- Sort employees alphabetically by last name (A to Z):
@@ -271,7 +271,7 @@ ORDER BY department ASC, last_name ASC;
 | **MIN (column)** | Smallest value in a numeric or date column. | MIN(patch_date) to find the oldest unpatched machine on the network. |
 | **MAX (column)** | Largest value in a numeric or date column. | MAX(failed_attempts) to find the account being brute-forced most aggressively. |
 
-```
+```sql
 AGGREGATE FUNCTION EXAMPLES:
 
 -- Count total login attempts today:
@@ -329,7 +329,7 @@ TABLE A (employees)    TABLE B (machines)
 | **RIGHT JOIN** | ALL rows from RIGHT table + matching rows from left (NULLs for no match). | Get ALL machines and show assigned employee -- unassigned machines (D-350) show NULL. Identifies rogue or untracked devices. | Left table columns show NULL when no match found in left table. |
 | **FULL OUTER JOIN** | ALL rows from BOTH tables merged. Matches where possible. | Complete picture: every employee and every machine. Identifies both employees without devices AND devices without employees. | Both sides can have NULL where no match exists. |
 
-```
+```sql
 JOIN SYNTAX EXAMPLES:
 
 -- INNER JOIN: Only employees with matched machines:
@@ -366,7 +366,7 @@ AND log_in_attempts.country <> 'USA';
 
 ## Complete SQL Query Structure
 
-```
+```sql
 FULL QUERY ANATOMY (all clauses in correct order):
 
 SELECT   column1, column2, COUNT(*)
