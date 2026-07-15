@@ -815,6 +815,71 @@ const foldDiagramTitlesIntoFences = (md: string): string => {
   return out.join('\n');
 };
 
+// remark-gfm does NOT parse a markdown table that is indented as the lazy
+// continuation of a list item (no blank line, extra indent) — it leaks as raw
+// "| a | b |" text. This detaches such tables: it finds a run of indented
+// table rows (a header + a delimiter row) that is NOT inside a code fence,
+// dedents it, normalizes the delimiter to the header's column count, and
+// separates it with blank lines so it renders as a proper block table right
+// below its bullet. Content is untouched — only layout/whitespace changes.
+const detachNestedTables = (md: string): string => {
+  const lines = md.split('\n');
+  const out: string[] = [];
+  let inFence = false;
+  const isFence = (l: string) => l.trim().startsWith('```');
+  const trimmedIsRow = (l: string) => {
+    const t = l.trim();
+    return t.startsWith('|') && t.length > 1;
+  };
+  const isIndentedRow = (l: string) => /^\s+\|/.test(l) && trimmedIsRow(l);
+  const isDelim = (l: string) => {
+    let t = l.trim();
+    if (t.startsWith('|')) t = t.slice(1);
+    if (t.endsWith('|')) t = t.slice(0, -1);
+    const cells = t.split('|');
+    return cells.length > 0 && cells.every(c => /^\s*:?-{1,}:?\s*$/.test(c));
+  };
+  const countCells = (l: string) => {
+    let t = l.trim();
+    if (t.startsWith('|')) t = t.slice(1);
+    if (t.endsWith('|')) t = t.slice(0, -1);
+    return t.split('|').length;
+  };
+
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (isFence(line)) { inFence = !inFence; out.push(line); i++; continue; }
+
+    if (!inFence && isIndentedRow(line)) {
+      const block: string[] = [];
+      let j = i;
+      while (j < lines.length && !isFence(lines[j]) && isIndentedRow(lines[j])) {
+        block.push(lines[j]);
+        j++;
+      }
+      // A real markdown table needs a delimiter row as its 2nd line.
+      if (block.length >= 2 && isDelim(block[1])) {
+        const dedented = block.map(r => r.trim());
+        const cols = countCells(dedented[0]);
+        dedented[1] = '|' + Array(cols).fill('---').join('|') + '|';
+        if (out.length && out[out.length - 1].trim() !== '') out.push('');
+        for (const d of dedented) out.push(d);
+        out.push('');
+        i = j;
+        continue;
+      }
+      for (const b of block) out.push(b);
+      i = j;
+      continue;
+    }
+
+    out.push(line);
+    i++;
+  }
+  return out.join('\n');
+};
+
 const parseIntoSections = (rawContent: string): ParsedSection[] => {
   const lines = rawContent.split('\n');
   const sections: ParsedSection[] = [];
@@ -870,9 +935,12 @@ export default function NotesView({
   const rawContentSource = notesByTopicId[topic.id] || topic.content || '';
   const isGoogleCourse = (topic.moduleId || '').startsWith('google-course-');
   googlePageActive = isGoogleCourse;
-  const rawContent = isGoogleCourse
+  const foldedContent = isGoogleCourse
     ? foldDiagramTitlesIntoFences(rawContentSource)
     : rawContentSource;
+  // Detach any markdown tables nested inside list items so they render as
+  // styled tables instead of leaking raw pipes (applies site-wide).
+  const rawContent = detachNestedTables(foldedContent);
   const sections = parseIntoSections(rawContent);
   const [isTocExpanded, setIsTocExpanded] = useState(false);
 

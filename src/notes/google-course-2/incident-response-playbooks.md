@@ -20,33 +20,33 @@
 
 > **PLAYBOOK ANATOMY — Structure & Example**
 
-```
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │                    PLAYBOOK STRUCTURE                                  │
-  └─────────────────────────────────────────────────────────────────────────┘
+``` 
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │                    PLAYBOOK STRUCTURE                                   │
+   └─────────────────────────────────────────────────────────────────────────┘
 
-  ┌──────────────────────────────────┐  ┌─────────────────────────────────────┐
+  ┌───────────────────────────────────┐  ┌─────────────────────────────────────┐
   │  THE STRATEGY (The 'WHAT' & 'WHO')│  │  THE PLAN (The 'HOW')               │
-  ├──────────────────────────────────┤  ├─────────────────────────────────────┤
-  │ • Overall goal of response       │  │ • Step-by-step technical procedures │
-  │ • Who is responsible for what    │  │ • Decision flowcharts               │
-  │ • Escalation paths               │  │ • Checklists with checkboxes        │
-  │ • Communication requirements     │  │ • Tool-specific commands            │
-  │ • Legal/compliance obligations   │  │ • Evidence collection procedures   │
-  └──────────────────────────────────┘  └─────────────────────────────────────┘
+  ├───────────────────────────────────┤  ├─────────────────────────────────────┤
+  │ • Overall goal of response        │  │ • Step-by-step technical procedures │
+  │ • Who is responsible for what     │  │ • Decision flowcharts               │
+  │ • Escalation paths                │  │ • Checklists with checkboxes        │
+  │ • Communication requirements      │  │ • Tool-specific commands            │
+  │ • Legal/compliance obligations    │  │ • Evidence collection procedures    │
+  └───────────────────────────────────┘  └─────────────────────────────────────┘
 
   Example Playbook: 'Unauthorized External Login Detected'
   ┌─────────────────────────────────────────────────────────────────────────┐
   │  STRATEGY:                                                              │
-  │   Tier 1 Analyst → Verify login legitimacy                             │
-  │   Tier 2 Analyst → Account lockdown if confirmed malicious             │
-  │   Security Manager → Notify CISO if data exfiltration suspected        │
+  │   Tier 1 Analyst → Verify login legitimacy                              │
+  │   Tier 2 Analyst → Account lockdown if confirmed malicious              │
+  │   Security Manager → Notify CISO if data exfiltration suspected         │
   │  PLAN:                                                                  │
-  │  Step 1: Call employee on verified number — 'Are you traveling?'       │
-  │  Step 2: If NOT traveling → Force password reset + revoke all tokens   │
-  │  Step 3: Check logs for data exfiltration in past 24 hours             │
-  │  Step 4: Preserve all relevant logs as forensic evidence               │
-  │  Step 5: Document timeline and submit incident report within 2 hours   │
+  │  Step 1: Call employee on verified number — 'Are you traveling?'        │
+  │  Step 2: If NOT traveling → Force password reset + revoke all tokens    │
+  │  Step 3: Check logs for data exfiltration in past 24 hours              │
+  │  Step 4: Preserve all relevant logs as forensic evidence                │
+  │  Step 5: Document timeline and submit incident report within 2 hours    │
   └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -79,7 +79,7 @@
 
 ```
   ┌─────────────────────────────────────────────────────────────────────────────────┐
-  │                 SIX PHASES OF INCIDENT RESPONSE                                │
+  │                 SIX PHASES OF INCIDENT RESPONSE                                 │
   └─────────────────────────────────────────────────────────────────────────────────┘
 
   ┌──────────────┐   ┌──────────────────┐   ┌───────────────┐
@@ -90,13 +90,13 @@
   │ incident     │   │ How bad?         │   │ bleeding      │
   └──────────────┘   └──────────────────┘   └───────┬───────┘
                                                      │
-  ┌──────────────┐   ┌──────────────────┐   ┌───────v───────┐
-  │   PHASE 6    │   │    PHASE 5       │   │   PHASE 4     │
-  │ COORDINATION │<──│ POST-INCIDENT    │<──│ ERADICATION & │
-  │              │   │ ACTIVITY         │   │ RECOVERY      │
-  │ Legal &      │   │ Lessons learned  │   │               │
+  ┌──────────────┐   ┌──────────────────┐   ┌───────v────────┐
+  │   PHASE 6    │   │    PHASE 5       │   │   PHASE 4      │
+  │ COORDINATION │<──│ POST-INCIDENT    │<──│ ERADICATION &  │
+  │              │   │ ACTIVITY         │   │ RECOVERY       │
+  │ Legal &      │   │ Lessons learned  │   │                │
   │ reporting    │   │ Update playbooks │   │ Clean & restore│
-  └──────────────┘   └──────────────────┘   └───────────────┘
+  └──────────────┘   └──────────────────┘   └────────────────┘
 ```
 
 | **1** | **Preparation — Building the Foundation**<br>Setting up everything BEFORE an incident occurs. Documenting procedures, staffing an on-call response team, educating employees on phishing and social engineering, creating Business Continuity Plans (BCPs), and establishing communication trees so everyone knows who to call when something goes wrong. You cannot prepare during a crisis — preparation happens now. |
@@ -123,8 +123,8 @@
 
 ```
   ┌─────────────────────────────────────────────────────────────────────────────────┐
-  │              THE SECURITY OPERATIONS TRIAD                                     │
-  │              SIEM  ──>  SOAR  ──>  PLAYBOOK                                   │
+  │              THE SECURITY OPERATIONS TRIAD                                      │
+  │              SIEM  ──>  SOAR  ──>  PLAYBOOK                                     │
   └─────────────────────────────────────────────────────────────────────────────────┘
 
   ┌──────────────────────────────────────────────────────────────────────────────┐

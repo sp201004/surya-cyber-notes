@@ -59,10 +59,10 @@
 > **WHEN SEEN: Linux servers, routers, firewalls, switches, Kubernetes nodes.**
 > **STRUCTURE: Starts with Priority Field (PRI) in angle brackets <>.**
 > **Lower PRI number = HIGHER urgency/severity.**
-> **<236>1 2026-05-21T17:50:02.003Z k8s-worker-node1 kubelet - ID88 Container sandbox execution blocked.**
-> **|    | |                       | |                |       | |    |**
 
 ```
+<236>1 2026-05-21T17:50:02.003Z k8s-worker-node1 kubelet - ID88 Container sandbox execution blocked. 
+  |    | |                       | |                |       | |    |
   |    | |                       | |                |       | |    +-- Event message
   |    | |                       | |                |       | +-- Message ID
   |    | |                       | |                |       +-- Process name (kubelet)
@@ -106,10 +106,10 @@
 > **CEF LOG FORMAT**
 > **WHEN SEEN: Firewalls, WAFs, IDS/IPS appliances, ArcSight SIEM.**
 > **STRUCTURE: Fields separated by pipe characters |. Key-value pairs after.**
-> **CEF:1|PaloAlto|ThreatAppliance|10.0|1012|SQL Injection Attempt Blocked|10|src=192.168.10.45 dst=172.21.224.5**
-> **|    | |        |              |    |    |                              |  |**
 
 ```
+    CEF:1|PaloAlto|ThreatAppliance|10.0|1012|SQL Injection Attempt Blocked|10|src=192.168.10.45 dst=172.21.224.5
+  |    | |        |              |    |    |                              |  |
   |    | |        |              |    |    |                              |  +-- Extension (key=value pairs)
   |    | |        |              |    |    |                              +-- Severity (0-10, 10=max)
   |    | |        |              |    |    +-- Event Name
@@ -145,10 +145,10 @@
 > Can operate as IDS (alert only) OR IPS (alert + block) depending on configuration.
 
 > **SURICATA RULE ANATOMY:**
-> **alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"GET on wire"; flow:established,to_server; content:"GET"; sid:12345; rev:3;)**
-> **|     |    |          |  |  |             |   |                                                                               |**
 
 ```
+  alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"GET on wire"; flow:established,to_server; content:"GET"; sid:12345; rev:3;)
+  |     |    |          |  |  |             |   |                                                      
   |     |    |          |  |  |             |   +-- RULE OPTIONS BLOCK (enclosed in parentheses)
   |     |    |          |  |  |             +-- Destination port (any)
   |     |    |          |  |  +-- Destination IP ($EXTERNAL_NET = all external IPs)
@@ -200,11 +200,10 @@ jq "select(.flow_id == 14500150016149)" /var/log/suricata/eve.json
 > SPL pipes (|) the output of one command directly into the input of the next.
 > OPTIMIZATION MANDATE: Always specify index= and time range. Vague global scans cause massive latency.
 
-> **SPL QUERY STRUCTURE:**
-> **index=buttercupgames error OR fail* host!=www1 | chart count by host**
-> **|                   |         |    |           |**
-
 ```
+SPL QUERY STRUCTURE:
+  index=buttercupgames error OR fail* host!=www1 | chart count by host
+  |                   |         |    |           |
   |                   |         |    |           +-- PIPE: feed output to next command
   |                   |         |    +-- host!=www1: exclude records from www1 (known clean)
   |                   |         +-- fail*: wildcard (matches fail, failed, failure, failing...)

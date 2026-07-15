@@ -248,7 +248,7 @@ Computers do not understand colors like humans do. Instead, every color is creat
           / \
          /   \
         /     \
- BLUE -------- GREEN
+     BLUE --- GREEN
 ```
 
 Each primary color has its own intensity value:

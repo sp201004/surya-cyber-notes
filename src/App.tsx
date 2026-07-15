@@ -19,7 +19,6 @@ import { COURSES_DATA } from './data';
 import { Topic, Course } from './types';
 import {
   Shield,
-  Terminal,
   Layers,
   ArrowRight,
   Heart,
@@ -273,8 +272,25 @@ function HomeView() {
         className="bg-[#1c2538]/60 backdrop-blur-md rounded-xl border border-[#2d3a54] p-6 md:p-8 shadow-xl relative overflow-hidden"
         id="home-welcome-card"
       >
-        <div className="absolute top-0 right-0 p-8 opacity-5 text-gray-400 select-none pointer-events-none">
-          <Terminal className="w-36 h-36" />
+        {/* Decorative mini terminal — fills the right side (desktop only) */}
+        <div
+          className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-[300px] pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <div className="rounded-lg border border-[#2d3a54] bg-[#0b0f19]/90 shadow-[0_0_25px_rgba(159,239,0,0.08)] overflow-hidden">
+            <div className="flex items-center gap-1.5 px-3 py-2 bg-[#111827] border-b border-[#2d3a54]/80">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+              <span className="ml-2 text-[10px] text-gray-500 font-mono tracking-wide">bash — workspace</span>
+            </div>
+            <div className="p-4 font-mono text-xs leading-relaxed min-h-[104px]">
+              <span className="mm-line mm-l1 text-[#9fef00]">$ whoami</span>
+              <span className="mm-line mm-l2 text-gray-300">surya_pratap_singh</span>
+              <span className="mm-line mm-l3 text-[#9fef00]">$ cat mission.txt</span>
+              <span className="mm-line mm-l4 text-[#38bdf8]">&gt; Learning. Building. Securing.<span className="mm-cursor text-[#9fef00]">▋</span></span>
+            </div>
+          </div>
         </div>
         <div className="max-w-2xl">
           <span className="text-[#9fef00] font-mono text-xs uppercase tracking-widest font-bold">

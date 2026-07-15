@@ -124,8 +124,8 @@ Server 4 → Internal App
 Virtualization allows **multiple virtual computers (VMs)** to run on a **single physical server**.
 
 ```
-              Physical Server
-                     │
+            Physical Server
+                 │
               Hypervisor
         ┌────────┼────────┐
         │        │        │
@@ -161,7 +161,7 @@ Problems: Expensive, Resource wastage, Hard to manage, Difficult upgrades
 1 Powerful Server
         │
         ▼
- Hypervisor
+    Hypervisor
         │
  ┌──────┼──────┐
  VM1   VM2   VM3

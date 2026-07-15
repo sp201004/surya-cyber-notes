@@ -1247,19 +1247,26 @@ export const MODULES_DATA: Module[] = [
           relevance: 'Cloud computing is powerful but shared responsibility means misconfigurations in IaaS/PaaS can expose massive amounts of data. Understanding cloud models is essential for security.'
         },
         mindmap: [
-          { id: 'cloud-root', label: 'Cloud Computing', description: 'On-demand computing over the Internet', x: 50, y: 10, connections: ['service-models', 'deploy-models', 'providers-node'] },
-          { id: 'service-models', label: 'Service Models', description: 'IaaS, PaaS, SaaS', x: 20, y: 50 },
-          { id: 'deploy-models', label: 'Deployment', description: 'Public, Private, Hybrid', x: 50, y: 55 },
-          { id: 'providers-node', label: 'Providers', description: 'AWS, Azure, GCP', x: 80, y: 50 }
+          { id: 'cloud-root', label: 'Cloud Computing', description: 'On-demand computing resources delivered over the internet, pay-as-you-go instead of owning hardware.', x: 50, y: 10, connections: ['service-models', 'deploy-models', 'regions-az', 'providers-node'] },
+          { id: 'service-models', label: 'Service Models', description: 'IaaS (raw infrastructure), PaaS (platform for apps), SaaS (ready-to-use software).', x: 20, y: 45, connections: ['shared-resp'] },
+          { id: 'shared-resp', label: 'Shared Responsibility', description: 'Provider secures the cloud (hardware, hypervisor, facilities); you secure what you put in it (data, config, IAM).', x: 15, y: 78, connections: ['cloud-security'] },
+          { id: 'cloud-security', label: 'Cloud Security', description: 'Misconfiguration is the #1 cause of cloud breaches: public buckets, over-permissive IAM roles, open firewalls.', x: 30, y: 95 },
+          { id: 'deploy-models', label: 'Deployment Models', description: 'Public (shared), Private (dedicated), Hybrid (both), Community (shared by similar orgs).', x: 45, y: 50 },
+          { id: 'regions-az', label: 'Regions & AZs', description: 'A Region is a geographic area; Availability Zones are isolated data centers within it for redundancy.', x: 70, y: 45, connections: ['billing-node'] },
+          { id: 'billing-node', label: 'Billing', description: 'Pay-as-you-go (on-demand), Reserved (commit for a discount), or Spot (cheap spare capacity).', x: 72, y: 78 },
+          { id: 'providers-node', label: 'Providers', description: 'AWS (market leader), Azure (enterprise/Windows), GCP (data, AI, Kubernetes).', x: 88, y: 50 }
         ],
         keyTakeaways: [
           'Cloud computing delivers resources over the internet on-demand.',
+          'Cloud exists to replace costly, fixed on-prem hardware (CapEx) with flexible pay-as-you-go resources (OpEx).',
           'IaaS = raw infrastructure (VMs, storage, networking).',
           'PaaS = platform for building apps (no server management).',
           'SaaS = ready-to-use software (Gmail, Office 365).',
           'Public cloud is shared; Private cloud is dedicated; Hybrid combines both.',
           'Regions provide geographic redundancy; Availability Zones protect against datacenter failure.',
           'Cloud billing is pay-as-you-go.',
+          'Shared Responsibility: the provider secures the cloud; you secure your data, config, and access (IAM).',
+          'Misconfiguration (public buckets, over-permissive IAM roles) is the #1 cause of cloud breaches.',
           'Major providers: AWS, Azure, GCP.'
         ],
         quiz: [
@@ -1290,6 +1297,13 @@ export const MODULES_DATA: Module[] = [
             type: 'text',
             correctAnswer: 'Availability Zone',
             hint: 'Multiple isolated locations within one region.'
+          },
+          {
+            id: 'q-ccf-5',
+            question: 'In the Shared Responsibility Model, who secures your data and access settings?',
+            type: 'text',
+            correctAnswer: 'The customer (you). The provider secures the infrastructure (hardware, hypervisor, facilities); you secure your data, configuration, and IAM.',
+            hint: 'The provider secures the cloud; you secure what you put in it.'
           }
         ]
       },
