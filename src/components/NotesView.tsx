@@ -425,6 +425,7 @@ const LEAD_IN_LABELS = new Set([
   'real-world example','bottom line','takeaway','summary','pro tip','caution','objective',
   'prerequisite','syntax','output','meaning','key concept','use case','scenario','relevance',
   'problem','solution','why','how','when','where','who','what','best practice','rule','memory trick',
+  'step','phase','stage','indicator','lesson learned',
 ]);
 
 // Bold a leading LABEL on a single line (label part only; text after the colon
@@ -437,13 +438,21 @@ const boldInlineLabel = (line: string): string => {
   const s = line;
   if (s.startsWith('**') || s.startsWith('#') || s.startsWith('|') || s.startsWith('> ')) return line;
 
-  // 1. ALL-CAPS label (no lowercase before the colon), <= 6 words.
-  let m = s.match(/^([A-Z0-9][A-Z0-9 &/()'.\-]*[?]?:)(\s|$)/);
-  if (m && /[A-Z]/.test(m[1]) && m[1].split(/\s+/).length <= 6) {
-    return `**${m[1]}**${s.slice(m[1].length)}`;
+  // 1. ALL-CAPS label, optionally with a mixed-case parenthetical, ending in
+  //    ':' or '?:'. e.g. "INDICATOR 1:", "STOP THE HEMORRHAGING (Containment):",
+  //    "PHASE 1 (Preparation):". The text OUTSIDE parentheses must be all-caps
+  //    (no lowercase), <= 8 words — so normal sentences with colons are skipped.
+  const ci = s.indexOf(':');
+  if (ci > 0) {
+    const cand = s.slice(0, ci);
+    const outside = cand.replace(/\([^)]*\)/g, '');
+    if (/^[A-Z0-9]/.test(cand.trim()) && /[A-Z]/.test(outside) && !/[a-z]/.test(outside)
+        && cand.trim().split(/\s+/).length <= 8) {
+      return `**${cand}:**${s.slice(ci + 1)}`;
+    }
   }
   // 2. Known lead-in label (case-insensitive), optionally with a number.
-  m = s.match(/^([A-Za-z][A-Za-z '\-]{0,40}?)(\s\d+)?:(\s|$)/);
+  let m = s.match(/^([A-Za-z][A-Za-z '\-]{0,40}?)(\s\d+)?:(\s|$)/);
   if (m) {
     const base = m[1].trim().toLowerCase();
     if (LEAD_IN_LABELS.has(base)) {
