@@ -348,12 +348,23 @@ const isFlowLine = (l: string): boolean =>
   /(^|[^A-Za-z])->([^A-Za-z]|$)/.test(l) ||
   /^\s*[|vV^]\s*$/.test(l);
 
+// ASCII / unicode TREE lines: branch connectors and pipe trunks. Trees are
+// diagrams and must stay inside the monospace card (never extracted as prose).
+const isTreeLine = (l: string): boolean =>
+  /\+-{1,}|\|--|`--|\\--/.test(l) ||          // +--, |--, `--, \-- branches
+  /[├└│┌┐┘┤┬┴┼┏┓┗┛┣┫┳┻╋]/.test(l) ||          // unicode tree/box connectors
+  /^\s*\|/.test(l);                            // leading pipe trunk (| ...)
+
+// Any structural (non-prose) line: box wall/border, flow arrow, or tree branch.
+const isStructuralLine = (l: string): boolean =>
+  isBoxLine(l) || isFlowLine(l) || isTreeLine(l);
+
 // A "prose" line: a real sentence, an asterisk bullet, or a LABEL: clause.
-// Diagram/flow lines and short node labels are deliberately excluded.
+// Structural (box/flow/tree) lines and short node labels are excluded.
 const isProseLine = (l: string): boolean => {
   const s = l.trim();
   if (!s) return false;
-  if (isBoxLine(l) || isFlowLine(l)) return false;
+  if (isStructuralLine(l)) return false;
   if (/^\*\s+\S/.test(s)) return true;
   const words = s.split(/\s+/);
   if (words.length >= 5 && /[.!?]$/.test(s)) return true;
@@ -382,10 +393,13 @@ const segmentDiagramProse = (content: string): BlockSeg[] | null => {
   if (cur.length) chunks.push(cur);
   if (chunks.length < 2) return null;
 
+  // A chunk is PROSE only when it has NO structural (box/flow/tree) line at all
+  // and carries >=2 real prose lines. Any diagram/tree/flow content → diagram
+  // (stays in the atomic monospace card).
   const classify = (c: string[]): 'diagram' | 'prose' => {
     const prose = c.filter(isProseLine).length;
-    const box = c.filter(isBoxLine).length;
-    return prose >= 2 && box === 0 ? 'prose' : 'diagram';
+    const structural = c.filter(isStructuralLine).length;
+    return structural === 0 && prose >= 2 ? 'prose' : 'diagram';
   };
 
   const typed = chunks.map(c => ({ t: classify(c), c }));
@@ -405,13 +419,20 @@ const segmentDiagramProse = (content: string): BlockSeg[] | null => {
 };
 
 // Convert a pulled-out prose segment into clean markdown: dedent, turn '* '
-// bullets into '- ', and bold a leading LABEL: so it reads like the rest of the
-// site. Verbatim words are preserved.
+// bullets into '- ', and bold a leading LABEL:/definition term / lead-in so it
+// reads like the rest of the site. Verbatim words are preserved.
+//   "HOW HASHING WORKS:"                -> bold (label-only line)
+//   "PCAP FILES (.pcap): Snapshots..."  -> bold label, normal definition
+//   "For Example: ..." / "Example: ..." -> bold lead-in
+//   "libpcap: Unix packet library."     -> bold term, normal definition
 const normalizeProseSegment = (text: string): string =>
   text.split('\n').map(l => {
     let s = l.replace(/^\s+/, '');
-    s = s.replace(/^\*\s+/, '- ');
-    s = s.replace(/^([A-Z][A-Za-z0-9 /()\-]*[?:])(\s)/, '**$1**$2');
+    if (/^\*\s+/.test(s)) return s.replace(/^\*\s+/, '- ');   // bullet — leave rest
+    // Leading label/term ending in ':' or '?', optionally followed by content
+    // or end-of-line. Must be followed by whitespace or EOL (so URLs/timestamps
+    // like https:// or 12:04 are never matched).
+    s = s.replace(/^([A-Za-z][A-Za-z0-9 .,/()'&+\-]{0,70}[?:])(\s|$)/, '**$1**$2');
     return s;
   }).join('\n');
 
