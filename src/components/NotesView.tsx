@@ -418,22 +418,72 @@ const segmentDiagramProse = (content: string): BlockSeg[] | null => {
   return segs;
 };
 
-// Convert a pulled-out prose segment into clean markdown: dedent, turn '* '
-// bullets into '- ', and bold a leading LABEL:/definition term / lead-in so it
-// reads like the rest of the site. Verbatim words are preserved.
-//   "HOW HASHING WORKS:"                -> bold (label-only line)
-//   "PCAP FILES (.pcap): Snapshots..."  -> bold label, normal definition
-//   "For Example: ..." / "Example: ..." -> bold lead-in
-//   "libpcap: Unix packet library."     -> bold term, normal definition
+// Known title-case / mixed-case lead-in labels (bolded when they start a line).
+const LEAD_IN_LABELS = new Set([
+  'example','for example','note','reason','mitigation','result','tip','important','warning',
+  'remember','definition','goal','fix','cause','impact','analogy','key insight','real example',
+  'real-world example','bottom line','takeaway','summary','pro tip','caution','objective',
+  'prerequisite','syntax','output','meaning','key concept','use case','scenario','relevance',
+  'problem','solution','why','how','when','where','who','what','best practice','rule','memory trick',
+]);
+
+// Bold a leading LABEL on a single line (label part only; text after the colon
+// stays normal weight). Handles three cases, and never touches sentence colons:
+//   1. ALL-CAPS labels ending in ':' or '?:'  — "INDICATOR 1:", "STEP 3:", "PHASE 2 (RECON):"
+//   2. Known title-case lead-ins              — "Example:", "For Example:", "Note:", "Reason:"
+//   3. Single-word definition terms           — "libpcap: ...", "SHA256: ..."
+// Skips lines already bold / headings / table rows.
+const boldInlineLabel = (line: string): string => {
+  const s = line;
+  if (s.startsWith('**') || s.startsWith('#') || s.startsWith('|') || s.startsWith('> ')) return line;
+
+  // 1. ALL-CAPS label (no lowercase before the colon), <= 6 words.
+  let m = s.match(/^([A-Z0-9][A-Z0-9 &/()'.\-]*[?]?:)(\s|$)/);
+  if (m && /[A-Z]/.test(m[1]) && m[1].split(/\s+/).length <= 6) {
+    return `**${m[1]}**${s.slice(m[1].length)}`;
+  }
+  // 2. Known lead-in label (case-insensitive), optionally with a number.
+  m = s.match(/^([A-Za-z][A-Za-z '\-]{0,40}?)(\s\d+)?:(\s|$)/);
+  if (m) {
+    const base = m[1].trim().toLowerCase();
+    if (LEAD_IN_LABELS.has(base)) {
+      const lbl = m[1] + (m[2] || '') + ':';
+      return `**${lbl}**${s.slice(lbl.length)}`;
+    }
+  }
+  // 3. Single-word definition term followed by ": <definition>".
+  m = s.match(/^([A-Za-z][\w.\-]{1,30}):(\s+\S)/);
+  if (m) {
+    return `**${m[1]}:**${s.slice(m[1].length + 1)}`;
+  }
+  return line;
+};
+
+// Site-wide pass: bold label lines everywhere (paragraphs, blockquotes, list
+// items) EXCEPT inside fenced code blocks and table rows. One place, applies to
+// all rooms.
+const boldLabelsGlobally = (md: string): string => {
+  const lines = md.split('\n');
+  let inFence = false;
+  return lines.map(line => {
+    if (line.trim().startsWith('```')) { inFence = !inFence; return line; }
+    if (inFence) return line;
+    const m = line.match(/^(\s*(?:>\s?)*(?:[-*]\s+|\d+[.)]\s+)?)(.*)$/);
+    if (!m) return line;
+    const prefix = m[1], rest = m[2];
+    if (!rest || rest.startsWith('|')) return line;
+    const out = boldInlineLabel(rest);
+    return out === rest ? line : prefix + out;
+  }).join('\n');
+};
+
+// Convert a pulled-out prose segment into clean markdown: dedent, '* ' -> '- ',
+// and bold a leading label via the shared helper. Verbatim words preserved.
 const normalizeProseSegment = (text: string): string =>
   text.split('\n').map(l => {
     let s = l.replace(/^\s+/, '');
-    if (/^\*\s+/.test(s)) return s.replace(/^\*\s+/, '- ');   // bullet — leave rest
-    // Leading label/term ending in ':' or '?', optionally followed by content
-    // or end-of-line. Must be followed by whitespace or EOL (so URLs/timestamps
-    // like https:// or 12:04 are never matched).
-    s = s.replace(/^([A-Za-z][A-Za-z0-9 .,/()'&+\-]{0,70}[?:])(\s|$)/, '**$1**$2');
-    return s;
+    if (/^\*\s+/.test(s)) return '- ' + boldInlineLabel(s.replace(/^\*\s+/, ''));
+    return boldInlineLabel(s);
   }).join('\n');
 
 // "FAKE DIAGRAM" = a fenced block that is only prose + simple bullet markers
@@ -1279,8 +1329,9 @@ export default function NotesView({
     ? foldDiagramTitlesIntoFences(rawContentSource)
     : rawContentSource;
   // Detach any markdown tables nested inside list items so they render as
-  // styled tables instead of leaking raw pipes (applies site-wide).
-  const rawContent = detachNestedTables(foldedContent);
+  // styled tables instead of leaking raw pipes (applies site-wide). Then bold
+  // label lines everywhere (outside fenced code / tables).
+  const rawContent = boldLabelsGlobally(detachNestedTables(foldedContent));
   const sections = parseIntoSections(rawContent);
   const [isTocExpanded, setIsTocExpanded] = useState(false);
 
