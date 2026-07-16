@@ -468,6 +468,53 @@ const boldInlineLabel = (line: string): string => {
   return line;
 };
 
+// Numbered "step cards" are authored as malformed single-row tables:
+//   | **1** | **Title**<br>Description...<br>**Example:** ... |
+//   | --- | --- |
+// Because the delimiter sits AFTER the content, the step text became a table
+// HEADER (uppercase/mono/green) and the literal <br> was never parsed. Convert
+// each into a bold "N. Title" line + normal sentence-case description
+// paragraph(s), split on <br>. Runs outside fenced code.
+const fixStepCards = (md: string): string => {
+  const lines = md.split('\n');
+  const out: string[] = [];
+  let inFence = false;
+  const rowRe = /^\s*\|\s*\*\*(\d+)\*\*\s*\|\s*(.*?)\s*\|\s*$/;
+  const delimRe = /^\s*\|[\s:|-]*-{2,}[\s:|-]*\|\s*$/;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.trim().startsWith('```')) { inFence = !inFence; out.push(line); continue; }
+    const m = !inFence ? line.match(rowRe) : null;
+    if (m && /<br\s*\/?>/i.test(m[2])) {
+      const num = m[1];
+      const parts = m[2].split(/<br\s*\/?>/i).map(p => p.trim()).filter(p => p !== '');
+      const title = (parts.shift() || '').replace(/^\*\*/, '').replace(/\*\*$/, '').trim();
+      if (out.length && out[out.length - 1].trim() !== '') out.push('');
+      out.push(`**${num}. ${title}**`);
+      for (const p of parts) { out.push(''); out.push(p); }
+      out.push('');
+      // consume the following malformed delimiter row, if present
+      if (i + 1 < lines.length && delimRe.test(lines[i + 1])) i++;
+      continue;
+    }
+    out.push(line);
+  }
+  return out.join('\n');
+};
+
+// Convert raw bullet glyphs (●, •) at line start (outside fenced code) into
+// markdown list markers so they render as styled bullets, not literal chars.
+const fixRawBullets = (md: string): string => {
+  const lines = md.split('\n');
+  let inFence = false;
+  return lines.map(line => {
+    if (line.trim().startsWith('```')) { inFence = !inFence; return line; }
+    if (inFence) return line;
+    const m = line.match(/^(\s*(?:>\s?)*)[●•]\s+(.*)$/);
+    return m ? `${m[1]}- ${m[2]}` : line;
+  }).join('\n');
+};
+
 // Stopwords for fuzzy heading/title matching.
 const TITLE_STOP = new Set(['the','and','a','an','of','to','in','for','vs','comparison','key','differences','difference','feature','reference','at','glance','detailed','with','examples','example','core','side','by','how','it','works','model','full','structure','its','on','their','into']);
 const titleTokens = (t: string): Set<string> =>
@@ -1394,7 +1441,13 @@ export default function NotesView({
   // Detach any markdown tables nested inside list items so they render as
   // styled tables instead of leaking raw pipes (applies site-wide). Then bold
   // label lines everywhere (outside fenced code / tables).
-  const rawContent = boldLabelsGlobally(fixConversionTitleCallouts(detachNestedTables(foldedContent)));
+  const rawContent = boldLabelsGlobally(
+    fixConversionTitleCallouts(
+      fixRawBullets(
+        fixStepCards(detachNestedTables(foldedContent))
+      )
+    )
+  );
   const sections = parseIntoSections(rawContent);
   const [isTocExpanded, setIsTocExpanded] = useState(false);
 
