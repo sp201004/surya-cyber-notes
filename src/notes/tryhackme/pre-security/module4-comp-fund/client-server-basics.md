@@ -733,9 +733,9 @@ DELETE → Delete
 
 ## Quick Revision
 
- Client requests
+**Client requests**
 
- Server responds
+**Server responds**
 
  Protocol = Communication rules
 
@@ -747,13 +747,13 @@ DELETE → Delete
 
  HTTPS = Secure HTTP
 
- HTTP is Stateless
+**HTTP is Stateless**
 
- Cookies maintain sessions
+**Cookies maintain sessions**
 
- GET retrieves data
+**GET retrieves data**
 
- POST sends data
+**POST sends data**
 
  Developer Tools → Network tab shows requests and responses
 

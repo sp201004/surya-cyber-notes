@@ -196,7 +196,7 @@ Most user files are inside
 C:\Users\<username>
 ```
 
-Example
+**Example**
 
 ```
 C:\Users\Administrator
@@ -207,7 +207,7 @@ C:\Users\Administrator
 # Current Working Directory
 Current folder where CMD is working.
 
-Example
+**Example**
 
 ```
 C:\Users\Administrator>
@@ -224,23 +224,23 @@ Meaning
 Change Directory
 ```
 
-Purpose
+**Purpose**
 
 Move from one folder to another.
 
-Syntax
+**Syntax**
 
 ```cmd
 cd folder_name
 ```
 
-Example
+**Example**
 
 ```cmd
 cd Desktop
 ```
 
-Result
+**Result**
 
 ```
 C:\Users\Administrator\Desktop>
@@ -248,23 +248,19 @@ C:\Users\Administrator\Desktop>
 
 ---
 
-Go Back
+**Go Back**
 
 ```cmd
 cd ..
 ```
 
-Example
+**Example**
 
 ```
 C:\Users\Administrator\Desktop>
-
 ↓
-
 cd ..
-
 ↓
-
 C:\Users\Administrator>
 ```
 
@@ -291,7 +287,7 @@ Meaning
 Directory Listing
 ```
 
-Shows
+**Shows**
 
 - Files
 - Folders
@@ -299,37 +295,32 @@ Shows
 - Date
 - Time
 
-Syntax
+**Syntax**
 
 ```cmd
 dir
 ```
 
-Example
+**Example**
 
 ```cmd
 C:\Users\Administrator>dir
 ```
 
-Output
+**Output**
 
 ```
 Desktop
-
 Documents
-
 Downloads
-
 Music
-
 Pictures
-
 Videos
 ```
 
 ---
 
-Understanding dir Output
+**Understanding dir Output**
 
 ```
 <DIR>
@@ -337,9 +328,9 @@ Understanding dir Output
 
 means
 
-Directory
+**Directory**
 
-Example
+**Example**
 
 ```
 <DIR> Desktop
@@ -349,7 +340,7 @@ means
 
 Desktop is a folder.
 
-Files don't have
+**Files don't have**
 
 ```
 <DIR>
@@ -360,15 +351,12 @@ Files don't have
 # Hidden Files
 Windows hides many important folders.
 
-Examples
+**Examples**
 
 ```
 AppData
-
 ProgramData
-
 .logs
-
 .research
 ```
 
@@ -380,7 +368,7 @@ To see hidden files
 dir /a
 ```
 
-Option
+**Option**
 
 ```
 /a
@@ -390,7 +378,7 @@ means
 
 Show ALL files.
 
-Including
+**Including**
 
 - Hidden
 - System
@@ -398,19 +386,17 @@ Including
 
 ---
 
-Example
+**Example**
 
 ```cmd
 dir /a
 ```
 
-Output
+**Output**
 
 ```
 .logs
-
 AppData
-
 ProgramData
 ```
 
@@ -418,7 +404,7 @@ ProgramData
 
 Why Hidden Files Matter
 
-Attackers often hide
+**Attackers often hide**
 
 - Malware
 - Backdoors
@@ -436,19 +422,19 @@ Example
 cd Documents
 ```
 
-Current location
+**Current location**
 
 ```
 C:\Users\Administrator
 ```
 
-After command
+**After command**
 
 ```
 C:\Users\Administrator\Documents
 ```
 
-Return
+**Return**
 
 ```cmd
 cd ..
@@ -459,7 +445,7 @@ cd ..
 # Searching Files
 Suppose
 
-You know
+**You know**
 
 ```
 task_brief.txt
@@ -469,13 +455,13 @@ But don't know where it is.
 
 Instead of checking every folder
 
-Use
+**Use**
 
 ```cmd
 dir /s task_brief.txt
 ```
 
-Meaning
+**Meaning**
 
 ```
 /s
@@ -487,19 +473,17 @@ Entire current directory tree.
 
 ---
 
-Example
+**Example**
 
 ```cmd
 dir /s task_brief.txt
 ```
 
-Output
+**Output**
 
 ```
 Directory of
-
 C:\Users\Administrator\Documents\Notes
-
 task_brief.txt
 ```
 
@@ -514,25 +498,22 @@ Windows command
 type filename
 ```
 
-Example
+**Example**
 
 ```cmd
 type task_brief.txt
 ```
 
-Output
+**Output**
 
 ```
 Welcome Analyst
-
 Find the hostname
-
 Find the Windows Version
-
 Find the IP Address
 ```
 
-Equivalent Linux command
+**Equivalent Linux command**
 
 ```bash
 cat task_brief.txt
@@ -551,7 +532,7 @@ dir /s task_brief.txt
 
 ↓
 
-Navigate
+**Navigate**
 
 ```cmd
 cd path
@@ -559,7 +540,7 @@ cd path
 
 ↓
 
-Verify
+**Verify**
 
 ```cmd
 dir
@@ -567,7 +548,7 @@ dir
 
 ↓
 
-Read
+**Read**
 
 ```cmd
 type task_brief.txt
@@ -588,17 +569,17 @@ Only filename is known
 payload.ps1
 ```
 
-Analyst runs
+**Analyst runs**
 
 ```cmd
 dir /s payload.ps1
 ```
 
-Finds file
+**Finds file**
 
 ↓
 
-Reads it
+**Reads it**
 
 ```cmd
 type payload.ps1
@@ -671,7 +652,7 @@ whoami
 C:\Users\Administrator>whoami
 ```
 
-Output
+**Output**
 
 ```text
 desktop-01\administrator
@@ -680,14 +661,14 @@ desktop-01\administrator
 ---
 
 ## Why is it Important?
-During penetration testing you must know
+**During penetration testing you must know**
 
 - Current user
 - Privilege level
 - Domain user
 - Local account
 
-Example
+**Example**
 
 ```
 NT AUTHORITY\SYSTEM
@@ -704,7 +685,7 @@ Before running privilege escalation tools
 whoami
 ```
 
-Always verify
+**Always verify**
 
 - Current account
 - User context
@@ -730,7 +711,7 @@ hostname
 hostname
 ```
 
-Output
+**Output**
 
 ```text
 TryHackMe-PC
@@ -739,7 +720,7 @@ TryHackMe-PC
 ---
 
 ## Why Hostname Matters?
-Helps identify
+**Helps identify**
 
 - Servers
 - Workstations
@@ -759,21 +740,13 @@ Think of it as
 
 ```
 About This PC
-
 +
-
 Hardware
-
 +
-
 Windows Version
-
 +
-
 Network
-
 +
-
 Updates
 ```
 
@@ -791,25 +764,15 @@ systeminfo
 ## Output Includes
 ```
 Host Name
-
 OS Name
-
 OS Version
-
 System Type
-
 Processor
-
 RAM
-
 Domain
-
 BIOS
-
 Hotfixes
-
 Boot Time
-
 Network Adapter
 ```
 
@@ -820,23 +783,16 @@ Network Adapter
 systeminfo
 ```
 
-Output
+**Output**
 
 ```text
 Host Name
-
 TRYHACKME
-
 OS Name
-
 Microsoft Windows Server 2019
-
 System Type
-
 x64-based PC
-
 Total Physical Memory
-
 4096 MB
 ```
 
@@ -845,37 +801,21 @@ Total Physical Memory
 # Information Collected
 ```
 Computer
-
 ↓
-
 Hostname
-
 ↓
-
 Operating System
-
 ↓
-
 Architecture
-
 ↓
-
 Installed RAM
-
 ↓
-
 CPU
-
 ↓
-
 Updates
-
 ↓
-
 Domain
-
 ↓
-
 Boot Time
 ```
 
@@ -884,15 +824,15 @@ Boot Time
 ## Why Cybersecurity Uses systeminfo
 Security professionals use it to
 
- Detect OS Version
+**Detect OS Version**
 
- Find Patch Level
+**Find Patch Level**
 
- Identify Vulnerabilities
+**Identify Vulnerabilities**
 
- Match Exploits
+**Match Exploits**
 
- Verify Architecture
+**Verify Architecture**
 
 ---
 
@@ -905,13 +845,13 @@ Exploit only works on
 Windows Server 2016
 ```
 
-Run
+**Run**
 
 ```cmd
 systeminfo
 ```
 
-If output says
+**If output says**
 
 ```
 Windows Server 2019
@@ -940,21 +880,15 @@ ipconfig
 ipconfig
 ```
 
-Output
+**Output**
 
 ```text
 Ethernet Adapter
-
 IPv4 Address
-
 192.168.1.25
-
 Subnet Mask
-
 255.255.255.0
-
 Default Gateway
-
 192.168.1.1
 ```
 
@@ -1000,13 +934,13 @@ Used to reach the Internet.
 # ipconfig /all
 Shows additional information.
 
-Syntax
+**Syntax**
 
 ```cmd
 ipconfig /all
 ```
 
-Displays
+**Displays**
 
 - MAC Address
 - DNS Servers
@@ -1018,14 +952,14 @@ Displays
 ---
 
 # Why Network Information Matters?
-Attackers collect
+**Attackers collect**
 
 - IP Address
 - Gateway
 - DNS
 - MAC Address
 
-Defenders verify
+**Defenders verify**
 
 - Network Configuration
 - Rogue Devices
@@ -1036,43 +970,24 @@ Defenders verify
 # Windows Investigation Workflow
 ```
 Start Investigation
-
         │
-
         ▼
-
 whoami
-
 (Current User)
-
         │
-
         ▼
-
 hostname
-
 (System Name)
-
         │
-
         ▼
-
 systeminfo
-
 (OS Details)
-
         │
-
         ▼
-
 ipconfig
-
 (Network Details)
-
         │
-
         ▼
-
 Start Analysis
 ```
 
@@ -1089,7 +1004,7 @@ whoami
 
 ↓
 
-Need Computer Name
+**Need Computer Name**
 
 ```cmd
 hostname
@@ -1097,7 +1012,7 @@ hostname
 
 ↓
 
-Need Windows Version
+**Need Windows Version**
 
 ```cmd
 systeminfo
@@ -1105,7 +1020,7 @@ systeminfo
 
 ↓
 
-Need IP Address
+**Need IP Address**
 
 ```cmd
 ipconfig
@@ -1120,32 +1035,24 @@ SOC receives alert
 
 ```
 Possible Malware
-
 Host Unknown
 ```
 
-First commands
+**First commands**
 
 ```cmd
 whoami
-
 hostname
-
 systeminfo
-
 ipconfig
 ```
 
 Within seconds analyst knows
 
  User
-
  Computer
-
  Windows Version
-
  IP Address
-
  Architecture
 
 ---
@@ -1153,17 +1060,11 @@ Within seconds analyst knows
 # Windows Networking Basics
 ```
 Computer
-
 │
-
 ├── Hostname
-
 ├── IP Address
-
 ├── Gateway
-
 ├── DNS
-
 └── MAC Address
 ```
 
@@ -1178,19 +1079,12 @@ ipconfig /all
 # Important Windows Directories
 ```
 C:\
-
 │
-
 ├── Windows
-
 ├── Users
-
 ├── Program Files
-
 ├── ProgramData
-
 ├── Temp
-
 └── PerfLogs
 ```
 
@@ -1204,13 +1098,11 @@ Contains Windows operating system files.
 ## C:\Users
 Contains user profiles.
 
-Example
+**Example**
 
 ```
 Administrator
-
 John
-
 Alice
 ```
 
@@ -1231,7 +1123,7 @@ Often hidden.
 ## C:\Temp
 Temporary files.
 
-Frequently used by
+**Frequently used by**
 
 - Installers
 - Malware
@@ -1292,7 +1184,7 @@ Instead of typing the complete path
 C:\Users\Administrator
 ```
 
-Windows allows
+**Windows allows**
 
 ```
 %USERPROFILE%
@@ -1319,7 +1211,7 @@ Windows allows
 echo %USERNAME%
 ```
 
-Output
+**Output**
 
 ```text
 Administrator
@@ -1331,7 +1223,7 @@ Administrator
 echo %COMPUTERNAME%
 ```
 
-Output
+**Output**
 
 ```text
 TRYHACKME
@@ -1343,7 +1235,7 @@ TRYHACKME
 echo %USERPROFILE%
 ```
 
-Output
+**Output**
 
 ```text
 C:\Users\Administrator
@@ -1354,7 +1246,7 @@ C:\Users\Administrator
 # Why Environment Variables Matter
 Cybersecurity professionals use them because
 
- Scripts become portable
+**Scripts become portable**
 
  Malware often stores files in `%TEMP%`
 
@@ -1383,7 +1275,7 @@ Display text.
 echo Hello World
 ```
 
-Output
+**Output**
 
 ```text
 Hello World
@@ -1398,17 +1290,13 @@ Displays folder hierarchy.
 tree
 ```
 
-Example
+**Example**
 
 ```
 C:\
-
 ├── Users
-
 ├── Windows
-
 ├── Program Files
-
 └── Temp
 ```
 
@@ -1435,47 +1323,26 @@ exit
 # Command Workflow
 ```
 Start CMD
-
       │
-
       ▼
-
 whoami
-
       │
-
       ▼
-
 hostname
-
       │
-
       ▼
-
 systeminfo
-
       │
-
       ▼
-
 ipconfig
-
       │
-
       ▼
-
 dir
-
       │
-
       ▼
-
 type
-
       │
-
       ▼
-
 Investigation Complete
 ```
 
@@ -1484,7 +1351,7 @@ Investigation Complete
 # Windows CLI Investigation Workflow
 Imagine you login to a suspicious Windows machine.
 
-First commands
+**First commands**
 
 ```cmd
 whoami
@@ -1512,13 +1379,13 @@ systeminfo
 
 ↓
 
-Operating System
+**Operating System**
 
-RAM
+**RAM**
 
-Architecture
+**Architecture**
 
-Hotfixes
+**Hotfixes**
 
 ---
 
@@ -1528,7 +1395,7 @@ ipconfig
 
 ↓
 
-Network Information
+**Network Information**
 
 ---
 
@@ -1538,7 +1405,7 @@ dir
 
 ↓
 
-Files
+**Files**
 
 ---
 
@@ -1548,7 +1415,7 @@ dir /a
 
 ↓
 
-Hidden Files
+**Hidden Files**
 
 ---
 
@@ -1558,7 +1425,7 @@ dir /s secret.txt
 
 ↓
 
-Locate File
+**Locate File**
 
 ---
 
@@ -1568,7 +1435,7 @@ type secret.txt
 
 ↓
 
-Read Evidence
+**Read Evidence**
 
 Mission Complete.
 
@@ -1578,19 +1445,12 @@ Mission Complete.
 Windows CMD is heavily used in
 
  Incident Response
-
  Malware Analysis
-
  Digital Forensics
-
  Threat Hunting
-
  Blue Team Operations
-
  Active Directory
-
  Windows Administration
-
  Penetration Testing
 
 ---
@@ -1602,31 +1462,25 @@ SOC receives an alert.
 Suspicious Script Executed
 ```
 
-Only information available
+**Only information available**
 
 ```
 Filename
-
 update.ps1
 ```
 
-Investigation
+**Investigation**
 
 ```cmd
 whoami
-
 hostname
-
 systeminfo
-
 ipconfig
-
 dir /s update.ps1
-
 type update.ps1
 ```
 
-Within minutes analyst identifies
+**Within minutes analyst identifies**
 
 - User
 - Host
@@ -1643,7 +1497,7 @@ Within minutes analyst identifies
 cd
 ```
 
-Change directory
+**Change directory**
 
 ---
 
@@ -1651,7 +1505,7 @@ Change directory
 cd ..
 ```
 
-Go back
+**Go back**
 
 ---
 
@@ -1659,7 +1513,7 @@ Go back
 dir
 ```
 
-List files
+**List files**
 
 ---
 
@@ -1667,7 +1521,7 @@ List files
 dir /a
 ```
 
-Show hidden files
+**Show hidden files**
 
 ---
 
@@ -1675,7 +1529,7 @@ Show hidden files
 dir /s filename
 ```
 
-Search recursively
+**Search recursively**
 
 ---
 
@@ -1684,7 +1538,7 @@ Search recursively
 type filename
 ```
 
-Read file
+**Read file**
 
 ---
 
@@ -1693,7 +1547,7 @@ Read file
 whoami
 ```
 
-Current user
+**Current user**
 
 ---
 
@@ -1701,7 +1555,7 @@ Current user
 hostname
 ```
 
-Computer name
+**Computer name**
 
 ---
 
@@ -1710,7 +1564,7 @@ Computer name
 systeminfo
 ```
 
-System information
+**System information**
 
 ---
 
@@ -1719,7 +1573,7 @@ System information
 ipconfig
 ```
 
-IP configuration
+**IP configuration**
 
 ---
 
@@ -1727,7 +1581,7 @@ IP configuration
 ipconfig /all
 ```
 
-Detailed adapter information
+**Detailed adapter information**
 
 ---
 
@@ -1736,7 +1590,7 @@ Detailed adapter information
 cls
 ```
 
-Clear screen
+**Clear screen**
 
 ---
 
@@ -1744,7 +1598,7 @@ Clear screen
 tree
 ```
 
-Directory tree
+**Directory tree**
 
 ---
 
@@ -1752,7 +1606,7 @@ Directory tree
 echo
 ```
 
-Print text
+**Print text**
 
 ---
 
@@ -1760,7 +1614,7 @@ Print text
 help
 ```
 
-Show commands
+**Show commands**
 
 ---
 
@@ -1768,7 +1622,7 @@ Show commands
 exit
 ```
 
-Close CMD
+**Close CMD**
 
 ---
 
@@ -1791,19 +1645,12 @@ Close CMD
 # Important Directories
 ```
 C:\
-
 │
-
 ├── Windows
-
 ├── Users
-
 ├── Program Files
-
 ├── ProgramData
-
 ├── Temp
-
 └── PerfLogs
 ```
 
@@ -1838,7 +1685,7 @@ To identify the computer on a network.
 ---
 
 ## Why is ipconfig important?
-It helps identify
+**It helps identify**
 
 - IPv4 Address
 - Gateway
@@ -1881,33 +1728,25 @@ Attackers often store malware or persistence files inside hidden directories.
 
 ```
 whoami
-
 ↓
-
 Who?
 
 ----------------
 
 hostname
-
 ↓
-
 Which Computer?
 
 ----------------
 
 systeminfo
-
 ↓
-
 Everything
 
 ----------------
 
 ipconfig
-
 ↓
-
 Network
 ```
 
@@ -1915,57 +1754,43 @@ Network
 
 ```
 cd
-
 ↓
-
 Change Directory
 
 ----------------
 
 dir
-
 ↓
-
 Directory
 
 ----------------
 
 type
-
 ↓
-
 Read File
 
 ----------------
 
 whoami
-
 ↓
-
 Current User
 
 ----------------
 
 hostname
-
 ↓
-
 Computer Name
 
 ----------------
 
 systeminfo
-
 ↓
-
 Everything
 
 ----------------
 
 ipconfig
-
 ↓
-
 Network
 ```
 
@@ -1974,19 +1799,12 @@ Network
 ## Quick Revision
 
  CMD = Windows Command Line
-
  cd = Change Directory
-
  dir = List Files
-
  dir /a = Show Hidden Files
-
  dir /s = Search File
-
  type = Read File
-
  Hidden Files ≠ Secret Files
-
  SOC Analysts always inspect hidden files.
 
 ---
@@ -2029,91 +1847,48 @@ Network
 
 ```
 Windows CLI
-
         │
-
         ▼
-
 Navigation
-
 │
-
 ├── cd
-
 ├── dir
-
 ├── dir /a
-
 ├── dir /s
-
 └── type
-
         │
-
         ▼
-
 System Enumeration
-
 │
-
 ├── whoami
-
 ├── hostname
-
 ├── systeminfo
-
 └── ipconfig
-
         │
-
         ▼
-
 Environment Variables
-
 │
-
 ├── %USERNAME%
-
 ├── %USERPROFILE%
-
 ├── %TEMP%
-
 ├── %APPDATA%
-
 └── %WINDIR%
-
         │
-
         ▼
-
 Investigation
-
 ↓
-
 User
-
 ↓
-
 Host
-
 ↓
-
 OS
-
 ↓
-
 Network
-
 ↓
-
 Files
-
 ↓
-
 Evidence
-
 ↓
-
 Report
 ```
 

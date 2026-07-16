@@ -180,9 +180,9 @@ Temporary memory.
 
 **Characteristics**
 
- Extremely fast
+**Extremely fast**
 
- Volatile
+**Volatile**
 
 **Meaning**
 
@@ -256,7 +256,7 @@ Uses flash memory.
 ### 5. Network Adapter
 **Purpose**
 
-Allows communication with
+**Allows communication with**
 
 - Internet
 - Routers
@@ -416,15 +416,15 @@ Electricity flows
 
 **Purpose** — Checks:
 
- CPU
+**CPU**
 
- RAM
+**RAM**
 
- Keyboard
+**Keyboard**
 
- Storage
+**Storage**
 
- Hardware
+**Hardware**
 
 ```
 If something fails

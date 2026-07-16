@@ -182,7 +182,7 @@ It manages all computer resources efficiently and safely.
 
 Without it...
 
-Applications cannot directly use
+**Applications cannot directly use**
 
 - CPU
 - RAM
@@ -305,7 +305,7 @@ Air Traffic Control
 Runway
 ```
 
-Computer equivalent
+**Computer equivalent**
 
 ```
 User
@@ -330,7 +330,7 @@ Hardware
 | Storage Hangars | Hard Disk |
 | Aircraft | Running Processes |
 
-The Air Traffic Control decides
+**The Air Traffic Control decides**
 
 - Which plane lands
 - Which plane takes off
@@ -339,7 +339,7 @@ The Air Traffic Control decides
 
 Similarly...
 
-The Operating System decides
+**The Operating System decides**
 
 - Which process runs
 - Which gets memory
@@ -436,7 +436,7 @@ Drivers ✔
 Hardware ✔
 ```
 
-Examples
+**Examples**
 
 - Process Scheduler
 - Memory Manager
@@ -449,7 +449,7 @@ Examples
 # User Space
 Applications execute here.
 
-Examples
+**Examples**
 
 - Chrome
 - Firefox
@@ -564,7 +564,7 @@ Return Data
 # 1. Process Management
 A Process = Running Program
 
-Examples
+**Examples**
 
 ```
 Chrome
@@ -578,19 +578,19 @@ VS Code
 Game
 ```
 
-The Operating System
+**The Operating System**
 
- Creates processes
+**Creates processes**
 
- Schedules CPU
+**Schedules CPU**
 
- Switches between tasks
+**Switches between tasks**
 
- Terminates finished processes
+**Terminates finished processes**
 
 ---
 
-Example
+**Example**
 
 ```
 CPU
@@ -611,7 +611,7 @@ This creates multitasking.
 # 2. Memory Management
 RAM is limited.
 
-Example
+**Example**
 
 ```
 RAM = 8 GB
@@ -625,15 +625,15 @@ VS Code = 1 GB
 Spotify = 500 MB
 ```
 
-OS responsibilities
+**OS responsibilities**
 
- Allocate RAM
+**Allocate RAM**
 
- Free RAM
+**Free RAM**
 
- Protect Memory
+**Protect Memory**
 
- Virtual Memory
+**Virtual Memory**
 
 Without memory management...
 
@@ -664,7 +664,7 @@ Permissions
 Metadata
 ```
 
-Handles
+**Handles**
 
 - File Names
 - Directories
@@ -673,7 +673,7 @@ Handles
 - Permissions
 - Timestamps
 
-Examples
+**Examples**
 
 ```
 Documents/
@@ -701,17 +701,17 @@ PC
 └── Admin
 ```
 
-Responsibilities
+**Responsibilities**
 
- Login
+**Login**
 
- Passwords
+**Passwords**
 
- Permissions
+**Permissions**
 
- Authentication
+**Authentication**
 
- Access Control
+**Access Control**
 
 ---
 
@@ -734,7 +734,7 @@ Operating System
 Application
 ```
 
-Supported devices
+**Supported devices**
 
 - Keyboard
 - Mouse
@@ -752,7 +752,7 @@ Even before Antivirus...
 
 The OS already protects the computer.
 
-Major Security Features
+**Major Security Features**
 
 ```
 Operating System Security
@@ -769,7 +769,7 @@ Operating System Security
 ## Authentication
 Verifies user identity.
 
-Examples
+**Examples**
 
 - Password
 - PIN
@@ -789,7 +789,7 @@ Write
 Execute
 ```
 
-Example
+**Example**
 
 ```
 student
@@ -821,7 +821,7 @@ One crash won't affect others.
 ---
 
 ## System Protection
-Protects
+**Protects**
 
 - System Files
 - Kernel
@@ -959,7 +959,7 @@ Examples:
 
 Instead of typing commands...
 
-Users interact using
+**Users interact using**
 
 - Mouse
 - Touch
@@ -982,7 +982,7 @@ Desktop
 └── Settings
 ```
 
-Example
+**Example**
 
 ```
 Click Folder
@@ -1003,11 +1003,11 @@ Everything is visual.
 # Advantages of GUI
  Easy to learn
 
- User friendly
+**User friendly**
 
- Visual navigation
+**Visual navigation**
 
- Great for beginners
+**Great for beginners**
 
  Supports drag & drop
 
@@ -1016,11 +1016,11 @@ Everything is visual.
 # Disadvantages
  Slower than CLI
 
- Uses more RAM
+**Uses more RAM**
 
- Less automation
+**Less automation**
 
- Limited control
+**Limited control**
 
 ---
 
@@ -1031,7 +1031,7 @@ Instead of clicking...
 
 Users type commands.
 
-Example
+**Example**
 
 ```bash
 ls
@@ -1075,15 +1075,15 @@ Hardware
 ## Why Professionals Prefer CLI
  Faster
 
- Precise
+**Precise**
 
- Scriptable
+**Scriptable**
 
- Automation
+**Automation**
 
- Remote Administration
+**Remote Administration**
 
- Better for servers
+**Better for servers**
 
 ---
 
@@ -1144,7 +1144,7 @@ Every Operating System is optimized for a specific purpose.
 # Desktop Operating Systems
 Designed for personal computers.
 
-Typical Uses
+**Typical Uses**
 
 - Browsing
 - Office Work
@@ -1152,7 +1152,7 @@ Typical Uses
 - Development
 - Multimedia
 
-Examples
+**Examples**
 
 ```
 Windows
@@ -1162,15 +1162,15 @@ macOS
 Linux Desktop
 ```
 
-Characteristics
+**Characteristics**
 
- Rich GUI
+**Rich GUI**
 
- Multi-tasking
+**Multi-tasking**
 
- User Friendly
+**User Friendly**
 
- Multimedia Support
+**Multimedia Support**
 
 ---
 
@@ -1179,7 +1179,7 @@ Most widely used desktop operating system.
 
 Developed by Microsoft.
 
-Popular Versions
+**Popular Versions**
 
 ```
 Windows 10
@@ -1187,26 +1187,26 @@ Windows 10
 Windows 11
 ```
 
-Uses
+**Uses**
 
 - Personal Computers
 - Gaming
 - Office
 - Development
 
-Advantages
+**Advantages**
 
- Huge software ecosystem
+**Huge software ecosystem**
 
- Gaming support
+**Gaming support**
 
- Driver compatibility
+**Driver compatibility**
 
-Disadvantages
+**Disadvantages**
 
- Paid License
+**Paid License**
 
- Malware target
+**Malware target**
 
 ---
 
@@ -1215,7 +1215,7 @@ Developed by Apple.
 
 Runs only on Apple hardware.
 
-Examples
+**Examples**
 
 ```
 Sonoma
@@ -1225,21 +1225,21 @@ Sequoia
 Tahoe
 ```
 
-Advantages
+**Advantages**
 
- Stable
+**Stable**
 
- Excellent UI
+**Excellent UI**
 
- Secure
+**Secure**
 
- Great developer tools
+**Great developer tools**
 
-Disadvantages
+**Disadvantages**
 
- Expensive Hardware
+**Expensive Hardware**
 
- Limited gaming
+**Limited gaming**
 
 ---
 
@@ -1248,7 +1248,7 @@ Linux is NOT one Operating System.
 
 It is a family of distributions.
 
-Examples
+**Examples**
 
 ```
 Ubuntu
@@ -1262,26 +1262,26 @@ Linux Mint
 Arch Linux
 ```
 
-Advantages
+**Advantages**
 
- Free
+**Free**
 
- Open Source
+**Open Source**
 
- Secure
+**Secure**
 
- Highly Customizable
+**Highly Customizable**
 
- Excellent for Programming
+**Excellent for Programming**
 
-Disadvantages
+**Disadvantages**
 
  Smaller commercial software ecosystem
 
 ---
 
 # Server Operating Systems
-Servers prioritize
+**Servers prioritize**
 
 - Stability
 - Security
@@ -1290,7 +1290,7 @@ Servers prioritize
 
 instead of appearance.
 
-Examples
+**Examples**
 
 ```
 Windows Server
@@ -1304,26 +1304,26 @@ Red Hat
 CentOS
 ```
 
-Characteristics
+**Characteristics**
 
- Multi-user
+**Multi-user**
 
- Remote Access
+**Remote Access**
 
- High Availability
+**High Availability**
 
- Usually No GUI
+**Usually No GUI**
 
 ---
 
 # Mobile Operating Systems
-Designed for
+**Designed for**
 
 - Phones
 - Tablets
 - Smart Devices
 
-Examples
+**Examples**
 
 ```
 Android
@@ -1331,15 +1331,15 @@ Android
 iOS
 ```
 
-Characteristics
+**Characteristics**
 
- Touch Interface
+**Touch Interface**
 
- Battery Optimization
+**Battery Optimization**
 
- Secure App Isolation
+**Secure App Isolation**
 
- Sensors Integration
+**Sensors Integration**
 
 ---
 
@@ -1348,44 +1348,44 @@ Developed by Google.
 
 Based on Linux Kernel.
 
-Runs on
+**Runs on**
 
 - Samsung
 - Pixel
 - OnePlus
 - Xiaomi
 
-Advantages
+**Advantages**
 
- Highly Customizable
+**Highly Customizable**
 
- Open Ecosystem
+**Open Ecosystem**
 
 ---
 
 # iOS
 Developed by Apple.
 
-Runs on
+**Runs on**
 
 - iPhone
 
 - iPad
 
-Advantages
+**Advantages**
 
- High Security
+**High Security**
 
- Smooth Performance
+**Smooth Performance**
 
- Controlled Ecosystem
+**Controlled Ecosystem**
 
 ---
 
 # Embedded Operating Systems
 Used in devices with dedicated functions.
 
-Examples
+**Examples**
 
 ```
 Routers
@@ -1411,20 +1411,20 @@ Yocto
 Ubuntu Core
 ```
 
-Characteristics
+**Characteristics**
 
- Lightweight
+**Lightweight**
 
- Low Power
+**Low Power**
 
- Stable
+**Stable**
 
 ---
 
 # Real-Time Operating Systems (RTOS)
 Special Operating Systems for time-critical applications.
 
-Examples
+**Examples**
 
 ```
 Aircraft
@@ -1436,7 +1436,7 @@ Robotics
 Medical Equipment
 ```
 
-Popular RTOS
+**Popular RTOS**
 
 ```
 FreeRTOS
@@ -1449,13 +1449,13 @@ QNX
 ---
 
 # Cloud & Virtual Operating Systems
-Used in
+**Used in**
 
 - AWS
 - Azure
 - Google Cloud
 
-Examples
+**Examples**
 
 ```
 Ubuntu Server
@@ -1465,28 +1465,28 @@ Amazon Linux
 Rocky Linux
 ```
 
-Characteristics
+**Characteristics**
 
- Lightweight
+**Lightweight**
 
- Highly Scalable
+**Highly Scalable**
 
- Virtualized
+**Virtualized**
 
 ---
 
 # Container Operating Systems
 Containers package
 
-Application
+**Application**
 
 +
 
-Dependencies
+**Dependencies**
 
 without requiring an entire virtual machine.
 
-Examples
+**Examples**
 
 ```
 Alpine Linux
@@ -1496,13 +1496,13 @@ Flatcar Linux
 Bottlerocket
 ```
 
-Advantages
+**Advantages**
 
- Small Size
+**Small Size**
 
- Fast Deployment
+**Fast Deployment**
 
- Efficient
+**Efficient**
 
 ---
 
@@ -1542,19 +1542,19 @@ There is no "one OS for everything."
 # Practical Investigation
 TryHackMe provides an Ubuntu virtual machine.
 
-Tasks performed
+**Tasks performed**
 
  Open About This Computer
 
- View System Monitor
+**View System Monitor**
 
- View Hardware
+**View Hardware**
 
- Inspect File System
+**Inspect File System**
 
- Browse Home Directory
+**Browse Home Directory**
 
- Find Note
+**Find Note**
 
 ---
 
@@ -1575,7 +1575,7 @@ User Management
 
 ---
 
-Ubuntu MATE Version
+**Ubuntu MATE Version**
 
 ```
 1.26.2
@@ -1583,7 +1583,7 @@ Ubuntu MATE Version
 
 ---
 
-RAM Installed
+**RAM Installed**
 
 ```
 1.9 GiB
@@ -1608,7 +1608,7 @@ Number of User Directories
 
 ---
 
-Flag
+**Flag**
 
 ```
 THM{new_pc_for_free!}
@@ -1791,9 +1791,9 @@ id
 
 Remember:
 
-GUI = Click
+**GUI = Click**
 
-CLI = Type
+**CLI = Type**
 
 ---
 
@@ -1847,7 +1847,7 @@ Can directly access:
 ## Process
 A program currently running in memory.
 
-Example
+**Example**
 
 ```
 chrome.exe
@@ -1864,7 +1864,7 @@ code
 ## Thread
 A lightweight unit of execution inside a process.
 
-Example
+**Example**
 
 ```
 Chrome
@@ -1881,7 +1881,7 @@ Chrome
 ## File System
 Organizes files on storage devices.
 
-Examples
+**Examples**
 
 ```
 NTFS
@@ -1900,7 +1900,7 @@ exFAT
 ## Device Driver
 Software allowing Operating System and Hardware to communicate.
 
-Examples
+**Examples**
 
 ```
 Printer Driver
@@ -1917,7 +1917,7 @@ Wi-Fi Driver
 ## Authentication
 Verifying identity.
 
-Examples
+**Examples**
 
 ```
 Password
@@ -1934,7 +1934,7 @@ Face Unlock
 ## Authorization
 Determines what an authenticated user is allowed to do.
 
-Example
+**Example**
 
 ```
 Login ✔
@@ -2233,24 +2233,24 @@ Because CLI:
 ---
 
 ## Name major Operating Systems.
-Desktop
+**Desktop**
 
 - Windows
 - macOS
 - Linux
 
-Mobile
+**Mobile**
 
 - Android
 - iOS
 
-Servers
+**Servers**
 
 - Ubuntu Server
 - Red Hat
 - Windows Server
 
-Embedded
+**Embedded**
 
 - OpenWRT
 - FreeRTOS

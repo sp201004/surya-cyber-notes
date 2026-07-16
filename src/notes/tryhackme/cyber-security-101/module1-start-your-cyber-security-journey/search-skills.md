@@ -400,7 +400,7 @@ This demonstrates why organizations should continuously monitor their Internet-f
 
 Instead of relying on a single antivirus, VirusTotal compares results from dozens of security products simultaneously.
 
-Website: <https://www.virustotal.com>
+**Website: <https://www.virustotal.com>**
 
 ### Why Security Professionals Use VirusTotal
 
@@ -567,7 +567,7 @@ Example: `CVE-2024-3094`
 
 The **NVD** is maintained by **NIST**. It expands CVE information by adding severity score, CVSS metrics, references, patch information, and technical details.
 
-Website: <https://nvd.nist.gov>
+**Website: <https://nvd.nist.gov>**
 
 ### CVSS
 
@@ -674,7 +674,7 @@ Most Linux commands support `--help`, for example `ls --help`, `grep --help`, `c
 
 **GitHub** is a platform for hosting software projects using Git. It allows developers and security researchers to collaborate, share code, report issues, and publish documentation.
 
-Website: <https://github.com>
+**Website: <https://github.com>**
 
 | Term | Meaning |
 |------|---------|

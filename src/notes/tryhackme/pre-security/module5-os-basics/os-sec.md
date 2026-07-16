@@ -118,7 +118,7 @@ Without an OS, software cannot communicate with computer hardware.
 ---
 
 # Why Operating System Security Matters
-Your OS stores:
+**Your OS stores:**
 
 - Personal files
 - Photos
@@ -129,7 +129,7 @@ Your OS stores:
 - Office documents
 - University work
 
-If compromised:
+**If compromised:**
 
 - Data can be stolen
 - Files can be modified
@@ -153,21 +153,18 @@ Integrity -------- Availability
 ---
 
 ## 1. Confidentiality
-Meaning
+**Meaning:**
 
 Only authorized people should access data.
 
-Examples
+**Examples:**
 
  Password Protected Files
-
  Bank Accounts
-
  Medical Records
-
  Company Documents
 
-Attack Examples
+**Attack Examples:**
 
 - Password Theft
 - Data Leakage
@@ -176,25 +173,23 @@ Attack Examples
 ---
 
 ## 2. Integrity
-Meaning
+**Meaning:**
 
 Data should never be modified without authorization.
 
-Examples
+**Examples:**
 
-Changing
+**Changing**
 
 ```
 Salary = ₹50000
-
 ↓
-
 Salary = ₹5
 ```
 
 Integrity has been broken.
 
-Attack Examples
+**Attack Examples:**
 
 - File Modification
 - Database Tampering
@@ -203,18 +198,18 @@ Attack Examples
 ---
 
 ## 3. Availability
-Meaning
+**Meaning:**
 
 Systems should always remain available.
 
-Examples
+**Examples:**
 
 - Websites
 - Banking Apps
 - Email
 - Hospital Systems
 
-Attack Examples
+**Attack Examples:**
 
 - Ransomware
 - DDoS Attack
@@ -224,9 +219,7 @@ Attack Examples
 
 # Common Security Weaknesses
 1. Weak Passwords
-
 2. Weak File Permissions
-
 3. Malware
 
 ---
@@ -239,7 +232,7 @@ There are three factors.
 ---
 
 ## Something You Know
-Examples
+**Examples:**
 
 - Password
 - PIN
@@ -248,7 +241,7 @@ Examples
 ---
 
 ## Something You Have
-Examples
+**Examples:**
 
 - Phone
 - Smart Card
@@ -258,7 +251,7 @@ Examples
 ---
 
 ## Something You Are
-Examples
+**Examples:**
 
 - Fingerprint
 - Face Recognition
@@ -269,7 +262,7 @@ Examples
 # Weak Passwords
 Weak passwords are easy to guess.
 
-Common Examples
+**Common Examples:**
 
 ```
 123456
@@ -299,36 +292,31 @@ These passwords appear in dictionary attacks and leaked password databases.
 ---
 
 # Strong Password Rules
-Use
+**Use**
 
  Uppercase Letters
-
  Lowercase Letters
-
  Numbers
-
  Symbols
-
 Minimum
-
 12–16 Characters
 
-Example
+**Examples:**
 
 ```
 LearnM00r
 ```
 
-Avoid
+**Avoid**
 
 - Birthdays
 - Phone Numbers
 - Names
 - Keyboard Patterns
 
-Example
+**Examples:**
 
-Bad
+**Bad**
 
 ```
 qwerty
@@ -336,7 +324,7 @@ qwerty
 dragon
 ```
 
-Good
+**Good**
 
 ```
 TryHack!2026
@@ -346,25 +334,19 @@ TryHack!2026
 
 # Password Best Practices
  Use Different Passwords
-
  Use Password Manager
-
  Enable MFA
-
  Never Share Passwords
-
  Never Reuse Passwords
 
 ---
 
 # Principle of Least Privilege
 Definition
-
 Users should receive only the permissions necessary to perform their work.
-
 Never give Administrator or Root access unless required.
 
-Benefits
+**Benefits**
 
 - Better Security
 - Less Damage
@@ -373,24 +355,23 @@ Benefits
 ---
 
 # Weak File Permissions
-Poor permissions allow attackers to
+**Poor permissions allow attackers to**
 
 - Read Files
 - Modify Files
 - Delete Files
 
-Weak permissions affect
+**Weak permissions affect**
 
- Confidentiality
-
- Integrity
+- Confidentiality
+- Integrity
 
 ---
 
 # Malicious Programs (Malware)
 Malware is software created to damage or control systems.
 
-Types
+**Types**
 
 ---
 
@@ -411,13 +392,13 @@ Looks legitimate.
 
 Actually installs malicious code.
 
-Example
+**Example**
 
-Fake Game Installer
+**Fake Game Installer**
 
 ↓
 
-Installs Backdoor
+**Installs Backdoor**
 
 ---
 
@@ -428,22 +409,22 @@ Victim cannot access data.
 
 Attacker demands ransom.
 
-Targets
+**Targets**
 
-Availability
+**Availability**
 
 ---
 
 ## Spyware
-Secretly collects
+**Secretly collects**
 
 - Passwords
 - Browsing History
 - Personal Data
 
-Targets
+**Targets**
 
-Confidentiality
+**Confidentiality**
 
 ---
 
@@ -457,11 +438,11 @@ Gain unauthorized access to a Linux machine.
 ## Step 1
 Start
 
-AttackBox
+**AttackBox**
 
 +
 
-Lab Machine
+**Lab Machine**
 
 ---
 
@@ -473,25 +454,25 @@ Open Terminal
 ## Step 3
 Connect using SSH
 
-Syntax
+**Syntax**
 
 ```bash
 ssh username@IP
 ```
 
-Example
+**Example**
 
 ```bash
 ssh sammie@10.10.10.10
 ```
 
-Password
+**Password**
 
 ```
 dragon
 ```
 
-First Connection
+**First Connection**
 
 ```
 Are you sure you want to continue connecting?
@@ -512,21 +493,21 @@ While typing passwords
 
 Nothing appears.
 
-No
+**No**
 
 ```
 *
 ```
 
-No
+**No**
 
 ```
 •
 ```
 
-No
+**No**
 
-Characters
+**Characters**
 
 This is normal.
 
@@ -539,11 +520,11 @@ Command
 whoami
 ```
 
-Purpose
+**Purpose**
 
 Displays current username.
 
-Example
+**Example**
 
 ```bash
 sammie
@@ -558,11 +539,11 @@ Command
 ls
 ```
 
-Purpose
+**Purpose**
 
 Lists directory contents.
 
-Example
+**Example**
 
 ```bash
 country.txt
@@ -581,13 +562,13 @@ Command
 cat filename
 ```
 
-Example
+**Example**
 
 ```bash
 cat draft.md
 ```
 
-Output
+**Output**
 
 ```
 Reusing passwords means
@@ -604,11 +585,11 @@ Command
 history
 ```
 
-Purpose
+**Purpose**
 
 Displays previously executed commands.
 
-Useful for
+**Useful for**
 
 - Investigations
 - Forensics
@@ -634,7 +615,7 @@ Example
 ssh johnny@IP
 ```
 
-Password
+**Password**
 
 ```
 abc123
@@ -649,13 +630,13 @@ Command
 su - username
 ```
 
-Example
+**Example**
 
 ```bash
 su - root
 ```
 
-Purpose
+**Purpose**
 
 Become another user.
 
@@ -668,19 +649,19 @@ Linux Administrator
 root
 ```
 
-Windows Equivalent
+**Windows Equivalent**
 
 ```
 Administrator
 ```
 
-Root has
+**Root has**
 
- Full Access
+**Full Access**
 
  Can Read Every File
 
- Can Modify Everything
+**Can Modify Everything**
 
 ---
 
@@ -700,7 +681,7 @@ Command
 cat flag.txt
 ```
 
-Example Output
+**Example Output**
 
 ```
 THM{YouGotRoot}
@@ -715,31 +696,31 @@ Current User
 whoami
 ```
 
-SSH Login
+**SSH Login**
 
 ```bash
 ssh username@IP
 ```
 
-List Files
+**List Files**
 
 ```bash
 ls
 ```
 
-Read File
+**Read File**
 
 ```bash
 cat filename
 ```
 
-Command History
+**Command History**
 
 ```bash
 history
 ```
 
-Switch User
+**Switch User**
 
 ```bash
 su - username
@@ -754,61 +735,61 @@ Current User
 whoami
 ```
 
-Current Directory
+**Current Directory**
 
 ```bash
 pwd
 ```
 
-List Files
+**List Files**
 
 ```bash
 ls
 ```
 
-Hidden Files
+**Hidden Files**
 
 ```bash
 ls -la
 ```
 
-Read File
+**Read File**
 
 ```bash
 cat file
 ```
 
-Change Directory
+**Change Directory**
 
 ```bash
 cd folder
 ```
 
-Clear Terminal
+**Clear Terminal**
 
 ```bash
 clear
 ```
 
-Show History
+**Show History**
 
 ```bash
 history
 ```
 
-SSH Login
+**SSH Login**
 
 ```bash
 ssh user@IP
 ```
 
-Switch User
+**Switch User**
 
 ```bash
 su - user
 ```
 
-Exit
+**Exit**
 
 ```bash
 exit

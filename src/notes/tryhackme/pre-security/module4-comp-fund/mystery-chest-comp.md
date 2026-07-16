@@ -80,7 +80,7 @@
 ## Client-Server Basics
  Client requests
 
- Server responds
+**Server responds**
 
  Protocol = Communication rules
 
@@ -92,13 +92,13 @@
 
  HTTPS = Secure HTTP
 
- HTTP is Stateless
+**HTTP is Stateless**
 
- Cookies maintain sessions
+**Cookies maintain sessions**
 
- GET retrieves data
+**GET retrieves data**
 
- POST sends data
+**POST sends data**
 
  Developer Tools → Network tab shows requests and responses
 

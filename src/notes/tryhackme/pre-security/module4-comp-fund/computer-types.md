@@ -83,7 +83,7 @@ Learn:
 
  Different computers are designed for different purposes.
 
- Every design is a trade-off between
+**Every design is a trade-off between**
 
 - Performance
 - Cost
@@ -115,17 +115,17 @@ Portable personal computer.
 
 **Features**
 
- Built-in screen
+**Built-in screen**
 
- Built-in keyboard
+**Built-in keyboard**
 
- Battery powered
+**Battery powered**
 
- Lightweight
+**Lightweight**
 
 **Purpose**
 
-Daily computing
+**Daily computing**
 
 **Examples**
 
@@ -153,13 +153,13 @@ Fixed-location computer.
 
 **Features**
 
- Separate monitor
+**Separate monitor**
 
- Keyboard
+**Keyboard**
 
- Mouse
+**Mouse**
 
- Uses wall power
+**Uses wall power**
 
 **Purpose**
 
@@ -205,15 +205,15 @@ Looks similar to desktop BUT uses specialized hardware.
 
 **Characteristics**
 
- High reliability
+**High reliability**
 
- Error correction
+**Error correction**
 
- Powerful CPU
+**Powerful CPU**
 
- Professional GPU
+**Professional GPU**
 
- Large RAM
+**Large RAM**
 
 **Priority:** Accuracy → Reliability → Long-running workloads
 
@@ -236,11 +236,11 @@ Provides services over a network.
 
 **Usually**
 
- No monitor
+**No monitor**
 
- No keyboard
+**No keyboard**
 
- Runs 24×7
+**Runs 24×7**
 
 **Examples**
 
@@ -286,17 +286,17 @@ Pocket-sized computer.
 
 **Features**
 
- CPU
+**CPU**
 
- RAM
+**RAM**
 
- Storage
+**Storage**
 
- Operating System
+**Operating System**
 
- Internet
+**Internet**
 
- Sensors
+**Sensors**
 
 **Examples:** Android, iPhone
 
@@ -309,11 +309,11 @@ Larger touch-screen computer.
 
 **Features**
 
- Bigger display
+**Bigger display**
 
- Touch-first interface
+**Touch-first interface**
 
- Battery powered
+**Battery powered**
 
 **Examples**
 
@@ -347,13 +347,13 @@ Network-connected devices with a specific purpose.
 
 **Characteristics**
 
- Internet connectivity
+**Internet connectivity**
 
- Sends data
+**Sends data**
 
- Receives commands
+**Receives commands**
 
- Usually automatic
+**Usually automatic**
 
 **Examples**
 
@@ -393,13 +393,13 @@ Perform one dedicated task.
 
 **Usually**
 
- Invisible
+**Invisible**
 
- Small
+**Small**
 
- Low power
+**Low power**
 
- Reliable
+**Reliable**
 
 **Examples**
 

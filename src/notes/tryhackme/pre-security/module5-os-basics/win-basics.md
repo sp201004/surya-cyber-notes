@@ -88,7 +88,7 @@
 ---
 
 # Configuring & Securing Windows
-Windows provides built-in tools to
+**Windows provides built-in tools to**
 
 - Keep the OS updated
 - Install/Remove software
@@ -99,21 +99,13 @@ Windows provides built-in tools to
 
 ```
 Windows Administration
-
 │
-
 ├── Windows Update
-
 ├── Applications
-
 ├── Windows Settings
-
 ├── Control Panel
-
 ├── Task Manager
-
 ├── Windows Security
-
 └── Windows Defender Firewall
 ```
 
@@ -122,7 +114,7 @@ Windows Administration
 # Windows Update
 
 ## Purpose
-Windows Update downloads and installs
+**Windows Update downloads and installs**
 
 - Security patches
 - Bug fixes
@@ -137,13 +129,9 @@ Keeping Windows updated reduces vulnerabilities.
 ## Location
 ```
 Settings
-
 ↓
-
 Update & Security
-
 ↓
-
 Windows Update
 ```
 
@@ -152,21 +140,13 @@ Windows Update
 ## Update Process
 ```
 Check for Updates
-
 ↓
-
 Download
-
 ↓
-
 Install
-
 ↓
-
 Restart
-
 ↓
-
 Updated System
 ```
 
@@ -197,13 +177,13 @@ Update hardware drivers.
 ## Why Updates Matter
  Fix security flaws
 
- Improve stability
+**Improve stability**
 
- Increase performance
+**Increase performance**
 
- Add new features
+**Add new features**
 
- Improve compatibility
+**Improve compatibility**
 
 ---
 
@@ -215,7 +195,7 @@ Windows applications update differently depending on where they were installed.
 ## Built-in Applications
 Usually update automatically.
 
-Examples
+**Examples**
 
 - Calculator
 - Paint
@@ -224,7 +204,7 @@ Examples
 ---
 
 ## Third-party Applications
-Usually update using
+**Usually update using**
 
 - Built-in updater
 - Download new installer
@@ -235,21 +215,13 @@ Usually update using
 ## Common Update Methods
 ```
 Application
-
 ↓
-
 Check Updates
-
 ↓
-
 Download
-
 ↓
-
 Install
-
 ↓
-
 Restart (if required)
 ```
 
@@ -263,7 +235,7 @@ Applications can be installed from multiple sources.
 ## Microsoft Store
 Safest installation method.
 
-Advantages
+**Advantages**
 
 - Trusted applications
 - Automatic updates
@@ -274,7 +246,7 @@ Advantages
 ## Internet Installation
 Applications downloaded directly from vendors.
 
-Common installer formats
+**Common installer formats**
 
 ```
 .exe
@@ -287,25 +259,15 @@ Common installer formats
 ## Installation Steps
 ```
 Download Installer
-
 ↓
-
 Run Installer
-
 ↓
-
 Accept License
-
 ↓
-
 Choose Location
-
 ↓
-
 Install
-
 ↓
-
 Finish
 ```
 
@@ -337,21 +299,13 @@ Applications can be removed using multiple methods.
 ### Windows Settings
 ```
 Settings
-
 ↓
-
 Apps
-
 ↓
-
 Apps & Features
-
 ↓
-
 Select Application
-
 ↓
-
 Uninstall
 ```
 
@@ -360,13 +314,9 @@ Uninstall
 ### Control Panel
 ```
 Control Panel
-
 ↓
-
 Programs
-
 ↓
-
 Uninstall Program
 ```
 
@@ -385,13 +335,9 @@ Windows Settings is the modern configuration interface.
 ## Access
 ```
 Windows + I
-
 or
-
 Start Menu
-
 ↓
-
 Settings
 ```
 
@@ -400,29 +346,17 @@ Settings
 ## Categories
 ```
 Settings
-
 │
-
 ├── System
-
 ├── Devices
-
 ├── Network & Internet
-
 ├── Personalization
-
 ├── Apps
-
 ├── Accounts
-
 ├── Time & Language
-
 ├── Gaming
-
 ├── Ease of Access
-
 ├── Privacy
-
 └── Update & Security
 ```
 
@@ -433,66 +367,66 @@ Settings
 ### System
 Display
 
-Sound
+**Sound**
 
-Notifications
+**Notifications**
 
-Power
+**Power**
 
-Storage
+**Storage**
 
 ---
 
 ### Devices
 Bluetooth
 
-Printers
+**Printers**
 
-Mouse
+**Mouse**
 
-USB
+**USB**
 
 ---
 
 ### Apps
 Install
 
-Modify
+**Modify**
 
-Uninstall
+**Uninstall**
 
-Default Apps
+**Default Apps**
 
 ---
 
 ### Accounts
 Users
 
-Passwords
+**Passwords**
 
-Sign-in options
+**Sign-in options**
 
 ---
 
 ### Network
 Wi-Fi
 
-Ethernet
+**Ethernet**
 
-VPN
+**VPN**
 
-Proxy
+**Proxy**
 
 ---
 
 ### Update & Security
 Windows Update
 
-Recovery
+**Recovery**
 
-Backup
+**Backup**
 
-Windows Security
+**Windows Security**
 
 ---
 
@@ -515,9 +449,7 @@ Although Settings replaces many options, Control Panel is still heavily used.
 ## Access
 ```
 Start
-
 ↓
-
 Control Panel
 ```
 
@@ -526,23 +458,14 @@ Control Panel
 ## Categories
 ```
 Control Panel
-
 │
-
 ├── System and Security
-
 ├── Network and Internet
-
 ├── Hardware and Sound
-
 ├── Programs
-
 ├── User Accounts
-
 ├── Appearance
-
 ├── Clock and Region
-
 └── Ease of Access
 ```
 
@@ -571,9 +494,7 @@ or
 
 ```
 Ctrl + Alt + Delete
-
 ↓
-
 Task Manager
 ```
 
@@ -582,7 +503,7 @@ Task Manager
 ## Tabs
 
 ### Processes
-Shows
+**Shows**
 
 - Running apps
 - Background processes
@@ -590,7 +511,7 @@ Shows
 ---
 
 ### Performance
-Displays
+**Displays**
 
 - CPU
 - Memory
@@ -603,7 +524,7 @@ Displays
 ### Users
 Shows logged-in users.
 
-Lab Answer
+**Lab Answer**
 
 ```
 Administrator
@@ -614,7 +535,7 @@ Administrator
 ### Details
 Advanced process information.
 
-Includes
+**Includes**
 
 - PID
 - Priority
@@ -625,7 +546,7 @@ Includes
 ### Services
 Displays Windows services.
 
-Can
+**Can**
 
 - Start
 - Stop
@@ -636,15 +557,15 @@ Can
 ## Why Task Manager?
 Useful for
 
- Ending frozen apps
+**Ending frozen apps**
 
- Monitoring CPU
+**Monitoring CPU**
 
- Monitoring RAM
+**Monitoring RAM**
 
- Detecting malware
+**Detecting malware**
 
- Viewing startup impact
+**Viewing startup impact**
 
 ---
 
@@ -656,22 +577,17 @@ Windows Security is Microsoft's built-in security suite.
 ## Main Components
 ```
 Windows Security
-
 │
-
 ├── Virus & Threat Protection
-
 ├── Firewall & Network Protection
-
 ├── App & Browser Control
-
 └── Device Security
 ```
 
 ---
 
 ## Virus & Threat Protection
-Protects against
+**Protects against**
 
 - Malware
 - Viruses
@@ -710,25 +626,15 @@ Steps
 
 ```
 Windows Security
-
 ↓
-
 Virus & Threat Protection
-
 ↓
-
 Scan Options
-
 ↓
-
 Custom Scan
-
 ↓
-
 Select Folder
-
 ↓
-
 TryHackMe Onboarding
 ```
 
@@ -771,7 +677,7 @@ Firewall controls incoming and outgoing network traffic.
 ---
 
 ## Purpose
-Protects against
+**Protects against**
 
 - Unauthorized access
 - Network attacks
@@ -789,39 +695,33 @@ Organization network.
 ### Private
 Trusted network.
 
-Example
+**Example**
 
-Home Wi-Fi
+**Home Wi-Fi**
 
 ---
 
 ### Public
 Untrusted network.
 
-Example
+**Example**
 
-Airport Wi-Fi
+**Airport Wi-Fi**
 
-Coffee Shop
+**Coffee Shop**
 
-Hotel
+**Hotel**
 
 ---
 
 ## Firewall Components
 ```
 Firewall
-
 │
-
 ├── Inbound Rules
-
 ├── Outbound Rules
-
 ├── Connection Security Rules
-
 ├── Monitoring
-
 └── Allowed Applications
 ```
 
@@ -860,29 +760,17 @@ Never disable Windows Defender Firewall unless necessary.
 # Windows Security Flow
 ```
 Internet
-
 ↓
-
 Firewall
-
 ↓
-
 Windows Defender
-
 ↓
-
 Virus Scan
-
 ↓
-
 Threat Detection
-
 ↓
-
 Quarantine
-
 ↓
-
 Safe System
 ```
 
@@ -891,25 +779,15 @@ Safe System
 # Common Windows Administrative Tools
 ```
 Task Manager
-
 ↓
-
 Control Panel
-
 ↓
-
 Windows Settings
-
 ↓
-
 Windows Security
-
 ↓
-
 Windows Update
-
 ↓
-
 File Explorer
 ```
 
@@ -963,61 +841,33 @@ A harmless antivirus test file used to verify malware detection.
 # Full Room Mind Map
 ```
 Windows Basics
-
 │
-
 ├── Windows GUI
-
 ├── Authentication
-
 │      ├── Guest
-
 │      ├── Standard
-
 │      └── Administrator
-
 ├── Desktop
-
 │      ├── Icons
-
 │      ├── Taskbar
-
 │      └── Start Menu
-
 ├── Built-in Apps
-
 │      ├── Calculator
-
 │      ├── Notepad
-
 │      ├── Paint
-
 │      └── File Explorer
-
 ├── System Information
-
 ├── File Management
-
 ├── Windows Update
-
 ├── Applications
-
 ├── Settings
-
 ├── Control Panel
-
 ├── Task Manager
-
 ├── Windows Security
-
 │      ├── Virus Protection
-
 │      ├── Firewall
-
 │      ├── Device Security
-
 │      └── Browser Protection
-
 └── Windows Defender Firewall
 ```
 
@@ -1077,27 +927,16 @@ Active Directory Basics
 
 ```
 Windows Administration
-
 │
-
 ├── Windows Update
-
 ├── Install Apps
-
 ├── Remove Apps
-
 ├── Windows Settings
-
 ├── Control Panel
-
 ├── Task Manager
-
 ├── Windows Security
-
 ├── Virus Scan
-
 ├── Windows Defender Firewall
-
 └── Secure Windows
 ```
 

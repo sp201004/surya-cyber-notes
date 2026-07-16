@@ -119,13 +119,13 @@ Instead of clicking buttons, you type commands.
 
 Example:
 
-GUI
+**GUI**
 
 ```
 📁 Click Folder
 ```
 
-CLI
+**CLI**
 
 ```bash
 cd Documents
@@ -136,13 +136,13 @@ cd Documents
 # Why Cybersecurity Professionals Prefer CLI
  Faster
 
- Lightweight
+**Lightweight**
 
- Automation
+**Automation**
 
- Remote Management (SSH)
+**Remote Management (SSH)**
 
- Powerful
+**Powerful**
 
  Most security tools run inside Terminal
 
@@ -165,7 +165,7 @@ Example
 ubuntu@tryhackme:~$
 ```
 
-Breakdown
+**Breakdown**
 
 ```
 ubuntu        → Username
@@ -188,11 +188,10 @@ Everything starts from
 /
 ```
 
-Example
+**Example**
 
 ```
 /
-
 ├── home
 │
 ├── etc
@@ -210,13 +209,13 @@ Example
 
 Unlike Windows,
 
-Windows
+**Windows**
 
 ```
 C:\Users\Surya\
 ```
 
-Linux
+**Linux**
 
 ```
 /home/ubuntu/
@@ -227,19 +226,19 @@ Linux
 # Home Directory
 Every user gets one.
 
-Example
+**Example**
 
 ```bash
 /home/ubuntu
 ```
 
-Shortcut
+**Shortcut**
 
 ```
 ~
 ```
 
-Example
+**Example**
 
 ```bash
 cd ~
@@ -247,7 +246,7 @@ cd ~
 pwd
 ```
 
-Output
+**Output**
 
 ```
 /home/ubuntu
@@ -262,23 +261,23 @@ Meaning
 Print Working Directory
 ```
 
-Purpose
+**Purpose**
 
 Shows your current location.
 
-Syntax
+**Syntax**
 
 ```bash
 pwd
 ```
 
-Example
+**Example**
 
 ```bash
 ubuntu@tryhackme:~$ pwd
 ```
 
-Output
+**Output**
 
 ```text
 /home/ubuntu
@@ -297,33 +296,29 @@ Meaning
 List
 ```
 
-Purpose
+**Purpose**
 
 Shows files and folders.
 
-Syntax
+**Syntax**
 
 ```bash
 ls
 ```
 
-Example
+**Example**
 
 ```bash
 ls
 ```
 
-Output
+**Output**
 
 ```text
 Desktop
-
 Documents
-
 Downloads
-
 Music
-
 Pictures
 ```
 
@@ -332,15 +327,15 @@ Pictures
 # ls -l
 Meaning
 
-Long Listing
+**Long Listing**
 
-Syntax
+**Syntax**
 
 ```bash
 ls -l
 ```
 
-Shows
+**Shows**
 
 - Permissions
 - Owner
@@ -349,70 +344,66 @@ Shows
 - Date
 - Name
 
-Example
+**Example**
 
 ```bash
 drwxr-xr-x
 ```
 
-Breakdown
+**Breakdown**
 
 ```
 d
 ```
 
-Directory
+**Directory**
 
 ```
 r
 ```
 
-Read
+**Read**
 
 ```
 w
 ```
 
-Write
+**Write**
 
 ```
 x
 ```
 
-Execute
+**Execute**
 
 ---
 
 # ls -al
 Shows
 
- Hidden Files
+**Hidden Files**
 
- Detailed View
+**Detailed View**
 
-Syntax
-
-```bash
-ls -al
-```
-
-Example
+**Syntax**
 
 ```bash
 ls -al
 ```
 
-Output
+**Example**
+
+```bash
+ls -al
+```
+
+**Output**
 
 ```text
 .
-
 ..
-
 .bashrc
-
 .profile
-
 .cache
 ```
 
@@ -425,19 +416,16 @@ Hidden files begin with
 .
 ```
 
-Examples
+**Examples**
 
 ```
 .bashrc
-
 .profile
-
 .gitignore
-
 .cache
 ```
 
-Purpose
+**Purpose**
 
 - Configuration
 - Settings
@@ -454,25 +442,25 @@ Change Directory
 
 Move between folders.
 
-Example
+**Example**
 
 ```bash
 cd Documents
 ```
 
-Current
+**Current**
 
 ```
 /home/ubuntu
 ```
 
-After
+**After**
 
 ```
 /home/ubuntu/Documents
 ```
 
-Verify
+**Verify**
 
 ```bash
 pwd
@@ -485,15 +473,15 @@ pwd
 cd ..
 ```
 
-Example
+**Example**
 
-Before
+**Before**
 
 ```
 /home/ubuntu/Documents
 ```
 
-After
+**After**
 
 ```
 /home/ubuntu
@@ -506,7 +494,7 @@ After
 cd
 ```
 
-OR
+**OR**
 
 ```bash
 cd ~
@@ -521,19 +509,19 @@ Current Directory
 .
 ```
 
-Parent Directory
+**Parent Directory**
 
 ```
 ..
 ```
 
-Home Directory
+**Home Directory**
 
 ```
 ~
 ```
 
-Root Directory
+**Root Directory**
 
 ```
 /
@@ -546,27 +534,27 @@ Purpose
 
 Search files and folders.
 
-Syntax
+**Syntax**
 
 ```bash
 find <location> -name <filename>
 ```
 
-Example
+**Example**
 
 ```bash
 find ~ -name mission_brief.txt
 ```
 
-Output
+**Output**
 
 ```text
 /home/ubuntu/Documents/research/archive/mission_brief.txt
 ```
 
-Meaning
+**Meaning**
 
-Search
+**Search**
 
 ```
 Home Directory
@@ -574,7 +562,7 @@ Home Directory
 
 ↓
 
-Find
+**Find**
 
 ```
 mission_brief.txt
@@ -582,7 +570,7 @@ mission_brief.txt
 
 ↓
 
-Return
+**Return**
 
 ```
 Full Path
@@ -593,17 +581,17 @@ Full Path
 # Why find is Important?
 Cybersecurity uses it for
 
- Finding Logs
+**Finding Logs**
 
- Malware
+**Malware**
 
- Password Files
+**Password Files**
 
- Configurations
+**Configurations**
 
- Scripts
+**Scripts**
 
-Example
+**Example**
 
 ```bash
 find / -name passwd
@@ -622,33 +610,30 @@ find / -name "*.conf"
 # Command 5 — cat
 Meaning
 
-Concatenate
+**Concatenate**
 
-Usually used to
+**Usually used to**
 
 Read files.
 
-Syntax
+**Syntax**
 
 ```bash
 cat filename
 ```
 
-Example
+**Example**
 
 ```bash
 cat mission_brief.txt
 ```
 
-Output
+**Output**
 
 ```text
 Collect
-
 Kernel Version
-
 Disk Space
-
 Linux Distribution
 ```
 
@@ -661,13 +646,13 @@ Read
 cat notes.txt
 ```
 
-Read Config
+**Read Config**
 
 ```bash
 cat /etc/os-release
 ```
 
-Read Password File
+**Read Password File**
 
 ```bash
 cat /etc/passwd
@@ -678,41 +663,23 @@ cat /etc/passwd
 # Mini Workflow
 ```
 Need Current Folder?
-
 ↓
-
 pwd
-
 ↓
-
 Need Files?
-
 ↓
-
 ls
-
 ↓
-
 Need Folder?
-
 ↓
-
 cd FolderName
-
 ↓
-
 Need Search?
-
 ↓
-
 find
-
 ↓
-
 Need Read?
-
 ↓
-
 cat filename
 ```
 
@@ -729,7 +696,7 @@ Suspicious file:
 malware.sh
 ```
 
-Steps
+**Steps**
 
 ```bash
 pwd
@@ -743,7 +710,7 @@ cd Downloads
 cat malware.sh
 ```
 
-Done
+**Done**
 
 ---
 
@@ -770,15 +737,15 @@ As a Cybersecurity Professional, you should know:
 
  Who is logged in
 
- Operating System
+**Operating System**
 
- Kernel Version
+**Kernel Version**
 
- Disk Usage
+**Disk Usage**
 
- Linux Distribution
+**Linux Distribution**
 
- Configuration Files
+**Configuration Files**
 
 ---
 
@@ -789,23 +756,23 @@ Meaning
 Who Am I
 ```
 
-Purpose
+**Purpose**
 
 Displays the username of the currently logged-in user.
 
-Syntax
+**Syntax**
 
 ```bash
 whoami
 ```
 
-Example
+**Example**
 
 ```bash
 ubuntu@tryhackme:~$ whoami
 ```
 
-Output
+**Output**
 
 ```text
 ubuntu
@@ -814,26 +781,26 @@ ubuntu
 ---
 
 ## Real World Usage
-Useful for
+**Useful for**
 
 - SSH Sessions
 - Privilege Escalation
 - Scripting
 - User Verification
 
-Example
+**Example**
 
 ```bash
 whoami
 ```
 
-Output
+**Output**
 
 ```text
 root
 ```
 
-Means
+**Means**
 
 You have root privileges.
 
@@ -846,13 +813,13 @@ Current User
 whoami
 ```
 
-Current UID
+**Current UID**
 
 ```bash
 id
 ```
 
-Logged-in Users
+**Logged-in Users**
 
 ```bash
 who
@@ -867,29 +834,29 @@ Meaning
 Unix Name
 ```
 
-Purpose
+**Purpose**
 
 Shows operating system information.
 
-Syntax
+**Syntax**
 
 ```bash
 uname
 ```
 
-Example
+**Example**
 
 ```bash
 uname
 ```
 
-Output
+**Output**
 
 ```text
 Linux
 ```
 
-Only displays
+**Only displays**
 
 ```
 Operating System Name
@@ -904,13 +871,13 @@ Meaning
 All Information
 ```
 
-Syntax
+**Syntax**
 
 ```bash
 uname -a
 ```
 
-Example
+**Example**
 
 ```bash
 Linux tryhackme 6.14.0-1018-aws x86_64 GNU/Linux
@@ -923,7 +890,7 @@ Linux tryhackme 6.14.0-1018-aws x86_64 GNU/Linux
 Linux
 ```
 
-Operating System
+**Operating System**
 
 ---
 
@@ -931,7 +898,7 @@ Operating System
 tryhackme
 ```
 
-Hostname
+**Hostname**
 
 ---
 
@@ -939,7 +906,7 @@ Hostname
 6.14.0-1018-aws
 ```
 
-Kernel Version
+**Kernel Version**
 
 ---
 
@@ -947,7 +914,7 @@ Kernel Version
 x86_64
 ```
 
-CPU Architecture
+**CPU Architecture**
 
 (64-bit)
 
@@ -957,24 +924,24 @@ CPU Architecture
 GNU/Linux
 ```
 
-Operating System Type
+**Operating System Type**
 
 ---
 
 ## Why is uname Useful?
 Cybersecurity professionals use it to know
 
- OS
+**OS**
 
- Kernel
+**Kernel**
 
- Architecture
+**Architecture**
 
- Exploit Compatibility
+**Exploit Compatibility**
 
- Vulnerability Matching
+**Vulnerability Matching**
 
-Example
+**Example**
 
 Suppose an exploit only works on
 
@@ -982,13 +949,13 @@ Suppose an exploit only works on
 Linux Kernel 5.x
 ```
 
-Run
+**Run**
 
 ```bash
 uname -a
 ```
 
-If kernel is
+**If kernel is**
 
 ```
 6.x
@@ -1005,17 +972,17 @@ Meaning
 Disk Free
 ```
 
-Purpose
+**Purpose**
 
 Shows disk usage.
 
-Syntax
+**Syntax**
 
 ```bash
 df
 ```
 
-Human Readable
+**Human Readable**
 
 ```bash
 df -h
@@ -1028,27 +995,21 @@ df -h
 df -h
 ```
 
-Output
+**Output**
 
 ```text
 Filesystem
-
 Size
-
 Used
-
 Avail
-
 Use%
-
 Mounted
 ```
 
-Example
+**Example**
 
 ```text
 Filesystem      Size Used Avail Use%
-
 /dev/root        70G 12G 58G 17%
 ```
 
@@ -1059,7 +1020,7 @@ Filesystem      Size Used Avail Use%
 70G
 ```
 
-Total Space
+**Total Space**
 
 ---
 
@@ -1067,7 +1028,7 @@ Total Space
 12G
 ```
 
-Used
+**Used**
 
 ---
 
@@ -1075,7 +1036,7 @@ Used
 58G
 ```
 
-Available
+**Available**
 
 ---
 
@@ -1083,7 +1044,7 @@ Available
 17%
 ```
 
-Disk Usage
+**Disk Usage**
 
 ---
 
@@ -1094,7 +1055,7 @@ Without
 df
 ```
 
-Output
+**Output**
 
 ```
 62914560000
@@ -1102,13 +1063,13 @@ Output
 
 Hard to read.
 
-With
+**With**
 
 ```bash
 df -h
 ```
 
-Output
+**Output**
 
 ```
 58G
@@ -1125,33 +1086,27 @@ Linux stores most configuration files inside
 /etc
 ```
 
-Navigate
+**Navigate**
 
 ```bash
 cd /etc
 ```
 
-View
+**View**
 
 ```bash
 ls
 ```
 
-Example
+**Example**
 
 ```
 hosts
-
 passwd
-
 shadow
-
 fstab
-
 os-release
-
 hostname
-
 resolv.conf
 ```
 
@@ -1176,11 +1131,10 @@ Read
 cat os-release
 ```
 
-Output
+**Output**
 
 ```text
 NAME="Ubuntu"
-
 VERSION="24.04 LTS"
 ```
 
@@ -1191,7 +1145,7 @@ VERSION="24.04 LTS"
 NAME
 ```
 
-Operating System Name
+**Operating System Name**
 
 ---
 
@@ -1199,7 +1153,7 @@ Operating System Name
 VERSION
 ```
 
-OS Version
+**OS Version**
 
 ---
 
@@ -1207,7 +1161,7 @@ OS Version
 PRETTY_NAME
 ```
 
-Complete Version Name
+**Complete Version Name**
 
 ---
 
@@ -1215,7 +1169,7 @@ Complete Version Name
 ID
 ```
 
-Distribution ID
+**Distribution ID**
 
 ---
 
@@ -1223,9 +1177,9 @@ Distribution ID
 VERSION_CODENAME
 ```
 
-Ubuntu Codename
+**Ubuntu Codename**
 
-Example
+**Example**
 
 ```
 noble
@@ -1240,13 +1194,11 @@ It provides more accurate distribution information than
 uname
 ```
 
-Because
+**Because**
 
 ```
 uname
-
 ↓
-
 Kernel Information
 ```
 
@@ -1254,9 +1206,7 @@ while
 
 ```
 os-release
-
 ↓
-
 Distribution Information
 ```
 
@@ -1264,9 +1214,7 @@ Distribution Information
 
 # Practical Workflow
 Need System Info?
-
 ↓
-
 Current User
 
 ```bash
@@ -1275,7 +1223,7 @@ whoami
 
 ↓
 
-Kernel
+**Kernel**
 
 ```bash
 uname -a
@@ -1283,7 +1231,7 @@ uname -a
 
 ↓
 
-Disk
+**Disk**
 
 ```bash
 df -h
@@ -1291,7 +1239,7 @@ df -h
 
 ↓
 
-Distribution
+**Distribution**
 
 ```bash
 cat /etc/os-release
@@ -1302,33 +1250,33 @@ cat /etc/os-release
 # Mini Challenge (TryHackMe)
 Task
 
-Locate
+**Locate**
 
 ```
 day1_report.txt
 ```
 
-Steps
+**Steps**
 
-Search
+**Search**
 
 ```bash
 find ~ -name day1_report.txt
 ```
 
-Go to directory
+**Go to directory**
 
 ```bash
 cd <directory>
 ```
 
-Verify
+**Verify**
 
 ```bash
 ls
 ```
 
-Read
+**Read**
 
 ```bash
 cat day1_report.txt
@@ -1339,7 +1287,7 @@ cat day1_report.txt
 # Cybersecurity Example
 Incident Response
 
-Need to know
+**Need to know**
 
 ```
 Current User
@@ -1351,7 +1299,7 @@ Current User
 whoami
 ```
 
-Need
+**Need**
 
 ```
 Kernel Version
@@ -1363,7 +1311,7 @@ Kernel Version
 uname -a
 ```
 
-Need
+**Need**
 
 ```
 Disk Space
@@ -1375,7 +1323,7 @@ Disk Space
 df -h
 ```
 
-Need
+**Need**
 
 ```
 OS Version
@@ -1396,7 +1344,7 @@ Everything collected.
 whoami
 ```
 
-Current User
+**Current User**
 
 ---
 
@@ -1404,7 +1352,7 @@ Current User
 uname
 ```
 
-OS Name
+**OS Name**
 
 ---
 
@@ -1412,7 +1360,7 @@ OS Name
 uname -a
 ```
 
-Complete Kernel Information
+**Complete Kernel Information**
 
 ---
 
@@ -1420,7 +1368,7 @@ Complete Kernel Information
 df -h
 ```
 
-Human-readable Disk Usage
+**Human-readable Disk Usage**
 
 ---
 
@@ -1428,7 +1376,7 @@ Human-readable Disk Usage
 cd /etc
 ```
 
-Open Configuration Directory
+**Open Configuration Directory**
 
 ---
 
@@ -1436,7 +1384,7 @@ Open Configuration Directory
 ls
 ```
 
-List Files
+**List Files**
 
 ---
 
@@ -1444,7 +1392,7 @@ List Files
 cat os-release
 ```
 
-Read Distribution Information
+**Read Distribution Information**
 
 ---
 
@@ -1453,9 +1401,7 @@ Answer
 
 ```
 uname
-
 ↓
-
 Only OS Name
 
 Linux
@@ -1463,9 +1409,7 @@ Linux
 
 ```
 uname -a
-
 ↓
-
 Complete System Information
 ```
 
@@ -1474,23 +1418,19 @@ Complete System Information
 ## Q2. Why use df -h instead of df?
 Answer
 
-Because
+**Because**
 
 ```
 -h
-
 ↓
-
 Human Readable
 ```
 
-Displays
+**Displays**
 
 ```
 KB
-
 MB
-
 GB
 ```
 
@@ -1548,19 +1488,14 @@ Answer
 ## /etc
 Configuration Files
 
-Examples
+**Examples**
 
 ```
 passwd
-
 shadow
-
 hosts
-
 hostname
-
 fstab
-
 os-release
 ```
 
@@ -1571,21 +1506,18 @@ Stores
 
 ```
 Logs
-
 Cache
-
 Mail
-
 Databases
 ```
 
-Examples
+**Examples**
 
 ```
 /var/log
 ```
 
-Important during
+**Important during**
 
 - Incident Response
 - Log Analysis
@@ -1596,21 +1528,18 @@ Important during
 ## /home
 User Data
 
-Example
+**Example**
 
 ```
 /home/ubuntu
 ```
 
-Contains
+**Contains**
 
 ```
 Downloads
-
 Desktop
-
 Documents
-
 Pictures
 ```
 
@@ -1619,7 +1548,7 @@ Pictures
 ## /tmp
 Temporary Files
 
-Often abused by
+**Often abused by**
 
 - Malware
 - Attackers
@@ -1643,13 +1572,13 @@ Normal users cannot access it.
 ## /proc
 Virtual Filesystem
 
-Contains
+**Contains**
 
 - Running Processes
 - CPU Information
 - Memory Information
 
-Example
+**Example**
 
 ```bash
 cat /proc/cpuinfo
@@ -1664,7 +1593,7 @@ cat /proc/cpuinfo
 pwd
 ```
 
-Show Current Directory
+**Show Current Directory**
 
 ---
 
@@ -1672,7 +1601,7 @@ Show Current Directory
 ls
 ```
 
-List Files
+**List Files**
 
 ---
 
@@ -1680,7 +1609,7 @@ List Files
 ls -l
 ```
 
-Detailed List
+**Detailed List**
 
 ---
 
@@ -1696,7 +1625,7 @@ Detailed + Hidden Files
 cd folder
 ```
 
-Enter Folder
+**Enter Folder**
 
 ---
 
@@ -1704,7 +1633,7 @@ Enter Folder
 cd ..
 ```
 
-Go Back
+**Go Back**
 
 ---
 
@@ -1712,7 +1641,7 @@ Go Back
 cd ~
 ```
 
-Home Directory
+**Home Directory**
 
 ---
 
@@ -1721,7 +1650,7 @@ Home Directory
 find ~ -name file.txt
 ```
 
-Search File
+**Search File**
 
 ---
 
@@ -1729,7 +1658,7 @@ Search File
 find / -name "*.conf"
 ```
 
-Find Config Files
+**Find Config Files**
 
 ---
 
@@ -1737,7 +1666,7 @@ Find Config Files
 find / -name "*.log"
 ```
 
-Find Logs
+**Find Logs**
 
 ---
 
@@ -1746,7 +1675,7 @@ Find Logs
 cat filename
 ```
 
-Read File
+**Read File**
 
 ---
 
@@ -1754,7 +1683,7 @@ Read File
 cat /etc/os-release
 ```
 
-Read Linux Version
+**Read Linux Version**
 
 ---
 
@@ -1762,7 +1691,7 @@ Read Linux Version
 cat /etc/passwd
 ```
 
-Read Users
+**Read Users**
 
 ---
 
@@ -1771,7 +1700,7 @@ Read Users
 whoami
 ```
 
-Current User
+**Current User**
 
 ---
 
@@ -1779,7 +1708,7 @@ Current User
 id
 ```
 
-UID & Groups
+**UID & Groups**
 
 ---
 
@@ -1787,7 +1716,7 @@ UID & Groups
 who
 ```
 
-Logged-in Users
+**Logged-in Users**
 
 ---
 
@@ -1796,7 +1725,7 @@ Logged-in Users
 uname
 ```
 
-OS Name
+**OS Name**
 
 ---
 
@@ -1804,7 +1733,7 @@ OS Name
 uname -a
 ```
 
-Complete System Information
+**Complete System Information**
 
 ---
 
@@ -1813,7 +1742,7 @@ Complete System Information
 df -h
 ```
 
-Disk Usage
+**Disk Usage**
 
 ---
 
@@ -1893,7 +1822,7 @@ Suppose
 
 You login to a Linux Server.
 
-First commands
+**First commands**
 
 ```bash
 whoami
@@ -1956,13 +1885,13 @@ Mission Complete.
 # Common Beginner Mistakes
  Forgetting spaces
 
-Wrong
+**Wrong**
 
 ```bash
 cdDocuments
 ```
 
-Correct
+**Correct**
 
 ```bash
 cd Documents
@@ -1970,15 +1899,15 @@ cd Documents
 
 ---
 
- Wrong Path
+**Wrong Path**
 
-Wrong
+**Wrong**
 
 ```bash
 cd Downloads/Documents
 ```
 
-Correct
+**Correct**
 
 ```bash
 cd ~/Downloads/Documents
@@ -1986,7 +1915,7 @@ cd ~/Downloads/Documents
 
 ---
 
- Forgetting
+**Forgetting**
 
 ```
 ..
@@ -1996,7 +1925,7 @@ to move back.
 
 ---
 
- Running
+**Running**
 
 ```bash
 find /
@@ -2015,21 +1944,21 @@ Search becomes very slow.
 # Cybersecurity Applications
 Linux CLI is used in
 
- Penetration Testing
+**Penetration Testing**
 
- Malware Analysis
+**Malware Analysis**
 
- Digital Forensics
+**Digital Forensics**
 
- SOC Operations
+**SOC Operations**
 
- Threat Hunting
+**Threat Hunting**
 
- Cloud Security
+**Cloud Security**
 
- DevOps
+**DevOps**
 
- Incident Response
+**Incident Response**
 
 ---
 
@@ -2111,17 +2040,11 @@ top
 # Important Files to Remember
 ```
 /etc/passwd
-
 /etc/shadow
-
 /etc/hosts
-
 /etc/os-release
-
 /var/log
-
 /home/
-
 /tmp
 ```
 
@@ -2143,7 +2066,7 @@ Mission File
 /home/ubuntu/Documents/research/archive/mission_brief.txt
 ```
 
-Flag
+**Flag**
 
 ```
 MISSION-FOUND
@@ -2158,13 +2081,13 @@ Current User
 ubuntu
 ```
 
-Kernel Version
+**Kernel Version**
 
 ```
 6.14.0-1018-aws
 ```
 
-Free Disk Space
+**Free Disk Space**
 
 ```
 58G
@@ -2212,7 +2135,7 @@ You now have a strong foundation in Linux terminal navigation and essential comm
 
 Q. What does pwd do?
 
-Answer
+**Answer**
 
 Shows current working directory.
 
@@ -2220,7 +2143,7 @@ Shows current working directory.
 
 Q. Difference between ls and ls -l?
 
-Answer
+**Answer**
 
 ls
 
@@ -2242,33 +2165,23 @@ Because Linux treats dot-prefixed files as configuration files.
 
 ```
 pwd
-
 ↓
-
 Where Am I?
 
 ls
-
 ↓
-
 What's Here?
 
 cd
-
 ↓
-
 Go There
 
 find
-
 ↓
-
 Search
 
 cat
-
 ↓
-
 Read
 ```
 
@@ -2276,36 +2189,28 @@ Read
 
 ```
 whoami
-
 ↓
-
 Who?
 
 ```
 
 ```
 uname
-
 ↓
-
 What OS?
 
 ```
 
 ```
 df -h
-
 ↓
-
 How Much Disk?
 
 ```
 
 ```
 os-release
-
 ↓
-
 Which Linux?
 ```
 
@@ -2313,65 +2218,49 @@ Which Linux?
 
 ```
 pwd
-
 ↓
-
 Present Working Directory
 
 ------------------
 
 ls
-
 ↓
-
 List Stuff
 
 ------------------
 
 cd
-
 ↓
-
 Change Directory
 
 ------------------
 
 cat
-
 ↓
-
 Read File
 
 ------------------
 
 find
-
 ↓
-
 Search File
 
 ------------------
 
 whoami
-
 ↓
-
 Current User
 
 ------------------
 
 uname
-
 ↓
-
 Operating System
 
 ------------------
 
 df
-
 ↓
-
 Disk Free
 ```
 
@@ -2379,11 +2268,11 @@ Disk Free
 
 ## Quick Revision
 
- Linux CLI
+**Linux CLI**
 
- Terminal
+**Terminal**
 
- Filesystem
+**Filesystem**
 
  pwd
 
@@ -2393,7 +2282,7 @@ Disk Free
 
  ls -al
 
- Hidden Files
+**Hidden Files**
 
  cd
 
@@ -2421,13 +2310,13 @@ Disk Free
 
  os-release
 
- Linux Distribution
+**Linux Distribution**
 
- Kernel Version
+**Kernel Version**
 
- Disk Information
+**Disk Information**
 
- System Investigation
+**System Investigation**
 
 ---
 
@@ -2439,113 +2328,85 @@ Disk Free
 
 ```
 pwd
-
 ↓
-
 Current Directory
 
 ------------------
 
 ls
-
 ↓
-
 List Files
 
 ------------------
 
 ls -l
-
 ↓
-
 Detailed List
 
 ------------------
 
 ls -al
-
 ↓
-
 Hidden Files
 
 ------------------
 
 cd
-
 ↓
-
 Change Directory
 
 ------------------
 
 cd ..
-
 ↓
-
 Back
 
 ------------------
 
 find
-
 ↓
-
 Search
 
 ------------------
 
 cat
-
 ↓
-
 Read File
 
 ------------------
 
 whoami
-
 ↓
-
 Current User
 
 ------------------
 
 uname
-
 ↓
-
 OS Name
 
 ------------------
 
 uname -a
-
 ↓
-
 Kernel Info
 
 ------------------
 
 df -h
-
 ↓
-
 Disk Usage
 
 ------------------
 
 /etc
-
 ↓
-
 Configurations
 
 ------------------
 
 os-release
-
 ↓
-
 Linux Version
 ```
 
