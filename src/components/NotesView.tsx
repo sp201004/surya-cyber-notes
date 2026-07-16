@@ -715,6 +715,22 @@ const tableColAvgWords = (node: any): { c0: number; c1: number } => {
   return n ? { c0: s0 / n, c1: s1 / n } : { c0: 0, c1: 0 };
 };
 
+// Extract a comparison table's headers and per-column NON-EMPTY cell texts.
+const getComparisonModel = (node: any): { headers: string[]; cols: string[][] } => {
+  const headers = getTableHeaders(node);
+  const tbody = node?.children?.find((c: any) => c.tagName === 'tbody');
+  const rows = (tbody?.children || []).filter((c: any) => c.tagName === 'tr');
+  const cols: string[][] = headers.map(() => []);
+  for (const tr of rows) {
+    const tds = (tr.children || []).filter((c: any) => c.tagName === 'td');
+    tds.forEach((td: any, idx: number) => {
+      const t = hastText(td).trim();
+      if (t && idx < cols.length) cols[idx].push(t);
+    });
+  }
+  return { headers, cols };
+};
+
 // A 2-column table is a COMPARISON (equal-weight columns) unless:
 //  - its headers look key/value (KEY_FIRST / VALUE_SECOND), or
 //  - column 1 is a short label and column 2 is a long description
@@ -946,9 +962,33 @@ const markdownComponents: import('react-markdown').Components = {
     </div>
   ),
   table: ({node, children, ...props}) => {
+    const comparison = isComparisonTable(node);
+
+    // Unequal comparison lists (not row-paired) → side-by-side titled panels
+    // (each its own bullet list, no empty cells). Stacks on mobile.
+    if (comparison) {
+      const { headers, cols } = getComparisonModel(node);
+      if (cols.length === 2 && cols[0].length !== cols[1].length) {
+        return (
+          <div className="my-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {cols.map((col, i) => (
+              <div key={i} className="rounded-xl border border-[#2d3a54] overflow-hidden shadow-md shadow-black/20 bg-[#161c2c]/40">
+                <div className="bg-[#9fef00]/10 border-b border-[#9fef00]/20 text-[#9fef00] px-4 py-3 font-bold uppercase tracking-wider font-mono text-xs">
+                  {headers[i]}
+                </div>
+                <ul className="p-4 pl-6 space-y-1.5 text-xs text-gray-300 list-disc marker:text-[#9fef00]/60 font-sans leading-relaxed">
+                  {col.map((cell, j) => <li key={j}>{cell}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        );
+      }
+    }
+
     // Key/value tables bold the first column; comparison tables keep both
     // columns equal weight.
-    const boldFirst = !isComparisonTable(node);
+    const boldFirst = !comparison;
     const wrap = "my-6 overflow-hidden rounded-xl border border-[#2d3a54] shadow-md shadow-black/20" +
       (boldFirst ? " [&_tbody_td:first-child]:font-semibold [&_tbody_td:first-child]:text-gray-100" : "");
     return (
