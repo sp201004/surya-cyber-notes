@@ -428,13 +428,26 @@ const LEAD_IN_LABELS = new Set([
   'step','phase','stage','indicator','lesson learned',
 ]);
 
+// Small connectives that don't break a Title-Case label, and sentence-lead
+// words that signal a prose line (not a label). Used by rule 4 below.
+const MIXED_CONN = new Set([
+  'a','an','the','of','to','in','for','and','or','as','vs','on','by','with','without','at','from','per',
+]);
+const MIXED_STOP_LEAD = new Set([
+  'the','you','we','they','it','this','these','those','i','an','a','each','every','if','when',
+  'use','used','using','think','imagine','suppose','now','today','because','after','before',
+  'during','unlike','both','many','most','some','all','there','here','that',
+]);
+
 // Bold a leading LABEL on a single line (label part only; text after the colon
-// stays normal weight). Handles three cases, and never touches sentence colons:
+// stays normal weight). Handles four cases, and never touches sentence colons:
 //   1. ALL-CAPS labels ending in ':' or '?:'  — "INDICATOR 1:", "STEP 3:", "PHASE 2 (RECON):"
 //   2. Known title-case lead-ins              — "Example:", "For Example:", "Note:", "Reason:"
 //   3. Single-word definition terms           — "libpcap: ...", "SHA256: ..."
+//   4. (blockquote-only) mixed-case callout labels — "WITHOUT a SIEM Dashboard:",
+//      "Step 1 — SIEM Collects:", "Real Impact:", "Metrics that flagged this:".
 // Skips lines already bold / headings / table rows.
-const boldInlineLabel = (line: string): string => {
+const boldInlineLabel = (line: string, allowMixedCase = false): string => {
   const s = line;
   if (s.startsWith('**') || s.startsWith('#') || s.startsWith('|') || s.startsWith('> ')) return line;
 
@@ -464,6 +477,34 @@ const boldInlineLabel = (line: string): string => {
   m = s.match(/^([A-Za-z][\w.\-]{1,30}):(\s+\S)/);
   if (m) {
     return `**${m[1]}:**${s.slice(m[1].length + 1)}`;
+  }
+  // 4. (blockquote-only) Mixed-case callout label. Two accepted shapes, both
+  //    guarded so ordinary prose colons stay untouched:
+  //      A. Title-Case / ALL-CAPS phrase — every content word capitalised
+  //         (connectives ignored). Catches "Real Impact:", "The Reality:",
+  //         "WITHOUT a SIEM Dashboard:", "Port 22 (SSH):", "Step 1 — SIEM Collects:".
+  //      B. Short (<=4 word) label with an inline value, not led by a sentence
+  //         word. Catches "Metrics that flagged this:", "What this means:",
+  //         "Why this works:", "Also called:".
+  //    Requires: starts [A-Z0-9], no sentence punctuation in the label, colon
+  //    followed by whitespace-or-end (excludes "https://", "12:04"), <=6 words.
+  if (allowMixedCase) {
+    const ci2 = s.indexOf(':');
+    if (ci2 > 0) {
+      const cand = s.slice(0, ci2);
+      const after = s.slice(ci2 + 1);
+      if (/^[A-Z0-9]/.test(cand) && !/[.!?]/.test(cand) && (after === '' || /^\s/.test(after))) {
+        const core = cand.replace(/\([^)]*\)/g, ' ').trim();
+        const words = core.split(/\s+/).filter(w => w !== '');
+        if (words.length > 0 && words.length <= 6) {
+          const content = words.filter(w => /[A-Za-z]/.test(w) && !MIXED_CONN.has(w.toLowerCase()));
+          const allCap = content.length > 0 && content.every(w => /^[A-Z]/.test(w));
+          const lead = words[0].toLowerCase().replace(/[^a-z]/g, '');
+          const shortLabel = words.length <= 4 && !MIXED_STOP_LEAD.has(lead) && after.trim() !== '';
+          if (allCap || shortLabel) return `**${cand}:**${after}`;
+        }
+      }
+    }
   }
   return line;
 };
@@ -582,7 +623,10 @@ const boldLabelsGlobally = (md: string): string => {
     if (!m) return line;
     const prefix = m[1], rest = m[2];
     if (!rest || rest.startsWith('|')) return line;
-    const out = boldInlineLabel(rest);
+    // Mixed-case callout labels are only bolded inside blockquotes (callouts),
+    // where "Label: value" lines are the norm — never in free prose paragraphs.
+    const inBlockquote = /^\s*(?:>\s?)+/.test(line);
+    const out = boldInlineLabel(rest, inBlockquote);
     return out === rest ? line : prefix + out;
   }).join('\n');
 };
