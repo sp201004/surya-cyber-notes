@@ -1157,7 +1157,7 @@ const ScrollableTable: React.FC<{ innerClassName?: string; children: React.React
     <div className="relative my-6">
       <div
         ref={ref}
-        className={`overflow-x-auto [-webkit-overflow-scrolling:touch] rounded-xl border border-[#2d3a54] shadow-md shadow-black/20 ${innerClassName}`}
+        className={`no-scrollbar overflow-x-auto [-webkit-overflow-scrolling:touch] rounded-xl border border-[#2d3a54] shadow-md shadow-black/20 ${innerClassName}`}
       >
         {children}
       </div>

@@ -87,3 +87,14 @@ samp,
 }
 
 
+
+/* Hide the horizontal scrollbar on mobile table scroll wrappers.
+   Scrolling (touch/trackpad) still works — only the visible bar is removed.
+   Desktop tables have no horizontal overflow, so they are unaffected. */
+.no-scrollbar {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* old Edge / IE */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari / iOS */
+}
