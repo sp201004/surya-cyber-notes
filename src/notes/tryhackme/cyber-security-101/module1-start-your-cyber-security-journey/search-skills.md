@@ -789,7 +789,7 @@ Take Action
 
 ## Common Mistakes
 
-| ❌ Mistake |  Reality |
+|  Mistake |  Reality |
 |-----------|-----------|
 | Thinking Shodan scans websites like Google | Shodan scans Internet-connected devices |
 | Assuming Shodan data is always live | Some results may be from previous scans |

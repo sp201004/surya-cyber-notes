@@ -133,9 +133,9 @@ Correct?
              ▼
   Compare Guess
         ┌───────────┐
-        │Correct ?  │
-        └─────┬─────┘
-              │
+       -│Correct ?  │
+      | └─────┬─────┘
+      |       │
      No       │ Yes
       │       │
       ▼       ▼

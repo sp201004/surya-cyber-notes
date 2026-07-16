@@ -74,7 +74,7 @@ Every device needs an identity. Like humans have a name and fingerprint, compute
 Used to identify a device on a network.
 ```text
 192 . 168 . 1 . 1
- |      |     |   |
+ |     |    |   |
 Octet Octet Octet Octet
 ```
 - Split into four parts called **Octets**.

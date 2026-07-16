@@ -167,11 +167,11 @@ Combining any TWO factors stops 99.9% of automated credential attacks. (Microsof
   +---------------------+  +---------------------+  +---------------------+
          |                          |                          |
          +------------+-------------+------------+------------+
-                      |             INTER-VLAN FIREWALL        |
-                      |             Rules: Eng -> Internet OK  |
-                      |                    HR -> Internet OK   |
-                      |                    Eng -> Finance DENY |
-                      |                    HR -> Finance DENY  |
+                      |  INTER-VLAN FIREWALL        |
+                      |  Rules: Eng -> Internet OK  |
+                      |         HR -> Internet OK   |
+                      |         Eng -> Finance DENY |
+                      |         HR -> Finance DENY  |
                       v
                  [INTERNET]
 

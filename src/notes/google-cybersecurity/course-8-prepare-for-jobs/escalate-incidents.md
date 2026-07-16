@@ -18,30 +18,35 @@
 
 > **ESCALATION WORKFLOW — Identify -> Triage -> Handoff**
 > **ESCALATION WORKFLOW:**
-> **[Alert Generated in SIEM / IDS / User Report]**
-> **|**
-> **v**
-> **[TRIAGE: Classify the incident type]**
-> **|           |              |**
-> **v           v              v**
-> **[Malware]  [Unauthorized    [Improper**
-> **[Infection] Access]          Usage]**
-> **|           |              |**
-> **v           v              v**
-> **[Assess Asset Criticality: High / Medium / Low]**
-> **|**
-> **v**
-> **[Create Incident Ticket in ServiceNow / Jira / PagerDuty]**
-> **[Document: what happened, when, which assets, who is affected]**
-> **|**
-> **v**
-> **[Route to correct team PER ESCALATION POLICY]**
-
 ```
+[ Alert Generated in SIEM / IDS / User Report ]
+                              |
+                              v
+              [ TRIAGE: Classify the incident type ]
+                              |
+              ┌───────────────┼───────────────┐
+              |                               |
+              v               v               v
+        [ Malware        [ Unauthorized   [ Improper
+          Infection ]       Access ]         Usage ]
+              |               |               |
+              └───────────────┼───────────────┘
+                              v
+        [ Assess Asset Criticality: High / Medium / Low ]
+                              |
+                              v
+    [ Create Incident Ticket in ServiceNow / Jira / PagerDuty ]
+    [ Document: what happened, when, which assets, who is affected ]
+                              |
+                              v
+          [ Route to correct team PER ESCALATION POLICY ]
+
+=================================================================
   +-- High Criticality -> Incident Response Team + Supervisor
   +-- Medium Criticality -> Tier 2 Analyst or appropriate team
   +-- Low Criticality -> IT Helpdesk or monitor
 ```
+
 
 > **TIP: Day-One Must-Do**
 > On your FIRST DAY as an analyst: Save or bookmark the Escalation Policy document.

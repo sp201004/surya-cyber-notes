@@ -519,14 +519,14 @@ Initialize Variables
 Display Message
 ↓
 While Guess != Secret
-    ↓
-    Take Input
-    ↓
-    Convert Integer
-    ↓
-    Increase Tries
-    ↓
-    Compare (Low? / High? / Out of Range?)
+↓
+Take Input
+↓
+Convert Integer
+↓
+Increase Tries
+↓
+Compare (Low? / High? / Out of Range?)
 ↓
 Correct
 ↓
@@ -660,27 +660,18 @@ Print Open Port
 
 ## One Shot Revision
 
-```text
-Python Simple Demo
-↓
-Variables
-↓
-Random Number
-↓
-print()
-↓
-input()
-↓
-int()
-↓
-if / elif / else
-↓
-Comparison Operators
-↓
-while Loop
-↓
-Guess Game Completed
-```
+This room builds a number-guessing game step by step, introducing each Python concept in order:
+
+1. **Variables** — store values such as the secret number and the player's guess.
+2. **Random number** — pick the secret number to guess.
+3. **`print()`** — show output to the player.
+4. **`input()`** — read the player's guess from the keyboard.
+5. **`int()`** — convert the text input into a number for comparison.
+6. **`if / elif / else`** — decide what to do based on the guess.
+7. **Comparison operators** — check if the guess is too high, too low, or correct.
+8. **`while` loop** — keep asking until the correct number is entered.
+
+→ Guess game completed.
 
 ---
 

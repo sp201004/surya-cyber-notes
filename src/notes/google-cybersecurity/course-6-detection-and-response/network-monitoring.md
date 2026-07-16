@@ -132,10 +132,10 @@ sudo tcpdump -r capture.pcap -nn 'not host 10.0.0.1'
 ```
 
 > **READING tcpdump OUTPUT LINE:**
-> **12:04:15.123456 IP 192.168.1.10.53142 > 10.0.0.5.80: Flags [P.], seq 101:250**
-> **|               |  |                    |             |          |**
 
 ```
+  12:04:15.123456 IP 192.168.1.10.53142 > 10.0.0.5.80: Flags [P.], seq 101:250
+  |               |  |                    |             |          |
   |               |  |                    |             |          +-- Sequence numbers
   |               |  |                    |             +-- [P.] = PUSH+ACK (data flowing)
   |               |  |                    +-- Destination IP.Port

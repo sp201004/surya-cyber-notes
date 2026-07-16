@@ -19,10 +19,10 @@
 
 > **FHS DIRECTORY TREE — Full Structure**
 > **LINUX FILESYSTEM TREE (FHS):**
-> **/ (Root -- top of everything. Every file lives under here.)**
-> **|**
 
 ```
+  / (Root -- top of everything. Every file lives under here.)
+  |
   +-- /home       User personal directories
   |     +-- /home/analyst     Your home directory (you start here)
   |     +-- /home/alice       Another user's home
@@ -77,12 +77,10 @@ $ ls -la   → Combined: ALL files in LONG format (most useful for security)
 $ ls -l /var/log   → Long listing of /var/log directory
 ```
 
-> **EXAMPLE: Reading ls -l Output**
-> **-rw-r--r-- 1 analyst security 4096 May 15 09:32 report.txt**
-> **|          | |       |        |    |              |**
-
 ```
-  |          | |       |        |    |              +-- Filename
+EXAMPLE: Reading ls -l Output
+  -rw-r--r-- 1 analyst security 4096 May 15 09:32 report.txt
+  |          | |       |        |    |              |
   |          | |       |        |    +-- Date last modified
   |          | |       |        +-- File size in bytes
   |          | |       +-- Group name
@@ -230,10 +228,9 @@ $ find /home -user analyst   → Find all files owned by user 'analyst'
 
 > **PERMISSION STRING — Full Breakdown**
 > **PERMISSION STRING FORMAT from ls -l:**
-> **drwxrwxrwx**
-> **|   |   |   |**
-
 ```
+ drwx rwx rw  x
+  |   |   |   |
   |   |   |   +-- OTHER permissions (positions 8-10: everyone else)
   |   |   +------- GROUP permissions (positions 5-7: file's group)
   |   +----------- USER/OWNER permissions (positions 2-4)

@@ -33,12 +33,11 @@
 
 > **ORGANIZATIONAL HIERARCHY — Information Flow**
 > **INFORMATION FLOWS UPWARD -- Each tier requires different data format:**
-> **[CEO] -- Ultimate decision-maker. Receives 1-page executive summaries.**
-> **^**
-> **|  (Strategic summaries + board-level impact statements)**
-> **|**
-
 ```
+                [CEO] -- Ultimate decision-maker. Receives 1-page executive summaries.
+                  ^
+                  |  (Strategic summaries + board-level impact statements)
+                  |
                 [CFO] ──────────────── [CISO]
             Budget impact       Defense architecture,
                                 risk audits, compliance

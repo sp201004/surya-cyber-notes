@@ -139,10 +139,10 @@
 
 > **LINUX DISTRO FAMILY TREE**
 > **LINUX DISTRO FAMILY TREE (Security Focus):**
-> **LINUX KERNEL (core, open-source)**
-> **|**
 
 ```
+        LINUX KERNEL (core, open-source)
+        |
         +------------------------- DEBIAN FAMILY -----------------------------+
         |         |                        |                  |               |
         |    [UBUNTU]               [KALI LINUX]         [PARROT OS]          |
@@ -216,10 +216,9 @@ sudo apt update && sudo apt upgrade -y
 
 > **TIP: Reading Your Shell Prompt**
 > **The prompt tells you critical context BEFORE you type any command:**
-> **analyst@linux-server:/home/analyst$**
-> **|       |             |            |**
-
 ```
+analyst@linux-server:/home/analyst$**
+  |       |             |            |
   |       |             |            +-- $ means regular user (Bash/Ksh)
   |       |             +-- Current working directory
   |       +-- Hostname (machine name)

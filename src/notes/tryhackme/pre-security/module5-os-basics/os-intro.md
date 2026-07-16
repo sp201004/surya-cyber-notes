@@ -425,15 +425,11 @@ Everything critical happens here.
 ```
 Kernel Space
 
-CPU ✔
-
-RAM ✔
-
-Disk ✔
-
-Drivers ✔
-
-Hardware ✔
+CPU 
+RAM 
+Disk 
+Drivers 
+Hardware 
 ```
 
 **Examples**
@@ -525,6 +521,7 @@ Example
 
 ```
 Application
+
 Open File
 ↓
 System Call
@@ -581,7 +578,6 @@ Game
 
 ```
 CPU
-
 │
 ├── Chrome
 ├── Spotify
@@ -610,13 +606,10 @@ Spotify = 500 MB
 
 **OS responsibilities**
 
-**Allocate RAM**
-
-**Free RAM**
-
-**Protect Memory**
-
-**Virtual Memory**
+- Allocate RAM
+- Free RAM
+- Protect Memory
+- Virtual Memory
 
 Without memory management...
 
@@ -1113,19 +1106,16 @@ Windows 11
 - Office
 - Development
 
-**Advantages**
+**Advantages:**
 
-**Huge software ecosystem**
+- Huge software ecosystem
+- Gaming support
+- Driver compatibility
 
-**Gaming support**
+**Disadvantages:**
 
-**Driver compatibility**
-
-**Disadvantages**
-
-**Paid License**
-
-**Malware target**
+- Paid License
+- Malware target
 
 ---
 
@@ -1142,21 +1132,17 @@ Sequoia
 Tahoe
 ```
 
-**Advantages**
+**Advantages:**
 
-**Stable**
+- Stable
+- Excellent UI
+- Secure
+- Great developer tools
 
-**Excellent UI**
+**Disadvantages:**
 
-**Secure**
-
-**Great developer tools**
-
-**Disadvantages**
-
-**Expensive Hardware**
-
-**Limited gaming**
+- Expensive Hardware
+- Limited gaming
 
 ---
 
@@ -1175,19 +1161,15 @@ Linux Mint
 Arch Linux
 ```
 
-**Advantages**
+**Advantages:**
 
-**Free**
+- Free
+- Open Source
+- Secure
+- Highly Customizable
+- Excellent for Programming
 
-**Open Source**
-
-**Secure**
-
-**Highly Customizable**
-
-**Excellent for Programming**
-
-**Disadvantages**
+**Disadvantages:**
 
  Smaller commercial software ecosystem
 
@@ -1213,15 +1195,12 @@ Red Hat
 CentOS
 ```
 
-**Characteristics**
+**Characteristics:**
 
-**Multi-user**
-
-**Remote Access**
-
-**High Availability**
-
-**Usually No GUI**
+- Multi-user
+- Remote Access
+- High Availability
+- Usually No GUI
 
 ---
 
@@ -1239,15 +1218,12 @@ Android
 iOS
 ```
 
-**Characteristics**
+**Characteristics:**
 
-**Touch Interface**
-
-**Battery Optimization**
-
-**Secure App Isolation**
-
-**Sensors Integration**
+- Touch Interface
+- Battery Optimization
+- Secure App Isolation
+- Sensors Integration
 
 ---
 
@@ -1263,11 +1239,10 @@ Based on Linux Kernel.
 - OnePlus
 - Xiaomi
 
-**Advantages**
+**Advantages:**
 
-**Highly Customizable**
-
-**Open Ecosystem**
+- Highly Customizable
+- Open Ecosystem
 
 ---
 
@@ -1280,13 +1255,11 @@ Developed by Apple.
 
 - iPad
 
-**Advantages**
+**Advantages:**
 
-**High Security**
-
-**Smooth Performance**
-
-**Controlled Ecosystem**
+- High Security
+- Smooth Performance
+- Controlled Ecosystem
 
 ---
 
@@ -1312,20 +1285,18 @@ Yocto
 Ubuntu Core
 ```
 
-**Characteristics**
+**Characteristics:**
 
-**Lightweight**
-
-**Low Power**
-
-**Stable**
+- Lightweight
+- Low Power
+- Stable
 
 ---
 
 # Real-Time Operating Systems (RTOS)
 Special Operating Systems for time-critical applications.
 
-**Examples**
+**Examples:**
 
 ```
 Aircraft
@@ -1359,13 +1330,11 @@ Amazon Linux
 Rocky Linux
 ```
 
-**Characteristics**
+**Characteristics:**
 
-**Lightweight**
-
-**Highly Scalable**
-
-**Virtualized**
+- Lightweight
+- Highly Scalable
+- Virtualized
 
 ---
 
@@ -1388,13 +1357,11 @@ Flatcar Linux
 Bottlerocket
 ```
 
-**Advantages**
+**Advantages:**
 
-**Small Size**
-
-**Fast Deployment**
-
-**Efficient**
+- Small Size
+- Fast Deployment
+- Efficient
 
 ---
 
@@ -1743,11 +1710,8 @@ A lightweight unit of execution inside a process.
 
 ```
 Chrome
-
 ├── UI Thread
-
 ├── Rendering Thread
-
 └── Network Thread
 ```
 
@@ -1760,13 +1724,9 @@ Organizes files on storage devices.
 
 ```
 NTFS
-
 ext4
-
 FAT32
-
 APFS
-
 exFAT
 ```
 
@@ -1779,11 +1739,8 @@ Software allowing Operating System and Hardware to communicate.
 
 ```
 Printer Driver
-
 GPU Driver
-
 Audio Driver
-
 Wi-Fi Driver
 ```
 
@@ -1796,11 +1753,8 @@ Verifying identity.
 
 ```
 Password
-
 PIN
-
 Fingerprint
-
 Face Unlock
 ```
 
@@ -1812,9 +1766,9 @@ Determines what an authenticated user is allowed to do.
 **Example**
 
 ```
-Login ✔
+Login 
 
-Delete System File ❌
+Delete System File
 ```
 
 ---
@@ -1824,9 +1778,7 @@ Control
 
 ```
 Read
-
 Write
-
 Execute
 ```
 
