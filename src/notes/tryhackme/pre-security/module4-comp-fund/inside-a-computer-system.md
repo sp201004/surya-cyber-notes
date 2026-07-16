@@ -625,23 +625,9 @@ UEFI is modern, faster, secure and supports GPT.
 
 ## Memory Tricks
 
-Computer Startup:
+**Computer startup sequence:** Press power → Firmware (UEFI/BIOS) → POST (self-test) → Boot Device → Bootloader → Operating System.
 
-```
-Press
-↓
-Firmware
-↓
-POST
-↓
-Boot Device
-↓
-Bootloader
-↓
-Operating System
-```
-
-> Mnemonic: **Please Find Proper Boot Before Operating**
+> Mnemonic: **Please Find Proper Boot Before Operating** — Press, Firmware, POST, Boot device, Bootloader, Operating system.
 
 ---
 

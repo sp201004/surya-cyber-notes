@@ -1068,33 +1068,15 @@ Software that creates and manages VMs.
 
 ## Memory Tricks
 
-```
-Physical Server
-      ↓
- Hypervisor
-      ↓
- Virtual Machines
-      ↓
- Applications
-```
+**The virtualization stack (PHVCA):** Physical Server → Hypervisor → Virtual Machine → Container → Application.
 
-> Remember: One Physical Server → Many Virtual Machines → Maximum Resource Utilization
+- **P**hysical Server — the real hardware.
+- **H**ypervisor — software that creates and runs VMs on that hardware.
+- **V**irtual Machine — a software-based computer running on the hypervisor.
+- **C**ontainer — a lightweight, app-focused alternative to a full VM.
+- **A**pplication — what actually runs for the user.
 
----
-
-```
-P → H → V → C → A
-
-Physical Server
-↓
-Hypervisor
-↓
-Virtual Machine
-↓
-Container
-↓
-Application
-```
+> Remember: One Physical Server → Many Virtual Machines → Maximum Resource Utilization.
 
 > **Congratulations! **
 >

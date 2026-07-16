@@ -2163,254 +2163,30 @@ Because Linux treats dot-prefixed files as configuration files.
 
 ## Memory Tricks
 
-```
-pwd
-↓
-Where Am I?
-
-ls
-↓
-What's Here?
-
-cd
-↓
-Go There
-
-find
-↓
-Search
-
-cat
-↓
-Read
-```
-
----
-
-```
-whoami
-↓
-Who?
-
-```
-
-```
-uname
-↓
-What OS?
-
-```
-
-```
-df -h
-↓
-How Much Disk?
-
-```
-
-```
-os-release
-↓
-Which Linux?
-```
-
----
-
-```
-pwd
-↓
-Present Working Directory
-
-------------------
-
-ls
-↓
-List Stuff
-
-------------------
-
-cd
-↓
-Change Directory
-
-------------------
-
-cat
-↓
-Read File
-
-------------------
-
-find
-↓
-Search File
-
-------------------
-
-whoami
-↓
-Current User
-
-------------------
-
-uname
-↓
-Operating System
-
-------------------
-
-df
-↓
-Disk Free
-```
-
----
+- `pwd` → "where am I?" · `ls` → "what's here?" · `cd` → "go there" · `find` → "search" · `cat` → "read"
+- `whoami` → "who am I?" · `uname` → "what OS?" · `df -h` → "how much disk?" · `os-release` → "which Linux?"
 
 ## Quick Revision
 
-**Linux CLI**
+Core Linux commands every analyst should know:
 
-**Terminal**
+| Command | What it does |
+| --- | --- |
+| `pwd` | Print working (current) directory |
+| `ls` | List files |
+| `ls -l` | Detailed list |
+| `ls -al` | Include hidden files |
+| `cd` | Change directory |
+| `cd ..` | Go back one level |
+| `find` | Search for files |
+| `cat` | Read a file |
+| `whoami` | Current user |
+| `uname` | OS name |
+| `uname -a` | Kernel information |
+| `df -h` | Disk usage |
+| `/etc` | Configuration files |
+| `os-release` | Linux distribution / version |
 
-**Filesystem**
-
- pwd
-
- ls
-
- ls -l
-
- ls -al
-
-**Hidden Files**
-
- cd
-
- cd ..
-
- find
-
- cat
-
----
-
-**Part 2 — System Information (`whoami`, `uname`, `df -h`, `/etc`, `os-release`) + Real-world usage + Interview Notes**
-
----
-
- whoami
-
- uname
-
- uname -a
-
- df -h
-
- /etc
-
- os-release
-
-**Linux Distribution**
-
-**Kernel Version**
-
-**Disk Information**
-
-**System Investigation**
-
----
-
-**Part 3 — Complete Linux CLI Cheat Sheet + Important Directories + Real-world Commands + One-Shot Revision + TryHackMe Answers**
-
----
-
-## One Shot Revision
-
-```
-pwd
-↓
-Current Directory
-
-------------------
-
-ls
-↓
-List Files
-
-------------------
-
-ls -l
-↓
-Detailed List
-
-------------------
-
-ls -al
-↓
-Hidden Files
-
-------------------
-
-cd
-↓
-Change Directory
-
-------------------
-
-cd ..
-↓
-Back
-
-------------------
-
-find
-↓
-Search
-
-------------------
-
-cat
-↓
-Read File
-
-------------------
-
-whoami
-↓
-Current User
-
-------------------
-
-uname
-↓
-OS Name
-
-------------------
-
-uname -a
-↓
-Kernel Info
-
-------------------
-
-df -h
-↓
-Disk Usage
-
-------------------
-
-/etc
-↓
-Configurations
-
-------------------
-
-os-release
-↓
-Linux Version
-```
-
----
 
 ## TryHackMe Answers
 

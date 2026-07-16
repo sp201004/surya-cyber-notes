@@ -1726,122 +1726,43 @@ Attackers often store malware or persistence files inside hidden directories.
 
 ## Memory Tricks
 
-```
-whoami
-↓
-Who?
-
-----------------
-
-hostname
-↓
-Which Computer?
-
-----------------
-
-systeminfo
-↓
-Everything
-
-----------------
-
-ipconfig
-↓
-Network
-```
-
----
-
-```
-cd
-↓
-Change Directory
-
-----------------
-
-dir
-↓
-Directory
-
-----------------
-
-type
-↓
-Read File
-
-----------------
-
-whoami
-↓
-Current User
-
-----------------
-
-hostname
-↓
-Computer Name
-
-----------------
-
-systeminfo
-↓
-Everything
-
-----------------
-
-ipconfig
-↓
-Network
-```
-
----
+- `whoami` → "who am I?" · `hostname` → "which computer?" · `systeminfo` → "everything" · `ipconfig` → "network"
+- `cd` → change directory · `dir` → list directory · `type` → read file
 
 ## Quick Revision
 
- CMD = Windows Command Line
- cd = Change Directory
- dir = List Files
- dir /a = Show Hidden Files
- dir /s = Search File
- type = Read File
- Hidden Files ≠ Secret Files
- SOC Analysts always inspect hidden files.
+**Windows CMD — Navigation & Files**
 
----
+| Command | Meaning |
+| --- | --- |
+| `cd` | Change directory |
+| `dir` | List files |
+| `dir /a` | Show hidden files |
+| `dir /s` | Search for a file |
+| `type` | Read a file |
 
-> **Room:** Windows CLI Basics
-> **Platform:** TryHackMe
-> **Module:** Windows Fundamentals
+Hidden files are not the same as secret files — SOC analysts always inspect hidden files.
 
----
+**Windows — System Enumeration**
 
- whoami → Current User
+| Command | Reveals |
+| --- | --- |
+| `whoami` | Current user |
+| `hostname` | Computer name |
+| `systeminfo` | Complete Windows information |
+| `ipconfig` | Network configuration |
+| `ipconfig /all` | Detailed network information |
 
- hostname → Computer Name
+**Windows — Filesystem Paths**
 
- systeminfo → Complete Windows Information
+| Path | Contents |
+| --- | --- |
+| `C:\Windows` | OS files |
+| `C:\Users` | User profiles |
+| `C:\Program Files` | Installed software |
+| `C:\ProgramData` | Shared application data |
+| `C:\Temp` | Temporary files |
 
- ipconfig → Network Configuration
-
- ipconfig /all → Detailed Network Information
-
- C:\Windows → OS Files
-
- C:\Users → User Profiles
-
- C:\Program Files → Installed Software
-
- C:\ProgramData → Shared Application Data
-
- C:\Temp → Temporary Files
-
----
-
-> **Room:** Windows CLI Basics
-> **Platform:** TryHackMe
-> **Module:** Windows Fundamentals
-
----
 
 ## One Shot Revision
 

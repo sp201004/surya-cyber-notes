@@ -559,13 +559,9 @@ A Process = Running Program
 
 ```
 Chrome
-
 Spotify
-
 Discord
-
 VS Code
-
 Game
 ```
 
@@ -606,13 +602,9 @@ RAM is limited.
 
 ```
 RAM = 8 GB
-
 Chrome = 2 GB
-
 Game = 4 GB
-
 VS Code = 1 GB
-
 Spotify = 500 MB
 ```
 
@@ -660,13 +652,9 @@ Metadata
 
 ```
 Documents/
-
 Pictures/
-
 Downloads/
-
 Music/
-
 Videos/
 ```
 
@@ -677,7 +665,6 @@ Supports multiple users.
 
 ```
 PC
-
 │
 ├── Alice
 ├── Bob
@@ -733,7 +720,6 @@ The OS already protects the computer.
 
 ```
 Operating System Security
-
 │
 ├── Authentication
 ├── Permissions
@@ -760,9 +746,7 @@ Determines what users or applications can do.
 
 ```
 Read
-
 Write
-
 Execute
 ```
 
@@ -770,9 +754,7 @@ Execute
 
 ```
 student
-
 Cannot Delete
-
 System Files
 ```
 
@@ -783,11 +765,8 @@ Applications run separately.
 
 ```
 Chrome
-
 VS Code
-
 Spotify
-
 Discord
 ```
 
@@ -826,7 +805,6 @@ S → Security
 ## Kernel vs User
 ```
 Kernel = KING 👑
-
 User = Guest 🙋
 ```
 
@@ -951,13 +929,9 @@ Desktop
 
 ```
 Click Folder
-
 ↓
-
 Open Documents
-
 ↓
-
 Open File
 ```
 
@@ -1047,23 +1021,14 @@ Hardware
 ## Common Linux Commands
 ```bash
 pwd
-
 ls
-
 cd
-
 mkdir
-
 touch
-
 cp
-
 mv
-
 rm
-
 cat
-
 grep
 ```
 
@@ -1113,9 +1078,7 @@ Designed for personal computers.
 
 ```
 Windows
-
 macOS
-
 Linux Desktop
 ```
 
@@ -1140,7 +1103,6 @@ Developed by Microsoft.
 
 ```
 Windows 10
-
 Windows 11
 ```
 
@@ -1176,9 +1138,7 @@ Runs only on Apple hardware.
 
 ```
 Sonoma
-
 Sequoia
-
 Tahoe
 ```
 
@@ -1209,13 +1169,9 @@ It is a family of distributions.
 
 ```
 Ubuntu
-
 Debian
-
 Fedora
-
 Linux Mint
-
 Arch Linux
 ```
 
@@ -1251,13 +1207,9 @@ instead of appearance.
 
 ```
 Windows Server
-
 Ubuntu Server
-
 Debian
-
 Red Hat
-
 CentOS
 ```
 
@@ -1284,7 +1236,6 @@ CentOS
 
 ```
 Android
-
 iOS
 ```
 
@@ -1346,15 +1297,10 @@ Used in devices with dedicated functions.
 
 ```
 Routers
-
 Cars
-
 Smart TVs
-
 ATMs
-
 Medical Devices
-
 Industrial Machines
 ```
 
@@ -1362,9 +1308,7 @@ Examples of Embedded OS
 
 ```
 OpenWRT
-
 Yocto
-
 Ubuntu Core
 ```
 
@@ -1385,11 +1329,8 @@ Special Operating Systems for time-critical applications.
 
 ```
 Aircraft
-
 Missile Systems
-
 Robotics
-
 Medical Equipment
 ```
 
@@ -1397,9 +1338,7 @@ Medical Equipment
 
 ```
 FreeRTOS
-
 VxWorks
-
 QNX
 ```
 
@@ -1416,9 +1355,7 @@ QNX
 
 ```
 Ubuntu Server
-
 Amazon Linux
-
 Rocky Linux
 ```
 
@@ -1447,9 +1384,7 @@ without requiring an entire virtual machine.
 
 ```
 Alpine Linux
-
 Flatcar Linux
-
 Bottlerocket
 ```
 
@@ -1470,12 +1405,15 @@ Different devices require different Operating Systems.
 Laptop
 ↓
 Desktop OS
+
 Phone
 ↓
 Mobile OS
+
 Router
 ↓
 Embedded OS
+
 Cloud
 ↓
 Server OS
@@ -1645,17 +1583,11 @@ A Real-Time Operating System designed for applications requiring guaranteed resp
 ## OS Types
 ```
 Desktop
-
 Server
-
 Mobile
-
 Embedded
-
 Cloud
-
 Remember
-
 DSMEC
 ```
 
@@ -1903,37 +1835,21 @@ Execute
 # Mind Map
 ```
 Operating System
-
 │
-
 ├── User
-
 ├── Applications
-
 ├── Kernel
-
 │
-
 ├── Process Management
-
 ├── Memory Management
-
 ├── File Management
-
 ├── User Management
-
 ├── Device Management
-
 └── Security
-
        │
-
        ├── Authentication
-
        ├── Permissions
-
        ├── Isolation
-
        └── Protection
 ```
 
@@ -1976,78 +1892,32 @@ Operating System
 ---
 
 ## PMFUDS
-Remember OS responsibilities
 
-```
-P → Process
-M → Memory
-F → File
-U → User
-D → Device
-S → Security
-```
+**PMFUDS** helps you recall the 6 OS responsibilities: **P**rocess, **M**emory, **F**ile, **U**ser, **D**evice, **S**ecurity.
 
 ---
 
 ## KUSH
-Remember privilege levels
 
-```
-Kernel
-
-↓
-
-Unlimited
-
-System
-
-Hardware
-```
-
-Kernel = Unlimited Access
+**KUSH** = the **K**ernel has **U**nlimited access to the **S**ystem's **H**ardware — the highest privilege level, above ordinary user applications.
 
 ---
 
 ## GUI
-```
-Graphical
 
-User
-
-Interface
-```
-
-Click Everything.
+**GUI** = **G**raphical **U**ser **I**nterface — you click everything.
 
 ---
 
 ## CLI
-```
-Command
 
-Line
-
-Interface
-```
-
-Type Everything.
+**CLI** = **C**ommand **L**ine **I**nterface — you type everything.
 
 ---
 
 ## Operating System Types
-```
-Desktop
-↓
-Server
-↓
-Mobile
-↓
-Embedded
-↓
-Cloud
-Remember
-DSMEC
-```
+
+**DSMEC** covers the main OS categories: **D**esktop, **S**erver, **M**obile, **E**mbedded, **C**loud.
 
 ---
 
@@ -2200,160 +2070,43 @@ CLI is faster.
 
 ## Memory Tricks
 
-```
-GUI
-
-See
-
-Click
-
-Done
-
-CLI
-
-Think
-
-Type
-
-Execute
-```
+- **GUI**: See → Click → Done.
+- **CLI**: Think → Type → Execute.
 
 ---
 
 ## Quick Revision
 
-```
-Operating System
-↓
-Invisible Manager
-↓
-User
-↓
-Applications
-↓
-Operating System
-↓
-Hardware
-Kernel Space → Hardware Access
-User Space → Applications
-Applications
-↓
-System Calls
-↓
-Kernel
-OS Responsibilities
-✔ Process
-✔ Memory
-✔ File
-✔ User
-✔ Device
-✔ Security
-```
+**How an Operating System Works**
 
----
+The OS is the "invisible manager" between you and the machine. You use applications, the applications ask the OS for what they need, and the OS controls the hardware on their behalf.
 
----
+Flow: **User → Applications → Operating System → Hardware**
 
-## One Shot Revision
+- Applications never touch hardware directly — they request it through **system calls** to the **kernel**.
+- **Kernel Space** is the privileged core with direct hardware access; **User Space** is where normal applications run.
 
-```
-Operating System
-↓
-GUI
-CLI
-↓
-Desktop
-Windows
-macOS
-Linux
-↓
-Server
-Windows Server
-Ubuntu Server
-Red Hat
-↓
-Mobile
-Android
-iOS
-↓
-Embedded
-OpenWRT
-Ubuntu Core
-↓
-Cloud
-Amazon Linux
-Ubuntu Server
-↓
-Container
-Alpine
-Flatcar
-↓
-Kernel
-↓
-Hardware
-```
+**The 6 OS Responsibilities**
 
----
+- **Process management** — starts, schedules, and stops running programs.
+- **Memory management** — allocates RAM to each process.
+- **File management** — organises files and storage.
+- **User management** — accounts, authentication, and permissions.
+- **Device management** — drivers that let the OS talk to hardware.
+- **Security** — isolation, access control, and protection.
 
-```
-Operating System
-↓
-Bridge Between
-User
-↓
-Applications
-↓
-Kernel
-↓
-Hardware
-Responsibilities
-↓
-✔ Process
-✔ Memory
-✔ Files
-✔ Users
-✔ Devices
-✔ Security
-Interfaces
-↓
-GUI
-CLI
-Operating Systems
-↓
-Desktop
-↓
-Windows
-macOS
-Linux
-↓
-Server
-↓
-Ubuntu
-Red Hat
-Windows Server
-↓
-Mobile
-↓
-Android
-iOS
-↓
-Embedded
-↓
-OpenWRT
-FreeRTOS
-↓
-Cloud
-↓
-Amazon Linux
-Ubuntu Server
-↓
-Containers
-↓
-Alpine
-Flatcar
-```
+**Types of Operating Systems**
 
----
+| Category | Examples |
+| --- | --- |
+| Desktop | Windows, macOS, Linux |
+| Server | Windows Server, Ubuntu Server, Red Hat |
+| Mobile | Android, iOS |
+| Embedded | OpenWRT, Ubuntu Core, FreeRTOS |
+| Cloud | Amazon Linux, Ubuntu Server |
+| Container | Alpine, Flatcar |
+
+Every type exposes a **GUI** (click-based) and/or **CLI** (command-based) interface, and underneath they all run a **kernel** that controls the **hardware**.
 
 ## TryHackMe Answers
 
