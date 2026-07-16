@@ -78,7 +78,7 @@ Without an OS, software cannot communicate with computer hardware.
 +----------------------------+
 ```
 
-Hardware
+**Hardware**
 - Physical components
 - CPU
 - RAM
@@ -88,7 +88,7 @@ Hardware
 - Mouse
 - Monitor
 
-Software
+**Software**
 - Programs
 - Chrome
 - Firefox
@@ -96,20 +96,20 @@ Software
 - VS Code
 - Games
 
-Operating System
+**Operating System**
 
-Examples
+**Examples**
 
-Desktop
+**Desktop**
 - Windows
 - Linux
 - macOS
 
-Mobile
+**Mobile**
 - Android
 - iOS
 
-Server
+**Server**
 - Windows Server
 - Linux
 - IBM AIX

@@ -1134,6 +1134,43 @@ const markdownComponents: import('react-markdown').Components = {
       </h3>
     );
   },
+  // TryHackMe rooms use #### / ##### for sub-headings (Google rooms stop at
+  // ###). Without these renderers h4/h5/h6 fell back to unstyled body text.
+  // h4 = bold white sub-heading (green ▸), h5/h6 = progressively lighter.
+  h4: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText, sectionNumber } = parseHeading(rawText);
+    return (
+      <h4 className="text-sm md:text-base font-bold text-white mt-5 mb-2 font-sans scroll-mt-24 flex items-center flex-wrap gap-2" id={generateAnchorId(rawText)}>
+        <span className="text-[#9fef00] mr-1">▸</span>
+        {sectionNumber && (
+          <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#9fef00]/10 text-[#9fef00] border border-[#9fef00]/20 rounded">
+            {sectionNumber}
+          </span>
+        )}
+        <span>{cleanText}</span>
+      </h4>
+    );
+  },
+  h5: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText } = parseHeading(rawText);
+    return (
+      <h5 className="text-sm font-semibold text-gray-100 mt-4 mb-2 font-sans scroll-mt-24 flex items-center flex-wrap gap-2" id={generateAnchorId(rawText)}>
+        <span className="text-[#9fef00]/70 mr-1">•</span>
+        <span>{cleanText}</span>
+      </h5>
+    );
+  },
+  h6: ({node, children, ...props}) => {
+    const rawText = extractText(children);
+    const { text: cleanText } = parseHeading(rawText);
+    return (
+      <h6 className="text-xs font-semibold text-gray-300 uppercase tracking-wide mt-3 mb-1 font-sans scroll-mt-24" id={generateAnchorId(rawText)}>
+        {cleanText}
+      </h6>
+    );
+  },
     pre: ({node, children, ...props}: any) => {
     let lang = '';
     let className = '';
