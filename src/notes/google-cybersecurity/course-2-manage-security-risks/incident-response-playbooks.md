@@ -18,37 +18,29 @@
 
 ### Anatomy of a Playbook
 
-> **PLAYBOOK ANATOMY — Structure & Example**
+| **THE STRATEGY (The 'WHAT' & 'WHO')** | **THE PLAN (The 'HOW')** |
+| --- | --- |
+| Overall goal of response | Step-by-step technical procedures |
+| Who is responsible for what | Decision flowcharts |
+| Escalation paths | Checklists with checkboxes |
+| Communication requirements | Tool-specific commands |
+| Legal/compliance obligations | Evidence collection procedures |
 
-``` 
-   ┌─────────────────────────────────────────────────────────────────────────┐
-   │                    PLAYBOOK STRUCTURE                                   │
-   └─────────────────────────────────────────────────────────────────────────┘
+**Example Playbook: 'Unauthorized External Login Detected'**
 
-  ┌───────────────────────────────────┐  ┌─────────────────────────────────────┐
-  │  THE STRATEGY (The 'WHAT' & 'WHO')│  │  THE PLAN (The 'HOW')               │
-  ├───────────────────────────────────┤  ├─────────────────────────────────────┤
-  │ • Overall goal of response        │  │ • Step-by-step technical procedures │
-  │ • Who is responsible for what     │  │ • Decision flowcharts               │
-  │ • Escalation paths                │  │ • Checklists with checkboxes        │
-  │ • Communication requirements      │  │ • Tool-specific commands            │
-  │ • Legal/compliance obligations    │  │ • Evidence collection procedures    │
-  └───────────────────────────────────┘  └─────────────────────────────────────┘
+**STRATEGY:**
 
-  Example Playbook: 'Unauthorized External Login Detected'
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │  STRATEGY:                                                              │
-  │   Tier 1 Analyst → Verify login legitimacy                              │
-  │   Tier 2 Analyst → Account lockdown if confirmed malicious              │
-  │   Security Manager → Notify CISO if data exfiltration suspected         │
-  │  PLAN:                                                                  │
-  │  Step 1: Call employee on verified number — 'Are you traveling?'        │
-  │  Step 2: If NOT traveling → Force password reset + revoke all tokens    │
-  │  Step 3: Check logs for data exfiltration in past 24 hours              │
-  │  Step 4: Preserve all relevant logs as forensic evidence                │
-  │  Step 5: Document timeline and submit incident report within 2 hours    │
-  └─────────────────────────────────────────────────────────────────────────┘
-```
+- Tier 1 Analyst → Verify login legitimacy
+- Tier 2 Analyst → Account lockdown if confirmed malicious
+- Security Manager → Notify CISO if data exfiltration suspected
+
+**PLAN:**
+
+1. Call employee on verified number — 'Are you traveling?'
+2. If NOT traveling → Force password reset + revoke all tokens
+3. Check logs for data exfiltration in past 24 hours
+4. Preserve all relevant logs as forensic evidence
+5. Document timeline and submit incident report within 2 hours
 
 ## Playbooks as Living Documents
 
