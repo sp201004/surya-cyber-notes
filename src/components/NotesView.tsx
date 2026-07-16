@@ -1125,6 +1125,50 @@ const isComparisonTable = (node: any): boolean => {
   return false;
 };
 
+// Shared wrapper that makes ANY table horizontally scrollable on MOBILE without
+// changing desktop. On phones a wide table (e.g. 4-column CIA Triad) would be
+// clipped mid-word; here it scrolls with smooth touch scrolling. A right-edge
+// fade gradient hints there's more to scroll — shown only while overflowing and
+// not yet scrolled to the end, and never on desktop (md:hidden). On desktop the
+// table is w-full so it fits and no scrollbar appears — behaviour unchanged.
+const ScrollableTable: React.FC<{ innerClassName?: string; children: React.ReactNode }> = ({ innerClassName = '', children }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [showFade, setShowFade] = useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => {
+      const overflowing = el.scrollWidth > el.clientWidth + 1;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1;
+      setShowFade(overflowing && !atEnd);
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    let ro: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== 'undefined') { ro = new ResizeObserver(update); ro.observe(el); }
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro?.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, [children]);
+  return (
+    <div className="relative my-6">
+      <div
+        ref={ref}
+        className={`overflow-x-auto [-webkit-overflow-scrolling:touch] rounded-xl border border-[#2d3a54] shadow-md shadow-black/20 ${innerClassName}`}
+      >
+        {children}
+      </div>
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute inset-y-0 right-0 w-10 rounded-r-xl bg-gradient-to-l from-[#0d1117] to-transparent transition-opacity duration-200 md:hidden ${showFade ? 'opacity-100' : 'opacity-0'}`}
+      />
+    </div>
+  );
+};
+
 const markdownComponents: import('react-markdown').Components = {
   h1: ({node, children, ...props}) => {
     const rawText = extractText(children);
@@ -1246,9 +1290,11 @@ const markdownComponents: import('react-markdown').Components = {
       const tableData = parseAsciiTable(content);
       
       if (tableData) {
+        const acols = tableData.headers.length;
+        const aMinW = acols >= 4 ? "min-w-[44rem] md:min-w-0 " : acols === 3 ? "min-w-[32rem] md:min-w-0 " : "";
         return (
-          <div className="my-6 overflow-hidden rounded-xl border border-[#2d3a54] shadow-md shadow-black/20">
-            <table className="w-full text-left border-collapse font-sans text-xs">
+          <ScrollableTable>
+            <table className={`${aMinW}w-full text-left border-collapse font-sans text-xs`}>
               <thead className="bg-[#9fef00]/10 border-b border-[#9fef00]/20 text-[#9fef00]">
                 <tr>
                   {tableData.headers.map((header, idx) => (
@@ -1270,7 +1316,7 @@ const markdownComponents: import('react-markdown').Components = {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollableTable>
         );
       }
     }
@@ -1372,15 +1418,19 @@ const markdownComponents: import('react-markdown').Components = {
       boldSecond = avg1 > 0 && avg1 <= 6;
     }
     const boldFirst = !indexFirst && !isComparisonTable(node);
-    const wrap = "my-6 overflow-hidden rounded-xl border border-[#2d3a54] shadow-md shadow-black/20" +
-      (boldFirst ? " [&_tbody_td:first-child]:font-semibold [&_tbody_td:first-child]:text-gray-100" : "") +
-      (boldSecond ? " [&_tbody_td:nth-child(2)]:font-semibold [&_tbody_td:nth-child(2)]:text-gray-100" : "");
+    const boldCls =
+      (boldFirst ? "[&_tbody_td:first-child]:font-semibold [&_tbody_td:first-child]:text-gray-100 " : "") +
+      (boldSecond ? "[&_tbody_td:nth-child(2)]:font-semibold [&_tbody_td:nth-child(2)]:text-gray-100" : "");
+    // Give wide tables (3+ columns) a mobile min-width so columns stay readable
+    // and the wrapper scrolls; reset on desktop (md:min-w-0) so nothing changes.
+    const ncols = getTableHeaders(node).length;
+    const minW = ncols >= 4 ? "min-w-[44rem] md:min-w-0 " : ncols === 3 ? "min-w-[32rem] md:min-w-0 " : "";
     return (
-      <div className={wrap}>
-        <table className="w-full text-left border-collapse font-sans text-xs" {...props}>
+      <ScrollableTable innerClassName={boldCls}>
+        <table className={`${minW}w-full text-left border-collapse font-sans text-xs`} {...props}>
           {children}
         </table>
-      </div>
+      </ScrollableTable>
     );
   },
   thead: ({node, children, ...props}) => (
