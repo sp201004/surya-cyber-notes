@@ -209,28 +209,33 @@ SPL QUERY STRUCTURE:
   |                   |         +-- fail*: wildcard (matches fail, failed, failure, failing...)
   |                   +-- error OR fail*: search for either term
   +-- index=: ALWAYS specify. Isolates to specific data repository.
+```
 
-  COMMON SPL COMMANDS:
-  search   -- Filter events matching conditions
-  stats    -- Calculate statistics (count, sum, avg)
-  chart    -- Build visual charts from data
-  table    -- Display specific fields as columns
-  rex      -- Extract fields using regex
-  eval     -- Create new calculated fields
-  where    -- Filter on calculated field conditions
-  dedup    -- Remove duplicate events
-  sort     -- Sort results
+**COMMON SPL COMMANDS:**
 
-  SECURITY ANALYST EXAMPLES:
+| **Command** | **Purpose** |
+| --- | --- |
+| `search` | Filter events matching conditions |
+| `stats` | Calculate statistics (count, sum, avg) |
+| `chart` | Build visual charts from data |
+| `table` | Display specific fields as columns |
+| `rex` | Extract fields using regex |
+| `eval` | Create new calculated fields |
+| `where` | Filter on calculated field conditions |
+| `dedup` | Remove duplicate events |
+| `sort` | Sort results |
 
-  # Find all failed logins in last 24 hours:
-  index=security EventCode=4625 | stats count by src_ip | sort -count
+**SECURITY ANALYST EXAMPLES:**
 
-  # Find logins outside business hours:
-  index=security EventCode=4624 date_hour<9 OR date_hour>17 | table user, src_ip, _time
+```
+# Find all failed logins in last 24 hours:
+index=security EventCode=4625 | stats count by src_ip | sort -count
 
-  # Top 10 source IPs generating errors:
-  index=web error | stats count by src_ip | sort -count | head 10
+# Find logins outside business hours:
+index=security EventCode=4624 date_hour<9 OR date_hour>17 | table user, src_ip, _time
+
+# Top 10 source IPs generating errors:
+index=web error | stats count by src_ip | sort -count | head 10
 ```
 
 ### Google Chronicle — UDM & YARA-L
@@ -270,26 +275,20 @@ SPL QUERY STRUCTURE:
 > Collects logs from endpoints via Filebeat agents. Provides threat detection, compliance, and incident response.
 > Integrates with Elasticsearch and Kibana for visualization (the ELK Stack).
 
-> **WAZUH FILEBEAT CONFIGURATION (ingest.yml):**
-> **filebeat.inputs:**
-> **- type: log**
-> **enabled: true**
-> **paths:**
-> **- /media/sf_buttercup-shared/www1/*.log**
-> **|**
+**WAZUH FILEBEAT CONFIGURATION (ingest.yml)**
 
+```yaml
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /media/sf_buttercup-shared/www1/*.log   # *.log = wildcard: collect ALL .log files
+
+output.logstash:
+  hosts: ["localhost:5044"]                      # Send all collected logs to Logstash on port 5044
 ```
-                                           +-- *.log = wildcard: collect ALL .log files
 
-  output.logstash:
-    hosts: ["localhost:5044"]
-          |
-          +-- Send all collected logs to Logstash on port 5044
-
-  EXECUTION: Launch Filebeat from command line to start log collection.
-  For historical offline log analysis: Set dashboard time range back to Jan 1, 2000
-  to ensure all historical .pcap and .csv records register as hits.
-```
+**EXECUTION:** Launch Filebeat from command line to start log collection. For historical offline log analysis: Set dashboard time range back to Jan 1, 2000 to ensure all historical .pcap and .csv records register as hits.
 
 ## Quick Revision
 

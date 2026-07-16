@@ -116,39 +116,49 @@ No data sent to server. Modifies the DOM environment locally.
 
 ### SQL Injection (SQLi)
 
-```
-SQL = Language websites use to query their databases.
-SQLi = Inserting SQL commands into user input to manipulate the database.
+SQL = Language websites use to query their databases. SQLi = Inserting SQL commands into user input to manipulate the database.
 
-NORMAL LOGIN QUERY:
+**NORMAL LOGIN QUERY:**
+
+```sql
 SELECT * FROM users WHERE username='alice' AND password='secret123'
+```
+
 Result: Returns alice's account. Login succeeds.
 
-SQL INJECTION ATTACK:
-Username typed: admin'--
-Built query: SELECT * FROM users WHERE username='admin'--' AND password='anything'
-The -- comments out everything after it. Password check is BYPASSED.
-Result: Logged in as admin with NO valid password.
+**SQL INJECTION ATTACK:**
+Username typed: `admin'--`
 
-ANOTHER ATTACK (OR 1=1):
-Username: ' OR 1=1--
-Query: SELECT * FROM users WHERE username='' OR 1=1--'
-1=1 is always TRUE. Database returns ALL user records.
-First result is usually the admin account. Attacker gets admin access.
+```sql
+SELECT * FROM users WHERE username='admin'--' AND password='anything'
+```
 
-BLIND SQLi:
+The `--` comments out everything after it. Password check is BYPASSED. Result: Logged in as admin with NO valid password.
+
+**ANOTHER ATTACK (OR 1=1):**
+Username: `' OR 1=1--`
+
+```sql
+SELECT * FROM users WHERE username='' OR 1=1--'
+```
+
+`1=1` is always TRUE. Database returns ALL user records. First result is usually the admin account. Attacker gets admin access.
+
+**BLIND SQLi:**
 Website shows no data but attacker asks True/False questions:
-'Does username start with A?' -- if page loads normally = YES
-'Does it start with B?' -- if page shows error = NO
+- 'Does username start with A?' -- if page loads normally = YES
+- 'Does it start with B?' -- if page shows error = NO
+
 Slowly maps entire database through yes/no responses.
 
-THE DEFINITIVE DEFENCE -- PREPARED STATEMENTS:
+**THE DEFINITIVE DEFENCE -- PREPARED STATEMENTS:**
 Database query structure is FIXED before user input is added.
+
+```sql
 SELECT * FROM users WHERE username = ? AND password = ?
-User input fills the ? placeholders as pure DATA, never as code.
-Even typing SQL commands just searches for username='admin OR 1=1'
-(no such user). Injection is IMPOSSIBLE with prepared statements.
 ```
+
+User input fills the ? placeholders as pure DATA, never as code. Even typing SQL commands just searches for username='admin OR 1=1' (no such user). Injection is IMPOSSIBLE with prepared statements.
 
 ## Threat Modeling — PASTA Framework
 

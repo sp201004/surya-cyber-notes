@@ -116,25 +116,21 @@
 > **CRITICAL:** Always use -n/-nn flags when investigating live incidents to avoid alerting attackers via DNS lookups.
 
 > **tcpdump FLAG REFERENCE**
-> **CORE tcpdump FLAGS REFERENCE:**
-> **FLAG    FUNCTION                    SECURITY CONTEXT**
+> **CORE tcpdump FLAGS REFERENCE**
 
-```
-  ------  --------------------------  ----------------------------------------
-  -i any  Capture on ALL interfaces   Catches traffic on every network card
-  -i eth0 Capture on specific NIC     Isolate traffic on one interface
-  -v      Verbose output              Shows IP headers, TTL, ToS fields
-  -vv     More verbose                Adds TCP/UDP details
-  -vvv    Maximum verbose             Full packet dissection
-  -c N    Capture N packets only      Stop after N packets (prevents overrun)
-  -w file Write to .pcap file         Save capture for offline forensic review
-  -r file Read from .pcap file        Replay saved capture for analysis
-  -n      Disable HOST resolution     NO reverse DNS lookup (critical!)
-          (IP stays as IP)            Prevents alerting attacker's DNS servers
-  -nn     Disable HOST+PORT resolv.   Ports shown as numbers, not protocol names
-          (port 80 stays as 80)       Reveals port-protocol mismatches (C2)
-  -D      List available interfaces   Find which NICs are available to sniff
-```
+| **Flag** | **Function** | **Security Context** |
+| --- | --- | --- |
+| `-i any` | Capture on ALL interfaces | Catches traffic on every network card |
+| `-i eth0` | Capture on specific NIC | Isolate traffic on one interface |
+| `-v` | Verbose output | Shows IP headers, TTL, ToS fields |
+| `-vv` | More verbose | Adds TCP/UDP details |
+| `-vvv` | Maximum verbose | Full packet dissection |
+| `-c N` | Capture N packets only | Stop after N packets (prevents overrun) |
+| `-w file` | Write to .pcap file | Save capture for offline forensic review |
+| `-r file` | Read from .pcap file | Replay saved capture for analysis |
+| `-n` | Disable HOST resolution (IP stays as IP) | NO reverse DNS lookup (critical!) Prevents alerting attacker's DNS servers |
+| `-nn` | Disable HOST+PORT resolv. (port 80 stays as 80) | Ports shown as numbers, not protocol names. Reveals port-protocol mismatches (C2) |
+| `-D` | List available interfaces | Find which NICs are available to sniff |
 
 ```bash
 # CAPTURE LIVE TRAFFIC (1 packet, verbose, all interfaces):

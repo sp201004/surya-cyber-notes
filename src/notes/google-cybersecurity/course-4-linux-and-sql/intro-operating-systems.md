@@ -194,19 +194,14 @@
   | Allocates resources to   |   | 2 cores  |  | 2 cores  |  | 2 cores  |
   | each VM independently.   |   +----------+  +----------+  +----------+
   +--------------------------+
-
-  Each VM believes it IS the physical machine -- complete isolation.
-  If VM 1 (Kali) is infected with malware: VM 2 and VM 3 are unaffected.
-  If VM 1 is destroyed: delete the VM file and spin up a fresh one in minutes.
-
-  HYPERVISOR TYPES:
-  Type 1 (Bare-metal): Runs directly on hardware. No host OS underneath.
-    Examples: VMware ESXi, Microsoft Hyper-V, Xen, KVM (Linux built-in)
-    More secure. Used in cloud data centers and enterprise servers.
-  Type 2 (Hosted): Runs inside a host OS.
-    Examples: VirtualBox, VMware Workstation
-    Easier for personal use. Less secure (must secure host OS too).
 ```
+
+Each VM believes it IS the physical machine -- complete isolation. If VM 1 (Kali) is infected with malware: VM 2 and VM 3 are unaffected. If VM 1 is destroyed: delete the VM file and spin up a fresh one in minutes.
+
+**HYPERVISOR TYPES:**
+
+- **Type 1 (Bare-metal):** Runs directly on hardware. No host OS underneath. Examples: VMware ESXi, Microsoft Hyper-V, Xen, KVM (Linux built-in). More secure. Used in cloud data centers and enterprise servers.
+- **Type 2 (Hosted):** Runs inside a host OS. Examples: VirtualBox, VMware Workstation. Easier for personal use. Less secure (must secure host OS too).
 
 | **Virtualization Use Case** | **How It Works** | **Security Benefit** |
 | --- | --- | --- |
@@ -219,35 +214,27 @@
 ## GUI vs. CLI — The Security Analyst's Choice
 
 > **GUI vs. CLI — Feature Comparison**
-> **GUI (Graphical User Interface)      CLI (Command-Line Interface)**
 
-```
-  +--------------------------------+  +-----------------------------+
-  | Visual: windows, icons, menus  |  | Text-based: typed commands  |
-  | One action at a time           |  | Multiple commands chained   |
-  | Mouse-driven navigation        |  | Keyboard-driven only        |
-  | Intuitive for beginners        |  | Steeper learning curve      |
-  | Limited automation capability  |  | Infinite automation power   |
-  | Actions NOT logged by default  |  | ALL commands AUTO-LOGGED    |
-  +--------------------------------+  +-----------------------------+
+| **GUI (Graphical User Interface)** | **CLI (Command-Line Interface)** |
+| --- | --- |
+| Visual: windows, icons, menus | Text-based: typed commands |
+| One action at a time | Multiple commands chained |
+| Mouse-driven navigation | Keyboard-driven only |
+| Intuitive for beginners | Steeper learning curve |
+| Limited automation capability | Infinite automation power |
+| Actions NOT logged by default | ALL commands AUTO-LOGGED |
 
-  EXAMPLE: Moving 1000 files from one folder to another:
+**EXAMPLE: Moving 1000 files from one folder to another:**
 
-  GUI method: Click file 1, Shift+click file 1000,
-              drag to new folder. ~2 minutes, error-prone.
+- **GUI method:** Click file 1, Shift+click file 1000, drag to new folder. ~2 minutes, error-prone.
+- **CLI method:** `mv /source/*.jpg /destination/` — Done instantly. One line. Zero errors.
 
-  CLI method: mv /source/*.jpg /destination/
-              Done instantly. One line. Zero errors.
+**WHY ANALYSTS USE CLI ALMOST EXCLUSIVELY:**
 
-  WHY ANALYSTS USE CLI ALMOST EXCLUSIVELY:
-  1. Speed: Complex operations done in seconds.
-  2. Automation: Scripts run thousands of operations unattended.
-  3. History: Every command is recorded in ~/.bash_history
-     Forensic investigators read this to trace what an
-     attacker DID on a compromised system step by step.
-  4. Remote Access: SSH gives full CLI access to servers anywhere.
-     No GUI needed to manage a server 10,000 km away.
-```
+1. **Speed:** Complex operations done in seconds.
+2. **Automation:** Scripts run thousands of operations unattended.
+3. **History:** Every command is recorded in `~/.bash_history`. Forensic investigators read this to trace what an attacker DID on a compromised system step by step.
+4. **Remote Access:** SSH gives full CLI access to servers anywhere. No GUI needed to manage a server 10,000 km away.
 
 ## Quick Revision
 

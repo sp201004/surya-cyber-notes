@@ -64,20 +64,15 @@
 > **MAC ADDRESS vs. IP ADDRESS**
 > **TWO TYPES OF DEVICE IDENTIFIERS**
 
-```
-  +-------------------------------------------------+  +--------------------------------------------+
-  | MAC ADDRESS (Physical / Hardware)               |  | IP ADDRESS (Logical / Software)            | 
-  +-------------------------------------------------+  +--------------------------------------------+
-  | * Hardcoded into the NIC at manufacturing time  |  | * Assigned by network configuration (DHCP) | 
-  | * Permanent -- never changes (usually)          |  | * Can change -- dynamic or static          | 
-  | * Only used within the LOCAL network (LAN)      |  | * Used to route across DIFFERENT networks  |  
-  | * 48 bits: e.g. 00:1A:2B:3C:4D:5E               |  | * IPv4: 32 bits  e.g. 192.168.1.100        |  
-  | * Format: 6 groups of 2 hex digits              |  | * IPv6: 128 bits e.g. 2001:0db8::1         |  
-  +-------------------------------------------------+  +--------------------------------------------+
+| **MAC Address (Physical / Hardware)** | **IP Address (Logical / Software)** |
+| --- | --- |
+| Hardcoded into the NIC at manufacturing time | Assigned by network configuration (DHCP) |
+| Permanent -- never changes (usually) | Can change -- dynamic or static |
+| Only used within the LOCAL network (LAN) | Used to route across DIFFERENT networks |
+| 48 bits: e.g. 00:1A:2B:3C:4D:5E | IPv4: 32 bits  e.g. 192.168.1.100 |
+| Format: 6 groups of 2 hex digits | IPv6: 128 bits e.g. 2001:0db8::1 |
 
-  Analogy: MAC = your name (personal, fixed identity)
-           IP = your current home address (can change if you move)
-```
+> **Analogy:** MAC = your name (personal, fixed identity). IP = your current home address (can change if you move).
 
 | **IP Version** | **Bits** | **Example** | **Why It Matters** |
 | --- | --- | --- | --- |
