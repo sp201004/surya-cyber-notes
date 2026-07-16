@@ -1735,7 +1735,7 @@ const parseIntoSections = (rawContent: string): ParsedSection[] => {
 interface NotesViewProps {
   topic: Topic;
   onBack: () => void;
-  onCompleteTopic: (topicId: string, earnedPoints: number) => void;
+  onCompleteTopic?: (topicId: string, earnedPoints: number) => void;
   userPoints: number;
   pathwayLabel?: string;
 }

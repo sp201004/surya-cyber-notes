@@ -31,7 +31,7 @@ export interface Topic {
   title: string;
   description: string;
   status: 'locked' | 'unlocked' | 'completed';
-  iconType: 'sword' | 'shield' | 'clipboard' | 'chest' | 'network' | 'lan' | 'osi' | 'packet' | 'web' | 'linux' | 'windows' | 'question' | 'cia-prism' | 'warning-shield-skull' | 'scales-of-justice' | 'open-book-magnifier' | 'mystery-chest' | 'os-intro' | 'win-basics' | 'linux-cli' | 'win-cli' | 'os-sec' | 'data-repr' | 'data-encode' | 'python-demo' | 'js-demo' | 'sql-basics' | 'mystery-chest-software' | 'crypto-laptop' | 'hacker-terminal' | 'defender-shield' | 'search';
+  iconType: 'sword' | 'skull' | 'shield' | 'clipboard' | 'chest' | 'network' | 'lan' | 'osi' | 'packet' | 'web' | 'linux' | 'windows' | 'question' | 'cia-prism' | 'warning-shield-skull' | 'scales-of-justice' | 'open-book-magnifier' | 'mystery-chest' | 'os-intro' | 'win-basics' | 'linux-cli' | 'win-cli' | 'os-sec' | 'data-repr' | 'data-encode' | 'python-demo' | 'js-demo' | 'sql-basics' | 'mystery-chest-software' | 'crypto-laptop' | 'hacker-terminal' | 'defender-shield' | 'search';
   content: string; // Markdown or rich text representation
   realWorldCallout?: RealWorldCallout;
   mindmap: MindmapNode[];
