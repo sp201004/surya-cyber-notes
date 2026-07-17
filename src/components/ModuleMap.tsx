@@ -394,6 +394,8 @@ const renderUniqueIsometricObject = (
     case 'mystery-chest-gc7':
     case 'mystery-chest-gc8':
     case 'mystery-chest-cs101':
+    case 'mystery-chest-linux':
+    case 'mystery-chest-windows':
       return (
         <g id="mystery-chest-scene">
           <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
@@ -1560,81 +1562,46 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
-    // CS101 M2 — Linux Fundamentals Mystery Chest: treasure chest (bonus revision)
-    case 'mystery-chest-linux':
-      return (
-        <g id="mystery-chest-linux-scene">
-          <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
-          <path d={`M ${x - 15} ${y + 5} L ${x} ${y + 13} L ${x} ${y + 23} L ${x - 15} ${y + 15} Z`} fill="url(#chest-body-left)" stroke="#1e293b" strokeWidth="0.5" />
-          <path d={`M ${x} ${y + 13} L ${x + 15} ${y + 5} L ${x + 15} ${y + 15} L ${x} ${y + 23} Z`} fill="url(#chest-body-right)" stroke="#0f172a" strokeWidth="0.5" />
-          <path d={`M ${x - 15} ${y + 5} L ${x} ${y - 3} L ${x} ${y + 13} L ${x - 15} ${y + 5} Z`} fill="url(#chest-lid-left)" stroke="#1e293b" strokeWidth="0.5" />
-          <path d={`M ${x} ${y - 3} L ${x + 15} ${y + 5} L ${x + 15} ${y + 15} L ${x} ${y + 13} Z`} fill="url(#chest-lid-right)" stroke="#0f172a" strokeWidth="0.5" />
-          <path d={`M ${x - 12} ${y + 3.5} L ${x - 12} ${y + 13.5}`} stroke="#06b6d4" strokeWidth="1" filter="drop-shadow(0 0 2px #06b6d4)" />
-          <path d={`M ${x + 12} ${y + 3.5} L ${x + 12} ${y + 13.5}`} stroke="#06b6d4" strokeWidth="1" filter="drop-shadow(0 0 2px #06b6d4)" />
-          <path d={`M ${x - 2.5} ${y + 9} L ${x + 2.5} ${y + 9} L ${x + 1.5} ${y + 16} L ${x - 1.5} ${y + 16} Z`} fill="url(#sword-hilt-grad)" stroke="#78350f" strokeWidth="0.5" />
-          <circle cx={x} cy={y + 12.5} r={1.2} fill="#111827" />
-          <path d={`M ${x - 14.5} ${y + 5} L ${x} ${y + 13} L ${x + 14.5} ${y + 5}`} fill="none" stroke="#eab308" strokeWidth="1.2" opacity="0.85" filter="drop-shadow(0 0 3px #eab308)" />
-        </g>
-      );
-
-    // CS101 M3 — Windows Fundamentals (1–3): four-pane Windows logo tile
+    // CS101 M3 — Windows Fundamentals (1–3): isometric four-pane Windows flag,
+    // centered on (x, y) and anchored to the platform like the other room icons.
     case 'windows-fundamentals-1':
     case 'windows-fundamentals-2':
     case 'windows-fundamentals-3':
       return (
         <g id="windows-logo-scene">
-          <ellipse cx={x} cy={y + 17} rx={20} ry={7} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
-          {/* Isometric base plate */}
-          <path d={`M ${x} ${y + 12} L ${x - 15} ${y + 4} L ${x} ${y - 4} L ${x + 15} ${y + 4} Z`} fill="#1e293b" stroke="#0f172a" strokeWidth="0.5" opacity="0.6" />
-          {/* Four-pane Windows flag with a slight skew */}
-          <g transform={`skewX(-8)`}>
-            <rect x={x - 11} y={y - 12} width={9} height={9} rx={0.8} fill="#38bdf8" />
-            <rect x={x + 0.5} y={y - 12} width={9} height={9} rx={0.8} fill="#0ea5e9" />
-            <rect x={x - 11} y={y - 1.5} width={9} height={9} rx={0.8} fill="#0ea5e9" />
-            <rect x={x + 0.5} y={y - 1.5} width={9} height={9} rx={0.8} fill="#38bdf8" />
-          </g>
-          {/* Glow accent */}
-          <rect x={x - 12.5} y={y - 13} width={22} height={22} rx={1.5} fill="none" stroke="#7dd3fc" strokeWidth="0.6" opacity="0.5" transform="skewX(-8)" filter="drop-shadow(0 0 3px rgba(56,189,248,0.7))" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          {/* Four parallelogram panes give a subtle 3D tilt; right column sits higher */}
+          <path d={`M ${x - 11} ${y - 9} L ${x - 1.5} ${y - 10.5} L ${x - 1.5} ${y - 1.5} L ${x - 11} ${y} Z`} fill="#38bdf8" stroke="#0ea5e9" strokeWidth="0.4" />
+          <path d={`M ${x + 1.5} ${y - 10.5} L ${x + 11} ${y - 12} L ${x + 11} ${y - 3} L ${x + 1.5} ${y - 1.5} Z`} fill="#0ea5e9" stroke="#0284c7" strokeWidth="0.4" />
+          <path d={`M ${x - 11} ${y + 2} L ${x - 1.5} ${y + 0.5} L ${x - 1.5} ${y + 9.5} L ${x - 11} ${y + 11} Z`} fill="#0ea5e9" stroke="#0284c7" strokeWidth="0.4" />
+          <path d={`M ${x + 1.5} ${y + 0.5} L ${x + 11} ${y - 1} L ${x + 11} ${y + 8} L ${x + 1.5} ${y + 9.5} Z`} fill="#38bdf8" stroke="#0ea5e9" strokeWidth="0.4" />
+          {/* Soft glow highlight on the top-left pane */}
+          <path d={`M ${x - 11} ${y - 9} L ${x - 1.5} ${y - 10.5} L ${x - 1.5} ${y - 1.5} L ${x - 11} ${y} Z`} fill="none" stroke="#7dd3fc" strokeWidth="0.5" opacity="0.6" filter="drop-shadow(0 0 3px rgba(56,189,248,0.7))" />
         </g>
       );
 
-    // CS101 M3 — Active Directory Basics: domain hierarchy of linked server nodes
+    // CS101 M3 — Active Directory Basics: isometric domain hierarchy —
+    // a root Domain Controller linked down to member/server nodes on the platform.
     case 'active-directory-basics':
       return (
         <g id="active-directory-scene">
-          <ellipse cx={x} cy={y + 17} rx={20} ry={7} fill="rgba(56, 189, 248, 0.2)" filter="blur(3px)" />
-          {/* Links from root DC down to member nodes */}
-          <line x1={x} y1={y - 6} x2={x - 11} y2={y + 7} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
-          <line x1={x} y1={y - 6} x2={x} y2={y + 7} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
-          <line x1={x} y1={y - 6} x2={x + 11} y2={y + 7} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
-          {/* Root Domain Controller node */}
-          <circle cx={x} cy={y - 9} r={5} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.8" />
-          <rect x={x - 2.2} y={y - 11} width={4.4} height={4} rx={0.5} fill="#0b1220" />
-          <line x1={x - 1.2} y1={y - 9.6} x2={x + 1.2} y2={y - 9.6} stroke="#38bdf8" strokeWidth="0.5" />
-          {/* Member/server nodes */}
-          <rect x={x - 14} y={y + 7} width={6} height={7} rx={0.8} fill="#334155" stroke="#64748b" strokeWidth="0.5" />
-          <rect x={x - 3} y={y + 7} width={6} height={7} rx={0.8} fill="#334155" stroke="#64748b" strokeWidth="0.5" />
-          <rect x={x + 8} y={y + 7} width={6} height={7} rx={0.8} fill="#334155" stroke="#64748b" strokeWidth="0.5" />
-          <circle cx={x - 11} cy={y + 9.5} r={0.7} fill="#9fef00" />
-          <circle cx={x} cy={y + 9.5} r={0.7} fill="#9fef00" />
-          <circle cx={x + 11} cy={y + 9.5} r={0.7} fill="#9fef00" />
-        </g>
-      );
-
-    // CS101 M3 — Windows and AD Mystery Chest: treasure chest (bonus revision)
-    case 'mystery-chest-windows':
-      return (
-        <g id="mystery-chest-windows-scene">
-          <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
-          <path d={`M ${x - 15} ${y + 5} L ${x} ${y + 13} L ${x} ${y + 23} L ${x - 15} ${y + 15} Z`} fill="url(#chest-body-left)" stroke="#1e293b" strokeWidth="0.5" />
-          <path d={`M ${x} ${y + 13} L ${x + 15} ${y + 5} L ${x + 15} ${y + 15} L ${x} ${y + 23} Z`} fill="url(#chest-body-right)" stroke="#0f172a" strokeWidth="0.5" />
-          <path d={`M ${x - 15} ${y + 5} L ${x} ${y - 3} L ${x} ${y + 13} L ${x - 15} ${y + 5} Z`} fill="url(#chest-lid-left)" stroke="#1e293b" strokeWidth="0.5" />
-          <path d={`M ${x} ${y - 3} L ${x + 15} ${y + 5} L ${x + 15} ${y + 15} L ${x} ${y + 13} Z`} fill="url(#chest-lid-right)" stroke="#0f172a" strokeWidth="0.5" />
-          <path d={`M ${x - 12} ${y + 3.5} L ${x - 12} ${y + 13.5}`} stroke="#06b6d4" strokeWidth="1" filter="drop-shadow(0 0 2px #06b6d4)" />
-          <path d={`M ${x + 12} ${y + 3.5} L ${x + 12} ${y + 13.5}`} stroke="#06b6d4" strokeWidth="1" filter="drop-shadow(0 0 2px #06b6d4)" />
-          <path d={`M ${x - 2.5} ${y + 9} L ${x + 2.5} ${y + 9} L ${x + 1.5} ${y + 16} L ${x - 1.5} ${y + 16} Z`} fill="url(#sword-hilt-grad)" stroke="#78350f" strokeWidth="0.5" />
-          <circle cx={x} cy={y + 12.5} r={1.2} fill="#111827" />
-          <path d={`M ${x - 14.5} ${y + 5} L ${x} ${y + 13} L ${x + 14.5} ${y + 5}`} fill="none" stroke="#eab308" strokeWidth="1.2" opacity="0.85" filter="drop-shadow(0 0 3px #eab308)" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          {/* Links from root DC down to the three member nodes */}
+          <line x1={x} y1={y - 5} x2={x - 12} y2={y + 6} stroke="#38bdf8" strokeWidth="1.1" opacity="0.85" />
+          <line x1={x} y1={y - 5} x2={x} y2={y + 6} stroke="#38bdf8" strokeWidth="1.1" opacity="0.85" />
+          <line x1={x} y1={y - 5} x2={x + 12} y2={y + 6} stroke="#38bdf8" strokeWidth="1.1" opacity="0.85" />
+          {/* Root Domain Controller node (server tower) */}
+          <rect x={x - 6} y={y - 14} width={12} height={11} rx={1.5} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.8" filter="drop-shadow(0 0 3px rgba(56,189,248,0.7))" />
+          <line x1={x - 3.5} y1={y - 11} x2={x + 3.5} y2={y - 11} stroke="#0b1220" strokeWidth="0.8" />
+          <line x1={x - 3.5} y1={y - 8.5} x2={x + 3.5} y2={y - 8.5} stroke="#0b1220" strokeWidth="0.8" />
+          <circle cx={x - 3.5} cy={y - 5.6} r={0.8} fill="#9fef00" />
+          {/* Three member/server nodes sitting on the platform */}
+          <rect x={x - 17} y={y + 6} width={10} height={9} rx={1.2} fill="#334155" stroke="#64748b" strokeWidth="0.6" />
+          <rect x={x - 5} y={y + 6} width={10} height={9} rx={1.2} fill="#334155" stroke="#64748b" strokeWidth="0.6" />
+          <rect x={x + 7} y={y + 6} width={10} height={9} rx={1.2} fill="#334155" stroke="#64748b" strokeWidth="0.6" />
+          <circle cx={x - 14.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
+          <circle cx={x - 2.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
+          <circle cx={x + 9.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
         </g>
       );
 
