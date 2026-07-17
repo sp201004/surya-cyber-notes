@@ -396,6 +396,7 @@ const renderUniqueIsometricObject = (
     case 'mystery-chest-cs101':
     case 'mystery-chest-linux':
     case 'mystery-chest-windows':
+    case 'mystery-chest-cli':
       return (
         <g id="mystery-chest-scene">
           <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
@@ -1536,10 +1537,11 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
-    // CS101 M2 — Linux Fundamentals (Parts 1–3): terminal window with a Tux glyph
+    // CS101 M2 — Linux Fundamentals (Parts 1–3) + M4 Linux Shells: terminal window with a Tux glyph
     case 'linux-fundamentals-1':
     case 'linux-fundamentals-2':
     case 'linux-fundamentals-3':
+    case 'linux-shells':
       return (
         <g id="linux-terminal-scene">
           <ellipse cx={x} cy={y + 17} rx={20} ry={7} fill="rgba(250, 204, 21, 0.2)" filter="blur(3px)" />
@@ -1602,6 +1604,40 @@ const renderUniqueIsometricObject = (
           <circle cx={x - 14.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
           <circle cx={x - 2.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
           <circle cx={x + 9.5} cy={y + 8.5} r={0.9} fill="#9fef00" />
+        </g>
+      );
+
+    // CS101 M4 — Windows Command Line: cmd.exe terminal window with a C:\> prompt
+    case 'windows-command-line':
+      return (
+        <g id="windows-cmd-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          <rect x={x - 16} y={y - 13} width={32} height={24} rx={2} fill="#0b1220" stroke="#38bdf8" strokeWidth="1.2" />
+          <rect x={x - 16} y={y - 13} width={32} height={5} rx={2} fill="#1e293b" />
+          <circle cx={x - 13} cy={y - 10.5} r={0.9} fill="#ef4444" />
+          <circle cx={x - 10} cy={y - 10.5} r={0.9} fill="#eab308" />
+          <circle cx={x - 7} cy={y - 10.5} r={0.9} fill="#22c55e" />
+          {/* C:\> prompt with a blinking-style cursor block */}
+          <text x={x - 12} y={y + 1} fontSize="6" fill="#e2e8f0" fontFamily="monospace" fontWeight="bold">{'C:\\>'}</text>
+          <rect x={x + 2} y={y - 4} width={4} height={6} fill="#9fef00" />
+          <line x1={x - 12} y1={y + 6} x2={x + 6} y2={y + 6} stroke="#38bdf8" strokeWidth="1" strokeLinecap="round" opacity="0.55" />
+        </g>
+      );
+
+    // CS101 M4 — Windows PowerShell: dark-blue PowerShell console with a PS >_ prompt
+    case 'windows-powershell':
+      return (
+        <g id="windows-powershell-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(37, 99, 235, 0.28)" filter="blur(3px)" />
+          <rect x={x - 16} y={y - 13} width={32} height={24} rx={2} fill="#012456" stroke="#3b82f6" strokeWidth="1.2" />
+          <rect x={x - 16} y={y - 13} width={32} height={5} rx={2} fill="#1e3a8a" />
+          <circle cx={x - 13} cy={y - 10.5} r={0.9} fill="#ef4444" />
+          <circle cx={x - 10} cy={y - 10.5} r={0.9} fill="#eab308" />
+          <circle cx={x - 7} cy={y - 10.5} r={0.9} fill="#22c55e" />
+          {/* PS >_ prompt */}
+          <text x={x - 12} y={y + 1} fontSize="6" fill="#e0f2fe" fontFamily="monospace" fontWeight="bold">{'PS>'}</text>
+          <rect x={x - 1} y={y - 4} width={4} height={6} fill="#7dd3fc" />
+          <line x1={x - 12} y1={y + 6} x2={x + 6} y2={y + 6} stroke="#60a5fa" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
         </g>
       );
 

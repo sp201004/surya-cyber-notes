@@ -107,6 +107,11 @@ import cs101WinFund3 from './tryhackme/cyber-security-101/module3-windows-and-ad
 import cs101ActiveDirectory from './tryhackme/cyber-security-101/module3-windows-and-ad-fundamentals/active-directory-basics.md?raw';
 import cs101WinChest from './tryhackme/cyber-security-101/module3-windows-and-ad-fundamentals/mystery-chest.md?raw';
 
+import cs101WinCmd from './tryhackme/cyber-security-101/module4-command-line/windows-command-line.md?raw';
+import cs101PowerShell from './tryhackme/cyber-security-101/module4-command-line/windows-powershell.md?raw';
+import cs101LinuxShells from './tryhackme/cyber-security-101/module4-command-line/linux-shells.md?raw';
+import cs101CliChest from './tryhackme/cyber-security-101/module4-command-line/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -214,4 +219,9 @@ export const notesByTopicId: Record<string, string> = {
   'windows-fundamentals-3': cs101WinFund3,
   'active-directory-basics': cs101ActiveDirectory,
   'mystery-chest-windows': cs101WinChest,
+
+  'windows-command-line': cs101WinCmd,
+  'windows-powershell': cs101PowerShell,
+  'linux-shells': cs101LinuxShells,
+  'mystery-chest-cli': cs101CliChest,
 };

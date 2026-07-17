@@ -493,6 +493,161 @@ const winChestRoom: Topic = {
   ]
 };
 
+const COMMAND_LINE_MODULE_ID = 'command-line';
+
+// Module 4 · Room 1 — Windows Command Line (cmd.exe: system info, networking, files, processes).
+const winCmdRoom: Topic = {
+  id: 'windows-command-line',
+  moduleId: COMMAND_LINE_MODULE_ID,
+  title: 'Windows Command Line',
+  description: 'Master the Windows Command Prompt (cmd.exe): system information, network troubleshooting, file and disk management, process control, and maintenance commands.',
+  status: 'unlocked',
+  iconType: 'win-cli',
+  content: '',
+  realWorldCallout: {
+    title: 'Enumerating a Headless Server',
+    concept: 'GUI-Free Investigation',
+    scenario: 'Connected over SSH to a Windows server with no desktop, an analyst runs systeminfo, ipconfig /all, netstat -abon, and tasklist to map the OS build, network, listening ports, and running processes before deciding the next move.',
+    relevance: 'The Windows Command Line is often the only interface available on servers and remote sessions — the same commands drive administration, troubleshooting, and security enumeration.'
+  },
+  mindmap: [
+    { id: 'wincmd', label: 'Windows CLI', description: 'cmd.exe — the traditional Windows command interpreter', x: 50, y: 12, connections: ['sys', 'net', 'files', 'proc'] },
+    { id: 'sys', label: 'System Info', description: 'set, ver, systeminfo, help, cls', x: 16, y: 50 },
+    { id: 'net', label: 'Networking', description: 'ipconfig, ping, tracert, nslookup, netstat', x: 39, y: 58 },
+    { id: 'files', label: 'Files & Disk', description: 'cd, dir, tree, mkdir, type, copy, move, del', x: 62, y: 58 },
+    { id: 'proc', label: 'Processes', description: 'tasklist and taskkill manage running processes', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'cmd.exe is the default Windows command-line interpreter; a CLI is faster, lighter, and scriptable versus a GUI.',
+    'set shows environment variables, ver the version, and systeminfo the full system detail.',
+    'ipconfig /all reveals MAC/DNS/DHCP; ping tests reachability; tracert maps the route; nslookup resolves DNS.',
+    'netstat -abon correlates ports, connections, executables, and PIDs.',
+    'cd, dir, tree, mkdir, rmdir, type, more, copy, move, del, and erase manage files and directories.',
+    'tasklist lists processes and taskkill /PID terminates them; /? shows help for any command.'
+  ],
+  quiz: [
+    { id: 'q-wcmd-1', question: 'What is the default command-line interpreter in Windows?', type: 'text', correctAnswer: 'cmd.exe', hint: 'The traditional Command Prompt executable.' },
+    { id: 'q-wcmd-2', question: 'Which command shows detailed network config including the MAC address?', type: 'text', correctAnswer: 'ipconfig /all', hint: 'Look at the Physical Address field.' },
+    { id: 'q-wcmd-3', question: 'Which command lists running processes with their PIDs?', type: 'text', correctAnswer: 'tasklist', hint: 'Its counterpart is taskkill.' },
+    { id: 'q-wcmd-4', question: 'Which switch aborts a scheduled shutdown?', type: 'text', correctAnswer: 'shutdown /a', hint: '/a = abort.' },
+    { id: 'q-wcmd-5', question: 'Which netstat option set shows connections, executables, and PIDs numerically?', type: 'text', correctAnswer: 'netstat -abon', hint: 'Four flags combined.' }
+  ]
+};
+
+// Module 4 · Room 2 — Windows PowerShell (object-oriented shell, cmdlets, pipeline).
+const powershellRoom: Topic = {
+  id: 'windows-powershell',
+  moduleId: COMMAND_LINE_MODULE_ID,
+  title: 'Windows PowerShell',
+  description: 'Learn the object-oriented PowerShell shell: Verb-Noun cmdlets, discovery and help, the object pipeline for sorting/filtering, and real-time analysis of processes, connections, hashes, and ADS.',
+  status: 'unlocked',
+  iconType: 'win-cli',
+  content: '',
+  realWorldCallout: {
+    title: 'Tracing a Rogue Connection',
+    concept: 'Object Pipeline Investigation',
+    scenario: 'An analyst spots an unexpected outbound connection with Get-NetTCPConnection, reads its OwningProcess property, and pipes it to Get-Process to reveal the exact program responsible — no text parsing needed.',
+    relevance: 'PowerShell passes structured objects through the pipeline, giving defenders precise, scriptable visibility into processes, connections, file hashes, and hidden data streams.'
+  },
+  mindmap: [
+    { id: 'ps', label: 'PowerShell', description: 'Object-oriented shell and scripting language', x: 50, y: 12, connections: ['verbnoun', 'discover', 'pipe', 'analysis'] },
+    { id: 'verbnoun', label: 'Verb-Noun', description: 'Cmdlets like Get-Process, Set-Location', x: 16, y: 50 },
+    { id: 'discover', label: 'Discovery', description: 'Get-Command, Get-Help, Get-Alias', x: 39, y: 58 },
+    { id: 'pipe', label: 'Object Pipeline', description: 'Sort-Object, Where-Object, Select-Object, Select-String', x: 62, y: 58 },
+    { id: 'analysis', label: 'Live Analysis', description: 'Get-Process, Get-Service, Get-NetTCPConnection, Get-FileHash', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'PowerShell is object-oriented: the pipeline passes structured objects (properties + methods), not plain text.',
+    'Cmdlets follow the Verb-Noun convention (e.g. Get-Process, Set-Location, Remove-Item).',
+    'Get-Command, Get-Help, and Get-Alias discover commands and explain usage.',
+    'Sort-Object, Where-Object, Select-Object, and Select-String sort, filter, select, and search objects.',
+    'Get-ComputerInfo, Get-LocalUser, Get-NetIPConfiguration enumerate the system and network.',
+    'Live analysis: Get-Process, Get-Service, Get-NetTCPConnection (OwningProcess), Get-FileHash, and Get-Item -Stream *; Invoke-Command runs remotely.'
+  ],
+  quiz: [
+    { id: 'q-ps-1', question: 'What data model makes PowerShell different from traditional text shells?', type: 'text', correctAnswer: 'Object-oriented', hint: 'It passes these through the pipeline instead of text.' },
+    { id: 'q-ps-2', question: 'What naming convention do PowerShell cmdlets follow?', type: 'text', correctAnswer: 'Verb-Noun', hint: 'e.g. Get-Process.' },
+    { id: 'q-ps-3', question: 'Which cmdlet is aliased by "echo"?', type: 'text', correctAnswer: 'Write-Output', hint: 'echo → this cmdlet.' },
+    { id: 'q-ps-4', question: 'Which Get-NetTCPConnection property identifies the process behind a connection?', type: 'text', correctAnswer: 'OwningProcess', hint: 'Correlate it with Get-Process.' },
+    { id: 'q-ps-5', question: 'Which cmdlet computes a file hash (SHA256 by default)?', type: 'text', correctAnswer: 'Get-FileHash', hint: 'Used for integrity checks.' }
+  ]
+};
+
+// Module 4 · Room 3 — Linux Shells (shells, Bash/Fish/Zsh, shell scripting).
+const linuxShellsRoom: Topic = {
+  id: 'linux-shells',
+  moduleId: COMMAND_LINE_MODULE_ID,
+  title: 'Linux Shells',
+  description: 'Understand Linux shells and scripting: core commands, Bash vs Fish vs Zsh, and writing Bash scripts with shebangs, variables, user input, loops, and conditionals.',
+  status: 'unlocked',
+  iconType: 'linux-cli',
+  content: '',
+  realWorldCallout: {
+    title: 'Automating the Log Hunt',
+    concept: 'Scripting Repetitive Work',
+    scenario: 'Instead of manually grepping dozens of files, an analyst writes a short Bash script that loops over every .log file in /var/log searching for a keyword, turning a tedious manual task into one reusable command.',
+    relevance: 'Shell scripting converts everyday commands into automated tools — the same automation administrators and security professionals rely on daily.'
+  },
+  mindmap: [
+    { id: 'shell', label: 'Linux Shells', description: 'The interface between the user and the OS', x: 50, y: 12, connections: ['cmds', 'types', 'script'] },
+    { id: 'cmds', label: 'Core Commands', description: 'pwd, cd, ls, cat, grep', x: 20, y: 52 },
+    { id: 'types', label: 'Shell Types', description: 'Bash (default), Fish (friendly), Zsh (customizable)', x: 50, y: 58 },
+    { id: 'script', label: 'Scripting', description: 'shebang, variables, read, loops, conditionals', x: 80, y: 52 }
+  ],
+  keyTakeaways: [
+    'A shell is the interface between the user and the OS via the CLI; Bash is the common default.',
+    'Core commands: pwd, cd, ls, cat, grep; check the shell with echo $SHELL and /etc/shells.',
+    'Bash is powerful and portable, Fish is friendly with built-in syntax highlighting, Zsh is highly customizable.',
+    'Scripts start with the shebang #!/bin/bash, use $variables and read for input.',
+    'Make a script executable with chmod +x, then run it with ./script.sh.',
+    'Loops use for/do/done, conditionals use if/elif/else/fi, and && chains conditions with logical AND.'
+  ],
+  quiz: [
+    { id: 'q-ls-1', question: 'What is the facilitator between the user and the operating system called?', type: 'text', correctAnswer: 'Shell', hint: 'The topic of this room.' },
+    { id: 'q-ls-2', question: 'What is the default shell on most Linux distributions?', type: 'text', correctAnswer: 'Bash', hint: 'Bourne Again Shell.' },
+    { id: 'q-ls-3', question: 'Which shell has built-in syntax highlighting out of the box?', type: 'text', correctAnswer: 'Fish', hint: 'Friendly Interactive Shell.' },
+    { id: 'q-ls-4', question: 'What is the shebang used in a Bash script?', type: 'text', correctAnswer: '#!/bin/bash', hint: 'First line of the script.' },
+    { id: 'q-ls-5', question: 'Which command gives a script executable permission?', type: 'text', correctAnswer: 'chmod +x', hint: 'Then run with ./script.sh.' }
+  ]
+};
+
+// Module 4 · Room 4 — Mystery Chest (Bonus Revision) for the Command Line module.
+const cliChestRoom: Topic = {
+  id: 'mystery-chest-cli',
+  moduleId: COMMAND_LINE_MODULE_ID,
+  title: 'Mystery Chest',
+  description: 'A bonus revision vault for the whole Command Line module: Windows CMD, PowerShell, and Linux shell references, bash scripting syntax, and a cross-environment command comparison.',
+  status: 'unlocked',
+  iconType: 'mystery-chest',
+  content: '',
+  realWorldCallout: {
+    title: 'The Cross-Platform Cheat Card',
+    concept: 'Transferable CLI Skills',
+    scenario: 'Landing on an unfamiliar host, an analyst recalls that listing a directory is dir in CMD, Get-ChildItem in PowerShell, and ls in Bash — so they can enumerate the system whatever shell is available.',
+    relevance: 'The same core jobs recur in every environment, so knowing how CMD, PowerShell, and Bash map to each other lets you operate on any command line.'
+  },
+  mindmap: [
+    { id: 'chest-cli', label: 'CLI Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['cmd', 'pwsh', 'bash'] },
+    { id: 'cmd', label: 'Windows CMD', description: 'cmd.exe — systeminfo, ipconfig, netstat, tasklist', x: 20, y: 52 },
+    { id: 'pwsh', label: 'PowerShell', description: 'Verb-Noun cmdlets and the object pipeline', x: 50, y: 58 },
+    { id: 'bash', label: 'Linux / Bash', description: 'Shell commands and bash scripting syntax', x: 80, y: 52 }
+  ],
+  keyTakeaways: [
+    'CMD interpreter is cmd.exe; enumerate with systeminfo, ipconfig /all, netstat -abon, tasklist.',
+    'PowerShell cmdlets follow Verb-Noun and pass objects through the pipeline (Where-Object, Sort-Object).',
+    'Linux: check the shell with echo $SHELL and /etc/shells; make scripts runnable with chmod +x then ./script.sh.',
+    'Bash scripts open with #!/bin/bash; use = for string comparison and -eq for numeric comparison.',
+    'Core tasks (list dir, read file, network config, search text) map across CMD, PowerShell, and Bash.',
+    'Command-line skills transfer between operating systems and are central to enumeration and investigation.'
+  ],
+  quiz: [
+    { id: 'q-mcli-1', question: 'What is the default command-line interpreter on Windows?', type: 'text', correctAnswer: 'cmd.exe', hint: 'The Command Prompt.' },
+    { id: 'q-mcli-2', question: 'What naming convention do PowerShell cmdlets use?', type: 'text', correctAnswer: 'Verb-Noun', hint: 'e.g. Get-Content.' },
+    { id: 'q-mcli-3', question: 'Which Bash operator compares numbers (not strings)?', type: 'text', correctAnswer: '-eq', hint: '= is for strings.' },
+    { id: 'q-mcli-4', question: 'Which PowerShell cmdlet is the equivalent of grep / findstr?', type: 'text', correctAnswer: 'Select-String', hint: 'Searches inside files.' }
+  ]
+};
+
 export const CYBER_SECURITY_101_MODULES: Module[] = [
   {
     id: START_MODULE_ID,
@@ -529,6 +684,18 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
       winFund3Room,
       activeDirectoryRoom,
       winChestRoom,
+    ],
+  },
+  {
+    id: COMMAND_LINE_MODULE_ID,
+    title: 'Command Line',
+    description: 'Get fluent at the terminal across platforms — the Windows Command Prompt, object-oriented PowerShell, and Linux shells with Bash scripting — across three hands-on rooms plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      winCmdRoom,
+      powershellRoom,
+      linuxShellsRoom,
+      cliChestRoom,
     ],
   },
   // Future modules are appended here, one object at a time.
