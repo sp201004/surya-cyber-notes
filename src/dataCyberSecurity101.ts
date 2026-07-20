@@ -648,6 +648,319 @@ const cliChestRoom: Topic = {
   ]
 };
 
+const NETWORKING_MODULE_ID = 'networking';
+
+// Module 5 · Room 1 — Networking Concepts (OSI/TCP-IP, IP addressing, TCP/UDP, encapsulation).
+const netConceptsRoom: Topic = {
+  id: 'networking-concepts',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Networking Concepts',
+  description: 'The foundation of networking: the OSI and TCP/IP models, IPv4 addressing and CIDR, private/public IP and NAT, routing, ports, TCP vs UDP, the three-way handshake, and encapsulation.',
+  status: 'unlocked',
+  iconType: 'osi',
+  content: '',
+  realWorldCallout: {
+    title: 'Reading a Packet Layer by Layer',
+    concept: 'The Layered Mental Model',
+    scenario: 'When a connection misbehaves, an analyst reasons in layers — is it a physical link, an IP routing issue at Layer 3, a TCP problem at Layer 4, or an application fault at Layer 7? The OSI model turns a vague "it is slow" into a precise place to look.',
+    relevance: 'Every later networking, web, and security topic builds on the layered model, addressing, and transport concepts introduced here.'
+  },
+  mindmap: [
+    { id: 'net', label: 'Networking', description: 'How devices communicate across networks', x: 50, y: 12, connections: ['models', 'ip', 'transport', 'encap'] },
+    { id: 'models', label: 'OSI & TCP/IP', description: '7 conceptual layers vs 4 practical layers', x: 16, y: 50 },
+    { id: 'ip', label: 'IP & CIDR', description: 'IPv4 addressing, CIDR, private/public, NAT, routing', x: 39, y: 58 },
+    { id: 'transport', label: 'TCP & UDP', description: 'Ports, reliable TCP handshake vs fast UDP', x: 62, y: 58 },
+    { id: 'encap', label: 'Encapsulation', description: 'Headers added down the stack, removed going up', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'OSI has 7 conceptual layers; TCP/IP has 4 practical layers that run the Internet.',
+    'Layer 2 uses MAC addresses (switch); Layer 3 uses IP addresses (router).',
+    'IPv4 is 32 bits in 4 octets; CIDR /24 = 255.255.255.0; private ranges are 10/8, 172.16/12, 192.168/16.',
+    'NAT maps private IPs to public; ports identify applications (80 HTTP, 443 HTTPS, 22 SSH, 53 DNS).',
+    'TCP is reliable and connection-oriented (three-way handshake SYN/SYN-ACK/ACK); UDP is fast and connectionless.',
+    'Encapsulation adds headers going down the stack; decapsulation removes them going up.'
+  ],
+  quiz: [
+    { id: 'q-nc-1', question: 'How many layers does the OSI model have?', type: 'text', correctAnswer: '7', hint: 'TCP/IP has 4.' },
+    { id: 'q-nc-2', question: 'Which layer does a router operate at?', type: 'text', correctAnswer: 'Layer 3', hint: 'The Network layer (IP).' },
+    { id: 'q-nc-3', question: 'What does CIDR /24 equal as a subnet mask?', type: 'text', correctAnswer: '255.255.255.0', hint: 'First 24 bits are network.' },
+    { id: 'q-nc-4', question: 'Which protocol performs the three-way handshake?', type: 'text', correctAnswer: 'TCP', hint: 'Reliable and connection-oriented.' },
+    { id: 'q-nc-5', question: 'Which port does HTTPS use?', type: 'text', correctAnswer: '443', hint: 'HTTP is 80.' }
+  ]
+};
+
+// Module 5 · Room 2 — Networking Essentials (DHCP, ARP, ICMP, routing, NAT).
+const netEssentialsRoom: Topic = {
+  id: 'networking-essentials',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Networking Essentials',
+  description: 'The core protocols that make networks work: DHCP (the DORA process), ARP (IP-to-MAC), ICMP with ping and traceroute, routing and best-path selection, and NAT.',
+  status: 'unlocked',
+  iconType: 'network',
+  content: '',
+  realWorldCallout: {
+    title: 'Joining a Network in Seconds',
+    concept: 'Protocols Working Together',
+    scenario: 'Connect a laptop to Wi-Fi and within seconds DHCP assigns an address, ARP resolves the gateway MAC, routing forwards packets, ICMP confirms connectivity, and NAT lets it reach the Internet — all automatically.',
+    relevance: 'These five protocols move a packet from your device to any server and back, and each is a common troubleshooting and attack surface.'
+  },
+  mindmap: [
+    { id: 'ess', label: 'Core Protocols', description: 'The protocols that deliver a packet end to end', x: 50, y: 12, connections: ['dhcp', 'arp', 'icmp', 'route', 'nat'] },
+    { id: 'dhcp', label: 'DHCP', description: 'Automatic IP config via DORA (UDP 67/68)', x: 12, y: 50 },
+    { id: 'arp', label: 'ARP', description: 'Resolves IP to MAC (broadcast request, unicast reply)', x: 33, y: 58 },
+    { id: 'icmp', label: 'ICMP', description: 'Diagnostics: ping (Type 8/0), traceroute (Type 11)', x: 55, y: 58 },
+    { id: 'route', label: 'Routing', description: 'Best-path selection; RIP, OSPF, EIGRP, BGP', x: 76, y: 55 },
+    { id: 'nat', label: 'NAT', description: 'Many private IPs share one public IP', x: 88, y: 48 }
+  ],
+  keyTakeaways: [
+    'DHCP automatically assigns IP, subnet, gateway, and DNS using the DORA process (Discover, Offer, Request, Acknowledge) over UDP 67/68.',
+    'ARP resolves an IP address to a MAC address with a broadcast request and unicast reply, and caches the result.',
+    'ICMP is a Layer 3 diagnostic protocol with no ports; ping uses Type 8/0 and traceroute relies on Type 11.',
+    'Traceroute increases TTL step by step so each router returns a Time Exceeded message.',
+    'Routing selects the best path via routing tables and metrics; RIP uses hop count, OSPF uses cost, BGP runs the Internet.',
+    'NAT lets many private devices share one public IP; home routers use PAT.'
+  ],
+  quiz: [
+    { id: 'q-ne-1', question: 'What are the four steps of the DHCP DORA process?', type: 'text', correctAnswer: 'Discover, Offer, Request, Acknowledge', hint: 'D-O-R-A.' },
+    { id: 'q-ne-2', question: 'Which protocol resolves an IP address to a MAC address?', type: 'text', correctAnswer: 'ARP', hint: 'Address Resolution Protocol.' },
+    { id: 'q-ne-3', question: 'Which ICMP message type does traceroute rely on?', type: 'text', correctAnswer: 'Type 11', hint: 'Time Exceeded (TTL expired).' },
+    { id: 'q-ne-4', question: 'Which routing protocol powers the Internet between ISPs?', type: 'text', correctAnswer: 'BGP', hint: 'Border Gateway Protocol.' },
+    { id: 'q-ne-5', question: 'What does NAT stand for?', type: 'text', correctAnswer: 'Network Address Translation', hint: 'Private to public IP.' }
+  ]
+};
+
+// Module 5 · Room 3 — Networking Core Protocols (DNS, WHOIS, HTTP(S), FTP, email).
+const netCoreRoom: Topic = {
+  id: 'networking-core-protocols',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Networking Core Protocols',
+  description: 'The Application-Layer protocols of everyday Internet use: DNS and WHOIS, HTTP and HTTPS with methods and status codes, FTP, and the email trio SMTP, POP3, and IMAP — each with its default port.',
+  status: 'unlocked',
+  iconType: 'web',
+  content: '',
+  realWorldCallout: {
+    title: 'What Really Happens on "Enter"',
+    concept: 'Application-Layer Conversations',
+    scenario: 'Typing a URL triggers a DNS lookup to find the IP, a TCP connection, then an HTTP or HTTPS request and response — one of many client-server conversations that also power email (SMTP/POP3/IMAP) and file transfer (FTP).',
+    relevance: 'Knowing each protocol\'s job, default port, and whether it encrypts data underpins web, email, and network security work.'
+  },
+  mindmap: [
+    { id: 'core', label: 'Application Protocols', description: 'Client-server request/response conversations', x: 50, y: 12, connections: ['dns', 'http', 'ftp', 'email'] },
+    { id: 'dns', label: 'DNS & WHOIS', description: 'Resolve names to IPs (53); look up domain ownership', x: 16, y: 50 },
+    { id: 'http', label: 'HTTP / HTTPS', description: 'Web traffic on 80 / 443; methods and status codes', x: 39, y: 58 },
+    { id: 'ftp', label: 'FTP', description: 'File transfer on port 21 (control + data)', x: 62, y: 58 },
+    { id: 'email', label: 'Email', description: 'SMTP send (25), POP3 download (110), IMAP sync (143)', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'DNS resolves domain names to IPs on port 53 (UDP by default); records include A, AAAA, CNAME, MX, TXT, NS.',
+    'WHOIS shows domain ownership and registration details; DNS gives location, WHOIS gives identity.',
+    'HTTP (80) is plain text; HTTPS (443) adds TLS. Methods map to CRUD: GET, POST, PUT, DELETE.',
+    'HTTP status codes group by first digit: 2xx success, 3xx redirect, 4xx client error, 5xx server error.',
+    'FTP (21) transfers files over separate control and data channels and is unencrypted.',
+    'Email splits by job: SMTP sends (25), POP3 downloads (110), IMAP synchronises (143).'
+  ],
+  quiz: [
+    { id: 'q-ncp-1', question: 'Which port does DNS use?', type: 'text', correctAnswer: '53', hint: 'UDP by default.' },
+    { id: 'q-ncp-2', question: 'Which DNS record maps a domain to its mail server?', type: 'text', correctAnswer: 'MX', hint: 'Mail eXchange.' },
+    { id: 'q-ncp-3', question: 'Which port does HTTPS use?', type: 'text', correctAnswer: '443', hint: 'HTTP + TLS.' },
+    { id: 'q-ncp-4', question: 'Which email protocol synchronises mail across multiple devices?', type: 'text', correctAnswer: 'IMAP', hint: 'Keeps mail on the server (port 143).' },
+    { id: 'q-ncp-5', question: 'Which HTTP method retrieves data without modifying it?', type: 'text', correctAnswer: 'GET', hint: 'The "read" of CRUD.' }
+  ]
+};
+
+// Module 5 · Room 4 — Networking Secure Protocols (TLS, HTTPS, secure email, SSH, VPN).
+const netSecureRoom: Topic = {
+  id: 'networking-secure-protocols',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Networking Secure Protocols',
+  description: 'How encryption is added to networking: the CIA triad, SSL vs TLS, certificates and CAs, HTTPS and the TLS handshake, secure email (SMTPS/POP3S/IMAPS), SSH, SFTP, FTPS, and VPNs.',
+  status: 'unlocked',
+  iconType: 'shield',
+  content: '',
+  realWorldCallout: {
+    title: 'From Plaintext to Ciphertext',
+    concept: 'Wrapping Legacy Protocols',
+    scenario: 'On open Wi-Fi, plain HTTP or IMAP would expose passwords to anyone sniffing packets. Wrapping the same traffic in TLS turns readable credentials into ciphertext, and Wireshark then shows only "Application Data".',
+    relevance: 'Secure protocols add confidentiality, integrity, and authentication to legacy protocols — the backbone of safe web browsing, email, remote access, and file transfer.'
+  },
+  mindmap: [
+    { id: 'sec', label: 'Secure Protocols', description: 'Adding confidentiality, integrity, authentication', x: 50, y: 12, connections: ['tls', 'https', 'ssh', 'vpn'] },
+    { id: 'tls', label: 'TLS & Certs', description: 'Replaced SSL; CA-signed certificates prove identity', x: 16, y: 50 },
+    { id: 'https', label: 'HTTPS & Email', description: 'HTTPS 443; SMTPS 465/587, POP3S 995, IMAPS 993', x: 39, y: 58 },
+    { id: 'ssh', label: 'SSH / SFTP', description: 'Encrypted remote login (22) and file transfer', x: 62, y: 58 },
+    { id: 'vpn', label: 'VPN', description: 'Encrypted tunnels: site-to-site and remote-access', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'The CIA triad — Confidentiality, Integrity, Authentication — defines secure communication.',
+    'TLS replaced the obsolete SSL; it encrypts only application data, leaving TCP and IP unchanged.',
+    'Certificates prove server identity: a CA signs them via a CSR; self-signed certs are untrusted.',
+    'HTTPS = HTTP + TLS on 443, with a TCP handshake then a TLS handshake; Wireshark needs the key log to decrypt.',
+    'Secure email: SMTPS 465/587, POP3S 995, IMAPS 993; SSH (22) replaced Telnet (23).',
+    'SFTP uses SSH (22), FTPS uses TLS (990); VPNs create encrypted tunnels (site-to-site and remote-access).'
+  ],
+  quiz: [
+    { id: 'q-nsp-1', question: 'Which modern protocol replaced the obsolete SSL?', type: 'text', correctAnswer: 'TLS', hint: 'Transport Layer Security.' },
+    { id: 'q-nsp-2', question: 'What are the three parts of the CIA triad?', type: 'text', correctAnswer: 'Confidentiality, Integrity, Authentication', hint: 'C-I-A.' },
+    { id: 'q-nsp-3', question: 'Which port does HTTPS use?', type: 'text', correctAnswer: '443', hint: 'HTTP over TLS.' },
+    { id: 'q-nsp-4', question: 'Which secure protocol replaced Telnet for remote login?', type: 'text', correctAnswer: 'SSH', hint: 'Port 22.' },
+    { id: 'q-nsp-5', question: 'Does SFTP use SSH or TLS?', type: 'text', correctAnswer: 'SSH', hint: 'FTPS uses TLS; SFTP uses this.' }
+  ]
+};
+
+// Module 5 · Room 5 — Wireshark: The Basics.
+const wiresharkRoom: Topic = {
+  id: 'wireshark-basics',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Wireshark: The Basics',
+  description: 'Analyse captured traffic with Wireshark: the three-pane interface, packet dissection through the OSI layers, display filters, Follow Stream, Export Objects, and Expert Information.',
+  status: 'unlocked',
+  iconType: 'search',
+  content: '',
+  realWorldCallout: {
+    title: 'Seeing the Attack in the Packets',
+    concept: 'Evidence, Not Assumptions',
+    scenario: 'A user reports a slow machine. The analyst opens the PCAP, checks Expert Information, filters to HTTP, follows the stream, finds a malware download, and uses Export Objects to pull the file out for analysis.',
+    relevance: 'Wireshark turns invisible traffic into readable evidence — a foundational skill for SOC, incident response, malware analysis, and forensics.'
+  },
+  mindmap: [
+    { id: 'ws', label: 'Wireshark', description: 'GUI network protocol analyzer', x: 50, y: 12, connections: ['panes', 'filters', 'stream', 'expert'] },
+    { id: 'panes', label: 'Three Panes', description: 'Packet List, Packet Details, Packet Bytes', x: 16, y: 50 },
+    { id: 'filters', label: 'Display Filters', description: 'http, tcp.port==80, ip.addr==... narrow the capture', x: 39, y: 58 },
+    { id: 'stream', label: 'Follow Stream', description: 'Reconstructs a full TCP/UDP/HTTP conversation', x: 62, y: 58 },
+    { id: 'expert', label: 'Export & Expert Info', description: 'Recover files and auto-flag anomalies', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'Wireshark is a GUI packet analyzer; a PCAP file stores captured packets for later analysis.',
+    'The interface has three panes: Packet List (summary), Packet Details (decoded layers), Packet Bytes (raw hex/ASCII).',
+    'Packet dissection maps to OSI: HTTP over TCP over IPv4 over Ethernet.',
+    'Capture filters run before capture; display filters run after and only change the view.',
+    'Follow Stream reconstructs a whole TCP/UDP/HTTP conversation; Export Objects recovers transferred files.',
+    'Expert Information automatically highlights anomalies (retransmissions, duplicate ACKs, malformed packets).'
+  ],
+  quiz: [
+    { id: 'q-ws-1', question: 'What file format stores captured packets?', type: 'text', correctAnswer: 'PCAP', hint: 'Packet Capture (.pcap/.pcapng).' },
+    { id: 'q-ws-2', question: 'Which display filter shows only HTTP traffic?', type: 'text', correctAnswer: 'http', hint: 'Just the protocol name.' },
+    { id: 'q-ws-3', question: 'Which feature reconstructs a full conversation into readable text?', type: 'text', correctAnswer: 'Follow Stream', hint: 'Works on TCP/UDP/HTTP.' },
+    { id: 'q-ws-4', question: 'Which feature recovers transferred files from a capture?', type: 'text', correctAnswer: 'Export Objects', hint: 'Works on HTTP, SMB, TFTP.' },
+    { id: 'q-ws-5', question: 'What is the difference between a capture filter and a display filter?', type: 'text', correctAnswer: 'Capture filter runs before capture; display filter runs after', hint: 'One limits recording, one limits the view.' }
+  ]
+};
+
+// Module 5 · Room 6 — Tcpdump: The Basics.
+const tcpdumpRoom: Topic = {
+  id: 'tcpdump-basics',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Tcpdump: The Basics',
+  description: 'Capture and filter packets from the command line with tcpdump: interfaces, saving/reading PCAPs, host/port/protocol filters, logical operators, TCP-flag filtering, and display formats.',
+  status: 'unlocked',
+  iconType: 'packet',
+  content: '',
+  realWorldCallout: {
+    title: 'Capturing on a Headless Server',
+    concept: 'CLI Packet Capture',
+    scenario: 'During an incident on a server with no GUI, a responder runs tcpdump to capture suspicious traffic to a PCAP, filters it by host and port, then hands the file to Wireshark for deeper analysis.',
+    relevance: 'tcpdump is the go-to capture tool wherever a GUI is unavailable, and its filter concepts carry straight over to Wireshark and tshark.'
+  },
+  mindmap: [
+    { id: 'td', label: 'tcpdump', description: 'Command-line packet analyzer (libpcap)', x: 50, y: 12, connections: ['capture', 'filter', 'flags', 'display'] },
+    { id: 'capture', label: 'Capture', description: '-i interface, -w write, -r read, -c count', x: 16, y: 50 },
+    { id: 'filter', label: 'Filters', description: 'host, src/dst, port, protocol, and/or/not', x: 39, y: 58 },
+    { id: 'flags', label: 'TCP Flags', description: 'Match SYN/ACK to spot scans and handshakes', x: 62, y: 58 },
+    { id: 'display', label: 'Display', description: '-q, -e, -A, -xx, -X output formats', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'tcpdump is a command-line packet analyzer built on libpcap; capture needs sudo (raw socket access).',
+    'Core flags: -i interface, -w write, -r read, -c count, -n/-nn numeric, -v verbose.',
+    'Filter by host, src/dst host, port, and protocol (tcp, udp, icmp, arp).',
+    'Combine or exclude conditions with and, or, not.',
+    'Advanced filters target packet length (greater/less), header bytes (proto[offset:size]), and TCP flags.',
+    'Display formats: -q quick, -e MAC header, -A ASCII, -xx hex, -X hex plus ASCII.'
+  ],
+  quiz: [
+    { id: 'q-td-1', question: 'Which library does tcpdump use to capture packets?', type: 'text', correctAnswer: 'libpcap', hint: 'Windows uses WinPcap/Npcap.' },
+    { id: 'q-td-2', question: 'Which flag writes captured packets to a file?', type: 'text', correctAnswer: '-w', hint: '-r reads them back.' },
+    { id: 'q-td-3', question: 'Which flag limits the number of captured packets?', type: 'text', correctAnswer: '-c', hint: 'e.g. -c 20.' },
+    { id: 'q-td-4', question: 'Which flag disables hostname and port-name resolution?', type: 'text', correctAnswer: '-nn', hint: 'Double n for numeric.' },
+    { id: 'q-td-5', question: 'Which flag shows hex and ASCII together?', type: 'text', correctAnswer: '-X', hint: 'Best for investigations.' }
+  ]
+};
+
+// Module 5 · Room 7 — Nmap: The Basics.
+const nmapRoom: Topic = {
+  id: 'nmap-basics',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Nmap: The Basics',
+  description: 'Reconnaissance with Nmap: host discovery, TCP connect and SYN stealth scans, UDP scans, service version and OS detection, timing templates, and saving reports.',
+  status: 'unlocked',
+  iconType: 'search',
+  content: '',
+  realWorldCallout: {
+    title: 'Mapping an Unknown Network',
+    concept: 'Reconnaissance First',
+    scenario: 'Facing 500 hosts, a tester runs a ping scan to find the ~42 that are live, then SYN-scans those for open ports, detects service versions, and researches each version for known CVEs before going further.',
+    relevance: 'You cannot secure or attack what you have not discovered — Nmap is the first tool in almost every engagement.'
+  },
+  mindmap: [
+    { id: 'nm', label: 'Nmap', description: 'Network scanning and security auditing', x: 50, y: 12, connections: ['host', 'port', 'detect', 'output'] },
+    { id: 'host', label: 'Host Discovery', description: '-sn ping scan; ARP on LAN, probes on remote', x: 16, y: 50 },
+    { id: 'port', label: 'Port Scanning', description: '-sT connect, -sS stealth, -sU UDP, -p/-p-', x: 39, y: 58 },
+    { id: 'detect', label: 'Detection', description: '-sV versions, -O OS, -A aggressive', x: 62, y: 58 },
+    { id: 'output', label: 'Timing & Output', description: '-T0..T5 timing; -oN/-oX/-oG/-oA reports', x: 85, y: 50 }
+  ],
+  keyTakeaways: [
+    'Nmap discovers live hosts, open ports, services, versions, and operating systems; run with sudo for raw-packet scans.',
+    '-sn does host discovery only; -sL lists targets without sending packets.',
+    '-sT completes the TCP handshake; -sS is the stealthy half-open default for privileged users; -sU scans UDP.',
+    '-F scans 100 common ports, -p selects ports, -p- scans all 65,535.',
+    '-sV detects versions, -O guesses the OS, and -A bundles OS + version + scripts + traceroute; -Pn skips host discovery.',
+    'Timing runs -T0 (paranoid) to -T5 (insane), default -T3; save results with -oA. Only scan authorised targets.'
+  ],
+  quiz: [
+    { id: 'q-nm-1', question: 'Which Nmap option performs host discovery only?', type: 'text', correctAnswer: '-sn', hint: 'Ping scan, no port scan.' },
+    { id: 'q-nm-2', question: 'Which scan is the stealthy half-open default for privileged users?', type: 'text', correctAnswer: '-sS', hint: 'SYN scan.' },
+    { id: 'q-nm-3', question: 'Which option detects service versions?', type: 'text', correctAnswer: '-sV', hint: 'Maps a port to software + version.' },
+    { id: 'q-nm-4', question: 'Which option scans all 65,535 TCP ports?', type: 'text', correctAnswer: '-p-', hint: 'Dash p dash.' },
+    { id: 'q-nm-5', question: 'Which option saves output in all formats at once?', type: 'text', correctAnswer: '-oA', hint: 'Normal + XML + grepable.' }
+  ]
+};
+
+// Module 5 · Room 8 — Mystery Chest (Bonus Revision) for the Networking module.
+const netChestRoom: Topic = {
+  id: 'mystery-chest-networking',
+  moduleId: NETWORKING_MODULE_ID,
+  title: 'Mystery Chest',
+  description: 'A bonus revision vault for the whole Networking module: OSI/TCP-IP, ports, CIDR and NAT, core and secure protocols, plus Wireshark, tcpdump, and Nmap references.',
+  status: 'unlocked',
+  iconType: 'mystery-chest',
+  content: '',
+  realWorldCallout: {
+    title: 'One Page, Every Layer',
+    concept: 'Pattern Recognition',
+    scenario: 'Before a lab or interview, an analyst skims a single sheet covering the layer models, port tables, CIDR rules, protocol ports, and the three analysis tools — enough to read a capture or plan a scan without hesitation.',
+    relevance: 'Networking rewards pattern recognition; consolidating the module into one reference makes reading captures and planning scans second nature.'
+  },
+  mindmap: [
+    { id: 'chest-net', label: 'Networking Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['fund', 'proto', 'tools'] },
+    { id: 'fund', label: 'Fundamentals', description: 'OSI/TCP-IP, ports, CIDR, NAT, TCP vs UDP', x: 20, y: 52 },
+    { id: 'proto', label: 'Protocols', description: 'DNS/HTTP/FTP/email + secure variants and ports', x: 50, y: 58 },
+    { id: 'tools', label: 'Analysis Tools', description: 'Wireshark filters, tcpdump options, Nmap flags', x: 80, y: 52 }
+  ],
+  keyTakeaways: [
+    'OSI 7 layers vs TCP/IP 4 layers; routing is Layer 3, transport is Layer 4.',
+    'Core ports: 22 SSH, 25 SMTP, 53 DNS, 80 HTTP, 110 POP3, 143 IMAP, 443 HTTPS; secure 465/587, 990, 993, 995.',
+    'Private ranges 10/8, 172.16/12, 192.168/16; CIDR /24 = 255.255.255.0; NAT hides private hosts.',
+    'DHCP (DORA), ARP (IP to MAC), ICMP (ping/traceroute) are the essential support protocols.',
+    'Wireshark uses display filters; tcpdump captures from the CLI (-w/-r); Nmap scans (-sS/-sV/-p-).',
+    'Secure protocols wrap plaintext ones in TLS or SSH for confidentiality, integrity, and authentication.'
+  ],
+  quiz: [
+    { id: 'q-mcn-1', question: 'Which OSI layer performs routing?', type: 'text', correctAnswer: 'Layer 3', hint: 'The Network layer.' },
+    { id: 'q-mcn-2', question: 'Which port does SSH use?', type: 'text', correctAnswer: '22', hint: 'Telnet is 23.' },
+    { id: 'q-mcn-3', question: 'Which tool captures packets from the command line?', type: 'text', correctAnswer: 'tcpdump', hint: 'Built on libpcap.' },
+    { id: 'q-mcn-4', question: 'Which Nmap flag runs a stealth SYN scan?', type: 'text', correctAnswer: '-sS', hint: 'Half-open scan.' }
+  ]
+};
+
 export const CYBER_SECURITY_101_MODULES: Module[] = [
   {
     id: START_MODULE_ID,
@@ -696,6 +1009,22 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
       powershellRoom,
       linuxShellsRoom,
       cliChestRoom,
+    ],
+  },
+  {
+    id: NETWORKING_MODULE_ID,
+    title: 'Networking',
+    description: 'Master networking end to end — the OSI/TCP-IP models and addressing, the core and secure protocols, and the essential traffic-analysis and scanning tools Wireshark, tcpdump, and Nmap — across seven rooms plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      netConceptsRoom,
+      netEssentialsRoom,
+      netCoreRoom,
+      netSecureRoom,
+      wiresharkRoom,
+      tcpdumpRoom,
+      nmapRoom,
+      netChestRoom,
     ],
   },
   // Future modules are appended here, one object at a time.

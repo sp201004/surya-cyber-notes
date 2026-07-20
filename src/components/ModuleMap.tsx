@@ -397,6 +397,7 @@ const renderUniqueIsometricObject = (
     case 'mystery-chest-linux':
     case 'mystery-chest-windows':
     case 'mystery-chest-cli':
+    case 'mystery-chest-networking':
       return (
         <g id="mystery-chest-scene">
           <ellipse cx={x} cy={y + 18} rx={22} ry={8} fill="rgba(234, 179, 8, 0.18)" filter="blur(4px)" />
@@ -1638,6 +1639,100 @@ const renderUniqueIsometricObject = (
           <text x={x - 12} y={y + 1} fontSize="6" fill="#e0f2fe" fontFamily="monospace" fontWeight="bold">{'PS>'}</text>
           <rect x={x - 1} y={y - 4} width={4} height={6} fill="#7dd3fc" />
           <line x1={x - 12} y1={y + 6} x2={x + 6} y2={y + 6} stroke="#60a5fa" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+        </g>
+      );
+
+    // CS101 M5 — Networking (Concepts / Essentials / Core Protocols): connected node graph
+    case 'networking-concepts':
+    case 'networking-essentials':
+    case 'networking-core-protocols':
+      return (
+        <g id="network-graph-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          {/* Links from a central hub to four surrounding nodes */}
+          <line x1={x} y1={y} x2={x - 12} y2={y - 9} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
+          <line x1={x} y1={y} x2={x + 12} y2={y - 9} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
+          <line x1={x} y1={y} x2={x - 13} y2={y + 8} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
+          <line x1={x} y1={y} x2={x + 13} y2={y + 8} stroke="#38bdf8" strokeWidth="1" opacity="0.8" />
+          {/* Outer nodes */}
+          <circle cx={x - 12} cy={y - 9} r={3} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.6" />
+          <circle cx={x + 12} cy={y - 9} r={3} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.6" />
+          <circle cx={x - 13} cy={y + 8} r={3} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.6" />
+          <circle cx={x + 13} cy={y + 8} r={3} fill="#0ea5e9" stroke="#e0f2fe" strokeWidth="0.6" />
+          {/* Central hub node */}
+          <circle cx={x} cy={y} r={5} fill="#9fef00" stroke="#ecfccb" strokeWidth="0.8" filter="drop-shadow(0 0 3px rgba(159,239,0,0.7))" />
+        </g>
+      );
+
+    // CS101 M5 — Networking Secure Protocols: shield with a padlock
+    case 'networking-secure-protocols':
+      return (
+        <g id="secure-protocols-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(34, 197, 94, 0.2)" filter="blur(3px)" />
+          {/* Shield body */}
+          <path d={`M ${x} ${y - 14} L ${x - 12} ${y - 9} L ${x - 12} ${y + 1} C ${x - 12} ${y + 9} ${x} ${y + 14} ${x} ${y + 14} C ${x} ${y + 14} ${x + 12} ${y + 9} ${x + 12} ${y + 1} L ${x + 12} ${y - 9} Z`} fill="url(#shield-grad-left)" stroke="#15803d" strokeWidth="0.8" />
+          <path d={`M ${x} ${y - 14} L ${x + 12} ${y - 9} L ${x + 12} ${y + 1} C ${x + 12} ${y + 9} ${x} ${y + 14} ${x} ${y + 14} Z`} fill="#16a34a" opacity="0.55" />
+          {/* Padlock body and shackle */}
+          <rect x={x - 4} y={y - 3} width={8} height={7} rx={1.2} fill="#0b1220" stroke="#bbf7d0" strokeWidth="0.6" />
+          <path d={`M ${x - 2.5} ${y - 3} L ${x - 2.5} ${y - 5.5} C ${x - 2.5} ${y - 8} ${x + 2.5} ${y - 8} ${x + 2.5} ${y - 5.5} L ${x + 2.5} ${y - 3}`} fill="none" stroke="#bbf7d0" strokeWidth="1" />
+          <circle cx={x} cy={y + 0.3} r={1} fill="#9fef00" />
+        </g>
+      );
+
+    // CS101 M5 — Wireshark: shark fin cutting through packet "water" with a magnifier
+    case 'wireshark-basics':
+      return (
+        <g id="wireshark-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.22)" filter="blur(3px)" />
+          {/* Water surface line */}
+          <line x1={x - 15} y1={y + 6} x2={x + 15} y2={y + 6} stroke="#0ea5e9" strokeWidth="1" opacity="0.6" />
+          {/* Packet blips along the surface */}
+          <rect x={x - 13} y={y + 3} width={2.5} height={2.5} fill="#38bdf8" />
+          <rect x={x + 8} y={y + 3} width={2.5} height={2.5} fill="#38bdf8" />
+          <rect x={x + 12} y={y + 3} width={2.5} height={2.5} fill="#38bdf8" />
+          {/* Shark fin */}
+          <path d={`M ${x - 4} ${y + 6} C ${x - 3} ${y - 6} ${x + 5} ${y - 9} ${x + 7} ${y + 6} Z`} fill="#1e3a5f" stroke="#7dd3fc" strokeWidth="0.8" />
+          {/* Magnifier lens over the fin */}
+          <circle cx={x + 2} cy={y - 3} r={5.5} fill="rgba(56,189,248,0.25)" stroke="#e2e8f0" strokeWidth="1.6" filter="drop-shadow(0 0 3px rgba(56,189,248,0.8))" />
+          <line x1={x + 6} y1={y + 1} x2={x + 11} y2={y + 6} stroke="#e2e8f0" strokeWidth="2" strokeLinecap="round" />
+        </g>
+      );
+
+    // CS101 M5 — Tcpdump: terminal window streaming captured packets
+    case 'tcpdump-basics':
+      return (
+        <g id="tcpdump-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(148, 163, 184, 0.2)" filter="blur(3px)" />
+          <rect x={x - 16} y={y - 13} width={32} height={24} rx={2} fill="#0b1220" stroke="#64748b" strokeWidth="1.2" />
+          <rect x={x - 16} y={y - 13} width={32} height={5} rx={2} fill="#1e293b" />
+          <circle cx={x - 13} cy={y - 10.5} r={0.9} fill="#ef4444" />
+          <circle cx={x - 10} cy={y - 10.5} r={0.9} fill="#eab308" />
+          <circle cx={x - 7} cy={y - 10.5} r={0.9} fill="#22c55e" />
+          {/* Streaming packet rows */}
+          <rect x={x - 12} y={y - 5} width={5} height={2} fill="#9fef00" />
+          <line x1={x - 5} y1={y - 4} x2={x + 11} y2={y - 4} stroke="#38bdf8" strokeWidth="1" opacity="0.7" />
+          <rect x={x - 12} y={y - 1} width={5} height={2} fill="#9fef00" />
+          <line x1={x - 5} y1={y} x2={x + 8} y2={y} stroke="#38bdf8" strokeWidth="1" opacity="0.7" />
+          <rect x={x - 12} y={y + 3} width={5} height={2} fill="#9fef00" />
+          <line x1={x - 5} y1={y + 4} x2={x + 10} y2={y + 4} stroke="#38bdf8" strokeWidth="1" opacity="0.7" />
+        </g>
+      );
+
+    // CS101 M5 — Nmap: radar screen sweeping for hosts
+    case 'nmap-basics':
+      return (
+        <g id="nmap-radar-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(34, 197, 94, 0.18)" filter="blur(3px)" />
+          <circle cx={x} cy={y - 1} r={14} fill="#04240f" stroke="#22c55e" strokeWidth="1.2" />
+          <circle cx={x} cy={y - 1} r={9} fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.5" />
+          <circle cx={x} cy={y - 1} r={4.5} fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.5" />
+          <line x1={x - 14} y1={y - 1} x2={x + 14} y2={y - 1} stroke="#22c55e" strokeWidth="0.4" opacity="0.4" />
+          <line x1={x} y1={y - 15} x2={x} y2={y + 13} stroke="#22c55e" strokeWidth="0.4" opacity="0.4" />
+          {/* Sweep wedge */}
+          <path d={`M ${x} ${y - 1} L ${x} ${y - 15} A 14 14 0 0 1 ${x + 12} ${y + 6} Z`} fill="#22c55e" opacity="0.25" />
+          {/* Discovered host blips */}
+          <circle cx={x + 6} cy={y - 6} r={1.6} fill="#9fef00" filter="drop-shadow(0 0 3px #9fef00)" />
+          <circle cx={x - 5} cy={y + 4} r={1.3} fill="#4ade80" />
         </g>
       );
 

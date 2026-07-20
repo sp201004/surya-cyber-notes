@@ -112,6 +112,15 @@ import cs101PowerShell from './tryhackme/cyber-security-101/module4-command-line
 import cs101LinuxShells from './tryhackme/cyber-security-101/module4-command-line/linux-shells.md?raw';
 import cs101CliChest from './tryhackme/cyber-security-101/module4-command-line/mystery-chest.md?raw';
 
+import cs101NetConcepts from './tryhackme/cyber-security-101/module5-networking/networking-concepts.md?raw';
+import cs101NetEssentials from './tryhackme/cyber-security-101/module5-networking/networking-essentials.md?raw';
+import cs101NetCore from './tryhackme/cyber-security-101/module5-networking/networking-core-protocols.md?raw';
+import cs101NetSecure from './tryhackme/cyber-security-101/module5-networking/networking-secure-protocols.md?raw';
+import cs101Wireshark from './tryhackme/cyber-security-101/module5-networking/wireshark-basics.md?raw';
+import cs101Tcpdump from './tryhackme/cyber-security-101/module5-networking/tcpdump-basics.md?raw';
+import cs101Nmap from './tryhackme/cyber-security-101/module5-networking/nmap-basics.md?raw';
+import cs101NetChest from './tryhackme/cyber-security-101/module5-networking/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -224,4 +233,13 @@ export const notesByTopicId: Record<string, string> = {
   'windows-powershell': cs101PowerShell,
   'linux-shells': cs101LinuxShells,
   'mystery-chest-cli': cs101CliChest,
+
+  'networking-concepts': cs101NetConcepts,
+  'networking-essentials': cs101NetEssentials,
+  'networking-core-protocols': cs101NetCore,
+  'networking-secure-protocols': cs101NetSecure,
+  'wireshark-basics': cs101Wireshark,
+  'tcpdump-basics': cs101Tcpdump,
+  'nmap-basics': cs101Nmap,
+  'mystery-chest-networking': cs101NetChest,
 };
