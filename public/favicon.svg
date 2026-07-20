@@ -1,18 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <!-- dark rounded square -->
-  <rect x="16" y="16" width="480" height="480" rx="112" fill="#0d1420"/>
-  <!-- notebook page: bold filled neon-green rounded rect -->
-  <rect x="118" y="104" width="214" height="304" rx="30" fill="#9fef00"/>
-  <!-- spiral binding stripe -->
-  <rect x="150" y="104" width="16" height="304" fill="#0d1420" opacity="0.28"/>
-  <!-- ruled text lines (dark, chunky so they read at 16px) -->
-  <rect x="188" y="168" width="120" height="22" rx="11" fill="#0d1420"/>
-  <rect x="188" y="228" width="120" height="22" rx="11" fill="#0d1420"/>
-  <rect x="188" y="288" width="78"  height="22" rx="11" fill="#0d1420"/>
-  <!-- pen: bold diagonal, dark outline so it stands out over the page -->
-  <g transform="rotate(45 356 356)">
-    <rect x="330" y="238" width="52" height="196" rx="14" fill="#9fef00" stroke="#0d1420" stroke-width="16"/>
-    <polygon points="330,430 382,430 356,486" fill="#9fef00" stroke="#0d1420" stroke-width="12" stroke-linejoin="round"/>
-    <rect x="330" y="238" width="52" height="34" rx="10" fill="#0d1420"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Brand tile: dark green-tinted rounded square with a lime border (matches header logo) -->
+  <rect x="4" y="4" width="56" height="56" rx="15" fill="#20301a" stroke="#9fef00" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- lucide NotebookPen glyph, centered and scaled, in brand lime green -->
+  <g transform="translate(15 15) scale(1.4167)" fill="none" stroke="#9fef00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/>
+    <path d="M2 6h4"/>
+    <path d="M2 10h4"/>
+    <path d="M2 14h4"/>
+    <path d="M2 18h4"/>
+    <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/>
   </g>
 </svg>
