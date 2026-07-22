@@ -648,37 +648,18 @@ dhcp
 
 ## Interview Questions
 
-**Q1. What is DHCP and why is it preferred over static addressing?**
-DHCP is the Dynamic Host Configuration Protocol. It automatically assigns IP addresses and related settings, which removes manual configuration, prevents duplicate addresses, and scales easily to large networks.
-
-**Q2. Explain the DORA process.**
-DORA is the four-message DHCP exchange: Discover (client broadcasts for a server), Offer (server proposes an address), Request (client asks for the offered address), and Acknowledge (server confirms the lease).
-
-**Q3. Why is the source IP `0.0.0.0` and the destination `255.255.255.255` in a DHCP Discover?**
-The client has not yet received an address, so it cannot identify itself (`0.0.0.0`), and it does not know where the DHCP server is, so it broadcasts to everyone (`255.255.255.255`).
-
-**Q4. What is ARP and which OSI layers does it connect?**
-ARP resolves a Layer 3 IPv4 address into a Layer 2 MAC address, bridging the Network and Data Link layers so frames can be delivered on the local network.
-
-**Q5. What is the difference between an ARP request and an ARP reply?**
-The request is a broadcast asking who owns an IP, received by every device. The reply is a unicast from the owning device that supplies its MAC address directly to the requester.
-
-**Q6. Why doesn't ICMP use TCP or UDP?**
-ICMP carries diagnostic and error messages rather than application data, so it runs directly inside IP packets at Layer 3 and does not use ports.
-
-**Q7. What is the difference between ping and traceroute?**
-Ping tests whether a destination is reachable using Echo Request and Echo Reply. Traceroute maps every router along the path by sending packets with increasing TTL values and reading the Time Exceeded replies.
-
-**Q8. What does TTL do and which ICMP message does traceroute rely on?**
-TTL stops packets from looping forever; each router decrements it by one. When TTL reaches zero the router returns an ICMP Time Exceeded (Type 11) message, which traceroute uses to identify each hop.
-
-**Q9. What is routing, and how do static and dynamic routing differ?**
-Routing selects the best path for packets between networks. Static routing uses manually configured routes that are simple but do not adapt, while dynamic routing lets routers exchange information automatically and react to changes.
-
-**Q10. What is NAT and what is the difference between Static NAT and PAT?**
-NAT translates private IP addresses to public ones so devices can reach the Internet. Static NAT maps one private IP to one public IP, while PAT (Port Address Translation) lets many private devices share a single public IP by using different port numbers.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is DHCP and why is it preferred over static addressing?** | DHCP is the Dynamic Host Configuration Protocol. It automatically assigns IP addresses and related settings, which removes manual configuration, prevents duplicate addresses, and scales easily to large networks. |
+| **Q2. Explain the DORA process.** | DORA is the four-message DHCP exchange: Discover (client broadcasts for a server), Offer (server proposes an address), Request (client asks for the offered address), and Acknowledge (server confirms the lease). |
+| **Q3. Why is the source IP `0.0.0.0` and the destination `255.255.255.255` in a DHCP Discover?** | The client has not yet received an address, so it cannot identify itself (`0.0.0.0`), and it does not know where the DHCP server is, so it broadcasts to everyone (`255.255.255.255`). |
+| **Q4. What is ARP and which OSI layers does it connect?** | ARP resolves a Layer 3 IPv4 address into a Layer 2 MAC address, bridging the Network and Data Link layers so frames can be delivered on the local network. |
+| **Q5. What is the difference between an ARP request and an ARP reply?** | The request is a broadcast asking who owns an IP, received by every device. The reply is a unicast from the owning device that supplies its MAC address directly to the requester. |
+| **Q6. Why doesn't ICMP use TCP or UDP?** | ICMP carries diagnostic and error messages rather than application data, so it runs directly inside IP packets at Layer 3 and does not use ports. |
+| **Q7. What is the difference between ping and traceroute?** | Ping tests whether a destination is reachable using Echo Request and Echo Reply. Traceroute maps every router along the path by sending packets with increasing TTL values and reading the Time Exceeded replies. |
+| **Q8. What does TTL do and which ICMP message does traceroute rely on?** | TTL stops packets from looping forever; each router decrements it by one. When TTL reaches zero the router returns an ICMP Time Exceeded (Type 11) message, which traceroute uses to identify each hop. |
+| **Q9. What is routing, and how do static and dynamic routing differ?** | Routing selects the best path for packets between networks. Static routing uses manually configured routes that are simple but do not adapt, while dynamic routing lets routers exchange information automatically and react to changes. |
+| **Q10. What is NAT and what is the difference between Static NAT and PAT?** | NAT translates private IP addresses to public ones so devices can reach the Internet. Static NAT maps one private IP to one public IP, while PAT (Port Address Translation) lets many private devices share a single public IP by using different port numbers. |
 
 ## Final Takeaway
 

@@ -591,31 +591,16 @@ Which hard problem secures each algorithm:
 
 ## Interview Questions
 
-**Q1. What is the difference between symmetric and asymmetric encryption?**
-Symmetric uses one shared secret key and is fast, so it encrypts bulk data (AES, ChaCha20). Asymmetric uses a public/private key pair and is slower, so it handles key exchange, digital signatures, and identity (RSA, Diffie-Hellman, ECC). Real protocols combine both.
-
-**Q2. Why is RSA considered secure, and why isn't it used for large files?**
-RSA's security comes from the difficulty of factoring the product of two very large primes. It is much slower than symmetric algorithms, so it encrypts only small secrets like an AES key; AES then encrypts the bulk data.
-
-**Q3. What problem does Diffie-Hellman solve?**
-It lets two parties generate the same shared secret over an insecure network without ever transmitting that secret. Attackers see the public values but cannot derive the private numbers, which requires solving the discrete logarithm problem.
-
-**Q4. Which key creates a digital signature and which verifies it?**
-The private key creates the signature and the matching public key verifies it. This gives authenticity, integrity, and non-repudiation, since only the private-key holder could have produced the signature.
-
-**Q5. Is SSH symmetric or asymmetric?**
-Both. SSH uses asymmetric cryptography for authentication and key exchange, then switches to fast symmetric encryption for the session itself.
-
-**Q6. What is a certificate, a CA, and PKI?**
-A certificate binds an identity to a public key. A Certificate Authority (CA) is a trusted organisation that verifies identities and signs certificates. PKI (Public Key Infrastructure) is the overall framework managing certificates, keys, CAs, and revocation.
-
-**Q7. What is the difference between PGP and GPG?**
-PGP is the original secure-email software created in 1991. GPG is the free, open-source implementation of the OpenPGP standard. Both combine symmetric and asymmetric encryption with hashing and signatures.
-
-**Q8. Why should a private key never be shared?**
-Anyone holding the private key can decrypt data meant for the owner and impersonate them by creating valid signatures — so a leaked private key breaks both confidentiality and authenticity.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the difference between symmetric and asymmetric encryption?** | Symmetric uses one shared secret key and is fast, so it encrypts bulk data (AES, ChaCha20). Asymmetric uses a public/private key pair and is slower, so it handles key exchange, digital signatures, and identity (RSA, Diffie-Hellman, ECC). Real protocols combine both. |
+| **Q2. Why is RSA considered secure, and why isn't it used for large files?** | RSA's security comes from the difficulty of factoring the product of two very large primes. It is much slower than symmetric algorithms, so it encrypts only small secrets like an AES key; AES then encrypts the bulk data. |
+| **Q3. What problem does Diffie-Hellman solve?** | It lets two parties generate the same shared secret over an insecure network without ever transmitting that secret. Attackers see the public values but cannot derive the private numbers, which requires solving the discrete logarithm problem. |
+| **Q4. Which key creates a digital signature and which verifies it?** | The private key creates the signature and the matching public key verifies it. This gives authenticity, integrity, and non-repudiation, since only the private-key holder could have produced the signature. |
+| **Q5. Is SSH symmetric or asymmetric?** | Both. SSH uses asymmetric cryptography for authentication and key exchange, then switches to fast symmetric encryption for the session itself. |
+| **Q6. What is a certificate, a CA, and PKI?** | A certificate binds an identity to a public key. A Certificate Authority (CA) is a trusted organisation that verifies identities and signs certificates. PKI (Public Key Infrastructure) is the overall framework managing certificates, keys, CAs, and revocation. |
+| **Q7. What is the difference between PGP and GPG?** | PGP is the original secure-email software created in 1991. GPG is the free, open-source implementation of the OpenPGP standard. Both combine symmetric and asymmetric encryption with hashing and signatures. |
+| **Q8. Why should a private key never be shared?** | Anyone holding the private key can decrypt data meant for the owner and impersonate them by creating valid signatures — so a leaked private key breaks both confidentiality and authenticity. |
 
 ## Final Takeaway
 

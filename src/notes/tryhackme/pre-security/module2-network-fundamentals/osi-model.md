@@ -125,14 +125,12 @@ As data travels from the sender to the receiver, it undergoes:
 
 ## Interview Questions
 
-- **What is the difference between Layer 2 and Layer 3?**
-  - **Layer 2 (Data Link)** uses physical **MAC addresses** and handles communication on the *same* network (using Switches).
-  - **Layer 3 (Network)** uses logical **IP addresses** and routes data *across different* networks (using Routers).
-- **At which layer does TLS/SSL encryption happen?** Layer 6 (Presentation Layer).
-- **What is Encapsulation?** The process of wrapping data with headers at each layer of the OSI model as it moves down from the Application layer to the Physical layer.
-- **Where do Switches and Routers operate?**
-  - **Switches** operate at Layer 2 (Data Link).
-  - **Routers** operate at Layer 3 (Network).
+| Question | Answer |
+|---|---|
+| **What is the difference between Layer 2 and Layer 3?** | **Layer 2 (Data Link)** uses physical **MAC addresses** and handles communication on the *same* network (using Switches).<br>**Layer 3 (Network)** uses logical **IP addresses** and routes data *across different* networks (using Routers). |
+| **At which layer does TLS/SSL encryption happen?** | Layer 6 (Presentation Layer). |
+| **What is Encapsulation?** | The process of wrapping data with headers at each layer of the OSI model as it moves down from the Application layer to the Physical layer. |
+| **Where do Switches and Routers operate?** | **Switches** operate at Layer 2 (Data Link).<br>**Routers** operate at Layer 3 (Network). |
 
 ## Memory Tricks
 

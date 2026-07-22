@@ -583,31 +583,16 @@ PowerShell is far more than a replacement for `cmd.exe`. Its object-oriented des
 
 ## Interview Questions
 
-**Q1. What makes PowerShell fundamentally different from traditional shells?**
-PowerShell is object-oriented. Instead of passing plain text between commands, its pipeline passes structured objects that carry properties and methods, so later cmdlets can work with data directly without text parsing.
-
-**Q2. What is the Verb-Noun convention?**
-Cmdlets are named as an action followed by the object it acts on — for example `Get-Process`, `Set-Location`, or `Remove-Item`. The predictable structure makes cmdlets easy to guess and discover.
-
-**Q3. How do you discover commands and learn how to use them?**
-`Get-Command` lists available cmdlets, functions, aliases, and scripts (and supports wildcards like `Get-Command -Name Remove*`), while `Get-Help <Cmdlet> -Examples` shows practical usage.
-
-**Q4. What is the difference between Where-Object and Select-Object?**
-`Where-Object` filters which objects pass through the pipeline based on a condition, while `Select-Object` chooses which properties are displayed or limits how many objects are returned.
-
-**Q5. Why is OwningProcess important in Get-NetTCPConnection output?**
-It identifies the process behind a TCP connection, letting an analyst correlate a suspicious connection with `Get-Process` to find the responsible program — key for investigating potential backdoors or malware communication.
-
-**Q6. What does Get-FileHash do and why does it matter for security?**
-It computes a file's cryptographic hash (SHA256 by default). Comparing hashes over time detects tampering, verifies integrity, and helps compare or identify malware samples.
-
-**Q7. What are Alternate Data Streams and how do you inspect them?**
-ADS are additional NTFS streams attached to a file that do not appear in its normal contents. They are inspected with `Get-Item -Path <file> -Stream *`; attackers abuse them to hide data or scripts.
-
-**Q8. What does Invoke-Command do?**
-It runs commands or scripts on local or remote computers using parameters such as `-ComputerName`, `-Credential`, `-ScriptBlock`, and `-FilePath`, enabling authorised remote administration and testing.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What makes PowerShell fundamentally different from traditional shells?** | PowerShell is object-oriented. Instead of passing plain text between commands, its pipeline passes structured objects that carry properties and methods, so later cmdlets can work with data directly without text parsing. |
+| **Q2. What is the Verb-Noun convention?** | Cmdlets are named as an action followed by the object it acts on — for example `Get-Process`, `Set-Location`, or `Remove-Item`. The predictable structure makes cmdlets easy to guess and discover. |
+| **Q3. How do you discover commands and learn how to use them?** | `Get-Command` lists available cmdlets, functions, aliases, and scripts (and supports wildcards like `Get-Command -Name Remove*`), while `Get-Help <Cmdlet> -Examples` shows practical usage. |
+| **Q4. What is the difference between Where-Object and Select-Object?** | `Where-Object` filters which objects pass through the pipeline based on a condition, while `Select-Object` chooses which properties are displayed or limits how many objects are returned. |
+| **Q5. Why is OwningProcess important in Get-NetTCPConnection output?** | It identifies the process behind a TCP connection, letting an analyst correlate a suspicious connection with `Get-Process` to find the responsible program — key for investigating potential backdoors or malware communication. |
+| **Q6. What does Get-FileHash do and why does it matter for security?** | It computes a file's cryptographic hash (SHA256 by default). Comparing hashes over time detects tampering, verifies integrity, and helps compare or identify malware samples. |
+| **Q7. What are Alternate Data Streams and how do you inspect them?** | ADS are additional NTFS streams attached to a file that do not appear in its normal contents. They are inspected with `Get-Item -Path <file> -Stream *`; attackers abuse them to hide data or scripts. |
+| **Q8. What does Invoke-Command do?** | It runs commands or scripts on local or remote computers using parameters such as `-ComputerName`, `-Credential`, `-ScriptBlock`, and `-FilePath`, enabling authorised remote administration and testing. |
 
 ## Final Takeaway
 

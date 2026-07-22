@@ -571,31 +571,16 @@ tcpdump -vv
 
 ## Interview Questions
 
-**Q1. What is Tcpdump?**
-Tcpdump is a command-line packet capture and analysis tool used to record and inspect network traffic directly from the terminal.
-
-**Q2. Which library does Tcpdump use?**
-It uses the **libpcap** library to capture packets (the equivalent on Windows is WinPcap or Npcap).
-
-**Q3. How do you save and read packets?**
-Use `-w` to write packets to a `.pcap` file and `-r` to read them back later, for example `tcpdump -w capture.pcap` and `tcpdump -r capture.pcap`.
-
-**Q4. How do you capture only a limited number of packets?**
-Use the `-c` option followed by a count, such as `tcpdump -c 20`, which stops after 20 packets.
-
-**Q5. What do `-n` and `-e` do?**
-`-n` disables hostname resolution so addresses stay numeric, while `-e` displays the link-layer header, including MAC addresses.
-
-**Q6. Which options control how packet contents are displayed?**
-`-A` shows ASCII payloads, `-xx` shows hexadecimal bytes, and `-X` shows hex and ASCII together for the most detail.
-
-**Q7. How would you capture only TCP or only ICMP traffic?**
-Run `tcpdump tcp` to capture TCP traffic and `tcpdump icmp` to capture ICMP traffic.
-
-**Q8. Why is filtering on TCP flags useful?**
-Matching flags such as SYN and ACK helps detect port scans, observe the TCP handshake, and identify reconnaissance or attacks.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Tcpdump?** | Tcpdump is a command-line packet capture and analysis tool used to record and inspect network traffic directly from the terminal. |
+| **Q2. Which library does Tcpdump use?** | It uses the **libpcap** library to capture packets (the equivalent on Windows is WinPcap or Npcap). |
+| **Q3. How do you save and read packets?** | Use `-w` to write packets to a `.pcap` file and `-r` to read them back later, for example `tcpdump -w capture.pcap` and `tcpdump -r capture.pcap`. |
+| **Q4. How do you capture only a limited number of packets?** | Use the `-c` option followed by a count, such as `tcpdump -c 20`, which stops after 20 packets. |
+| **Q5. What do `-n` and `-e` do?** | `-n` disables hostname resolution so addresses stay numeric, while `-e` displays the link-layer header, including MAC addresses. |
+| **Q6. Which options control how packet contents are displayed?** | `-A` shows ASCII payloads, `-xx` shows hexadecimal bytes, and `-X` shows hex and ASCII together for the most detail. |
+| **Q7. How would you capture only TCP or only ICMP traffic?** | Run `tcpdump tcp` to capture TCP traffic and `tcpdump icmp` to capture ICMP traffic. |
+| **Q8. Why is filtering on TCP flags useful?** | Matching flags such as SYN and ACK helps detect port scans, observe the TCP handshake, and identify reconnaissance or attacks. |
 
 ## Final Takeaway
 

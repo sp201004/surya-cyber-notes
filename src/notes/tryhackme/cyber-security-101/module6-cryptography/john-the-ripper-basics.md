@@ -774,31 +774,16 @@ unshadow passwd shadow > hashes.txt # merge /etc/passwd + /etc/shadow
 
 ## Interview Questions
 
-**Q1. Can John the Ripper decrypt hashes?**
-No. John performs offline password guessing — it hashes candidate passwords and compares them to the target hash. Hashing is one-way, so there is nothing to decrypt.
-
-**Q2. Why is offline cracking faster than online attacks?**
-Because hashes are attacked locally without communicating with the target system, eliminating network delays and account-lockout mechanisms.
-
-**Q3. Why is `rockyou.txt` so effective?**
-It contains millions of real leaked passwords from the RockYou breach, so it reflects the predictable choices humans actually make, making dictionary attacks far more successful than random guessing.
-
-**Q4. What is the difference between `--format=raw-md5` and `--format=nt`?**
-`raw-md5` cracks plain MD5 hashes, while `nt` cracks Windows NTLM (NT Hash) passwords. John distinguishes implementations, so the format identifier must match the exact hash type.
-
-**Q5. What does `unshadow` do and why is it needed?**
-It merges `/etc/passwd` and `/etc/shadow` into one file. John needs the username information from `passwd` and the password hashes from `shadow` together before it can crack Linux account passwords.
-
-**Q6. What is Single Crack Mode and when is it useful?**
-`--single` generates intelligent guesses from usernames and GECOS data (full names, descriptions) instead of relying on a wordlist. It is ideal when passwords are likely derived from account information.
-
-**Q7. Why are custom rules effective?**
-They automatically generate realistic password variations — appending numbers or symbols, changing case, and leetspeak substitutions — matching how humans build passwords around complexity requirements.
-
-**Q8. Can John crack SSH private keys directly, and how does it differ from Hashcat?**
-No — it attacks the passphrase protecting the key after `ssh2john` extracts the data. Compared to Hashcat, John is CPU-optimised with broad format support and easy setup, while Hashcat is GPU-optimised for very large audits.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. Can John the Ripper decrypt hashes?** | No. John performs offline password guessing — it hashes candidate passwords and compares them to the target hash. Hashing is one-way, so there is nothing to decrypt. |
+| **Q2. Why is offline cracking faster than online attacks?** | Because hashes are attacked locally without communicating with the target system, eliminating network delays and account-lockout mechanisms. |
+| **Q3. Why is `rockyou.txt` so effective?** | It contains millions of real leaked passwords from the RockYou breach, so it reflects the predictable choices humans actually make, making dictionary attacks far more successful than random guessing. |
+| **Q4. What is the difference between `--format=raw-md5` and `--format=nt`?** | `raw-md5` cracks plain MD5 hashes, while `nt` cracks Windows NTLM (NT Hash) passwords. John distinguishes implementations, so the format identifier must match the exact hash type. |
+| **Q5. What does `unshadow` do and why is it needed?** | It merges `/etc/passwd` and `/etc/shadow` into one file. John needs the username information from `passwd` and the password hashes from `shadow` together before it can crack Linux account passwords. |
+| **Q6. What is Single Crack Mode and when is it useful?** | `--single` generates intelligent guesses from usernames and GECOS data (full names, descriptions) instead of relying on a wordlist. It is ideal when passwords are likely derived from account information. |
+| **Q7. Why are custom rules effective?** | They automatically generate realistic password variations — appending numbers or symbols, changing case, and leetspeak substitutions — matching how humans build passwords around complexity requirements. |
+| **Q8. Can John crack SSH private keys directly, and how does it differ from Hashcat?** | No — it attacks the passphrase protecting the key after `ssh2john` extracts the data. Compared to Hashcat, John is CPU-optimised with broad format support and easy setup, while Hashcat is GPU-optimised for very large audits. |
 
 ## Final Takeaway
 

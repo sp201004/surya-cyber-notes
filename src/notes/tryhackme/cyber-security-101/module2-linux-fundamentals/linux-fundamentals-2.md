@@ -252,22 +252,13 @@ The first ten characters break down as:
 
 ## Interview Questions
 
-**Q1. What is a flag in a Linux command?**
-A flag (or switch) is an option, usually prefixed with a dash, that changes how a command behaves — for example `ls -a` reveals hidden files.
-
-**Q2. What is the difference between `find` and `grep`?**
-`find` searches the filesystem for files matching criteria such as name or size, while `grep` searches for text patterns inside files.
-
-**Q3. What does the `>>` operator do?**
-It redirects a command's output to a file, appending to the existing contents rather than overwriting them.
-
-**Q4. What do the letters `r`, `w`, and `x` mean in a permission string?**
-Read, write, and execute respectively.
-
-**Q5. Why are file permissions important for security?**
-Incorrect permissions, such as a world-writable file owned by root, can allow an attacker to escalate privileges.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is a flag in a Linux command?** | A flag (or switch) is an option, usually prefixed with a dash, that changes how a command behaves — for example `ls -a` reveals hidden files. |
+| **Q2. What is the difference between `find` and `grep`?** | `find` searches the filesystem for files matching criteria such as name or size, while `grep` searches for text patterns inside files. |
+| **Q3. What does the `>>` operator do?** | It redirects a command's output to a file, appending to the existing contents rather than overwriting them. |
+| **Q4. What do the letters `r`, `w`, and `x` mean in a permission string?** | Read, write, and execute respectively. |
+| **Q5. Why are file permissions important for security?** | Incorrect permissions, such as a world-writable file owned by root, can allow an attacker to escalate privileges. |
 
 ## Final Takeaway
 

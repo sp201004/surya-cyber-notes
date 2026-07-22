@@ -297,25 +297,14 @@ A defender reverses the same steps — inspecting processes, crontabs, and logs 
 
 ## Interview Questions
 
-**Q1. How do you save and quit in vim?**
-Press `Esc` to return to normal mode, then type `:wq` and press Enter.
-
-**Q2. What is the difference between `wget` and `scp`?**
-`wget` downloads files over HTTP/HTTPS from the web, while `scp` copies files securely between machines over SSH.
-
-**Q3. What is a PID?**
-A Process ID — a unique number Linux assigns to each running process.
-
-**Q4. What does `systemctl` manage?**
-Long-running background services (daemons), letting you start, stop, enable, and check their status.
-
-**Q5. Why do attackers use cron jobs?**
-For persistence — a scheduled job can silently relaunch malware after reboots or at set intervals.
-
-**Q6. Where are most Linux logs stored?**
-Under the `/var/log` directory, including `syslog` and `auth.log`.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. How do you save and quit in vim?** | Press `Esc` to return to normal mode, then type `:wq` and press Enter. |
+| **Q2. What is the difference between `wget` and `scp`?** | `wget` downloads files over HTTP/HTTPS from the web, while `scp` copies files securely between machines over SSH. |
+| **Q3. What is a PID?** | A Process ID — a unique number Linux assigns to each running process. |
+| **Q4. What does `systemctl` manage?** | Long-running background services (daemons), letting you start, stop, enable, and check their status. |
+| **Q5. Why do attackers use cron jobs?** | For persistence — a scheduled job can silently relaunch malware after reboots or at set intervals. |
+| **Q6. Where are most Linux logs stored?** | Under the `/var/log` directory, including `syslog` and `auth.log`. |
 
 ## Final Takeaway
 

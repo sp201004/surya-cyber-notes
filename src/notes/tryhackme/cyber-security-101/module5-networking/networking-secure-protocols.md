@@ -671,31 +671,16 @@ put filename
 
 ## Interview Questions
 
-**Q1. What is the difference between SSL and TLS?**
-TLS is the modern replacement for SSL. SSL is obsolete and has known weaknesses, while TLS (currently TLS 1.3) is the standard for encrypting application traffic. People often say "SSL" but mean TLS.
-
-**Q2. What three security services does TLS provide?**
-Confidentiality (encryption), integrity (tamper detection), and authentication (verifying the server via a certificate) — the CIA triad.
-
-**Q3. Why is HTTPS more secure than HTTP?**
-HTTPS wraps HTTP in TLS, so the application data is encrypted, integrity-protected, and the server is authenticated by a certificate. HTTP sends everything in plaintext on port 80, while HTTPS uses port 443.
-
-**Q4. Does HTTPS replace TCP or IP?**
-No. TLS sits between the application and the transport layer, so it encrypts only application data. TCP still handles reliability and ordering, and IP still handles routing.
-
-**Q5. Why does Wireshark show "Application Data" for HTTPS traffic?**
-Because TLS encrypts the HTTP payload and Wireshark has no key to decrypt it. Supplying the TLS session keys (an `ssl-key.log`) lets Wireshark decrypt and show the underlying HTTP.
-
-**Q6. What is a Certificate Authority, and what is a self-signed certificate?**
-A CA is a trusted organisation that signs certificates to vouch for a server's identity. A self-signed certificate is signed by its own creator with no CA, so browsers do not trust it and show a warning — it should never prove server authenticity in production.
-
-**Q7. What is the difference between SFTP and FTPS?**
-SFTP transfers files over SSH on port 22 with a single connection. FTPS transfers files over TLS on port 990 using certificates and separate control and data connections, which can cause more firewall issues.
-
-**Q8. What is the difference between a site-to-site VPN and a remote-access VPN?**
-A site-to-site VPN connects entire networks, such as a branch office to a main office. A remote-access VPN connects a single user or device into a private network, which suits remote workers.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the difference between SSL and TLS?** | TLS is the modern replacement for SSL. SSL is obsolete and has known weaknesses, while TLS (currently TLS 1.3) is the standard for encrypting application traffic. People often say "SSL" but mean TLS. |
+| **Q2. What three security services does TLS provide?** | Confidentiality (encryption), integrity (tamper detection), and authentication (verifying the server via a certificate) — the CIA triad. |
+| **Q3. Why is HTTPS more secure than HTTP?** | HTTPS wraps HTTP in TLS, so the application data is encrypted, integrity-protected, and the server is authenticated by a certificate. HTTP sends everything in plaintext on port 80, while HTTPS uses port 443. |
+| **Q4. Does HTTPS replace TCP or IP?** | No. TLS sits between the application and the transport layer, so it encrypts only application data. TCP still handles reliability and ordering, and IP still handles routing. |
+| **Q5. Why does Wireshark show "Application Data" for HTTPS traffic?** | Because TLS encrypts the HTTP payload and Wireshark has no key to decrypt it. Supplying the TLS session keys (an `ssl-key.log`) lets Wireshark decrypt and show the underlying HTTP. |
+| **Q6. What is a Certificate Authority, and what is a self-signed certificate?** | A CA is a trusted organisation that signs certificates to vouch for a server's identity. A self-signed certificate is signed by its own creator with no CA, so browsers do not trust it and show a warning — it should never prove server authenticity in production. |
+| **Q7. What is the difference between SFTP and FTPS?** | SFTP transfers files over SSH on port 22 with a single connection. FTPS transfers files over TLS on port 990 using certificates and separate control and data connections, which can cause more firewall issues. |
+| **Q8. What is the difference between a site-to-site VPN and a remote-access VPN?** | A site-to-site VPN connects entire networks, such as a branch office to a main office. A remote-access VPN connects a single user or device into a private network, which suits remote workers. |
 
 ## Final Takeaway
 

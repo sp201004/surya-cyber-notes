@@ -863,37 +863,18 @@ Receiver
 
 ## Interview Questions
 
-**Q1. Why do we need DNS?**
-DNS translates human-readable domain names into the IP addresses computers use to route traffic, so people do not have to memorise numeric addresses.
-
-**Q2. What is the difference between an A and an AAAA record?**
-An A record maps a domain to an IPv4 address, while an AAAA record maps a domain to an IPv6 address.
-
-**Q3. What is the purpose of an MX record?**
-It specifies the mail server responsible for receiving email for a domain.
-
-**Q4. Why does DNS usually use UDP instead of TCP?**
-DNS queries are small, and UDP is faster because it avoids the overhead of establishing a connection; TCP is used for large responses or as a fallback.
-
-**Q5. What information does WHOIS provide, and how does DNS differ from it?**
-WHOIS provides ownership and registration details (registrar, dates, name servers). DNS answers "where" a domain resolves (its IP), while WHOIS answers "who" owns it.
-
-**Q6. Why is HTTPS preferred over HTTP?**
-HTTPS encrypts traffic with TLS, so credentials, cookies, and content cannot be read in transit, whereas HTTP sends everything as plain text.
-
-**Q7. What is the difference between GET and POST?**
-GET retrieves data without modifying it, while POST submits data to be processed or stored on the server.
-
-**Q8. Why does FTP use two connections?**
-FTP separates a control channel (port 21 for commands and replies) from a data channel that carries the actual file bytes.
-
-**Q9. How does SMTP know an email has ended?**
-The client sends a line containing only a single dot (`.`), which signals the end of the message body.
-
-**Q10. What is the difference between POP3 and IMAP?**
-POP3 downloads emails to one device and usually removes them from the server, while IMAP keeps mail on the server and synchronises it across multiple devices.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. Why do we need DNS?** | DNS translates human-readable domain names into the IP addresses computers use to route traffic, so people do not have to memorise numeric addresses. |
+| **Q2. What is the difference between an A and an AAAA record?** | An A record maps a domain to an IPv4 address, while an AAAA record maps a domain to an IPv6 address. |
+| **Q3. What is the purpose of an MX record?** | It specifies the mail server responsible for receiving email for a domain. |
+| **Q4. Why does DNS usually use UDP instead of TCP?** | DNS queries are small, and UDP is faster because it avoids the overhead of establishing a connection; TCP is used for large responses or as a fallback. |
+| **Q5. What information does WHOIS provide, and how does DNS differ from it?** | WHOIS provides ownership and registration details (registrar, dates, name servers). DNS answers "where" a domain resolves (its IP), while WHOIS answers "who" owns it. |
+| **Q6. Why is HTTPS preferred over HTTP?** | HTTPS encrypts traffic with TLS, so credentials, cookies, and content cannot be read in transit, whereas HTTP sends everything as plain text. |
+| **Q7. What is the difference between GET and POST?** | GET retrieves data without modifying it, while POST submits data to be processed or stored on the server. |
+| **Q8. Why does FTP use two connections?** | FTP separates a control channel (port 21 for commands and replies) from a data channel that carries the actual file bytes. |
+| **Q9. How does SMTP know an email has ended?** | The client sends a line containing only a single dot (`.`), which signals the end of the message body. |
+| **Q10. What is the difference between POP3 and IMAP?** | POP3 downloads emails to one device and usually removes them from the server, while IMAP keeps mail on the server and synchronises it across multiple devices. |
 
 ## Final Takeaway
 

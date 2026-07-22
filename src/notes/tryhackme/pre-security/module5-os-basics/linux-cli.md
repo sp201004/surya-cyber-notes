@@ -2133,33 +2133,11 @@ You now have a strong foundation in Linux terminal navigation and essential comm
 
 ## Interview Questions
 
-Q. What does pwd do?
-
-**Answer**
-
-Shows current working directory.
-
----
-
-Q. Difference between ls and ls -l?
-
-**Answer**
-
-ls
-
-Only names.
-
-ls -l
-
-Detailed information.
-
----
-
-Q. Why do hidden files start with "."?
-
-Because Linux treats dot-prefixed files as configuration files.
-
----
+| Question | Answer |
+|---|---|
+| **Q. What does pwd do?** | Shows current working directory. |
+| **Q. Difference between ls and ls -l?** | ls<br>Only names.<br>ls -l<br>Detailed information. |
+| **Q. Why do hidden files start with "."?** | Because Linux treats dot-prefixed files as configuration files. |
 
 ## Memory Tricks
 

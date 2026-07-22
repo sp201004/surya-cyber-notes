@@ -541,37 +541,18 @@ The whole module comes together in one workflow — plaintext is encrypted with 
 
 ## Interview Questions
 
-**Q1. What is cryptography?**
-The practice of securing communication and protecting data using encryption techniques so only authorized users can read it.
-
-**Q2. What are the four goals of cryptography?**
-Confidentiality, integrity, authentication, and non-repudiation.
-
-**Q3. What is the difference between data at rest and data in transit?**
-Data at rest is stored data such as databases and SSDs; data in transit is data moving across a network such as HTTPS or SSH traffic.
-
-**Q4. What is the difference between a cipher and a key?**
-The cipher is the algorithm that transforms data and is usually public; the key is the secret value that drives it and must stay private.
-
-**Q5. How does the Caesar cipher work and why is it insecure?**
-It shifts each letter by a fixed number of positions, but with only 25 possible keys an attacker can brute-force all of them almost instantly.
-
-**Q6. What is the difference between symmetric and asymmetric encryption?**
-Symmetric uses one shared secret key, while asymmetric uses a public key to encrypt and a private key to decrypt.
-
-**Q7. What is the biggest challenge of symmetric encryption?**
-Securely sharing the secret key between the two parties.
-
-**Q8. Which methods does HTTPS combine and why?**
-RSA or ECC for secure key exchange and AES for fast data encryption, pairing safe key delivery with high-speed bulk encryption.
-
-**Q9. Why is XOR useful in cryptography?**
-Applying the same key twice with XOR restores the original plaintext, because a value XORed with itself is zero.
-
-**Q10. What does modulo return and is it reversible?**
-It returns the remainder after division and is not reversible, since many different numbers produce the same remainder.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is cryptography?** | The practice of securing communication and protecting data using encryption techniques so only authorized users can read it. |
+| **Q2. What are the four goals of cryptography?** | Confidentiality, integrity, authentication, and non-repudiation. |
+| **Q3. What is the difference between data at rest and data in transit?** | Data at rest is stored data such as databases and SSDs; data in transit is data moving across a network such as HTTPS or SSH traffic. |
+| **Q4. What is the difference between a cipher and a key?** | The cipher is the algorithm that transforms data and is usually public; the key is the secret value that drives it and must stay private. |
+| **Q5. How does the Caesar cipher work and why is it insecure?** | It shifts each letter by a fixed number of positions, but with only 25 possible keys an attacker can brute-force all of them almost instantly. |
+| **Q6. What is the difference between symmetric and asymmetric encryption?** | Symmetric uses one shared secret key, while asymmetric uses a public key to encrypt and a private key to decrypt. |
+| **Q7. What is the biggest challenge of symmetric encryption?** | Securely sharing the secret key between the two parties. |
+| **Q8. Which methods does HTTPS combine and why?** | RSA or ECC for secure key exchange and AES for fast data encryption, pairing safe key delivery with high-speed bulk encryption. |
+| **Q9. Why is XOR useful in cryptography?** | Applying the same key twice with XOR restores the original plaintext, because a value XORed with itself is zero. |
+| **Q10. What does modulo return and is it reversible?** | It returns the remainder after division and is not reversible, since many different numbers produce the same remainder. |
 
 ## Final Takeaway
 

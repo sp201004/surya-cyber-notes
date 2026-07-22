@@ -120,15 +120,12 @@ Helps determine which part of an IP address is the Network ID and which is the H
 
 ## Interview Questions
 
-- **Hub vs Switch?**
-  | Feature | Hub | Switch |
-  |---|---|
-  | Intelligence | None | High |
-  | Data Delivery | Broadcasts to all | Sends to destination only |
-  | Security | Low | High |
-- **What is the purpose of ARP?** Translates a known IP address to a physical MAC address so local communication can happen.
-- **Explain DHCP DORA.** It is the four-step process (Discover, Offer, Request, Acknowledge) used by DHCP to dynamically lease IP configurations to clients.
-- **Why do we subnet?** To reduce network congestion, improve security boundaries, and prevent broadcast storms.
+| Question | Answer |
+|---|---|
+| **Hub vs Switch?** | Feature — Hub — Switch<br>Intelligence — None — High<br>Data Delivery — Broadcasts to all — Sends to destination only<br>Security — Low — High |
+| **What is the purpose of ARP?** | Translates a known IP address to a physical MAC address so local communication can happen. |
+| **Explain DHCP DORA.** | It is the four-step process (Discover, Offer, Request, Acknowledge) used by DHCP to dynamically lease IP configurations to clients. |
+| **Why do we subnet?** | To reduce network congestion, improve security boundaries, and prevent broadcast storms. |
 
 ## Memory Tricks
 

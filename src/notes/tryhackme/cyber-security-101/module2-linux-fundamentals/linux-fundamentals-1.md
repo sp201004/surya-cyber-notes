@@ -236,22 +236,13 @@ Every one of these steps uses the exact commands you just learned. Basic navigat
 
 ## Interview Questions
 
-**Q1. What is Linux?**
-Linux is a family of open-source operating systems built on the Linux kernel, packaged into distributions such as Ubuntu, Debian, and Kali.
-
-**Q2. What is the difference between the terminal and the shell?**
-The terminal is the text interface you type into; the shell (such as Bash) is the program that interprets and runs your commands.
-
-**Q3. Which command shows the current user?**
-`whoami`.
-
-**Q4. How do you find out which directory you are currently in?**
-Run `pwd` (print working directory).
-
-**Q5. What does `~` represent in a Linux path?**
-It is a shortcut for the current user's home directory.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Linux?** | Linux is a family of open-source operating systems built on the Linux kernel, packaged into distributions such as Ubuntu, Debian, and Kali. |
+| **Q2. What is the difference between the terminal and the shell?** | The terminal is the text interface you type into; the shell (such as Bash) is the program that interprets and runs your commands. |
+| **Q3. Which command shows the current user?** | `whoami`. |
+| **Q4. How do you find out which directory you are currently in?** | Run `pwd` (print working directory). |
+| **Q5. What does `~` represent in a Linux path?** | It is a shortcut for the current user's home directory. |
 
 ## Final Takeaway
 

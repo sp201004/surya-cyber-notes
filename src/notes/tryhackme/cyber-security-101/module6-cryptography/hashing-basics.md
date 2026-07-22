@@ -656,34 +656,17 @@ echo "VHJ5SGFja01lCg==" | base64 -d
 
 ## Interview Questions
 
-**Q1. What is hashing?**
-Hashing is a one-way process that converts data of any size into a fixed-size digest. It uses no keys and cannot be reversed, which makes it ideal for integrity checking and password storage.
-
-**Q2. Why can't hashes be decrypted?**
-Because a hash function is designed as a one-way function. The output is a fixed-size fingerprint that discards the structure needed to reconstruct the original input, so there is no practical way to reverse it.
-
-**Q3. What is the avalanche effect?**
-It is the property that a tiny change in the input — even a single bit — produces a completely different hash. This is what makes hashing reliable for detecting any modification to data.
-
-**Q4. What is a collision, and why do collisions exist?**
-A collision is when two different inputs produce the same hash. They are mathematically unavoidable because inputs are unlimited while hash outputs are a fixed, finite size — the pigeonhole principle. Secure algorithms make finding one intentionally infeasible.
-
-**Q5. Why are MD5 and SHA-1 considered insecure?**
-Both have practical, demonstrated collision attacks, so an attacker can craft two different inputs with the same hash. They must not be used for new security-sensitive applications.
-
-**Q6. What is a salt and what problem does it solve?**
-A salt is a unique random value added to a password before hashing. It ensures that identical passwords produce different hashes, which defeats precomputed rainbow tables and hides password reuse. The salt is stored alongside the hash and need not be secret.
-
-**Q7. Why should passwords use bcrypt or Argon2id instead of MD5 or SHA-256?**
-MD5 and SHA-256 are extremely fast, so GPUs can try billions of guesses per second. bcrypt, scrypt, Argon2id, and PBKDF2 are deliberately slow and salted (and often memory-hard), which makes brute-force attacks far more expensive.
-
-**Q8. What is HMAC and how does it differ from a plain hash?**
-HMAC combines a hash function with a secret key to provide both integrity and authentication. A plain hash only proves data is unchanged; HMAC also proves the message came from someone holding the shared secret key, so an attacker cannot forge a valid one.
-
-**Q9. What is the difference between hashing, encoding, and encryption, and is Base64 secure?**
-Hashing is one-way and used for integrity and password storage. Encoding (like Base64) is reversible and provides no security — it only reformats data, so Base64 must never be used to hide passwords. Encryption is reversible with a key and protects confidentiality.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is hashing?** | Hashing is a one-way process that converts data of any size into a fixed-size digest. It uses no keys and cannot be reversed, which makes it ideal for integrity checking and password storage. |
+| **Q2. Why can't hashes be decrypted?** | Because a hash function is designed as a one-way function. The output is a fixed-size fingerprint that discards the structure needed to reconstruct the original input, so there is no practical way to reverse it. |
+| **Q3. What is the avalanche effect?** | It is the property that a tiny change in the input — even a single bit — produces a completely different hash. This is what makes hashing reliable for detecting any modification to data. |
+| **Q4. What is a collision, and why do collisions exist?** | A collision is when two different inputs produce the same hash. They are mathematically unavoidable because inputs are unlimited while hash outputs are a fixed, finite size — the pigeonhole principle. Secure algorithms make finding one intentionally infeasible. |
+| **Q5. Why are MD5 and SHA-1 considered insecure?** | Both have practical, demonstrated collision attacks, so an attacker can craft two different inputs with the same hash. They must not be used for new security-sensitive applications. |
+| **Q6. What is a salt and what problem does it solve?** | A salt is a unique random value added to a password before hashing. It ensures that identical passwords produce different hashes, which defeats precomputed rainbow tables and hides password reuse. The salt is stored alongside the hash and need not be secret. |
+| **Q7. Why should passwords use bcrypt or Argon2id instead of MD5 or SHA-256?** | MD5 and SHA-256 are extremely fast, so GPUs can try billions of guesses per second. bcrypt, scrypt, Argon2id, and PBKDF2 are deliberately slow and salted (and often memory-hard), which makes brute-force attacks far more expensive. |
+| **Q8. What is HMAC and how does it differ from a plain hash?** | HMAC combines a hash function with a secret key to provide both integrity and authentication. A plain hash only proves data is unchanged; HMAC also proves the message came from someone holding the shared secret key, so an attacker cannot forge a valid one. |
+| **Q9. What is the difference between hashing, encoding, and encryption, and is Base64 secure?** | Hashing is one-way and used for integrity and password storage. Encoding (like Base64) is reversible and provides no security — it only reformats data, so Base64 must never be used to hide passwords. Encryption is reversible with a key and protects confidentiality. |
 
 ## Final Takeaway
 

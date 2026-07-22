@@ -103,14 +103,12 @@ DNS is the "phonebook" of the Internet. It translates human-readable domain name
 
 ## Interview Questions
 
-- **Private vs Public IP?**
-  - **Private IP:** Used locally inside LAN, non-routable over the Internet, free.
-  - **Public IP:** Assigned to router by ISP, globally unique, routable over the public Internet.
-- **How does NAT help conserve IPv4 addresses?** It allows hundreds of local private devices to communicate on the public internet using only a single shared public IP address.
-- **What is the purpose of a DNS MX record?** Directs incoming email messages to the specific mail server responsible for hosting that domain's email.
-- **What is the difference between an A record and a CNAME record?**
-  - An **A Record** maps a domain directly to an IP address (e.g., `example.com` -> `192.0.2.1`).
-  - A **CNAME Record** maps an alias domain to another canonical domain (e.g., `www.example.com` -> `example.com`).
+| Question | Answer |
+|---|---|
+| **Private vs Public IP?** | **Private IP:** Used locally inside LAN, non-routable over the Internet, free.<br>**Public IP:** Assigned to router by ISP, globally unique, routable over the public Internet. |
+| **How does NAT help conserve IPv4 addresses?** | It allows hundreds of local private devices to communicate on the public internet using only a single shared public IP address. |
+| **What is the purpose of a DNS MX record?** | Directs incoming email messages to the specific mail server responsible for hosting that domain's email. |
+| **What is the difference between an A record and a CNAME record?** | An **A Record** maps a domain directly to an IP address (e.g., `example.com` -> `192.0.2.1`).<br>A **CNAME Record** maps an alias domain to another canonical domain (e.g., `www.example.com` -> `example.com`). |
 
 ## Memory Tricks
 

@@ -295,22 +295,13 @@ Many everyday tasks map cleanly across all three environments:
 
 ## Interview Questions
 
-**Q1. What is the default command line interpreter on Windows?**
-`cmd.exe` is the default Command Prompt interpreter, while PowerShell is the more advanced modern shell.
-
-**Q2. What naming convention do PowerShell cmdlets follow?**
-They use a `Verb-Noun` format, such as `Get-Content`, `Set-Location`, and `Remove-Item`, which makes commands predictable and discoverable.
-
-**Q3. Why is the PowerShell pipeline different from CMD or bash piping?**
-PowerShell passes structured objects down the pipeline rather than plain text, so you can filter and sort on object properties with cmdlets like `Where-Object` and `Sort-Object`.
-
-**Q4. How do you make a bash script executable and run it?**
-Add execute permission with `chmod +x file.sh`, then run it from the current directory with `./file.sh`.
-
-**Q5. What is the difference between `=` and `-eq` in bash conditions?**
-`=` compares strings while `-eq` compares numbers; using the wrong one is a common logic error in scripts.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the default command line interpreter on Windows?** | `cmd.exe` is the default Command Prompt interpreter, while PowerShell is the more advanced modern shell. |
+| **Q2. What naming convention do PowerShell cmdlets follow?** | They use a `Verb-Noun` format, such as `Get-Content`, `Set-Location`, and `Remove-Item`, which makes commands predictable and discoverable. |
+| **Q3. Why is the PowerShell pipeline different from CMD or bash piping?** | PowerShell passes structured objects down the pipeline rather than plain text, so you can filter and sort on object properties with cmdlets like `Where-Object` and `Sort-Object`. |
+| **Q4. How do you make a bash script executable and run it?** | Add execute permission with `chmod +x file.sh`, then run it from the current directory with `./file.sh`. |
+| **Q5. What is the difference between `=` and `-eq` in bash conditions?** | `=` compares strings while `-eq` compares numbers; using the wrong one is a common logic error in scripts. |
 
 ## Final Takeaway
 

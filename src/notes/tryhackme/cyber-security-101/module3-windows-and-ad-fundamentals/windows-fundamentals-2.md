@@ -526,31 +526,16 @@ Several can also be found through the Start Menu under **Windows Administrative 
 
 ## Interview Questions
 
-**Q1. What is `msconfig` used for?**
-System Configuration is an advanced troubleshooting tool that diagnoses Windows startup and configuration problems through its General, Boot, Services, Startup, and Tools tabs.
-
-**Q2. What are the four UAC levels?**
-Always Notify, Notify for Apps (the default), Notify Without Dimming, and Never Notify — ranging from the most protective to the least.
-
-**Q3. What three sections does Computer Management contain?**
-System Tools, Storage, and Services and Applications.
-
-**Q4. Why is Event Viewer important in cybersecurity?**
-It provides an audit trail of system, security, and application events — such as failed and successful logins and service creation — which is essential for forensics, incident response, and threat hunting.
-
-**Q5. What does the `$` mean in a share name like `C$`?**
-It indicates a hidden administrative share that is not displayed in normal network browsing.
-
-**Q6. What are the three service startup types?**
-Automatic (starts at boot), Manual (starts on demand), and Disabled (prevented from running).
-
-**Q7. What does `netstat -ano` show?**
-All connections and listening ports with numeric addresses and the owning process ID, letting you correlate connections with processes.
-
-**Q8. What are the five Registry root keys?**
-HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_CONFIG.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is `msconfig` used for?** | System Configuration is an advanced troubleshooting tool that diagnoses Windows startup and configuration problems through its General, Boot, Services, Startup, and Tools tabs. |
+| **Q2. What are the four UAC levels?** | Always Notify, Notify for Apps (the default), Notify Without Dimming, and Never Notify — ranging from the most protective to the least. |
+| **Q3. What three sections does Computer Management contain?** | System Tools, Storage, and Services and Applications. |
+| **Q4. Why is Event Viewer important in cybersecurity?** | It provides an audit trail of system, security, and application events — such as failed and successful logins and service creation — which is essential for forensics, incident response, and threat hunting. |
+| **Q5. What does the `$` mean in a share name like `C$`?** | It indicates a hidden administrative share that is not displayed in normal network browsing. |
+| **Q6. What are the three service startup types?** | Automatic (starts at boot), Manual (starts on demand), and Disabled (prevented from running). |
+| **Q7. What does `netstat -ano` show?** | All connections and listening ports with numeric addresses and the owning process ID, letting you correlate connections with processes. |
+| **Q8. What are the five Registry root keys?** | HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_CONFIG. |
 
 ## Final Takeaway
 

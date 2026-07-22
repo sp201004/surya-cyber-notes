@@ -799,87 +799,18 @@ exit
 
 ## Interview Questions
 
-Q1. What is an Operating System?
-
-An Operating System is software that manages computer hardware and provides services to applications.
-
----
-
-Q2. What is the CIA Triad?
-
-- Confidentiality
-- Integrity
-- Availability
-
----
-
-Q3. What are the three authentication factors?
-
-- Something you know
-- Something you have
-- Something you are
-
----
-
-Q4. What is SSH?
-
-SSH (Secure Shell) is a secure protocol used to remotely access another machine over an encrypted connection.
-
----
-
-Q5. Difference between Root and Administrator?
-
-Linux:
-```
-root
-```
-
-Windows:
-```
-Administrator
-```
-
-Both have complete system privileges.
-
----
-
-Q6. Which command shows the current logged-in user?
-
-```bash
-whoami
-```
-
----
-
-Q7. Which command lists files?
-
-```bash
-ls
-```
-
----
-
-Q8. Which command displays file contents?
-
-```bash
-cat filename
-```
-
----
-
-Q9. Which command displays previously executed commands?
-
-```bash
-history
-```
-
----
-
-Q10. Which command switches to another user?
-
-```bash
-su - username
-```
+| Question | Answer |
+|---|---|
+| **Q1. What is an Operating System?** | An Operating System is software that manages computer hardware and provides services to applications. |
+| **Q2. What is the CIA Triad?** | Confidentiality<br>Integrity<br>Availability |
+| **Q3. What are the three authentication factors?** | Something you know<br>Something you have<br>Something you are |
+| **Q4. What is SSH?** | SSH (Secure Shell) is a secure protocol used to remotely access another machine over an encrypted connection. |
+| **Q5. Difference between Root and Administrator?** | Linux:<br>`root`<br>Windows:<br>`Administrator`<br>Both have complete system privileges. |
+| **Q6. Which command shows the current logged-in user?** | `whoami` |
+| **Q7. Which command lists files?** | `ls` |
+| **Q8. Which command displays file contents?** | `cat filename` |
+| **Q9. Which command displays previously executed commands?** | `history` |
+| **Q10. Which command switches to another user?** | `su - username` |
 
 ## Quick Revision
 

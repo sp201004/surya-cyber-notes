@@ -397,43 +397,20 @@ Future Windows Fundamentals modules build on this with topics such as the Manage
 
 ## Interview Questions
 
-**Q1. What does GUI stand for?**
-Graphical User Interface — a way to interact with the OS through graphical elements instead of only the command line.
-
-**Q2. What is the difference between a running and a pinned Taskbar application?**
-A running application's icon normally disappears when it is closed, while a pinned application's icon remains available for quick launching.
-
-**Q3. What is another name for the Notification Area?**
-The System Tray.
-
-**Q4. What is RDP and why does it matter in cybersecurity?**
-RDP (Remote Desktop Protocol) provides remote graphical access to Windows systems. Poorly secured or exposed RDP can be targeted for credential attacks, unauthorized access, and lateral movement.
-
-**Q5. What does `lusrmgr.msc` open?**
-The Local Users and Groups Management console.
-
-**Q6. What is NTFS and why is it called a journaling file system?**
-NTFS (New Technology File System) is the primary modern Windows file system. It is journaling because it keeps a log of file system changes to help recover and maintain consistency after failures.
-
-**Q7. What are the main NTFS permissions?**
-Full Control, Modify, Read & Execute, List Folder Contents, Read, and Write.
-
-**Q8. What are Alternate Data Streams and why do they matter?**
-ADS is an NTFS feature allowing additional data streams inside a file. It is legitimate functionality but can be abused by malware to conceal data.
-
-**Q9. What is `%windir%` and what is System32?**
-`%windir%` is an environment variable pointing to the Windows installation directory. System32 (`C:\Windows\System32`) is a critical directory holding key OS files, executables, libraries, and utilities.
-
-**Q10. What is the Principle of Least Privilege?**
-Granting users and processes only the minimum permissions required to perform their legitimate tasks.
-
-**Q11. What is UAC?**
-User Account Control — a mechanism that prompts for approval or administrator credentials before certain privileged operations proceed.
-
-**Q12. What keyboard shortcut opens Task Manager, and why is it useful?**
-`Ctrl + Shift + Esc`. It provides basic visibility into processes, resource usage, logged-in users, and services for initial system investigation.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What does GUI stand for?** | Graphical User Interface — a way to interact with the OS through graphical elements instead of only the command line. |
+| **Q2. What is the difference between a running and a pinned Taskbar application?** | A running application's icon normally disappears when it is closed, while a pinned application's icon remains available for quick launching. |
+| **Q3. What is another name for the Notification Area?** | The System Tray. |
+| **Q4. What is RDP and why does it matter in cybersecurity?** | RDP (Remote Desktop Protocol) provides remote graphical access to Windows systems. Poorly secured or exposed RDP can be targeted for credential attacks, unauthorized access, and lateral movement. |
+| **Q5. What does `lusrmgr.msc` open?** | The Local Users and Groups Management console. |
+| **Q6. What is NTFS and why is it called a journaling file system?** | NTFS (New Technology File System) is the primary modern Windows file system. It is journaling because it keeps a log of file system changes to help recover and maintain consistency after failures. |
+| **Q7. What are the main NTFS permissions?** | Full Control, Modify, Read & Execute, List Folder Contents, Read, and Write. |
+| **Q8. What are Alternate Data Streams and why do they matter?** | ADS is an NTFS feature allowing additional data streams inside a file. It is legitimate functionality but can be abused by malware to conceal data. |
+| **Q9. What is `%windir%` and what is System32?** | `%windir%` is an environment variable pointing to the Windows installation directory. System32 (`C:\Windows\System32`) is a critical directory holding key OS files, executables, libraries, and utilities. |
+| **Q10. What is the Principle of Least Privilege?** | Granting users and processes only the minimum permissions required to perform their legitimate tasks. |
+| **Q11. What is UAC?** | User Account Control — a mechanism that prompts for approval or administrator credentials before certain privileged operations proceed. |
+| **Q12. What keyboard shortcut opens Task Manager, and why is it useful?** | `Ctrl + Shift + Esc`. It provides basic visibility into processes, resource usage, logged-in users, and services for initial system investigation. |
 
 ## Final Takeaway
 

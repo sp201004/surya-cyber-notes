@@ -587,25 +587,14 @@ The file that contains the keyword is **authentication.log**, and the cat is sle
 
 ## Interview Questions
 
-**Q1. What is a shell and where does it sit?**
-A shell is an interface between the user and the operating system. It accepts typed commands through the CLI and passes them to the OS, which in turn controls the hardware.
-
-**Q2. How do you check and permanently change your default shell?**
-Run `echo $SHELL` to see the current shell path and `cat /etc/shells` to list installed shells. Use `chsh -s /usr/bin/zsh` to permanently change the default login shell.
-
-**Q3. What is the difference between Bash, Fish, and Zsh?**
-Bash is the widely-used default with powerful, portable scripting. Fish is very user-friendly with built-in syntax highlighting and auto-correction. Zsh is highly customizable with advanced completion and plugin support.
-
-**Q4. What does the shebang do?**
-The shebang (`#!/bin/bash`) is the first line of a script and tells the system which interpreter should execute the file.
-
-**Q5. Why do you run a script with `./script.sh` instead of just `script.sh`?**
-The `./` tells the shell to run the script from the current directory. Without it, the shell only searches the directories listed in the `PATH` environment variable.
-
-**Q6. How does the Locker Script enforce all three credentials?**
-It uses the `&&` (logical AND) operator so the username, company name, and PIN must all match at once; if any single value is wrong, authentication is denied.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is a shell and where does it sit?** | A shell is an interface between the user and the operating system. It accepts typed commands through the CLI and passes them to the OS, which in turn controls the hardware. |
+| **Q2. How do you check and permanently change your default shell?** | Run `echo $SHELL` to see the current shell path and `cat /etc/shells` to list installed shells. Use `chsh -s /usr/bin/zsh` to permanently change the default login shell. |
+| **Q3. What is the difference between Bash, Fish, and Zsh?** | Bash is the widely-used default with powerful, portable scripting. Fish is very user-friendly with built-in syntax highlighting and auto-correction. Zsh is highly customizable with advanced completion and plugin support. |
+| **Q4. What does the shebang do?** | The shebang (`#!/bin/bash`) is the first line of a script and tells the system which interpreter should execute the file. |
+| **Q5. Why do you run a script with `./script.sh` instead of just `script.sh`?** | The `./` tells the shell to run the script from the current directory. Without it, the shell only searches the directories listed in the `PATH` environment variable. |
+| **Q6. How does the Locker Script enforce all three credentials?** | It uses the `&&` (logical AND) operator so the username, company name, and PIN must all match at once; if any single value is wrong, authentication is denied. |
 
 ## Final Takeaway
 

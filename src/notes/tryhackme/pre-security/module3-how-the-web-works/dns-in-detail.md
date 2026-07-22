@@ -175,14 +175,16 @@ dig TXT google.com
 
 ## Interview Questions
 
-- **What is DNS?** Translates domain names into IP addresses.
-- **A vs AAAA?** A → IPv4; AAAA → IPv6.
-- **CNAME vs A Record?** A: Domain → IP; CNAME: Domain → Domain.
-- **What does MX do?** Specifies the mail server.
-- **What is TTL?** Cache lifetime.
-- **Authoritative DNS?** Server holding the official DNS records.
-- **Recursive DNS?** Queries DNS servers on behalf of the client.
-- **gTLD vs ccTLD?** gTLD is purpose-based (`.com`, `.org`); ccTLD is country-based (`.in`, `.uk`, `.jp`).
+| Question | Answer |
+|---|---|
+| **What is DNS?** | Translates domain names into IP addresses. |
+| **A vs AAAA?** | A → IPv4; AAAA → IPv6. |
+| **CNAME vs A Record?** | A: Domain → IP; CNAME: Domain → Domain. |
+| **What does MX do?** | Specifies the mail server. |
+| **What is TTL?** | Cache lifetime. |
+| **Authoritative DNS?** | Server holding the official DNS records. |
+| **Recursive DNS?** | Queries DNS servers on behalf of the client. |
+| **gTLD vs ccTLD?** | gTLD is purpose-based (`.com`, `.org`); ccTLD is country-based (`.in`, `.uk`, `.jp`). |
 
 ## Memory Tricks
 

@@ -353,22 +353,13 @@ nmap -A -T4 192.168.1.10
 
 ## Interview Questions
 
-**Q1. What is the difference between TCP and UDP?**
-TCP is reliable and connection-oriented, using a three-way handshake and retransmitting lost data, so it suits downloads, SSH, and HTTPS. UDP is connectionless and faster with no retransmission, so it suits streaming, gaming, and DNS.
-
-**Q2. Which OSI layer performs routing, and what operates there?**
-Layer 3, the Network layer, performs routing. IP addressing and routers operate at this layer to move packets between networks.
-
-**Q3. What are the private IP address ranges?**
-`10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16`. These are reserved for internal networks and are translated to a public address by NAT before reaching the Internet.
-
-**Q4. What is the difference between HTTP and HTTPS, and their ports?**
-HTTP (port 80) sends web traffic in plaintext, while HTTPS (port 443) wraps the same traffic in TLS to provide confidentiality and integrity, protecting it from interception.
-
-**Q5. What does the Nmap `-sS` flag do, and why is `-Pn` useful?**
-`-sS` runs a stealth TCP SYN scan that never completes the handshake, making it quieter. `-Pn` skips host discovery and treats the target as online, which is essential when a host blocks ping.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the difference between TCP and UDP?** | TCP is reliable and connection-oriented, using a three-way handshake and retransmitting lost data, so it suits downloads, SSH, and HTTPS. UDP is connectionless and faster with no retransmission, so it suits streaming, gaming, and DNS. |
+| **Q2. Which OSI layer performs routing, and what operates there?** | Layer 3, the Network layer, performs routing. IP addressing and routers operate at this layer to move packets between networks. |
+| **Q3. What are the private IP address ranges?** | `10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16`. These are reserved for internal networks and are translated to a public address by NAT before reaching the Internet. |
+| **Q4. What is the difference between HTTP and HTTPS, and their ports?** | HTTP (port 80) sends web traffic in plaintext, while HTTPS (port 443) wraps the same traffic in TLS to provide confidentiality and integrity, protecting it from interception. |
+| **Q5. What does the Nmap `-sS` flag do, and why is `-Pn` useful?** | `-sS` runs a stealth TCP SYN scan that never completes the handshake, making it quieter. `-Pn` skips host discovery and treats the target as online, which is essential when a host blocks ping. |
 
 ## Final Takeaway
 

@@ -557,71 +557,19 @@ Desktop
 
 ## Interview Questions
 
-**Q. Why is RAM called volatile memory?**
-
-Because data disappears after power loss.
-
----
-
-**Q. Why is SSD faster?**
-
-No moving parts. Uses flash memory.
-
----
-
-**Q. Difference between HDD and SSD?**
-
-SSD uses flash memory. HDD uses rotating disks.
-
----
-
-**Q. Why do we need PSU?**
-
-Supplies electrical power.
-
----
-
-**Q. What is POST?**
-
-Hardware diagnostic test performed during boot.
-
----
-
-**Q. What is Bootloader?**
-
-Loads Operating System into RAM.
-
----
-
-**Q. Difference between BIOS and UEFI?**
-
-UEFI is modern, faster, secure and supports GPT.
-
----
-
-**Q. Which component performs calculations?**
-
-`CPU`
-
----
-
-**Q. Which component renders graphics?**
-
-`GPU`
-
----
-
-**Q. Which component stores data permanently?**
-
-`SSD` / `HDD`
-
----
-
-**Q. What chooses boot device?**
-
-`UEFI` / `BIOS`
-
----
+| Question | Answer |
+|---|---|
+| **Q. Why is RAM called volatile memory?** | Because data disappears after power loss. |
+| **Q. Why is SSD faster?** | No moving parts. Uses flash memory. |
+| **Q. Difference between HDD and SSD?** | SSD uses flash memory. HDD uses rotating disks. |
+| **Q. Why do we need PSU?** | Supplies electrical power. |
+| **Q. What is POST?** | Hardware diagnostic test performed during boot. |
+| **Q. What is Bootloader?** | Loads Operating System into RAM. |
+| **Q. Difference between BIOS and UEFI?** | UEFI is modern, faster, secure and supports GPT. |
+| **Q. Which component performs calculations?** | `CPU` |
+| **Q. Which component renders graphics?** | `GPU` |
+| **Q. Which component stores data permanently?** | `SSD` / `HDD` |
+| **Q. What chooses boot device?** | `UEFI` / `BIOS` |
 
 ## Memory Tricks
 

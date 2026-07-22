@@ -855,43 +855,20 @@ Take Action
 
 ## Interview Questions
 
-**Q1. What is Shodan?**
-Shodan is a search engine that indexes Internet-connected devices, allowing security professionals to discover publicly exposed systems, services, banners, and technologies.
-
-**Q2. What is Banner Grabbing?**
-Banner grabbing is the process of collecting information returned by a network service, such as the software name, version, operating system, or protocol.
-
-**Q3. What is IoT?**
-IoT (Internet of Things) refers to physical devices connected to the Internet that communicate and exchange data, such as smart cameras, sensors, TVs, and industrial equipment.
-
-**Q4. Why is Shodan useful?**
-It helps security professionals identify exposed assets, understand attack surfaces, perform reconnaissance, and verify whether systems are publicly accessible.
-
-**Q5. What is VirusTotal?**
-VirusTotal is a threat intelligence platform that scans files, URLs, domains, IPs, and hashes using multiple antivirus engines.
-
-**Q6. What is a File Hash?**
-A unique fingerprint of a file generated using algorithms such as MD5, SHA1, or SHA256.
-
-**Q7. What is an IOC?**
-An Indicator of Compromise is evidence suggesting malicious activity, such as a malicious IP address, file hash, or domain.
-
-**Q8. Why use multiple antivirus engines?**
-No antivirus detects every threat. Using many engines increases detection accuracy and confidence.
-
-**Q9. What is Git?**
-Git is a distributed version control system used to track changes in source code.
-
-**Q10. What is a Repository?**
-A repository is a storage location containing project files, documentation, source code, and version history.
-
-**Q11. Why should you read official documentation?**
-Official documentation is accurate, maintained by developers, and explains correct usage, syntax, options, and best practices.
-
-**Q12. Why shouldn't you blindly run PoC code?**
-PoC code may be outdated, unsafe, or malicious. Always review the code and test it in an isolated environment before use.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Shodan?** | Shodan is a search engine that indexes Internet-connected devices, allowing security professionals to discover publicly exposed systems, services, banners, and technologies. |
+| **Q2. What is Banner Grabbing?** | Banner grabbing is the process of collecting information returned by a network service, such as the software name, version, operating system, or protocol. |
+| **Q3. What is IoT?** | IoT (Internet of Things) refers to physical devices connected to the Internet that communicate and exchange data, such as smart cameras, sensors, TVs, and industrial equipment. |
+| **Q4. Why is Shodan useful?** | It helps security professionals identify exposed assets, understand attack surfaces, perform reconnaissance, and verify whether systems are publicly accessible. |
+| **Q5. What is VirusTotal?** | VirusTotal is a threat intelligence platform that scans files, URLs, domains, IPs, and hashes using multiple antivirus engines. |
+| **Q6. What is a File Hash?** | A unique fingerprint of a file generated using algorithms such as MD5, SHA1, or SHA256. |
+| **Q7. What is an IOC?** | An Indicator of Compromise is evidence suggesting malicious activity, such as a malicious IP address, file hash, or domain. |
+| **Q8. Why use multiple antivirus engines?** | No antivirus detects every threat. Using many engines increases detection accuracy and confidence. |
+| **Q9. What is Git?** | Git is a distributed version control system used to track changes in source code. |
+| **Q10. What is a Repository?** | A repository is a storage location containing project files, documentation, source code, and version history. |
+| **Q11. Why should you read official documentation?** | Official documentation is accurate, maintained by developers, and explains correct usage, syntax, options, and best practices. |
+| **Q12. Why shouldn't you blindly run PoC code?** | PoC code may be outdated, unsafe, or malicious. Always review the code and test it in an isolated environment before use. |
 
 ## Room Answers
 

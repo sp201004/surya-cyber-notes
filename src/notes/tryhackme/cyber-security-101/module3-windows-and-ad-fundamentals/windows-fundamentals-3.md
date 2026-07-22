@@ -536,28 +536,15 @@ Every layer in this room breaks that chain — patching closes the entry point, 
 
 ## Interview Questions
 
-**Q1. What is Patch Tuesday?**
-The second Tuesday of each month, when Microsoft traditionally releases many security updates. Urgent fixes can still ship outside this schedule.
-
-**Q2. Why should Real-Time Protection stay enabled?**
-It continuously monitors the system, stopping malware from installing, running, or modifying files as it happens rather than only during scheduled scans.
-
-**Q3. What are the three Windows Defender Firewall profiles?**
-Domain (authenticated to a Domain Controller), Private (trusted home or office networks), and Public (untrusted networks such as airport or cafe Wi-Fi).
-
-**Q4. What do CFG, DEP, and ASLR do?**
-They are exploit mitigations: CFG validates indirect calls to block control-flow hijacking, DEP stops code executing in data-only memory, and ASLR randomises memory addresses to make exploitation unpredictable.
-
-**Q5. Why is BitLocker stronger with a TPM?**
-The TPM stores BitLocker's cryptographic keys in tamper-resistant hardware and can verify the machine has not been altered offline, keeping keys out of easily accessible software storage.
-
-**Q6. Why does ransomware delete Volume Shadow Copies?**
-Shadow copies let victims restore files, so ransomware removes them before encrypting data to prevent easy recovery — which is why off-site and offline backups matter.
-
-**Q7. What is Living Off The Land?**
-An attacker technique that abuses legitimate, built-in Windows tools to perform malicious actions and blend in with normal activity, making detection harder.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Patch Tuesday?** | The second Tuesday of each month, when Microsoft traditionally releases many security updates. Urgent fixes can still ship outside this schedule. |
+| **Q2. Why should Real-Time Protection stay enabled?** | It continuously monitors the system, stopping malware from installing, running, or modifying files as it happens rather than only during scheduled scans. |
+| **Q3. What are the three Windows Defender Firewall profiles?** | Domain (authenticated to a Domain Controller), Private (trusted home or office networks), and Public (untrusted networks such as airport or cafe Wi-Fi). |
+| **Q4. What do CFG, DEP, and ASLR do?** | They are exploit mitigations: CFG validates indirect calls to block control-flow hijacking, DEP stops code executing in data-only memory, and ASLR randomises memory addresses to make exploitation unpredictable. |
+| **Q5. Why is BitLocker stronger with a TPM?** | The TPM stores BitLocker's cryptographic keys in tamper-resistant hardware and can verify the machine has not been altered offline, keeping keys out of easily accessible software storage. |
+| **Q6. Why does ransomware delete Volume Shadow Copies?** | Shadow copies let victims restore files, so ransomware removes them before encrypting data to prevent easy recovery — which is why off-site and offline backups matter. |
+| **Q7. What is Living Off The Land?** | An attacker technique that abuses legitimate, built-in Windows tools to perform malicious actions and blend in with normal activity, making detection harder. |
 
 ## Final Takeaway
 

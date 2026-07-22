@@ -227,12 +227,14 @@ The cloud is powerful, but the shared responsibility model means **your** mistak
 
 ## Interview Questions
 
-- **What is cloud computing?** Delivering computing resources (servers, storage, databases, software) over the internet on-demand, paying only for what you use instead of owning hardware.
-- **IaaS vs PaaS vs SaaS?** IaaS = raw infrastructure you manage (AWS EC2); PaaS = a platform to deploy code, provider runs the servers (App Engine/Heroku); SaaS = finished software you just use (Gmail, Office 365).
-- **Public vs Private vs Hybrid cloud?** Public is shared and provider-owned; Private is dedicated to one organization; Hybrid connects both.
-- **Region vs Availability Zone?** A Region is a geographic area; an Availability Zone is one or more isolated data centers within that region. Multiple AZs protect against a single data center failure.
-- **What is the Shared Responsibility Model?** The provider secures the cloud (hardware, hypervisor, physical facilities); the customer secures what they put in it (data, access/IAM, configuration).
-- **What is the #1 cause of cloud breaches?** Customer misconfiguration — e.g. public storage buckets and overly permissive IAM roles.
+| Question | Answer |
+|---|---|
+| **What is cloud computing?** | Delivering computing resources (servers, storage, databases, software) over the internet on-demand, paying only for what you use instead of owning hardware. |
+| **IaaS vs PaaS vs SaaS?** | IaaS = raw infrastructure you manage (AWS EC2); PaaS = a platform to deploy code, provider runs the servers (App Engine/Heroku); SaaS = finished software you just use (Gmail, Office 365). |
+| **Public vs Private vs Hybrid cloud?** | Public is shared and provider-owned; Private is dedicated to one organization; Hybrid connects both. |
+| **Region vs Availability Zone?** | A Region is a geographic area; an Availability Zone is one or more isolated data centers within that region. Multiple AZs protect against a single data center failure. |
+| **What is the Shared Responsibility Model?** | The provider secures the cloud (hardware, hypervisor, physical facilities); the customer secures what they put in it (data, access/IAM, configuration). |
+| **What is the #1 cause of cloud breaches?** | Customer misconfiguration — e.g. public storage buckets and overly permissive IAM roles. |
 
 ## Quick Revision
 

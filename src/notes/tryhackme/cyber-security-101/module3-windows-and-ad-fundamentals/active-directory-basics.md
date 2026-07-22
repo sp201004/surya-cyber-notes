@@ -626,34 +626,17 @@ Active Directory is a major component of enterprise Windows environments, and un
 
 ## Interview Questions
 
-**Q1. What is Active Directory and why is it used?**
-Active Directory is Microsoft's directory service for centrally managing users, computers, groups, authentication, and policy across a Windows network, so administrators do not have to configure each machine individually.
-
-**Q2. What is a Domain Controller?**
-A Domain Controller is a Windows server running AD DS that authenticates users and computers, stores AD objects, and enforces domain security policies.
-
-**Q3. What is the difference between an OU and a Security Group?**
-An OU organizes objects, allows Group Policy to be applied, and supports delegation, while a Security Group is used to assign permissions to resources.
-
-**Q4. What is delegation and why is it useful?**
-Delegation grants a user specific administrative privileges over an OU or object without making them a Domain Admin, following the principle of least privilege.
-
-**Q5. What is a GPO and how is it distributed?**
-A Group Policy Object is a collection of user and computer settings applied to domains or OUs; it is distributed to machines through the `SYSVOL` network share and can be refreshed with `gpupdate /force`.
-
-**Q6. How does Kerberos authentication work at a high level?**
-The client requests a TGT from the KDC, receives a TGT and session key, uses the TGT to request a TGS for a specific service, then presents that TGS to the service to gain access — all without repeatedly sending credentials.
-
-**Q7. What is the difference between Kerberos and NetNTLM?**
-Kerberos is a modern, ticket-based protocol and the default in current Windows domains, while NetNTLM is a legacy challenge-response protocol kept for compatibility. Neither transmits the actual password over the network.
-
-**Q8. What is the difference between a Tree and a Forest?**
-A Tree is a set of domains that share the same namespace, while a Forest is a collection of one or more trees that may use different namespaces.
-
-**Q9. Does a trust relationship grant access to all resources?**
-No. A trust enables cross-domain authentication, but access to any specific resource still depends on explicitly assigned permissions.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Active Directory and why is it used?** | Active Directory is Microsoft's directory service for centrally managing users, computers, groups, authentication, and policy across a Windows network, so administrators do not have to configure each machine individually. |
+| **Q2. What is a Domain Controller?** | A Domain Controller is a Windows server running AD DS that authenticates users and computers, stores AD objects, and enforces domain security policies. |
+| **Q3. What is the difference between an OU and a Security Group?** | An OU organizes objects, allows Group Policy to be applied, and supports delegation, while a Security Group is used to assign permissions to resources. |
+| **Q4. What is delegation and why is it useful?** | Delegation grants a user specific administrative privileges over an OU or object without making them a Domain Admin, following the principle of least privilege. |
+| **Q5. What is a GPO and how is it distributed?** | A Group Policy Object is a collection of user and computer settings applied to domains or OUs; it is distributed to machines through the `SYSVOL` network share and can be refreshed with `gpupdate /force`. |
+| **Q6. How does Kerberos authentication work at a high level?** | The client requests a TGT from the KDC, receives a TGT and session key, uses the TGT to request a TGS for a specific service, then presents that TGS to the service to gain access — all without repeatedly sending credentials. |
+| **Q7. What is the difference between Kerberos and NetNTLM?** | Kerberos is a modern, ticket-based protocol and the default in current Windows domains, while NetNTLM is a legacy challenge-response protocol kept for compatibility. Neither transmits the actual password over the network. |
+| **Q8. What is the difference between a Tree and a Forest?** | A Tree is a set of domains that share the same namespace, while a Forest is a collection of one or more trees that may use different namespaces. |
+| **Q9. Does a trust relationship grant access to all resources?** | No. A trust enables cross-domain authentication, but access to any specific resource still depends on explicitly assigned permissions. |
 
 ## Final Takeaway
 

@@ -669,31 +669,16 @@ sudo nmap -oA report target
 
 ## Interview Questions
 
-**Q1. What is Nmap?**
-Nmap (Network Mapper) is a network discovery and security auditing tool used to find live hosts, open ports, services, versions, and operating systems during reconnaissance.
-
-**Q2. Which option performs host discovery only, and which just lists targets?**
-`-sn` performs a ping scan that only discovers live hosts without scanning ports. `-sL` lists the target addresses without sending any packets.
-
-**Q3. What is the difference between `-sS` and `-sT`?**
-`-sS` is a SYN (half-open) scan that never completes the TCP handshake, making it faster and stealthier but requiring raw packet privileges (`sudo`). `-sT` completes the full three-way handshake, needs no special privileges, but is easier to detect and generates more logs.
-
-**Q4. Why is a SYN scan called a stealth scan?**
-Because it never finishes the TCP handshake, and many services only log completed connections, so a SYN scan tends to generate fewer log entries.
-
-**Q5. What do `-sV`, `-O`, and `-A` do?**
-`-sV` detects service names and versions, `-O` guesses the operating system, and `-A` is an aggressive scan that combines OS detection, version detection, NSE script scanning, and traceroute.
-
-**Q6. What is the purpose of `-Pn`?**
-It skips host discovery and treats the target as online, which is useful when a firewall blocks ICMP or ping is disabled.
-
-**Q7. Which timing template is the default, and which is common in labs?**
-`-T3` (Normal) is the default. `-T4` (Aggressive) is commonly used in labs and CTFs for faster scans.
-
-**Q8. How do you save all output formats at once, and why is version detection valuable?**
-`-oA report` writes normal, XML, and grepable files together. Version detection is valuable because knowing the exact software version lets you search CVE databases for known vulnerabilities.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Nmap?** | Nmap (Network Mapper) is a network discovery and security auditing tool used to find live hosts, open ports, services, versions, and operating systems during reconnaissance. |
+| **Q2. Which option performs host discovery only, and which just lists targets?** | `-sn` performs a ping scan that only discovers live hosts without scanning ports. `-sL` lists the target addresses without sending any packets. |
+| **Q3. What is the difference between `-sS` and `-sT`?** | `-sS` is a SYN (half-open) scan that never completes the TCP handshake, making it faster and stealthier but requiring raw packet privileges (`sudo`). `-sT` completes the full three-way handshake, needs no special privileges, but is easier to detect and generates more logs. |
+| **Q4. Why is a SYN scan called a stealth scan?** | Because it never finishes the TCP handshake, and many services only log completed connections, so a SYN scan tends to generate fewer log entries. |
+| **Q5. What do `-sV`, `-O`, and `-A` do?** | `-sV` detects service names and versions, `-O` guesses the operating system, and `-A` is an aggressive scan that combines OS detection, version detection, NSE script scanning, and traceroute. |
+| **Q6. What is the purpose of `-Pn`?** | It skips host discovery and treats the target as online, which is useful when a firewall blocks ICMP or ping is disabled. |
+| **Q7. Which timing template is the default, and which is common in labs?** | `-T3` (Normal) is the default. `-T4` (Aggressive) is commonly used in labs and CTFs for faster scans. |
+| **Q8. How do you save all output formats at once, and why is version detection valuable?** | `-oA report` writes normal, XML, and grepable files together. Version detection is valuable because knowing the exact software version lets you search CVE databases for known vulnerabilities. |
 
 ## Final Takeaway
 

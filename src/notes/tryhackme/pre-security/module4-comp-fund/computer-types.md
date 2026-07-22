@@ -549,59 +549,17 @@ Need hidden controller?
 
 ## Interview Questions
 
-**Q. Difference between Desktop and Workstation?**
-
-Workstations use specialized hardware and prioritize reliability.
-
----
-
-**Q. Why don't servers need monitors?**
-
-They are managed remotely.
-
----
-
-**Q. What is an IoT device?**
-
-A network-connected device performing a specific task.
-
----
-
-**Q. Difference between IoT and Embedded?**
-
-IoT connects to the Internet. Embedded computers may never connect.
-
----
-
-**Q. Why are laptops slower than desktops?**
-
-Limited cooling and power constraints.
-
----
-
-**Q. What computer is inside a coffee machine?**
-
-Embedded Computer.
-
----
-
-**Q. Why do servers use redundancy?**
-
-To avoid downtime.
-
----
-
-**Q. Which computer runs 24×7?**
-
-Server.
-
----
-
-**Q. Which computer is best for CAD?**
-
-Workstation.
-
----
+| Question | Answer |
+|---|---|
+| **Q. Difference between Desktop and Workstation?** | Workstations use specialized hardware and prioritize reliability. |
+| **Q. Why don't servers need monitors?** | They are managed remotely. |
+| **Q. What is an IoT device?** | A network-connected device performing a specific task. |
+| **Q. Difference between IoT and Embedded?** | IoT connects to the Internet. Embedded computers may never connect. |
+| **Q. Why are laptops slower than desktops?** | Limited cooling and power constraints. |
+| **Q. What computer is inside a coffee machine?** | Embedded Computer. |
+| **Q. Why do servers use redundancy?** | To avoid downtime. |
+| **Q. Which computer runs 24×7?** | Server. |
+| **Q. Which computer is best for CAD?** | Workstation. |
 
 ## Memory Tricks
 

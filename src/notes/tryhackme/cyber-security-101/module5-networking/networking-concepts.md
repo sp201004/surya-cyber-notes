@@ -797,37 +797,18 @@ hostname
 
 ## Interview Questions
 
-**Q1. What is the difference between TCP and UDP?**
-TCP is reliable and connection-oriented with a three-way handshake and ordered delivery, while UDP is faster and connectionless with no retransmission.
-
-**Q2. How many layers does each model have?**
-OSI has 7 layers and TCP/IP has 4. Three OSI layers (Application, Presentation, Session) merge into the single TCP/IP Application layer.
-
-**Q3. Which layer performs routing, and which device does it?**
-Routing happens at Layer 3, the Network layer, and the router forwards packets between networks.
-
-**Q4. Which address works at Layer 2 and which at Layer 3?**
-The MAC address works at Layer 2 (Data Link) and the IP address works at Layer 3 (Network).
-
-**Q5. How many bits are in an IPv4 address and what is the octet range?**
-IPv4 uses 32 bits split into 4 octets, each ranging from 0 to 255.
-
-**Q6. What does `/24` mean?**
-It is CIDR notation for the subnet mask `255.255.255.0`, meaning the first 24 bits identify the network.
-
-**Q7. Which protocol uses the three-way handshake, and what are its steps?**
-TCP does, using SYN from the client, SYN-ACK from the server, and ACK from the client to establish the connection.
-
-**Q8. What is encapsulation and decapsulation?**
-Encapsulation adds protocol headers as data moves down the stack; decapsulation removes those headers at the receiving side as data moves back up.
-
-**Q9. Why is Telnet insecure and what replaced it?**
-Telnet sends everything in plain text on port 23, so it is easy to sniff or hijack; SSH on port 22 replaced it with encryption.
-
-**Q10. Why is HTTPS considered secure?**
-It uses TLS encryption at the Presentation layer to protect data in transit.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the difference between TCP and UDP?** | TCP is reliable and connection-oriented with a three-way handshake and ordered delivery, while UDP is faster and connectionless with no retransmission. |
+| **Q2. How many layers does each model have?** | OSI has 7 layers and TCP/IP has 4. Three OSI layers (Application, Presentation, Session) merge into the single TCP/IP Application layer. |
+| **Q3. Which layer performs routing, and which device does it?** | Routing happens at Layer 3, the Network layer, and the router forwards packets between networks. |
+| **Q4. Which address works at Layer 2 and which at Layer 3?** | The MAC address works at Layer 2 (Data Link) and the IP address works at Layer 3 (Network). |
+| **Q5. How many bits are in an IPv4 address and what is the octet range?** | IPv4 uses 32 bits split into 4 octets, each ranging from 0 to 255. |
+| **Q6. What does `/24` mean?** | It is CIDR notation for the subnet mask `255.255.255.0`, meaning the first 24 bits identify the network. |
+| **Q7. Which protocol uses the three-way handshake, and what are its steps?** | TCP does, using SYN from the client, SYN-ACK from the server, and ACK from the client to establish the connection. |
+| **Q8. What is encapsulation and decapsulation?** | Encapsulation adds protocol headers as data moves down the stack; decapsulation removes those headers at the receiving side as data moves back up. |
+| **Q9. Why is Telnet insecure and what replaced it?** | Telnet sends everything in plain text on port 23, so it is easy to sniff or hijack; SSH on port 22 replaced it with encryption. |
+| **Q10. Why is HTTPS considered secure?** | It uses TLS encryption at the Presentation layer to protect data in transit. |
 
 ## Final Takeaway
 

@@ -287,22 +287,13 @@ KDC ── issues TGT ──► Client
 
 ## Interview Questions
 
-**Q1. What does the Principle of Least Privilege mean on Windows?**
-Users and accounts should receive only the permissions required for their tasks, reducing the impact of a compromised account.
-
-**Q2. What is the difference between Kerberos and NetNTLM?**
-Kerberos is modern ticket-based authentication using TGTs and service tickets, while NetNTLM is legacy challenge-response authentication kept for compatibility. Neither transmits the password directly.
-
-**Q3. Which firewall profile applies on untrusted airport Wi-Fi?**
-The Public profile, which applies stricter rules for untrusted networks.
-
-**Q4. What is a Domain Controller responsible for?**
-It hosts AD DS, authenticates users and computers, manages domain objects, and enforces domain policies.
-
-**Q5. Why do offline backups matter against ransomware?**
-Ransomware often deletes Volume Shadow Copies before encrypting files, so local restore points may be gone — offline or off-site backups are the reliable recovery path.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What does the Principle of Least Privilege mean on Windows?** | Users and accounts should receive only the permissions required for their tasks, reducing the impact of a compromised account. |
+| **Q2. What is the difference between Kerberos and NetNTLM?** | Kerberos is modern ticket-based authentication using TGTs and service tickets, while NetNTLM is legacy challenge-response authentication kept for compatibility. Neither transmits the password directly. |
+| **Q3. Which firewall profile applies on untrusted airport Wi-Fi?** | The Public profile, which applies stricter rules for untrusted networks. |
+| **Q4. What is a Domain Controller responsible for?** | It hosts AD DS, authenticates users and computers, manages domain objects, and enforces domain policies. |
+| **Q5. Why do offline backups matter against ransomware?** | Ransomware often deletes Volume Shadow Copies before encrypting files, so local restore points may be gone — offline or off-site backups are the reliable recovery path. |
 
 ## Final Takeaway
 

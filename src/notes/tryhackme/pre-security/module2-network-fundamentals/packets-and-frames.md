@@ -81,15 +81,12 @@ Once these three steps are complete, the connection is open, and data can be tra
 
 ## Interview Questions
 
-- **TCP vs UDP?**
-  | Feature | TCP | UDP |
-  |---|---|---|
-  | Connection | Yes | No |
-  | Reliability | Yes | No |
-  | Speed | Slower | Faster |
-- **What is the TCP 3-Way Handshake?** The process used to establish a reliable TCP session using three packets: **SYN**, **SYN-ACK**, and **ACK**.
-- **When would you use UDP over TCP?** For real-time applications like online gaming, video streaming, or VoIP, where speed is more important than perfect data accuracy.
-- **What is Encapsulation in networking?** The process of wrapping higher-layer data with headers (IP at L3, MAC at L2) as it travels down the OSI stack for transmission.
+| Question | Answer |
+|---|---|
+| **TCP vs UDP?** | Feature — TCP — UDP<br>Connection — Yes — No<br>Reliability — Yes — No<br>Speed — Slower — Faster |
+| **What is the TCP 3-Way Handshake?** | The process used to establish a reliable TCP session using three packets: **SYN**, **SYN-ACK**, and **ACK**. |
+| **When would you use UDP over TCP?** | For real-time applications like online gaming, video streaming, or VoIP, where speed is more important than perfect data accuracy. |
+| **What is Encapsulation in networking?** | The process of wrapping higher-layer data with headers (IP at L3, MAC at L2) as it travels down the OSI stack for transmission. |
 
 ## Memory Tricks
 

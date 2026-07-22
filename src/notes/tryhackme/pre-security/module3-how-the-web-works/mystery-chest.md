@@ -38,16 +38,16 @@
 
 ## Interview Questions
 
-- **What is DNS?** Translates domain names into IP addresses.
-- **A vs AAAA?** A → IPv4; AAAA → IPv6.
-- **CNAME vs A Record?** A: Domain → IP; CNAME: Domain → Domain.
-- **What does MX do?** Specifies the mail server.
-- **What is TTL?** Cache lifetime.
-- **Authoritative DNS?** Server holding the official DNS records.
-- **Recursive DNS?** Queries DNS servers on behalf of the client.
-- **gTLD vs ccTLD?** gTLD is purpose-based (`.com`, `.org`); ccTLD is country-based (`.in`, `.uk`, `.jp`).
-
-HTTP vs HTTPS · Why HTTPS is secure · URL components · Request vs Response headers · User-Agent · Host header · Cookie vs Set-Cookie · Why HTTP is stateless · GET vs POST · PUT vs POST · 401 vs 403 · 301 vs 302 · 404 vs 500 · Content-Type · Content-Length · the full Request-Response lifecycle.
+| Question | Answer |
+|---|---|
+| **What is DNS?** | Translates domain names into IP addresses. |
+| **A vs AAAA?** | A → IPv4; AAAA → IPv6. |
+| **CNAME vs A Record?** | A: Domain → IP; CNAME: Domain → Domain. |
+| **What does MX do?** | Specifies the mail server. |
+| **What is TTL?** | Cache lifetime. |
+| **Authoritative DNS?** | Server holding the official DNS records. |
+| **Recursive DNS?** | Queries DNS servers on behalf of the client. |
+| **gTLD vs ccTLD?** | gTLD is purpose-based (`.com`, `.org`); ccTLD is country-based (`.in`, `.uk`, `.jp`).<br>HTTP vs HTTPS · Why HTTPS is secure · URL components · Request vs Response headers · User-Agent · Host header · Cookie vs Set-Cookie · Why HTTP is stateless · GET vs POST · PUT vs POST · 401 vs 403 · 301 vs 302 · 404 vs 500 · Content-Type · Content-Length · the full Request-Response lifecycle. |
 
 ## Memory Tricks
 

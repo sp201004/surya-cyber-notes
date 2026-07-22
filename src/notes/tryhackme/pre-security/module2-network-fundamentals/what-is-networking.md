@@ -154,21 +154,13 @@ Lower response time = faster connection.
 
 ## Interview Questions
 
-- **What is a Network?** Two or more connected devices that communicate and share resources.
-- **What is the Internet?** A global collection of interconnected networks.
-- **Public vs Private IP?**
-  | Private IP | Public IP |
-  |---|---|
-  | Local Network | Internet |
-  | Not Routable | Routable |
-  | Free | Provided by ISP |
-- **IP vs MAC Address?**
-  | IP Address | MAC Address |
-  |---|---|
-  | Logical Address | Physical Address |
-  | Can Change | Usually Permanent |
-  | Used for Routing | Used on Local Network |
-- **Why is IPv6 needed?** IPv4 addresses are limited; IPv6 provides a vastly larger address space and improved networking features.
+| Question | Answer |
+|---|---|
+| **What is a Network?** | Two or more connected devices that communicate and share resources. |
+| **What is the Internet?** | A global collection of interconnected networks. |
+| **Public vs Private IP?** | Private IP — Public IP<br>Local Network — Internet<br>Not Routable — Routable<br>Free — Provided by ISP |
+| **IP vs MAC Address?** | IP Address — MAC Address<br>Logical Address — Physical Address<br>Can Change — Usually Permanent<br>Used for Routing — Used on Local Network |
+| **Why is IPv6 needed?** | IPv4 addresses are limited; IPv6 provides a vastly larger address space and improved networking features. |
 
 ## Memory Tricks
 

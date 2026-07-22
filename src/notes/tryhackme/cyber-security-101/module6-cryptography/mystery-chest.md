@@ -353,22 +353,13 @@ hashcat -m 0 -a 0 hash.txt rockyou.txt   # GPU dictionary attack, MD5
 
 ## Interview Questions
 
-**Q1. What is the difference between symmetric and asymmetric encryption?**
-Symmetric encryption uses a single shared secret key and is fast, so it encrypts bulk data (AES, ChaCha20). Asymmetric encryption uses a public/private key pair and is slower, so it handles key exchange, digital signatures, and identity (RSA, Diffie-Hellman, ECC). Real protocols combine both.
-
-**Q2. How is hashing different from encryption?**
-Encryption is a two-way process reversible with a key, protecting confidentiality. Hashing is a one-way function producing a fixed-size digest that cannot be reversed, used for integrity checks and password storage. Base64, by contrast, is only encoding and offers no security.
-
-**Q3. Which key creates a digital signature, and which verifies it?**
-The private key creates the signature and the corresponding public key verifies it. This provides authenticity, integrity, and non-repudiation, since only the holder of the private key could have produced the signature.
-
-**Q4. Why should passwords be stored with algorithms like bcrypt or Argon2id instead of MD5?**
-MD5 is broken and extremely fast, so GPU-accelerated tools can try billions of guesses per second. bcrypt, scrypt, Argon2id, and PBKDF2 are deliberately slow and salted, which defeats rainbow tables and dramatically slows brute-force attacks.
-
-**Q5. What does `unshadow` do and why is it needed for John the Ripper?**
-`unshadow` merges `/etc/passwd` and `/etc/shadow` into a single combined file. John needs both the username information from `passwd` and the password hashes from `shadow` in one format before it can attempt to crack Linux account passwords.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the difference between symmetric and asymmetric encryption?** | Symmetric encryption uses a single shared secret key and is fast, so it encrypts bulk data (AES, ChaCha20). Asymmetric encryption uses a public/private key pair and is slower, so it handles key exchange, digital signatures, and identity (RSA, Diffie-Hellman, ECC). Real protocols combine both. |
+| **Q2. How is hashing different from encryption?** | Encryption is a two-way process reversible with a key, protecting confidentiality. Hashing is a one-way function producing a fixed-size digest that cannot be reversed, used for integrity checks and password storage. Base64, by contrast, is only encoding and offers no security. |
+| **Q3. Which key creates a digital signature, and which verifies it?** | The private key creates the signature and the corresponding public key verifies it. This provides authenticity, integrity, and non-repudiation, since only the holder of the private key could have produced the signature. |
+| **Q4. Why should passwords be stored with algorithms like bcrypt or Argon2id instead of MD5?** | MD5 is broken and extremely fast, so GPU-accelerated tools can try billions of guesses per second. bcrypt, scrypt, Argon2id, and PBKDF2 are deliberately slow and salted, which defeats rainbow tables and dramatically slows brute-force attacks. |
+| **Q5. What does `unshadow` do and why is it needed for John the Ripper?** | `unshadow` merges `/etc/passwd` and `/etc/shadow` into a single combined file. John needs both the username information from `passwd` and the password hashes from `shadow` in one format before it can attempt to crack Linux account passwords. |
 
 ## Final Takeaway
 

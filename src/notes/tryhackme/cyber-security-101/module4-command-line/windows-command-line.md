@@ -702,31 +702,16 @@ These commands support defensive security, incident response, system administrat
 
 ## Interview Questions
 
-**Q1. What is the default command-line interpreter in Windows?**
-`cmd.exe`, the traditional Windows Command Prompt, launched from its executable of the same name.
-
-**Q2. How do you find a machine's MAC address from the command line?**
-Run `ipconfig /all` and read the **Physical Address** field for the relevant adapter.
-
-**Q3. What is the difference between `ping` and `tracert`?**
-`ping` tests whether a target is reachable using ICMP Echo Requests, while `tracert` maps each router hop along the path to the destination using the packet's TTL behaviour.
-
-**Q4. Why is `netstat -abon` useful in an investigation?**
-It combines active connections, listening ports, the associated executables, the owning PIDs, and numeric addresses, letting you tie suspicious network activity to a specific process.
-
-**Q5. How do you find and stop a specific process from the CLI?**
-Filter with `tasklist /FI "imagename eq process.exe"` to find the PID, then terminate it with `taskkill /PID <pid>`.
-
-**Q6. What does `sfc /scannow` do?**
-System File Checker scans protected Windows system files for corruption and attempts to repair them.
-
-**Q7. How do you cancel a shutdown that has already been scheduled?**
-Run `shutdown /a`, where `/a` aborts the pending shutdown or restart.
-
-**Q8. How can you get help for a command you don't remember the syntax for?**
-Append the `/?` switch to the command, for example `ipconfig /?`, or run `help` for general command help.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is the default command-line interpreter in Windows?** | `cmd.exe`, the traditional Windows Command Prompt, launched from its executable of the same name. |
+| **Q2. How do you find a machine's MAC address from the command line?** | Run `ipconfig /all` and read the **Physical Address** field for the relevant adapter. |
+| **Q3. What is the difference between `ping` and `tracert`?** | `ping` tests whether a target is reachable using ICMP Echo Requests, while `tracert` maps each router hop along the path to the destination using the packet's TTL behaviour. |
+| **Q4. Why is `netstat -abon` useful in an investigation?** | It combines active connections, listening ports, the associated executables, the owning PIDs, and numeric addresses, letting you tie suspicious network activity to a specific process. |
+| **Q5. How do you find and stop a specific process from the CLI?** | Filter with `tasklist /FI "imagename eq process.exe"` to find the PID, then terminate it with `taskkill /PID <pid>`. |
+| **Q6. What does `sfc /scannow` do?** | System File Checker scans protected Windows system files for corruption and attempts to repair them. |
+| **Q7. How do you cancel a shutdown that has already been scheduled?** | Run `shutdown /a`, where `/a` aborts the pending shutdown or restart. |
+| **Q8. How can you get help for a command you don't remember the syntax for?** | Append the `/?` switch to the command, for example `ipconfig /?`, or run `help` for general command help. |
 
 ## Final Takeaway
 

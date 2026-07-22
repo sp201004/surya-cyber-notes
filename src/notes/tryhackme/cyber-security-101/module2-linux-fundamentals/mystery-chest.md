@@ -152,22 +152,13 @@ crontab -l      →  scheduled persistence
 
 ## Interview Questions
 
-**Q1. Which command shows your current directory?**
-`pwd`.
-
-**Q2. How do you search for text inside files?**
-Use `grep`, for example `grep "error" log.txt`.
-
-**Q3. What does `rwx` mean for a file's owner?**
-The owner can read, write, and execute the file.
-
-**Q4. Which directory holds system logs?**
-`/var/log`.
-
-**Q5. How do you list every running process on the system?**
-`ps aux`.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. Which command shows your current directory?** | `pwd`. |
+| **Q2. How do you search for text inside files?** | Use `grep`, for example `grep "error" log.txt`. |
+| **Q3. What does `rwx` mean for a file's owner?** | The owner can read, write, and execute the file. |
+| **Q4. Which directory holds system logs?** | `/var/log`. |
+| **Q5. How do you list every running process on the system?** | `ps aux`. |
 
 ## Final Takeaway
 

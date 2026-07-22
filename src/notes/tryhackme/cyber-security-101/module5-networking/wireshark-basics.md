@@ -818,37 +818,18 @@ tcp.port == 80 && ip.src == 192.168.1.10
 
 ## Interview Questions
 
-**Q1. What is Wireshark?**
-A GUI-based network protocol analyzer used to capture, decode, and analyze packets travelling across a network.
-
-**Q2. What is a PCAP file?**
-A file, usually with a `.pcap` or `.pcapng` extension, that stores captured network packets so they can be analyzed later.
-
-**Q3. What is the difference between the Packet List and Packet Details panes?**
-The Packet List pane shows a one-line summary of every captured packet, while the Packet Details pane decodes the selected packet into its protocol layers.
-
-**Q4. What is packet dissection?**
-Breaking a single packet into its protocol layers, such as Ethernet, IPv4, TCP, and HTTP, so each layer's fields can be read individually.
-
-**Q5. What is the difference between a capture filter and a display filter?**
-A capture filter decides which packets are recorded to the PCAP and runs before capture, while a display filter only changes which captured packets are shown and runs afterward without deleting anything.
-
-**Q6. Why use Follow Stream?**
-It reconstructs an entire application-layer conversation into readable text, so an analyst can read requests, responses, credentials, and commands instead of piecing together individual packets.
-
-**Q7. What does Export Objects do?**
-It recovers the actual files transferred over supported protocols such as HTTP, SMB, and TFTP, which is valuable for extracting downloaded malware for further analysis.
-
-**Q8. What is Expert Information?**
-A Wireshark feature that automatically detects and highlights abnormal events, grouped by severity as Chat, Note, Warning, and Error.
-
-**Q9. What is the difference between marking a packet and commenting on a packet?**
-Marking only highlights a packet visually, while a comment stores a written note directly inside the capture file so it is preserved when shared.
-
-**Q10. Which filter shows all packets involving a specific IP address?**
-`ip.addr == 192.168.1.10`, which matches packets where either the source or the destination is that address.
-
----
+| Question | Answer |
+|---|---|
+| **Q1. What is Wireshark?** | A GUI-based network protocol analyzer used to capture, decode, and analyze packets travelling across a network. |
+| **Q2. What is a PCAP file?** | A file, usually with a `.pcap` or `.pcapng` extension, that stores captured network packets so they can be analyzed later. |
+| **Q3. What is the difference between the Packet List and Packet Details panes?** | The Packet List pane shows a one-line summary of every captured packet, while the Packet Details pane decodes the selected packet into its protocol layers. |
+| **Q4. What is packet dissection?** | Breaking a single packet into its protocol layers, such as Ethernet, IPv4, TCP, and HTTP, so each layer's fields can be read individually. |
+| **Q5. What is the difference between a capture filter and a display filter?** | A capture filter decides which packets are recorded to the PCAP and runs before capture, while a display filter only changes which captured packets are shown and runs afterward without deleting anything. |
+| **Q6. Why use Follow Stream?** | It reconstructs an entire application-layer conversation into readable text, so an analyst can read requests, responses, credentials, and commands instead of piecing together individual packets. |
+| **Q7. What does Export Objects do?** | It recovers the actual files transferred over supported protocols such as HTTP, SMB, and TFTP, which is valuable for extracting downloaded malware for further analysis. |
+| **Q8. What is Expert Information?** | A Wireshark feature that automatically detects and highlights abnormal events, grouped by severity as Chat, Note, Warning, and Error. |
+| **Q9. What is the difference between marking a packet and commenting on a packet?** | Marking only highlights a packet visually, while a comment stores a written note directly inside the capture file so it is preserved when shared. |
+| **Q10. Which filter shows all packets involving a specific IP address?** | `ip.addr == 192.168.1.10`, which matches packets where either the source or the destination is that address. |
 
 ## Final Takeaway
 
