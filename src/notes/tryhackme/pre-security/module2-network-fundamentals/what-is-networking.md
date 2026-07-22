@@ -198,10 +198,10 @@ Network
 
 ## Final Summary
 
-- A network is a collection of connected devices.
-- The Internet is a network of networks.
-- Devices are identified using IP and MAC addresses.
-- Private IPs are used within local networks; Public IPs communicate over the Internet.
-- IPv6 addresses the limitations of IPv4.
-- Protocols standardize communication between devices.
+- A **network** is a collection of connected devices.
+- The **Internet** is a network of networks.
+- Devices are identified using IP and **MAC addresses**.
+- **Private IPs** are used within local networks; **Public IPs** communicate over the Internet.
+- **IPv6** addresses the limitations of **IPv4**.
+- **Protocols** standardize communication between devices.
 - Ping uses ICMP to test connectivity and measure response time.

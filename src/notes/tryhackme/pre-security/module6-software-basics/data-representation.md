@@ -986,16 +986,16 @@ Hexadecimal
 
 ## Key Takeaways
 
-- Computers understand only binary.
-- Binary is based on powers of 2. Decimal is based on powers of 10.
-- 1 Bit = Binary Digit. 4 Bits = 1 Nibble. 8 Bits = 1 Byte.
+- Computers understand only **binary**.
+- Binary is based on powers of 2. **Decimal** is based on powers of 10.
+- 1 Bit = Binary Digit. 4 Bits = 1 **Nibble**. 8 Bits = 1 **Byte**.
 - Every file eventually becomes binary.
-- Cybersecurity professionals constantly work with binary and hexadecimal data.
-- RGB uses Red, Green and Blue. Each channel stores 8 Bits. Total colors = 16.7 Million.
-- Hexadecimal uses Base-16. One Hex digit represents one Nibble.
+- Cybersecurity professionals constantly work with binary and **hexadecimal** data.
+- **RGB** uses Red, Green and Blue. Each channel stores 8 Bits. Total colors = 16.7 Million.
+- Hexadecimal uses **Base-16**. One Hex digit represents one Nibble.
 - Hex is shorter and easier to read than Binary. File signatures and memory dumps are usually displayed in Hex.
 - Learn binary conversions before moving to advanced topics.
-- Understanding data representation is essential for networking, operating systems, malware analysis, and digital forensics.
+- Understanding data representation is essential for networking, operating systems, malware analysis, and **digital forensics**.
 
 ---
 

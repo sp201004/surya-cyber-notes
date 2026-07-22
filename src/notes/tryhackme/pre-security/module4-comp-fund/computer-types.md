@@ -582,19 +582,19 @@ Embedded → Hidden
 
 ## Final Summary
 
- Computers exist everywhere, not just on desks.
+ **Computers** exist everywhere, not just on desks.
 
- Laptops prioritize portability.
+ **Laptops** prioritize portability.
 
- Desktops prioritize sustained performance.
+ **Desktops** prioritize sustained performance.
 
- Workstations prioritize precision and reliability.
+ **Workstations** prioritize precision and reliability.
 
- Servers provide services to multiple users.
+ **Servers** provide services to multiple users.
 
- Smartphones are powerful pocket computers.
+ **Smartphones** are powerful pocket computers.
 
- Tablets provide touch-first computing.
+ **Tablets** provide touch-first computing.
 
  IoT devices communicate over networks.
 

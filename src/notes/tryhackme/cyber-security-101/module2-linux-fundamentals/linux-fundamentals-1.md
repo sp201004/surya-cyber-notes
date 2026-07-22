@@ -246,4 +246,4 @@ Every one of these steps uses the exact commands you just learned. Basic navigat
 
 ## Final Takeaway
 
-Part 1 is about confidence at the prompt. Once you can log in, read the prompt, and move around with `ls`, `cd`, `pwd`, and `cat`, the rest of Linux becomes far less intimidating. These commands are the bedrock of every task that follows.
+Part 1 is about confidence at the **prompt**. Once you can **log in**, read the prompt, and move around with `ls`, `cd`, `pwd`, and `cat`, the rest of **Linux** becomes far less intimidating. These **commands** are the bedrock of every task that follows.

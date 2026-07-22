@@ -578,8 +578,8 @@ UTF            → Stores Characters
 ## Key Takeaways
 
 - Computers store text as numbers.
-- Encoding maps numbers to characters.
-- ASCII is a 7-bit standard with 128 characters. It mainly supports English.
-- Extended ASCII attempted to support European languages but different encodings caused compatibility issues.
-- Incorrect decoding leads to Mojibake (garbled text).
-- Encoding knowledge is essential for cybersecurity, programming, networking, and digital forensics.
+- **Encoding** maps numbers to characters.
+- **ASCII** is a 7-bit standard with 128 characters. It mainly supports English.
+- **Extended ASCII** attempted to support European languages but different encodings caused compatibility issues.
+- Incorrect decoding leads to **Mojibake** (garbled text).
+- Encoding knowledge is essential for **cybersecurity**, programming, networking, and **digital forensics**.

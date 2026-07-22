@@ -262,4 +262,4 @@ The first ten characters break down as:
 
 ## Final Takeaway
 
-Part 2 turns you from a visitor into an operator. You can now create and manage files, hunt for data with `find` and `grep`, chain commands with operators, and read the permission model that governs the whole system — the same permission model attackers probe for weaknesses.
+Part 2 turns you from a visitor into an **operator**. You can now create and manage files, hunt for data with `find` and `grep`, chain commands with **operators**, and read the **permission model** that governs the whole system — the same permission model **attackers** probe for weaknesses.

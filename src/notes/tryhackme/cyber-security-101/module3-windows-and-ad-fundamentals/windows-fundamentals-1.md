@@ -414,4 +414,4 @@ Future Windows Fundamentals modules build on this with topics such as the Manage
 
 ## Final Takeaway
 
-Windows Fundamentals 1 is about building a mental map of how Windows is put together — its editions, GUI, file system, directories, accounts, and core management tools. Once you can read the Desktop, understand NTFS permissions and ADS, enumerate users and groups, and reason about UAC and running processes, you have the groundwork every later Windows and Active Directory topic depends on.
+Windows Fundamentals 1 is about building a mental map of how Windows is put together — its editions, **GUI**, **file system**, directories, accounts, and core management tools. Once you can read the Desktop, understand **NTFS permissions** and **ADS**, enumerate users and groups, and reason about **UAC** and running processes, you have the groundwork every later Windows and **Active Directory** topic depends on.

@@ -297,4 +297,4 @@ KDC ── issues TGT ──► Client
 
 ## Final Takeaway
 
-The Mystery Chest is your one-page memory aid for Windows and AD Fundamentals. Skim it before any Windows task: the commands, paths, permission model, security features, and Active Directory concepts here cover the vast majority of what you will meet on a Windows machine or in a domain environment, whether you are administering, defending, or investigating.
+The Mystery Chest is your one-page memory aid for **Windows and AD Fundamentals**. Skim it before any Windows task: the commands, paths, **permission model**, **security features**, and **Active Directory** concepts here cover the vast majority of what you will meet on a Windows machine or in a **domain environment**, whether you are administering, defending, or investigating.

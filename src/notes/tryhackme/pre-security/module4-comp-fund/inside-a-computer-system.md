@@ -581,19 +581,19 @@ Desktop
 
 ## Final Summary
 
- Motherboard connects all components.
+ **Motherboard** connects all components.
 
- CPU executes instructions.
+ **CPU** executes instructions.
 
- RAM stores temporary data.
+ **RAM** stores temporary data.
 
- SSD/HDD store permanent data.
+ **SSD/HDD** store permanent data.
 
- GPU renders graphics.
+ **GPU** renders graphics.
 
- PSU powers the computer.
+ **PSU** powers the computer.
 
- Network Adapter enables communication.
+ **Network Adapter** enables communication.
 
  Input devices send data.
 

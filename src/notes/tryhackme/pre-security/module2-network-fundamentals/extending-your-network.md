@@ -142,8 +142,8 @@ Network Extension
 
 ## Final Summary
 
-- WANs span wide geographical distances, with the Internet being the premier example.
-- Private IP addresses are non-routable and divided into 10.x.x.x, 172.16.x.x, and 192.168.x.x ranges.
-- NAT allows private LAN devices to access the public Internet by translating private source IPs to the router's public external IP.
-- DNS is the Internet's domain translation directory, structured in a hierarchical namespace.
-- Core DNS record types include A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), and TXT (metadata).
+- **WANs** span wide geographical distances, with the Internet being the premier example.
+- **Private IP** addresses are non-routable and divided into 10.x.x.x, 172.16.x.x, and 192.168.x.x ranges.
+- **NAT** allows private LAN devices to access the public Internet by translating private source IPs to the router's public external IP.
+- **DNS** is the Internet's domain translation directory, structured in a hierarchical namespace.
+- Core DNS record types include **A** (IPv4), **AAAA** (IPv6), **CNAME** (alias), **MX** (mail), and TXT (metadata).

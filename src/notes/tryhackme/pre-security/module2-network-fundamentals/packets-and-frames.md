@@ -117,8 +117,8 @@ Transport Protocols
 
 ## Final Summary
 
-- Packets belong to Layer 3 and use IP addresses; Frames belong to Layer 2 and use MAC addresses.
-- Encapsulation builds the transmission unit step-by-step down the OSI stack.
-- TCP is connection-oriented, performing a 3-way handshake to guarantee reliable delivery.
-- UDP is connectionless and fast, prioritizing transmission speed over verification.
-- The 3-way handshake consists of SYN, SYN-ACK, and ACK packets.
+- **Packets** belong to Layer 3 and use IP addresses; **Frames** belong to Layer 2 and use MAC addresses.
+- **Encapsulation** builds the transmission unit step-by-step down the OSI stack.
+- **TCP** is connection-oriented, performing a **3-way handshake** to guarantee reliable delivery.
+- **UDP** is connectionless and fast, prioritizing transmission speed over verification.
+- The 3-way handshake consists of **SYN**, SYN-ACK, and ACK packets.

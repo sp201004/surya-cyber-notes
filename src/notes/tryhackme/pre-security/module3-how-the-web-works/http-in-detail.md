@@ -171,8 +171,8 @@ HTTP vs HTTPS · Why HTTPS is secure · URL components · Request vs Response he
 
 ## Final Summary
 
-- HTTP is a stateless protocol; HTTPS encrypts communication using SSL/TLS.
-- URLs identify internet resources; HTTP follows a Request-Response model.
-- Headers carry additional metadata; cookies maintain user sessions.
-- Status codes indicate request outcomes.
+- **HTTP** is a stateless protocol; **HTTPS** encrypts communication using **SSL/TLS**.
+- **URLs** identify internet resources; HTTP follows a **Request-Response** model.
+- **Headers** carry additional metadata; **cookies** maintain user sessions.
+- **Status codes** indicate request outcomes.
 - GET retrieves, POST creates, PUT updates, DELETE removes resources.

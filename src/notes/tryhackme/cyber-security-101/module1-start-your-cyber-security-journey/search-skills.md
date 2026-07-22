@@ -886,10 +886,10 @@ Take Action
 
 A successful cybersecurity professional doesn't memorize every tool or command — they know where to find accurate information, how to verify it, and how to use trusted resources effectively.
 
-Mastering search skills is the foundation of:
+Mastering **search skills** is the foundation of:
 
--  Penetration Testing
--  SOC Operations
--  Threat Hunting
--  Incident Response
--  Vulnerability Management
+-  **Penetration Testing**
+-  **SOC Operations**
+-  **Threat Hunting**
+-  **Incident Response**
+-  **Vulnerability Management**

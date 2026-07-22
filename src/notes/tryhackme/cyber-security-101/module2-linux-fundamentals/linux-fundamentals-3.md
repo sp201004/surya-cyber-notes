@@ -308,4 +308,4 @@ A defender reverses the same steps — inspecting processes, crontabs, and logs 
 
 ## Final Takeaway
 
-Part 3 completes the Linux Fundamentals journey. With editing, file transfer, process and service control, scheduling, package management, and log analysis under your belt, you can operate and investigate a Linux machine end to end — exactly what defenders and attackers do every day.
+Part 3 completes the Linux Fundamentals journey. With editing, file transfer, **process and service control**, **scheduling**, **package management**, and **log analysis** under your belt, you can operate and investigate a Linux machine end to end — exactly what **defenders** and **attackers** do every day.

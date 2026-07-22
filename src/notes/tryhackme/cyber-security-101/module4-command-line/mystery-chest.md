@@ -305,4 +305,4 @@ Many everyday tasks map cleanly across all three environments:
 
 ## Final Takeaway
 
-The Mystery Chest is your one-page memory aid for the Command Line module. Skim it before any task at a terminal: the CMD commands, PowerShell cmdlets, Linux shell commands, and bash scripting syntax here cover the vast majority of what you will meet on Windows or Linux. Because the same core jobs recur in every environment, mastering how they map to one another is what makes you comfortable on any command line you encounter.
+The Mystery Chest is your one-page memory aid for the **Command Line** module. Skim it before any task at a terminal: the **CMD commands**, **PowerShell cmdlets**, **Linux shell** commands, and **bash scripting** syntax here cover the vast majority of what you will meet on Windows or Linux. Because the same core jobs recur in every environment, mastering how they map to one another is what makes you comfortable on any command line you encounter.

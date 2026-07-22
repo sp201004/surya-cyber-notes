@@ -2076,8 +2076,8 @@ Every type exposes a **GUI** (click-based) and/or **CLI** (command-based) interf
 
 ## Final Summary
 
-An Operating System is the bridge between users, applications, and hardware. Whether it's Windows on a laptop, Linux on a server, Android on a phone, or an RTOS inside an aircraft, every OS exists to manage resources efficiently, securely, and reliably.
+An **Operating System** is the bridge between users, applications, and hardware. Whether it's **Windows** on a laptop, **Linux** on a server, **Android** on a phone, or an **RTOS** inside an aircraft, every OS exists to manage resources efficiently, securely, and reliably.
 
-The Operating System is the foundation of every computing device. It acts as the bridge between users, applications, and hardware while managing processes, memory, files, devices, and security. Understanding how an OS works is one of the most important fundamentals in cybersecurity because every attack, defense, and forensic investigation ultimately interacts with the operating system.
+The Operating System is the foundation of every computing device. It acts as the bridge between users, applications, and hardware while managing **processes**, **memory**, files, devices, and **security**. Understanding how an OS works is one of the most important fundamentals in cybersecurity because every attack, defense, and forensic investigation ultimately interacts with the operating system.
 
 ---

@@ -89,8 +89,8 @@ Network Diagnostics & Security
 
 ## Final Summary
 
-- Networks allow digital resource sharing and communication via standardized communication channels.
-- Local Area Networks (LAN) use switches to coordinate physical frames inside local boundaries.
-- Wide Area Networks (WAN) expand locally using routers, NAT, and hierarchical DNS directories.
-- The OSI Model defines 7 layers of structured encapsulation wrapping data down to copper, light, or waves.
-- TCP (reliable, connection-oriented) and UDP (fast, connectionless) are the primary transport models.
+- **Networks** allow digital resource sharing and communication via standardized communication channels.
+- **Local Area Networks** (LAN) use **switches** to coordinate physical frames inside local boundaries.
+- **Wide Area Networks** (WAN) expand locally using **routers**, **NAT**, and hierarchical **DNS** directories.
+- The **OSI Model** defines 7 layers of structured encapsulation wrapping data down to copper, light, or waves.
+- **TCP** (reliable, connection-oriented) and **UDP** (fast, connectionless) are the primary transport models.

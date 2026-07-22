@@ -162,4 +162,4 @@ crontab -l      →  scheduled persistence
 
 ## Final Takeaway
 
-The Mystery Chest is your one-page memory aid for Linux Fundamentals. Skim it before any Linux task: the commands, the permission model, and the key directories here cover the vast majority of what you will do on a Linux machine, whether you are building, defending, or investigating.
+The Mystery Chest is your one-page memory aid for **Linux Fundamentals**. Skim it before any Linux task: the commands, the **permission model**, and the **key directories** here cover the vast majority of what you will do on a **Linux machine**, whether you are building, defending, or investigating.

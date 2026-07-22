@@ -218,12 +218,17 @@ Anyone can read packets         TCP
 
 Normal HTTP communication runs through four steps, and every part is visible on the wire.
 
-```text
-Step 1  Resolve domain     google.com ──► DNS ──► IP address
-Step 2  TCP 3-way handshake
-Step 3  HTTP request        GET / HTTP/1.1  Host: website.com
-Step 4  HTTP response       200 OK + HTML/CSS/JS/images
-```
+| **1** | **Resolve domain**<br>`google.com` → `DNS` → `IP address` |
+| --- | --- |
+
+| **2** | **TCP 3-way handshake** |
+| --- | --- |
+
+| **3** | **HTTP request**<br>`GET / HTTP/1.1` — `Host: website.com` |
+| --- | --- |
+
+| **4** | **HTTP response**<br>`200 OK` + `HTML/CSS/JS/images` |
+| --- | --- |
 
 Because everything is plaintext, anyone using Wireshark can read usernames, passwords, cookies, form data, and payment information:
 

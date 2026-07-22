@@ -160,8 +160,8 @@ OSI Model Layers
 
 ## Final Summary
 
-- The OSI Model is a 7-layer framework standardizing network communications.
-- Layer 7 (Application) interfaces with users; Layer 1 (Physical) deals with raw hardware/bits.
-- Protocols are mapped to specific layers (e.g., HTTP at L7, TCP at L4, IP at L3).
-- Data is encapsulated into Segments (L4), Packets (L3), and Frames (L2).
-- Security controls exist across layers: Firewalls block ports (L4) or IPs (L3); TLS encrypts at L6.
+- The **OSI Model** is a 7-layer framework standardizing network communications.
+- Layer 7 (**Application**) interfaces with users; Layer 1 (**Physical**) deals with raw hardware/bits.
+- **Protocols** are mapped to specific layers (e.g., HTTP at L7, TCP at L4, IP at L3).
+- Data is **encapsulated** into Segments (L4), Packets (L3), and Frames (L2).
+- Security controls exist across layers: **Firewalls** block ports (L4) or IPs (L3); **TLS** encrypts at L6.

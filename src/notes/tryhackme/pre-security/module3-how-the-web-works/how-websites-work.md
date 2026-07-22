@@ -162,10 +162,10 @@ User → Browser (HTML + CSS + JS) → HTTP Request → Internet
 
 ## Final Summary
 
-- Websites follow a Client → Server → Client communication model.
-- Frontend handles presentation; Backend handles processing.
-- HTML defines structure, CSS styles it, JavaScript adds functionality.
+- Websites follow a **Client** → **Server** → Client communication model.
+- **Frontend** handles presentation; **Backend** handles processing.
+- **HTML** defines structure, **CSS** styles it, **JavaScript** adds functionality.
 - Elements use attributes like `id`, `class`, `src`, `href`.
 - Never expose sensitive information in frontend source code.
-- HTML Injection occurs when user input is rendered without sanitization.
+- **HTML Injection** occurs when user input is rendered without sanitization.
 - Always validate and sanitize user input to prevent web vulnerabilities.

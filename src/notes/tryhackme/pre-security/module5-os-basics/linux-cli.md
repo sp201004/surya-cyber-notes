@@ -2170,13 +2170,13 @@ Core Linux commands every analyst should know:
 
 ## Final Summary
 
- Linux CLI is faster than GUI.
+ **Linux CLI** is faster than **GUI**.
 
- Everything in Linux is treated as a file.
+ Everything in Linux is treated as a **file**.
 
- Most cybersecurity tools rely heavily on the terminal.
+ Most **cybersecurity tools** rely heavily on the **terminal**.
 
- Learn navigation first before advanced tools.
+ Learn **navigation** first before advanced tools.
 
  Practice commands daily to build speed.
 

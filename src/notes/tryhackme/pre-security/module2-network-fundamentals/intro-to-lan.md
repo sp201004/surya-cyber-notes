@@ -158,9 +158,9 @@ LAN Components
 
 ## Final Summary
 
-- A LAN connects devices within a limited physical area.
-- Switches forward local traffic intelligently using MAC addresses, while legacy Hubs broadcast everything.
-- Routers forward traffic between different networks using IP addresses.
-- DHCP dynamically assigns network settings using the DORA process.
-- ARP resolves IP addresses to physical MAC addresses.
-- Subnetting improves network security and efficiency by breaking networks into smaller segments.
+- A **LAN** connects devices within a limited physical area.
+- **Switches** forward local traffic intelligently using **MAC addresses**, while legacy **Hubs** broadcast everything.
+- **Routers** forward traffic between different networks using IP addresses.
+- **DHCP** dynamically assigns network settings using the **DORA process**.
+- **ARP** resolves IP addresses to physical MAC addresses.
+- **Subnetting** improves network security and efficiency by breaking networks into smaller segments.

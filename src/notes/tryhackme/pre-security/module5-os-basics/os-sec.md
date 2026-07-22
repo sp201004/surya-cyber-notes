@@ -854,19 +854,19 @@ Root Access
 
 ## Final Summary
 
- Operating System controls hardware.
+ **Operating System** controls hardware.
 
  OS stores valuable personal and business data.
 
- CIA Triad is the foundation of cybersecurity.
+ **CIA Triad** is the foundation of cybersecurity.
 
- Weak passwords are the easiest attack vector.
+ **Weak passwords** are the easiest **attack vector**.
 
- Always follow Least Privilege.
+ Always follow **Least Privilege**.
 
- Malware can affect Confidentiality, Integrity, and Availability.
+ **Malware** can affect Confidentiality, Integrity, and Availability.
 
- SSH provides secure remote login.
+ **SSH** provides secure remote login.
 
  Linux root is equivalent to Windows Administrator.
 
