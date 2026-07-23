@@ -184,26 +184,26 @@ E = Elevation of   (gaining higher privileges than authorized)
 > A 7-stage framework that aligns technical threats with BUSINESS GOALS.
 > Asks: 'What does this threat mean for our revenue, compliance, and users?'
 
-| **1** | **Define Business Objectives**<br>Identify what the business needs to function and stay compliant. Example (Fitness App): The app must be profitable and comply with PCI-DSS (stores payment data). A breach would cause both financial and legal damage. |
-| --- | --- |
+> **1. Define Business Objectives**
+> Identify what the business needs to function and stay compliant. Example (Fitness App): The app must be profitable and comply with PCI-DSS (stores payment data). A breach would cause both financial and legal damage.
 
-| **2** | **Define Technical Scope**<br>Map ALL technologies the application uses. Example: The fitness app uses REST APIs, AWS cloud storage, a SQL database, and a mobile client for iOS and Android. |
-| --- | --- |
+> **2. Define Technical Scope**
+> Map ALL technologies the application uses. Example: The fitness app uses REST APIs, AWS cloud storage, a SQL database, and a mobile client for iOS and Android.
 
-| **3** | **Decompose the Application**<br>Create a Data Flow Diagram (DFD) showing exactly how data moves through the system. Example: Trace user's credit card from mobile app -> API -> payment processor -> database. Every transition is a potential attack point. |
-| --- | --- |
+> **3. Decompose the Application**
+> Create a Data Flow Diagram (DFD) showing exactly how data moves through the system. Example: Trace user's credit card from mobile app -> API -> payment processor -> database. Every transition is a potential attack point.
 
-| **4** | **Threat Analysis**<br>Research current threats targeting similar applications. Example: Look up threat intelligence on attackers currently targeting mobile fitness apps and payment APIs. Reference MITRE ATT&CK for known TTPs. |
-| --- | --- |
+> **4. Threat Analysis**
+> Research current threats targeting similar applications. Example: Look up threat intelligence on attackers currently targeting mobile fitness apps and payment APIs. Reference MITRE ATT&CK for known TTPs.
 
-| **5** | **Vulnerability Analysis**<br>Test the actual application for weaknesses. Example: Penetration test reveals the login API uses weak MD5 hashing for passwords and lacks rate limiting -- vulnerable to brute force. |
-| --- | --- |
+> **5. Vulnerability Analysis**
+> Test the actual application for weaknesses. Example: Penetration test reveals the login API uses weak MD5 hashing for passwords and lacks rate limiting -- vulnerable to brute force.
 
-| **6** | **Attack Modeling — Build an Attack Tree**<br>Model exactly HOW an attacker would exploit the vulnerabilities found. Example: Attack tree shows path: Brute force login (weak hashing, no lockout) -> Access user profile -> Exfiltrate stored payment tokens. |
-| --- | --- |
+> **6. Attack Modeling — Build an Attack Tree**
+> Model exactly HOW an attacker would exploit the vulnerabilities found. Example: Attack tree shows path: Brute force login (weak hashing, no lockout) -> Access user profile -> Exfiltrate stored payment tokens.
 
-| **7** | **Risk & Impact Analysis — Present to Management**<br>Quantify business impact and recommend mitigations. Example: 'Weak password hashing could enable account takeover for all 500,000 users. Mitigation: Upgrade to bcrypt hashing + add account lockout + rate limiting before launch. Estimated dev cost: $15K. Cost of breach: $5M+.' |
-| --- | --- |
+> **7. Risk & Impact Analysis — Present to Management**
+> Quantify business impact and recommend mitigations. Example: 'Weak password hashing could enable account takeover for all 500,000 users. Mitigation: Upgrade to bcrypt hashing + add account lockout + rate limiting before launch. Estimated dev cost: $15K. Cost of breach: $5M+.'
 
 ## Quick Revision
 

@@ -46,6 +46,28 @@ Guidelines:
 - Bold the key domain terms on first occurrence (match older rooms' emphasis).
   This is authored, not automated — do not ship a plain-text takeaway.
 
+## Numbered concept-block sections (cards)
+
+Numbered concept sequences (3+ items, each with title + multi-line description +
+optional Example line) MUST render as green-bordered styled cards. Author them as
+blockquote callouts — one callout per numbered item:
+
+```markdown
+> **1. Title**
+> Description paragraph(s). Inline `code` chips and existing bold/emphasis preserved.
+> **Example:** ...
+
+> **2. Next Title**
+> Description...
+```
+
+**NEVER** use the `| **N** | **Title**<br>desc |` table format for concept blocks —
+the preprocessor flattens these into plain text. Multi-column tables (with 3+
+columns like `| Phase | Name | Action |`) are fine and work correctly.
+
+Examples needing card format: CISSP 8 domains, IR 6 phases, PASTA 7 stages, risk
+management strategies, numbered security principles.
+
 ## General pipeline treatment (existing conventions)
 
 - Numbered step sequences → step-cards (`| **N** | **Title**<br>desc |` + `| --- | --- |`, cell MUST contain `<br>`). Genuine diagrams (packet flow, topology, key-exchange, OSI stack, handshakes) stay as fenced cards — do NOT table-ify.

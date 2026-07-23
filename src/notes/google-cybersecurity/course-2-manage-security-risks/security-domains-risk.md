@@ -70,29 +70,37 @@ The CISSP framework organizes all of cybersecurity into 8 domains. Security team
   └──────────────────────────────────────────────────────────────── ┘
 ```
 
-| **1** | **Security and Risk Management**<br>Defines security goals, risk mitigation plans, legal compliance, business continuity planning, and the ethical conduct of security professionals. Sets the overall direction for the organization's security strategy.<br>**🔍 Example:** Ensuring internal data policies comply with GDPR to avoid multi-million-dollar EU fines. Drafting an Acceptable Use Policy (AUP) for company devices. |
-| --- | --- |
+> **1. Security and Risk Management**
+> Defines security goals, risk mitigation plans, legal compliance, business continuity planning, and the ethical conduct of security professionals. Sets the overall direction for the organization's security strategy.
+> **🔍 Example:** Ensuring internal data policies comply with GDPR to avoid multi-million-dollar EU fines. Drafting an Acceptable Use Policy (AUP) for company devices.
 
-| **2** | **Asset Security**<br>Secures both digital data and physical hardware throughout their full lifecycle: creation, storage, maintenance, retention, and proper destruction at end-of-life. Prevents data from being recovered from discarded equipment.<br>**🔍 Example:** Physically shredding or degaussing old server hard drives so threat actors cannot extract data. Ensuring daily encrypted backups run to an offsite location. |
-| --- | --- |
+> **2. Asset Security**
+> Secures both digital data and physical hardware throughout their full lifecycle: creation, storage, maintenance, retention, and proper destruction at end-of-life. Prevents data from being recovered from discarded equipment.
+> **🔍 Example:** Physically shredding or degaussing old server hard drives so threat actors cannot extract data. Ensuring daily encrypted backups run to an offsite location.
 
-| **3** | **Security Architecture and Engineering**<br>Optimizes data security by designing effective tools, systems, and processes. Uses principles like Defense in Depth (multiple security layers) and Zero Trust (never trust, always verify every request).<br>**🔍 Example:** Configuring a SIEM tool to baseline normal login patterns and auto-alert when someone logs in at 3 AM from a foreign country. |
-| --- | --- |
+> **3. Security Architecture and Engineering**
+> Optimizes data security by designing effective tools, systems, and processes. Uses principles like Defense in Depth (multiple security layers) and Zero Trust (never trust, always verify every request).
+> **🔍 Example:** Configuring a SIEM tool to baseline normal login patterns and auto-alert when someone logs in at 3 AM from a foreign country.
 
-| **4** | **Communication and Network Security**<br>Manages and secures physical networks (on-premises), wireless communications (Wi-Fi, Bluetooth), remote access channels, and cloud connectivity. Protects data in transit from interception.<br>**🔍 Example:** Blocking remote employees from accessing sensitive databases over public coffee shop Wi-Fi without a company-approved encrypted VPN connection. |
-| --- | --- |
+> **4. Communication and Network Security**
+> Manages and secures physical networks (on-premises), wireless communications (Wi-Fi, Bluetooth), remote access channels, and cloud connectivity. Protects data in transit from interception.
+> **🔍 Example:** Blocking remote employees from accessing sensitive databases over public coffee shop Wi-Fi without a company-approved encrypted VPN connection.
 
-| **5** | **Identity and Access Management (IAM)**<br>Keeps data secure by verifying who users are and restricting what resources they can access. Built on the Principle of Least Privilege (PoLP) — give users only the minimum access required to do their job, nothing more.<br>**🔍 Example:** A customer service rep can view a client's phone number during an active support call, but that access is automatically revoked the moment the call ends. They cannot access billing or payment data. |
-| --- | --- |
+> **5. Identity and Access Management (IAM)**
+> Keeps data secure by verifying who users are and restricting what resources they can access. Built on the Principle of Least Privilege (PoLP) — give users only the minimum access required to do their job, nothing more.
+> **🔍 Example:** A customer service rep can view a client's phone number during an active support call, but that access is automatically revoked the moment the call ends. They cannot access billing or payment data.
 
-| **6** | **Security Assessment and Testing**<br>Identifies risks and validates that current security controls actually work as intended. Employs Penetration Testers (ethical hackers hired to attack systems before malicious hackers do) and runs security audits.<br>**🔍 Example:** Running quarterly penetration tests to discover SQL injection vulnerabilities in a web app before cybercriminals do. Auditing user permissions to confirm no one has unauthorized admin rights. |
-| --- | --- |
+> **6. Security Assessment and Testing**
+> Identifies risks and validates that current security controls actually work as intended. Employs Penetration Testers (ethical hackers hired to attack systems before malicious hackers do) and runs security audits.
+> **🔍 Example:** Running quarterly penetration tests to discover SQL injection vulnerabilities in a web app before cybercriminals do. Auditing user permissions to confirm no one has unauthorized admin rights.
 
-| **7** | **Security Operations**<br>Handles the day-to-day: investigating potential breaches, responding to active incidents, digital forensics after attacks, and implementing preventative measures learned from past incidents.<br>**🔍 Example:** After a ransomware infection, conducting a digital forensic investigation to determine exactly when, how, and through which entry point the attacker accessed the network. Preserving evidence for law enforcement. |
-| --- | --- |
+> **7. Security Operations**
+> Handles the day-to-day: investigating potential breaches, responding to active incidents, digital forensics after attacks, and implementing preventative measures learned from past incidents.
+> **🔍 Example:** After a ransomware infection, conducting a digital forensic investigation to determine exactly when, how, and through which entry point the attacker accessed the network. Preserving evidence for law enforcement.
 
-| **8** | **Software Development Security**<br>Integrates secure coding practices at EVERY phase of the Software Development Life Cycle (SDLC). Security is built in from day one, not bolted on at the end. Includes code reviews, SAST/DAST scanning, and threat modeling.<br>**🔍 Example:** Reviewing the source code of a medical device app before launch to verify patient health data is encrypted at rest and in transit. Preventing HIPAA violations before the product ships. |
-| --- | --- |
+> **8. Software Development Security**
+> Integrates secure coding practices at EVERY phase of the Software Development Life Cycle (SDLC). Security is built in from day one, not bolted on at the end. Includes code reviews, SAST/DAST scanning, and threat modeling.
+> **🔍 Example:** Reviewing the source code of a medical device app before launch to verify patient health data is encrypted at rest and in transit. Preventing HIPAA violations before the product ships.
 
 ## IAM — The Four Components
 

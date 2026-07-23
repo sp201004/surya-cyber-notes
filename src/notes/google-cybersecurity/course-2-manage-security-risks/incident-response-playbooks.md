@@ -91,23 +91,23 @@
   └──────────────┘   └──────────────────┘   └────────────────┘
 ```
 
-| **1** | **Preparation — Building the Foundation**<br>Setting up everything BEFORE an incident occurs. Documenting procedures, staffing an on-call response team, educating employees on phishing and social engineering, creating Business Continuity Plans (BCPs), and establishing communication trees so everyone knows who to call when something goes wrong. You cannot prepare during a crisis — preparation happens now. |
-| --- | --- |
+> **1. Preparation — Building the Foundation**
+> Setting up everything BEFORE an incident occurs. Documenting procedures, staffing an on-call response team, educating employees on phishing and social engineering, creating Business Continuity Plans (BCPs), and establishing communication trees so everyone knows who to call when something goes wrong. You cannot prepare during a crisis — preparation happens now.
 
-| **2** | **Detection and Analysis — Is This Real?**<br>Receiving an alert (from SIEM, IDS, or user report) and analyzing it to determine: Is this a true incident or a false alarm? How severe is it? What systems are affected? An analyst receives a SIEM alert for a suspicious file download. They analyze the log data to check if the file matches known malware signatures, where it came from, and whether it has executed. Classification determines the response urgency. |
-| --- | --- |
+> **2. Detection and Analysis — Is This Real?**
+> Receiving an alert (from SIEM, IDS, or user report) and analyzing it to determine: Is this a true incident or a false alarm? How severe is it? What systems are affected? An analyst receives a SIEM alert for a suspicious file download. They analyze the log data to check if the file matches known malware signatures, where it came from, and whether it has executed. Classification determines the response urgency.
 
-| **3** | **Containment — Stop the Bleeding**<br>Preventing the incident from spreading further. This is the most time-critical phase. The goal is NOT to fix everything — it's to limit damage FIRST. Isolate (network-disconnect) an infected laptop so ransomware cannot propagate to file servers. Block the attacker's IP at the firewall. Suspend the compromised user account to prevent further unauthorized access. |
-| --- | --- |
+> **3. Containment — Stop the Bleeding**
+> Preventing the incident from spreading further. This is the most time-critical phase. The goal is NOT to fix everything — it's to limit damage FIRST. Isolate (network-disconnect) an infected laptop so ransomware cannot propagate to file servers. Block the attacker's IP at the firewall. Suspend the compromised user account to prevent further unauthorized access.
 
-| **4** | **Eradication and Recovery — Clean Up & Restore**<br>Completely removing all traces of the attacker and returning systems to verified clean operation. Delete malicious code and persistence mechanisms. Patch the specific software vulnerability the attacker exploited. Restore databases and files from the most recent clean, verified backup. Perform a full integrity check before returning systems to production. Do NOT rush this phase — incomplete eradication means the attacker returns. |
-| --- | --- |
+> **4. Eradication and Recovery — Clean Up & Restore**
+> Completely removing all traces of the attacker and returning systems to verified clean operation. Delete malicious code and persistence mechanisms. Patch the specific software vulnerability the attacker exploited. Restore databases and files from the most recent clean, verified backup. Perform a full integrity check before returning systems to production. Do NOT rush this phase — incomplete eradication means the attacker returns.
 
-| **5** | **Post-Incident Activity — Learn and Improve**<br>After the dust settles, the team conducts a thorough post-mortem. What happened? Why did it happen? Could it have been prevented? Document the complete incident timeline, notify organizational leadership, update the relevant playbooks with lessons learned, and implement new controls to prevent recurrence. This phase is what separates organizations that improve from those that get breached the same way twice. |
-| --- | --- |
+> **5. Post-Incident Activity — Learn and Improve**
+> After the dust settles, the team conducts a thorough post-mortem. What happened? Why did it happen? Could it have been prevented? Document the complete incident timeline, notify organizational leadership, update the relevant playbooks with lessons learned, and implement new controls to prevent recurrence. This phase is what separates organizations that improve from those that get breached the same way twice.
 
-| **6** | **Coordination — Communicate Throughout**<br>This phase runs in parallel with ALL other phases — not just at the end. Reporting obligations exist throughout the response. Notify the FBI if a federal crime was committed. Meet GDPR's 72-hour breach notification requirement. Coordinate with your legal team, PR team, and insurance provider simultaneously. Share threat intelligence with ISACs (Information Sharing and Analysis Centers) to protect other organizations from the same attacker. |
-| --- | --- |
+> **6. Coordination — Communicate Throughout**
+> This phase runs in parallel with ALL other phases — not just at the end. Reporting obligations exist throughout the response. Notify the FBI if a federal crime was committed. Meet GDPR's 72-hour breach notification requirement. Coordinate with your legal team, PR team, and insurance provider simultaneously. Share threat intelligence with ISACs (Information Sharing and Analysis Centers) to protect other organizations from the same attacker.
 
 ## The Security Triad: SIEM + SOAR + Playbook
 
