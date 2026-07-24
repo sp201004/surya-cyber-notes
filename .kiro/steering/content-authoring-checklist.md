@@ -11,9 +11,14 @@ pipeline. Follow every item so new modules match the established site style.
 ## Q&A / Question sections (MANDATORY styled table)
 
 Every question section — regardless of heading (**Interview Questions**,
-Practice Questions, Review Questions, Quiz, Q&A, Knowledge Check, Flashcard
-Review, etc.) — MUST render via the shared styled Q&A table, never as plain
-text, bullet lists, `Q:`/`A:` lines, or bold-`**Q1.**` paragraphs.
+**Interview Notes**, **Interview Practice**, Practice Questions, Review
+Questions, Quiz, Q&A, Knowledge Check, Flashcard Review, Real Life Examples,
+etc.) — MUST render via the shared styled Q&A table, never as plain text,
+bullet lists, `Q:`/`A:` lines, or bold-`**Q1.**` paragraphs.
+
+**Detection must be content-based, not heading-based:** Any section whose body
+contains 3+ question→answer pairs (bold question followed by answer, regardless
+of formatting) must use the styled table.
 
 Author it as a two-column markdown table with the literal `Question | Answer`
 header (the classifier keys on these words to apply the green header + bold

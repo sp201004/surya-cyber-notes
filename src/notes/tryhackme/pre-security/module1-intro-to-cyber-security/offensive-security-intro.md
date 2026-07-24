@@ -151,9 +151,12 @@ Flag Obtained
 | Admin Panel | A privileged management interface; if exposed, can lead to unauthorized access |
 
 ## Interview Notes
-- **What is Offensive Security?** Simulating cyberattacks in an authorized environment to identify and remediate vulnerabilities before attackers exploit them.
-- **What is Directory Enumeration?** Discovering hidden files and directories on a web server using tools such as DIRB, Gobuster, or FFUF.
-- **What is DIRB?** A web content scanner that performs directory brute-forcing using a wordlist to discover hidden resources.
+
+| Question | Answer |
+| --- | --- |
+| **What is Offensive Security?** | Simulating cyberattacks in an authorized environment to identify and remediate vulnerabilities before attackers exploit them. |
+| **What is Directory Enumeration?** | Discovering hidden files and directories on a web server using tools such as DIRB, Gobuster, or FFUF. |
+| **What is DIRB?** | A web content scanner that performs directory brute-forcing using a wordlist to discover hidden resources. |
 
 ## Common Mistakes
 | Mistake | Correct Approach |

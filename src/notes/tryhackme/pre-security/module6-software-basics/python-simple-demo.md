@@ -359,11 +359,11 @@ Execute Code
 
 ### Real Life Examples
 
-- **Rain?** Yes → Take Umbrella. Else → Don't Take.
-- **Password Correct?** Yes → Login. Else → Access Denied.
-- **Balance > ₹100?** Yes → Withdraw Money. Else → Insufficient Balance.
-
----
+| Question | Answer |
+| --- | --- |
+| **Rain?** | Yes → Take Umbrella. Else → Don't Take. |
+| **Password Correct?** | Yes → Login. Else → Access Denied. |
+| **Balance > ₹100?** | Yes → Withdraw Money. Else → Insufficient Balance. |
 
 ## Python Conditional Statements
 

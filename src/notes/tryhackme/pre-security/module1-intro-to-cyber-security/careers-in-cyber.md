@@ -118,11 +118,14 @@ Networking → Linux → Operating Systems → Programming → Web Security → 
 **Red Team:** Nmap · Burp Suite · Metasploit · Gobuster · FFUF · Hydra · SQLmap
 
 ## Interview Notes
-- **Security Analyst?** Monitors events, investigates alerts, responds to incidents, and helps protect systems.
-- **Security Engineer?** Designs, implements, and maintains security infrastructure (firewalls, IDS/IPS, secure architecture).
-- **What is an IDS?** An Intrusion Detection System monitors activity for suspicious behavior and generates alerts.
-- **Penetration Testing?** A legal, authorized simulation of cyberattacks to discover and validate vulnerabilities.
-- **Engagement?** The formal agreement defining scope, rules, timeline, and authorization for a pentest.
+
+| Question | Answer |
+| --- | --- |
+| **Security Analyst?** | Monitors events, investigates alerts, responds to incidents, and helps protect systems. |
+| **Security Engineer?** | Designs, implements, and maintains security infrastructure (firewalls, IDS/IPS, secure architecture). |
+| **What is an IDS?** | An Intrusion Detection System monitors activity for suspicious behavior and generates alerts. |
+| **Penetration Testing?** | A legal, authorized simulation of cyberattacks to discover and validate vulnerabilities. |
+| **Engagement?** | The formal agreement defining scope, rules, timeline, and authorization for a pentest. |
 
 ## Common Mistakes
 | Mistake | Correct Approach |

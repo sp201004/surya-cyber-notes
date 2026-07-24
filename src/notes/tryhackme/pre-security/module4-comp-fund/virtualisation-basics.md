@@ -1037,34 +1037,12 @@ Docker
 
 ## Interview Questions
 
-**What is Virtualization?**
-
-Running multiple Virtual Machines on one physical computer.
-
----
-
-**Why is virtualization important?**
-
-- Cost reduction
-- Better utilization
-- Isolation
-- Easy scaling
-- Faster deployment
-
----
-
-**What is a Hypervisor?**
-
-Software that creates and manages VMs.
-
----
-
-**Difference between Physical Server and VM?**
-
-- Physical Server → Real Hardware
-- VM → Software-based computer running on Hypervisor
-
----
+| Question | Answer |
+| --- | --- |
+| **What is Virtualization?** | Running multiple Virtual Machines on one physical computer. |
+| **Why is virtualization important?** | Cost reduction<br>Better utilization<br>Isolation<br>Easy scaling<br>Faster deployment |
+| **What is a Hypervisor?** | Software that creates and manages VMs. |
+| **Difference between Physical Server and VM?** | Physical Server → Real Hardware<br>VM → Software-based computer running on Hypervisor |
 
 ## Memory Tricks
 

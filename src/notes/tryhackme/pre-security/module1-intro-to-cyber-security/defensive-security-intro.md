@@ -150,11 +150,14 @@ Preparation → Detection → Analysis → Containment → Eradication → Recov
 ```
 
 ## Interview Notes
-- **What is Defensive Security?** Protecting systems by monitoring, detecting, investigating, and responding to cyber threats.
-- **What is a SOC?** A Security Operations Center where analysts monitor security events and respond to incidents 24/7.
-- **What is Containment?** Limiting an ongoing attack to prevent further damage before eradication and recovery.
-- **Why are logs important?** They provide evidence of attacker actions, helping analysts investigate incidents and determine scope.
-- **What is a Firewall?** A network security mechanism that controls traffic by allowing or blocking connections based on predefined rules.
+
+| Question | Answer |
+| --- | --- |
+| **What is Defensive Security?** | Protecting systems by monitoring, detecting, investigating, and responding to cyber threats. |
+| **What is a SOC?** | A Security Operations Center where analysts monitor security events and respond to incidents 24/7. |
+| **What is Containment?** | Limiting an ongoing attack to prevent further damage before eradication and recovery. |
+| **Why are logs important?** | They provide evidence of attacker actions, helping analysts investigate incidents and determine scope. |
+| **What is a Firewall?** | A network security mechanism that controls traffic by allowing or blocking connections based on predefined rules. |
 
 ## Common Mistakes
 | Mistake | Correct Approach |
