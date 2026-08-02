@@ -962,6 +962,7 @@ const netChestRoom: Topic = {
 };
 
 const CRYPTOGRAPHY_MODULE_ID = 'cryptography';
+const EXPLOITATION_MODULE_ID = 'exploitation-basics';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -1233,6 +1234,98 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
       hashingRoom,
       johnRoom,
       cryptoChestRoom,
+    ],
+  },
+  {
+    id: EXPLOITATION_MODULE_ID,
+    title: 'Exploitation Basics',
+    description: 'Learn exploitation fundamentals — CVE analysis, Metasploit reconnaissance and exploitation, post-exploitation with Meterpreter, and real Windows CTFs — across six hands-on rooms plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      { 
+        id: 'moniker-link', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Moniker Link (CVE-2024-21413)', 
+        description: 'Analyze and exploit a critical Microsoft Outlook vulnerability via malicious hyperlinks.', 
+        status: 'unlocked', 
+        iconType: 'shield', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'metasploit-intro', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Metasploit: Introduction', 
+        description: 'Master the Metasploit Framework — architecture, msfconsole, modules, and essential reconnaissance.', 
+        status: 'unlocked', 
+        iconType: 'search', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'metasploit-exploitation', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Metasploit: Exploitation', 
+        description: 'Use Metasploit to find, configure, and execute exploits against vulnerable targets.', 
+        status: 'unlocked', 
+        iconType: 'sword', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'metasploit-meterpreter', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Metasploit: Meterpreter', 
+        description: 'Post-exploitation with Meterpreter — file ops, privilege escalation, lateral movement, and persistence.', 
+        status: 'unlocked', 
+        iconType: 'linux-cli', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'blue', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Blue', 
+        description: 'Exploit EternalBlue (MS17-010) to compromise a Windows machine and enumerate the system.', 
+        status: 'unlocked', 
+        iconType: 'windows', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'trypwnme-one', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'TryPwnMe One', 
+        description: 'A full Windows exploitation challenge — reconnaissance, exploitation, privilege escalation, and flags.', 
+        status: 'unlocked', 
+        iconType: 'skull', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
+      { 
+        id: 'mystery-chest-exploitation', 
+        moduleId: EXPLOITATION_MODULE_ID, 
+        title: 'Mystery Chest', 
+        description: 'A bonus revision vault for the whole Exploitation Basics module — commands, workflows, and exploitation cheat sheets.', 
+        status: 'unlocked', 
+        iconType: 'mystery-chest', 
+        content: '',
+        mindmap: [],
+        keyTakeaways: [],
+        quiz: []
+      },
     ],
   },
   // Future modules are appended here, one object at a time.

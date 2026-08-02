@@ -127,6 +127,14 @@ import cs101Hashing from './tryhackme/cyber-security-101/module6-cryptography/ha
 import cs101John from './tryhackme/cyber-security-101/module6-cryptography/john-the-ripper-basics.md?raw';
 import cs101CryptoChest from './tryhackme/cyber-security-101/module6-cryptography/mystery-chest.md?raw';
 
+import cs101MonikerLink from './tryhackme/cyber-security-101/module7-exploitation-basics/moniker-link.md?raw';
+import cs101MetasploitIntro from './tryhackme/cyber-security-101/module7-exploitation-basics/metasploit-intro.md?raw';
+import cs101MetasploitExploit from './tryhackme/cyber-security-101/module7-exploitation-basics/metasploit-exploitation.md?raw';
+import cs101MetasploitMeterpreter from './tryhackme/cyber-security-101/module7-exploitation-basics/metasploit-meterpreter.md?raw';
+import cs101Blue from './tryhackme/cyber-security-101/module7-exploitation-basics/blue.md?raw';
+import cs101TryPwnMeOne from './tryhackme/cyber-security-101/module7-exploitation-basics/trypwnme-one.md?raw';
+import cs101ExploitChest from './tryhackme/cyber-security-101/module7-exploitation-basics/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -254,4 +262,12 @@ export const notesByTopicId: Record<string, string> = {
   'hashing-basics': cs101Hashing,
   'john-the-ripper-basics': cs101John,
   'mystery-chest-crypto': cs101CryptoChest,
+
+  'moniker-link': cs101MonikerLink,
+  'metasploit-intro': cs101MetasploitIntro,
+  'metasploit-exploitation': cs101MetasploitExploit,
+  'metasploit-meterpreter': cs101MetasploitMeterpreter,
+  'blue': cs101Blue,
+  'trypwnme-one': cs101TryPwnMeOne,
+  'mystery-chest-exploitation': cs101ExploitChest,
 };
