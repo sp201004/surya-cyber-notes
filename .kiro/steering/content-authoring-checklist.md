@@ -76,10 +76,22 @@ management strategies, numbered security principles.
 ## General pipeline treatment (existing conventions)
 
 - Numbered step sequences → step-cards (`| **N** | **Title**<br>desc |` + `| --- | --- |`, cell MUST contain `<br>`). Genuine diagrams (packet flow, topology, key-exchange, OSI stack, handshakes) stay as fenced cards — do NOT table-ify.
-- Terminal blocks tagged with the correct language (bash/powershell/cmd/text/http).
-- Redesigned revision sections (no keyword ↓-chains).
+- Terminal blocks tagged with the correct language. Only these tags render in the styled terminal component (header bar + label + highlighting): `bash`, `sh`, `shell`, `python`, `sql`, `xml`, `json`, `yaml`, `http`, `spl`, `yara`. Any other tag — including `text`, `cmd`, and `powershell` — renders as a plain monospace "diagram card". Use `text` ONLY for genuine ASCII diagrams; put real commands/code in a terminal-tagged block (e.g. shell → `bash`, Python/pwntools/C exploit code → `python`, YARA rules → `yara`).
+- Redesigned revision sections (no keyword ↓-chains). Exploded vertical ↓-chains that are process/workflow sequences → compact single-line arrow flows (`A → B → C`); structural/directional diagrams (memory/stack layouts, before/after byte illustrations, box/tree art, side-by-side comparisons) stay as fenced diagram cards.
+- Console output cards must be single-spaced (no blank line between output lines), like a real console.
 - Mobile 375px: tables use horizontal scroll with hidden scrollbar (existing CSS).
 - Additive module adds: git diff = only new files + minimal wiring.
+
+## Command + output as terminal sessions (NEW modules)
+
+For NEW modules (module 7 Exploitation Basics onward), author each command together with its output as ONE realistic terminal session in a single terminal-tagged block (`bash`), so it reads like a real console:
+
+- Prefix each TYPED command line with a realistic prompt, then show its output directly below, single-spaced, in the SAME block.
+- Prompt mapping: msfconsole → `msf6 > `; meterpreter → `meterpreter > `; Linux/bash → `$ `; Windows cmd → the shown path prompt, e.g. `C:\Windows\System32> `. Interleave exactly like a real session (e.g. `meterpreter > shell` → `C:\Windows\System32> whoami` → `nt authority\system`).
+- If a command's output is not actually shown, just prompt-prefix the command; never invent output.
+- Do NOT prompt-prefix or merge: source-code files (C/Python/pwntools → `python`), HTML snippets, genuine diagrams, reference/function-name lists, shellcode hex listings, Wireshark filter lists, and Cheat-Sheet command references.
+- Verbatim guard: the only additions allowed are prompt prefixes and block-merging/single-spacing. Stripping the prompt prefixes must reproduce the original command lines exactly, and every output line must stay byte-identical.
+- **Modules 1–6 intentionally use the older separate style** (command block + separate single-spaced output card, no prompt prefix) and are LEFT AS-IS — do not retrofit them.
 
 ## Verify before commit
 
