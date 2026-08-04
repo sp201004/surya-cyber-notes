@@ -1242,89 +1242,262 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
     description: 'Learn exploitation fundamentals — CVE analysis, Metasploit reconnaissance and exploitation, post-exploitation with Meterpreter, and real Windows CTFs — across six hands-on rooms plus a bonus revision chest.',
     isFuture: false,
     topics: [
-      { 
-        id: 'moniker-link', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Moniker Link (CVE-2024-21413)', 
-        description: 'Analyze and exploit a critical Microsoft Outlook vulnerability via malicious hyperlinks.', 
-        status: 'unlocked', 
-        iconType: 'shield', 
+      {
+        id: 'moniker-link',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Moniker Link (CVE-2024-21413)',
+        description: 'Analyze and exploit a critical Microsoft Outlook vulnerability that abuses Moniker Links to bypass Protected View and leak NetNTLMv2 credentials.',
+        status: 'unlocked',
+        iconType: 'shield',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'One Click, Stolen Credentials',
+          concept: 'Zero-Attachment Credential Theft',
+          scenario: 'An employee receives a normal-looking email and clicks a single hyperlink. With no attachment, macro, or executable, Outlook silently forces Windows to authenticate to an attacker-controlled SMB server, handing over the user\'s NetNTLMv2 hash for offline cracking or relay.',
+          relevance: 'CVE-2024-21413 shows how a design flaw in trusted software turns a one-click link into full credential disclosure — which is why patching, disabling SMB egress, and user awareness all matter.'
+        },
+        mindmap: [
+          { id: 'moniker', label: 'Moniker Link', description: 'CVE-2024-21413 — Outlook Protected View bypass', x: 50, y: 12, connections: ['cve', 'bypass', 'smb', 'detect'] },
+          { id: 'cve', label: 'The CVE', description: 'Critical Outlook flaw, CVSS 9.8, disclosed Feb 2024', x: 16, y: 50 },
+          { id: 'bypass', label: 'The Trick', description: 'A `!` character in a file:// link bypasses Protected View', x: 39, y: 58 },
+          { id: 'smb', label: 'SMB + NTLM', description: 'Windows auto-authenticates to attacker SMB, leaking NetNTLMv2', x: 62, y: 58 },
+          { id: 'detect', label: 'Detect & Mitigate', description: 'Responder capture, YARA, Wireshark; patch and block SMB egress', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'CVE-2024-21413 is a critical (CVSS 9.8) Microsoft Outlook vulnerability disclosed in February 2024.',
+          'It abuses Moniker Links: adding a `!` character to a file:// hyperlink bypasses Outlook Protected View.',
+          'The exploit needs only one click — no attachment, macro, or executable.',
+          'Windows then auto-authenticates to an attacker-controlled SMB server (TCP 445), leaking the NetNTLMv2 hash.',
+          'Captured hashes can be cracked offline or relayed; under some conditions the flaw can lead to RCE.',
+          'Detect with Responder, YARA rules, and Wireshark; mitigate by patching Outlook and blocking outbound SMB.'
+        ],
+        quiz: [
+          { id: 'q-ml-1', question: 'Which CVE identifier is the Moniker Link vulnerability?', type: 'text', correctAnswer: 'CVE-2024-21413', hint: 'Disclosed in February 2024.' },
+          { id: 'q-ml-2', question: 'Which single character in the hyperlink bypasses Protected View?', type: 'text', correctAnswer: '!', hint: 'An exclamation mark acts as the object separator.' },
+          { id: 'q-ml-3', question: 'Which type of credential hash is leaked by the exploit?', type: 'text', correctAnswer: 'NetNTLMv2', hint: 'Sent during SMB authentication.' },
+          { id: 'q-ml-4', question: 'Which TCP port does the leaked SMB authentication use?', type: 'text', correctAnswer: '445', hint: 'The standard SMB port.' },
+          { id: 'q-ml-5', question: 'What is the CVSS score of CVE-2024-21413?', type: 'text', correctAnswer: '9.8', hint: 'Critical severity, 9.0–10.0 range.' }
+        ]
       },
-      { 
-        id: 'metasploit-intro', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Metasploit: Introduction', 
-        description: 'Master the Metasploit Framework — architecture, msfconsole, modules, and essential reconnaissance.', 
-        status: 'unlocked', 
-        iconType: 'search', 
+      {
+        id: 'metasploit-intro',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Metasploit: Introduction',
+        description: 'Master the Metasploit Framework — architecture, module types, payloads and Meterpreter, and driving msfconsole to search, load, configure, and run modules.',
+        status: 'unlocked',
+        iconType: 'search',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'The Penetration Tester\'s Swiss Army Knife',
+          concept: 'Unified Exploitation Framework',
+          scenario: 'A tester needs to scan for a service, find a matching exploit, deliver a payload, and manage the resulting session — all consistently. Instead of juggling separate tools, they use Metasploit\'s modular framework to do every step from one console.',
+          relevance: 'Metasploit is the industry-standard framework, so knowing its architecture and msfconsole workflow is foundational for both offensive testing and understanding how attacks are automated.'
+        },
+        mindmap: [
+          { id: 'msf', label: 'Metasploit', description: 'Modular exploitation framework', x: 50, y: 12, connections: ['modules', 'payloads', 'console', 'workflow'] },
+          { id: 'modules', label: 'Modules', description: 'Exploit, Payload, Auxiliary, Post, Encoder, NOP', x: 16, y: 50 },
+          { id: 'payloads', label: 'Payloads', description: 'Singles, stagers, stages; Meterpreter is a payload', x: 39, y: 58 },
+          { id: 'console', label: 'msfconsole', description: 'The interactive CLI; msfvenom generates payloads', x: 62, y: 58 },
+          { id: 'workflow', label: 'Workflow', description: 'search → use → show options → set → run', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Metasploit is a modular exploitation framework with six module types: Exploit, Payload, Auxiliary, Post, Encoder, and NOP.',
+          'msfconsole is the interactive interface; msfvenom is the standalone payload generator.',
+          'A payload is what runs after an exploit succeeds; Meterpreter is an advanced payload, not a module type.',
+          'Payloads are staged (a slash, delivered in two phases) or stageless (an underscore, sent at once).',
+          'The core workflow is search → use → show options → set → run.',
+          'EternalBlue (MS17-010) is a famous exploit module included with the framework.'
+        ],
+        quiz: [
+          { id: 'q-mi-1', question: 'Which Metasploit module type contains the code that runs after a successful exploit?', type: 'text', correctAnswer: 'Payload', hint: 'Not the exploit itself.' },
+          { id: 'q-mi-2', question: 'What is the interactive Metasploit command-line interface called?', type: 'text', correctAnswer: 'msfconsole', hint: 'You launch it by name.' },
+          { id: 'q-mi-3', question: 'Which tool generates standalone payloads?', type: 'text', correctAnswer: 'msfvenom', hint: 'Combines the old msfpayload and msfencode.' },
+          { id: 'q-mi-4', question: 'Which command loads a module in msfconsole?', type: 'text', correctAnswer: 'use', hint: 'e.g. use exploit/windows/smb/ms17_010_eternalblue.' },
+          { id: 'q-mi-5', question: 'Is Meterpreter a module type or a payload?', type: 'text', correctAnswer: 'Payload', hint: 'It is an advanced one delivered after exploitation.' }
+        ]
       },
-      { 
-        id: 'metasploit-exploitation', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Metasploit: Exploitation', 
-        description: 'Use Metasploit to find, configure, and execute exploits against vulnerable targets.', 
-        status: 'unlocked', 
-        iconType: 'sword', 
+      {
+        id: 'metasploit-exploitation',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Metasploit: Exploitation',
+        description: 'Use Metasploit end to end — search and configure exploit modules, run auxiliary scanners, use the database and workspaces, choose reverse vs bind payloads, and generate payloads with MSFvenom.',
+        status: 'unlocked',
+        iconType: 'sword',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'From Open Port to Shell',
+          concept: 'Structured Exploitation',
+          scenario: 'After recon reveals a vulnerable service, a tester loads the matching exploit, sets RHOSTS and a compatible payload, and runs it — landing a session. Auxiliary scanners and the Metasploit database keep large engagements organised across many hosts.',
+          relevance: 'Turning a discovered vulnerability into a working session is the core skill of exploitation, and doing it methodically with payload choice and record-keeping is what separates a pro from a script-runner.'
+        },
+        mindmap: [
+          { id: 'exploit', label: 'Exploitation', description: 'Turning a vulnerability into a session', x: 50, y: 12, connections: ['find', 'config', 'payload', 'venom'] },
+          { id: 'find', label: 'Find & Scan', description: 'search modules; auxiliary scanners; db_nmap', x: 16, y: 50 },
+          { id: 'config', label: 'Configure', description: 'show options; set RHOSTS/LHOST; workspaces', x: 39, y: 58 },
+          { id: 'payload', label: 'Payloads', description: 'Reverse vs bind; run to open a session', x: 62, y: 58 },
+          { id: 'venom', label: 'MSFvenom', description: 'Generate standalone payloads; catch with multi/handler', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'The exploitation workflow: search for a module, use it, show options, set parameters, and run.',
+          'RHOSTS is the target; LHOST/LPORT define where a reverse connection comes back to.',
+          'Auxiliary modules scan and enumerate without exploiting; the Metasploit database and workspaces organise results.',
+          'A reverse shell has the victim connect back (firewall-friendly); a bind shell listens on the victim.',
+          'MSFvenom generates standalone payloads, which are caught with the multi/handler module.',
+          'A successful exploit can return a plain command shell or a Meterpreter session.'
+        ],
+        quiz: [
+          { id: 'q-me-1', question: 'Which option sets the target host(s) for an exploit module?', type: 'text', correctAnswer: 'RHOSTS', hint: 'R for remote.' },
+          { id: 'q-me-2', question: 'Which shell type has the victim connect back to the attacker?', type: 'text', correctAnswer: 'Reverse shell', hint: 'Firewall-friendly; the opposite of bind.' },
+          { id: 'q-me-3', question: 'Which tool generates standalone payloads outside the console?', type: 'text', correctAnswer: 'MSFvenom', hint: 'msfvenom on the command line.' },
+          { id: 'q-me-4', question: 'Which module catches connections from a standalone payload?', type: 'text', correctAnswer: 'multi/handler', hint: 'exploit/multi/handler.' },
+          { id: 'q-me-5', question: 'Which module type scans and enumerates without exploiting?', type: 'text', correctAnswer: 'Auxiliary', hint: 'Scanners and fuzzers live here.' }
+        ]
       },
-      { 
-        id: 'metasploit-meterpreter', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Metasploit: Meterpreter', 
-        description: 'Post-exploitation with Meterpreter — file ops, privilege escalation, lateral movement, and persistence.', 
-        status: 'unlocked', 
-        iconType: 'linux-cli', 
+      {
+        id: 'metasploit-meterpreter',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Metasploit: Meterpreter',
+        description: 'Post-exploitation with Meterpreter — the in-memory payload, process injection and migration, file/network/system commands, privilege escalation, and credential dumping with hashdump and Kiwi.',
+        status: 'unlocked',
+        iconType: 'linux-cli',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'A Mini OS Inside the Victim',
+          concept: 'In-Memory Post-Exploitation',
+          scenario: 'After an exploit lands, the tester drops into Meterpreter — enumerating the host, dumping SAM hashes with hashdump, escalating to SYSTEM with getsystem, and migrating into a stable process, all from memory without writing a file to disk.',
+          relevance: 'Meterpreter is the standard post-exploitation agent; understanding its in-memory, injected nature is key for both operators and the defenders whose EDR must catch it.'
+        },
+        mindmap: [
+          { id: 'met', label: 'Meterpreter', description: 'Advanced in-memory post-exploitation payload', x: 50, y: 12, connections: ['memory', 'session', 'creds', 'migrate'] },
+          { id: 'memory', label: 'In Memory', description: 'Runs in RAM, injects into a legit process, encrypted C2', x: 16, y: 50 },
+          { id: 'session', label: 'Session', description: 'help, file/network/system commands, extensions', x: 39, y: 58 },
+          { id: 'creds', label: 'Credentials', description: 'getsystem → SYSTEM; hashdump; Kiwi (Mimikatz)', x: 62, y: 58 },
+          { id: 'migrate', label: 'Migrate', description: 'Move into a stable, same-privilege process', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Meterpreter is an advanced Metasploit payload that runs entirely in the target\'s memory after exploitation.',
+          'It injects into a legitimate process (e.g. spoolsv.exe) via reflective loading — "fileless" but not undetectable.',
+          'Encrypted C2 evades signature-based IDS/IPS, but behavioural EDR still detects it.',
+          'Sessions provide built-in commands, loadable extensions (kiwi, python), and post modules; start with help.',
+          'getsystem escalates to NT AUTHORITY\\SYSTEM; hashdump reads NTLM hashes from the SAM.',
+          'The Kiwi extension is the Meterpreter version of Mimikatz; migrate moves into a stable process.'
+        ],
+        quiz: [
+          { id: 'q-mm-1', question: 'Where does Meterpreter run to avoid writing to disk?', type: 'text', correctAnswer: 'Memory', hint: 'In RAM.' },
+          { id: 'q-mm-2', question: 'Which command attempts to escalate to the SYSTEM account?', type: 'text', correctAnswer: 'getsystem', hint: 'Reaches NT AUTHORITY\\SYSTEM.' },
+          { id: 'q-mm-3', question: 'Which command dumps password hashes from the SAM?', type: 'text', correctAnswer: 'hashdump', hint: 'Requires SYSTEM/Administrator.' },
+          { id: 'q-mm-4', question: 'Which Meterpreter extension is the built-in Mimikatz?', type: 'text', correctAnswer: 'Kiwi', hint: 'Load it with load kiwi.' },
+          { id: 'q-mm-5', question: 'Which command moves Meterpreter into another process?', type: 'text', correctAnswer: 'migrate', hint: 'migrate <PID>.' }
+        ]
       },
-      { 
-        id: 'blue', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Blue', 
-        description: 'Exploit EternalBlue (MS17-010) to compromise a Windows machine and enumerate the system.', 
-        status: 'unlocked', 
-        iconType: 'windows', 
+      {
+        id: 'blue',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Blue',
+        description: 'A guided Windows CTF: scan with Nmap, exploit EternalBlue (MS17-010) with Metasploit, upgrade to Meterpreter, escalate to SYSTEM, dump NTLM hashes, crack them with John, and capture the flags.',
+        status: 'unlocked',
+        iconType: 'windows',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'How WannaCry Spread',
+          concept: 'Unpatched SMB, Total Compromise',
+          scenario: 'A Windows host still runs SMBv1 and is missing the MS17-010 patch. An attacker scans it, fires EternalBlue, lands as SYSTEM, dumps NTLM hashes, and cracks a weak password offline — the exact chain that let WannaCry and NotPetya devastate networks worldwide in 2017.',
+          relevance: 'Blue turns the theory into a hands-on walkthrough, showing why disabling SMBv1, patching promptly, and enforcing strong passwords are non-negotiable defences.'
+        },
+        mindmap: [
+          { id: 'blue', label: 'Blue', description: 'Windows CTF via EternalBlue', x: 50, y: 12, connections: ['recon', 'exploit', 'escalate', 'crack'] },
+          { id: 'recon', label: 'Recon', description: 'nmap -sC -sV finds SMB on 445; ms17-010 vulnerable', x: 16, y: 50 },
+          { id: 'exploit', label: 'Exploit', description: 'ms17_010_eternalblue + reverse_tcp → shell', x: 39, y: 58 },
+          { id: 'escalate', label: 'Escalate', description: 'shell_to_meterpreter; getsystem → SYSTEM; migrate', x: 62, y: 58 },
+          { id: 'crack', label: 'Loot & Crack', description: 'hashdump NTLM; John cracks; find three flags', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Recon with nmap -sC -sV reveals SMB on port 445 and flags the host vulnerable to ms17-010.',
+          'EternalBlue is MS17-010 / CVE-2017-0144, an unauthenticated RCE in SMBv1 that runs as SYSTEM.',
+          'Exploit it with exploit/windows/smb/ms17_010_eternalblue, set RHOSTS, and run.',
+          'Upgrade the shell with post/multi/manage/shell_to_meterpreter, then getsystem for SYSTEM.',
+          'hashdump extracts NTLM hashes from the SAM; the non-default user is Jon (RID 1000).',
+          'John the Ripper cracks Jon\'s hash to alqfna22; NTLM is unsalted and cracks fast.'
+        ],
+        quiz: [
+          { id: 'q-bl-1', question: 'Which Windows protocol/service does EternalBlue exploit?', type: 'text', correctAnswer: 'SMB', hint: 'SMBv1, on port 445.' },
+          { id: 'q-bl-2', question: 'Which Microsoft bulletin patches EternalBlue?', type: 'text', correctAnswer: 'MS17-010', hint: 'CVE-2017-0144.' },
+          { id: 'q-bl-3', question: 'Which module upgrades a shell to Meterpreter?', type: 'text', correctAnswer: 'shell_to_meterpreter', hint: 'post/multi/manage/shell_to_meterpreter.' },
+          { id: 'q-bl-4', question: 'Which non-default user account is found on the box?', type: 'text', correctAnswer: 'Jon', hint: 'RID 1000.' },
+          { id: 'q-bl-5', question: 'What password does John recover for that user?', type: 'text', correctAnswer: 'alqfna22', hint: 'Cracked from the NTLM hash.' }
+        ]
       },
-      { 
-        id: 'trypwnme-one', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'TryPwnMe One', 
-        description: 'A full Windows exploitation challenge — reconnaissance, exploitation, privilege escalation, and flags.', 
-        status: 'unlocked', 
-        iconType: 'skull', 
+      {
+        id: 'trypwnme-one',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'TryPwnMe One',
+        description: 'A hands-on binary exploitation (PWN) challenge series — the stack and process memory, buffer overflows, variable overwrites, shellcode, Ret2Win, address leaks, libc/PIE, and automation with Pwntools.',
+        status: 'unlocked',
+        iconType: 'skull',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'Why C Programs Get Owned',
+          concept: 'Memory Corruption',
+          scenario: 'A program reads user input into a fixed buffer with gets(). An attacker sends far more data than it holds, overwrites the saved return address, and redirects execution to a win() function — spawning a shell without any legitimate credentials.',
+          relevance: 'Buffer overflows remain a root cause of critical vulnerabilities; understanding the stack, return addresses, and protections like NX/ASLR/PIE is foundational to both exploitation and secure coding.'
+        },
+        mindmap: [
+          { id: 'pwn', label: 'Binary Exploitation', description: 'Abusing memory bugs in compiled programs', x: 50, y: 12, connections: ['stack', 'overflow', 'techniques', 'tools'] },
+          { id: 'stack', label: 'The Stack', description: 'Locals, saved RBP, return address; grows down', x: 16, y: 50 },
+          { id: 'overflow', label: 'Buffer Overflow', description: 'gets() has no bounds check; overwrite adjacent memory', x: 39, y: 58 },
+          { id: 'techniques', label: 'Techniques', description: 'Variable overwrite, shellcode, Ret2Win, leaks vs ASLR/PIE', x: 62, y: 58 },
+          { id: 'tools', label: 'Pwntools', description: 'remote, cyclic, p32/p64, interactive', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Binary exploitation (PWN) abuses programming mistakes in compiled programs to control execution.',
+          'Process memory splits into Text, Data, BSS, Heap, and Stack; the stack grows down and holds the return address.',
+          'gets() and oversized read() calls have no bounds checking, so input overflows into adjacent memory.',
+          'Overwriting a nearby variable changes logic; overwriting the return address (Ret2Win) hijacks control flow.',
+          'Shellcode injects new code (blocked by NX); Ret2Win reuses existing code and needs no executable memory.',
+          'ASLR and PIE randomise addresses; leaking one address plus fixed offsets defeats them. Pwntools automates it all.'
+        ],
+        quiz: [
+          { id: 'q-tp-1', question: 'Which unsafe C function has no bounds checking and causes overflows?', type: 'text', correctAnswer: 'gets', hint: 'gets(buf).' },
+          { id: 'q-tp-2', question: 'What saved value on the stack do overflow attacks aim to overwrite?', type: 'text', correctAnswer: 'Return address', hint: 'It decides where execution resumes.' },
+          { id: 'q-tp-3', question: 'What is the technique of overwriting the return address to reach an existing win() function called?', type: 'text', correctAnswer: 'Ret2Win', hint: 'Return-to-Win.' },
+          { id: 'q-tp-4', question: 'Which protection randomises memory addresses each run?', type: 'text', correctAnswer: 'ASLR', hint: 'Address Space Layout Randomization.' },
+          { id: 'q-tp-5', question: 'Which Python framework automates exploit development?', type: 'text', correctAnswer: 'Pwntools', hint: 'from pwn import *.' }
+        ]
       },
-      { 
-        id: 'mystery-chest-exploitation', 
-        moduleId: EXPLOITATION_MODULE_ID, 
-        title: 'Mystery Chest', 
-        description: 'A bonus revision vault for the whole Exploitation Basics module — commands, workflows, and exploitation cheat sheets.', 
-        status: 'unlocked', 
-        iconType: 'mystery-chest', 
+      {
+        id: 'mystery-chest-exploitation',
+        moduleId: EXPLOITATION_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Exploitation Basics module: the exploitation lifecycle, Metasploit and Meterpreter command references, key CVEs, and binary-exploitation concepts.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
         content: '',
-        mindmap: [],
-        keyTakeaways: [],
-        quiz: []
+        realWorldCallout: {
+          title: 'The Exploitation Field Card',
+          concept: 'Fast Recall Under Pressure',
+          scenario: 'Mid-lab, an analyst needs the exact msfconsole loop, a Meterpreter command, or the CVE behind EternalBlue. Instead of switching to a browser, they glance at one consolidated sheet covering the lifecycle, Metasploit, Meterpreter, CVEs, and binary-exploitation concepts.',
+          relevance: 'Exploitation rewards a repeatable methodology; consolidating the module into a single reference makes the workflow, commands, and concepts stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-exploit', label: 'Exploitation Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['life', 'msf', 'pwn'] },
+          { id: 'life', label: 'Lifecycle', description: 'Recon → Vuln ID → Exploit → Post-Exploit → Document', x: 20, y: 52 },
+          { id: 'msf', label: 'Metasploit', description: 'Modules, msfconsole loop, Meterpreter commands', x: 50, y: 58 },
+          { id: 'pwn', label: 'Binary & CVEs', description: 'EternalBlue, Moniker Link; overflows and protections', x: 80, y: 52 }
+        ],
+        keyTakeaways: [
+          'The exploitation lifecycle: Reconnaissance → Vulnerability Identification → Exploitation → Post-Exploitation → Documentation.',
+          'Metasploit modules: Exploit, Payload, Auxiliary, Post, Encoder, NOP; the console loop is search → use → show options → set → run.',
+          'Meterpreter is an in-memory payload; key commands include getsystem, hashdump, migrate, shell, and search -f.',
+          'EternalBlue (MS17-010, CVE-2017-0144) is an unauthenticated SMBv1 RCE; Moniker Link (CVE-2024-21413) leaks NetNTLMv2 from Outlook.',
+          'Binary exploitation overwrites the return address; Ret2Win reuses existing code and shellcode injects new code.',
+          'Protections NX, ASLR, PIE, Stack Canary, and RELRO force attackers to leak an address first; Pwntools automates the attack.'
+        ],
+        quiz: [
+          { id: 'q-mce-1', question: 'What is the first phase of the exploitation lifecycle?', type: 'text', correctAnswer: 'Reconnaissance', hint: 'Discover the attack surface.' },
+          { id: 'q-mce-2', question: 'What is the standard msfconsole workflow loop?', type: 'text', correctAnswer: 'search, use, show options, set, run', hint: 'Five steps from finding to firing a module.' },
+          { id: 'q-mce-3', question: 'Which CVE identifies EternalBlue?', type: 'text', correctAnswer: 'CVE-2017-0144', hint: 'MS17-010.' },
+          { id: 'q-mce-4', question: 'Which protection is bypassed by leaking a memory address?', type: 'text', correctAnswer: 'ASLR', hint: 'Also PIE.' }
+        ]
       },
     ],
   },
