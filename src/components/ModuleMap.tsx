@@ -1808,63 +1808,60 @@ const renderUniqueIsometricObject = (
       );
 
     // CS101 M7 — Moniker Link (CVE-2024-21413): envelope with a warning-link chain (email CVE)
+    // CS101 M7 — Moniker Link (CVE-2024-21413): Outlook envelope with a danger badge (email CVE)
     case 'moniker-link':
       return (
         <g id="moniker-link-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(239, 68, 68, 0.18)" filter="blur(3px)" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
           {/* Envelope body */}
           <rect x={x - 11} y={y - 6} width={22} height={15} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
           {/* Envelope flap */}
           <path d={`M ${x - 11} ${y - 5} L ${x} ${y + 3} L ${x + 11} ${y - 5}`} fill="none" stroke="#9fef00" strokeWidth="1.6" />
-          {/* Warning chain-link badge (the malicious moniker link) */}
+          {/* Danger badge (the malicious moniker link) */}
           <circle cx={x + 8} cy={y + 8} r={5} fill="#20301a" stroke="#ef4444" strokeWidth="1.4" />
           <text x={x + 8} y={y + 10} fontSize="7" fill="#ef4444" textAnchor="middle" fontFamily="monospace">!</text>
         </g>
       );
 
-    // CS101 M7 — Metasploit: Introduction: framework crosshair target (recon/intro)
+    // CS101 M7 — Metasploit: Introduction: the Metasploit "M" shield (base motif)
     case 'metasploit-intro':
       return (
         <g id="metasploit-intro-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.2)" filter="blur(3px)" />
-          {/* Outer target ring */}
-          <circle cx={x} cy={y + 1} r={11} fill="none" stroke="#9fef00" strokeWidth="1.8" />
-          <circle cx={x} cy={y + 1} r={6} fill="none" stroke="#38bdf8" strokeWidth="1.4" />
-          <circle cx={x} cy={y + 1} r={2} fill="#9fef00" />
-          {/* Crosshair ticks */}
-          <line x1={x} y1={y - 13} x2={x} y2={y - 9} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
-          <line x1={x} y1={y + 11} x2={x} y2={y + 15} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
-          <line x1={x - 14} y1={y + 1} x2={x - 10} y2={y + 1} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
-          <line x1={x + 10} y1={y + 1} x2={x + 14} y2={y + 1} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Metasploit shield */}
+          <path d={`M ${x - 10} ${y - 8} L ${x + 10} ${y - 8} L ${x + 10} ${y + 1} Q ${x + 10} ${y + 9} ${x} ${y + 12} Q ${x - 10} ${y + 9} ${x - 10} ${y + 1} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* "M" letter */}
+          <text x={x} y={y + 4} fontSize="13" fontWeight="bold" fill="#9fef00" textAnchor="middle" fontFamily="monospace">M</text>
         </g>
       );
 
-    // CS101 M7 — Metasploit: Exploitation: crosshair target pierced by a strike/bolt (active exploit)
+    // CS101 M7 — Metasploit: Exploitation: "M" shield + exploit burst badge (active exploit)
     case 'metasploit-exploitation':
       return (
         <g id="metasploit-exploitation-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(239, 68, 68, 0.2)" filter="blur(3px)" />
-          {/* Target rings */}
-          <circle cx={x} cy={y + 1} r={11} fill="none" stroke="#9fef00" strokeWidth="1.8" />
-          <circle cx={x} cy={y + 1} r={5.5} fill="none" stroke="#9fef00" strokeWidth="1.2" opacity="0.7" />
-          {/* Lightning strike hitting the bullseye */}
-          <path d={`M ${x + 2} ${y - 12} L ${x - 4} ${y + 1} L ${x + 1} ${y + 1} L ${x - 3} ${y + 12} L ${x + 7} ${y - 3} L ${x + 2} ${y - 3} Z`} fill="#f59e0b" stroke="#fbbf24" strokeWidth="0.6" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Metasploit shield */}
+          <path d={`M ${x - 10} ${y - 8} L ${x + 10} ${y - 8} L ${x + 10} ${y + 1} Q ${x + 10} ${y + 9} ${x} ${y + 12} Q ${x - 10} ${y + 9} ${x - 10} ${y + 1} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* "M" letter */}
+          <text x={x} y={y + 4} fontSize="13" fontWeight="bold" fill="#9fef00" textAnchor="middle" fontFamily="monospace">M</text>
+          {/* Exploit burst badge (top-right corner) */}
+          <path d={`M ${x + 9} ${y - 12} L ${x + 10.5} ${y - 9} L ${x + 13.5} ${y - 8} L ${x + 10.5} ${y - 7} L ${x + 9} ${y - 4} L ${x + 7.5} ${y - 7} L ${x + 4.5} ${y - 8} L ${x + 7.5} ${y - 9} Z`} fill="#f59e0b" stroke="#fbbf24" strokeWidth="0.5" strokeLinejoin="round" />
         </g>
       );
 
-    // CS101 M7 — Metasploit: Meterpreter: terminal window with a memory-resident shell prompt
+    // CS101 M7 — Metasploit: Meterpreter: "M" shield + terminal/shell badge (post-exploitation)
     case 'metasploit-meterpreter':
       return (
         <g id="metasploit-meterpreter-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.2)" filter="blur(3px)" />
-          {/* Terminal window */}
-          <rect x={x - 12} y={y - 9} width={24} height={19} rx={2} fill="#0f1a0a" stroke="#9fef00" strokeWidth="1.6" />
-          {/* Title bar */}
-          <rect x={x - 12} y={y - 9} width={24} height={4} rx={2} fill="#20301a" />
-          {/* Prompt chevron + cursor */}
-          <path d={`M ${x - 8} ${y - 1} L ${x - 5} ${y + 1.5} L ${x - 8} ${y + 4}`} fill="none" stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          <line x1={x - 3} y1={y + 4} x2={x + 4} y2={y + 4} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
-          <rect x={x + 5} y={y - 0.5} width={3} height={5} fill="#38bdf8" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Metasploit shield */}
+          <path d={`M ${x - 10} ${y - 8} L ${x + 10} ${y - 8} L ${x + 10} ${y + 1} Q ${x + 10} ${y + 9} ${x} ${y + 12} Q ${x - 10} ${y + 9} ${x - 10} ${y + 1} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* "M" letter */}
+          <text x={x} y={y + 4} fontSize="13" fontWeight="bold" fill="#9fef00" textAnchor="middle" fontFamily="monospace">M</text>
+          {/* Terminal/shell badge (bottom-right corner) */}
+          <circle cx={x + 9} cy={y + 8} r={5.2} fill="#0f1a0a" stroke="#38bdf8" strokeWidth="1.3" />
+          <path d={`M ${x + 6.5} ${y + 6} L ${x + 9} ${y + 8} L ${x + 6.5} ${y + 10}`} fill="none" stroke="#38bdf8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1={x + 10} y1={y + 10} x2={x + 12} y2={y + 10} stroke="#38bdf8" strokeWidth="1.2" strokeLinecap="round" />
         </g>
       );
 
@@ -1872,7 +1869,7 @@ const renderUniqueIsometricObject = (
     case 'blue':
       return (
         <g id="blue-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(56, 189, 248, 0.28)" filter="blur(3px)" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
           {/* Windows four panes (blue/sky) */}
           <rect x={x - 10} y={y - 9} width={8.5} height={8} rx={1} fill="#38bdf8" />
           <rect x={x + 1.5} y={y - 9} width={8.5} height={8} rx={1} fill="#0ea5e9" />
@@ -1887,7 +1884,7 @@ const renderUniqueIsometricObject = (
     case 'trypwnme-one':
       return (
         <g id="trypwnme-scene">
-          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(239, 68, 68, 0.18)" filter="blur(3px)" />
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
           {/* Skull cranium */}
           <path d={`M ${x - 8} ${y + 1} C ${x - 8} ${y - 10} ${x + 8} ${y - 10} ${x + 8} ${y + 1} L ${x + 6} ${y + 6} L ${x - 6} ${y + 6} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
           {/* Eyes */}
