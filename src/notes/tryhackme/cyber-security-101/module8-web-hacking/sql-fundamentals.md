@@ -60,7 +60,7 @@ A **RELATIONAL DATABASE** stores data in structured tables, where every row foll
 ```text
 STUDENTS TABLE
 ┌──────────┬────────────┬───────┐
-│ student_id│ name       │ age   │
+│student_id│ name       │ age   │
 ├──────────┼────────────┼───────┤
 │ 101      │ Rahul      │ 20    │
 │ 102      │ Priya      │ 21    │
