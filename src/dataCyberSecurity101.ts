@@ -963,6 +963,7 @@ const netChestRoom: Topic = {
 
 const CRYPTOGRAPHY_MODULE_ID = 'cryptography';
 const EXPLOITATION_MODULE_ID = 'exploitation-basics';
+const WEB_HACKING_MODULE_ID = 'web-hacking';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -1497,6 +1498,197 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mce-2', question: 'What is the standard msfconsole workflow loop?', type: 'text', correctAnswer: 'search, use, show options, set, run', hint: 'Five steps from finding to firing a module.' },
           { id: 'q-mce-3', question: 'Which CVE identifies EternalBlue?', type: 'text', correctAnswer: 'CVE-2017-0144', hint: 'MS17-010.' },
           { id: 'q-mce-4', question: 'Which protection is bypassed by leaking a memory address?', type: 'text', correctAnswer: 'ASLR', hint: 'Also PIE.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: WEB_HACKING_MODULE_ID,
+    title: 'Web Hacking',
+    description: 'Learn how web applications work and how they break — web application fundamentals, JavaScript, SQL and injection, and the Burp Suite proxy — across four hands-on rooms plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'web-application-basics',
+        moduleId: WEB_HACKING_MODULE_ID,
+        title: 'Web Application Basics',
+        description: 'How web applications are built: front end vs back end, HTML/CSS/JavaScript, HTTP requests and responses, and how the browser and server communicate.',
+        status: 'unlocked',
+        iconType: 'web',
+        content: '',
+        realWorldCallout: {
+          title: 'Reading What the Browser Reveals',
+          concept: 'The Client Is Never Trusted',
+          scenario: 'A tester opens a login page, views the page source, and finds a developer comment leaking an internal admin path and a hidden form field controlling the user role — none of which the server re-checks.',
+          relevance: 'Everything sent to the browser is visible to the user, so understanding the front-end/back-end split is the foundation of every web attack and defence.'
+        },
+        mindmap: [
+          { id: 'web', label: 'Web App Basics', description: 'How the browser and server build a page together', x: 50, y: 12, connections: ['front', 'back', 'http', 'trust'] },
+          { id: 'front', label: 'Front End', description: 'HTML structure, CSS style, JavaScript behaviour — runs in the browser', x: 16, y: 50 },
+          { id: 'back', label: 'Back End', description: 'Server language + database + web server software', x: 39, y: 58 },
+          { id: 'http', label: 'HTTP', description: 'Requests (GET/POST) and responses (2xx/3xx/4xx/5xx)', x: 62, y: 58 },
+          { id: 'trust', label: 'Trust Boundary', description: 'Client is fully visible; enforce security on the server', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A web app splits into a front end (browser) and a back end (server + database) that talk over HTTP/HTTPS.',
+          'The front end is HTML (structure), CSS (style), and JavaScript (behaviour) — all visible to the user.',
+          'The back end runs the application language, database, and web-server software the user never sees.',
+          'HTTP methods: GET reads, POST submits, PUT creates/replaces, DELETE removes.',
+          'Status codes group into 2xx success, 3xx redirect, 4xx client error, 5xx server error.',
+          'Never trust the client — all validation and authorisation must be enforced on the back end.'
+        ],
+        quiz: [
+          { id: 'q-wab-1', question: 'Which language provides the structure and content of a web page?', type: 'text', correctAnswer: 'HTML', hint: 'CSS styles it, JS adds behaviour.' },
+          { id: 'q-wab-2', question: 'Which HTTP method is used to submit data to the server?', type: 'text', correctAnswer: 'POST', hint: 'GET retrieves; this one sends.' },
+          { id: 'q-wab-3', question: 'Which HTTP status code means "Not Found"?', type: 'text', correctAnswer: '404', hint: 'A 4xx client error.' },
+          { id: 'q-wab-4', question: 'Where must security validation be enforced — front end or back end?', type: 'text', correctAnswer: 'Back end', hint: 'The client is always visible/editable.' },
+          { id: 'q-wab-5', question: 'What does the front end run inside?', type: 'text', correctAnswer: 'The browser', hint: 'Client-side.' }
+        ]
+      },
+      {
+        id: 'javascript-essentials',
+        moduleId: WEB_HACKING_MODULE_ID,
+        title: 'JavaScript Essentials',
+        description: 'The language of the browser: variables, functions, events, the DOM, and how JavaScript manipulates pages — plus why client-side code can never be trusted for security.',
+        status: 'unlocked',
+        iconType: 'js-demo',
+        content: '',
+        realWorldCallout: {
+          title: 'Bypassing the Disabled Button',
+          concept: 'Client-Side Controls Are Optional',
+          scenario: 'A form disables its submit button until "terms" are accepted using JavaScript. A tester simply removes the check in the browser console — or sends the request directly — and the server accepts it because it never re-validated.',
+          relevance: 'JavaScript drives every modern web page, and understanding that it runs on the client is what lets you see why front-end restrictions are trivial to bypass.'
+        },
+        mindmap: [
+          { id: 'js', label: 'JavaScript', description: 'The programming language of the browser', x: 50, y: 12, connections: ['syntax', 'dom', 'events', 'sec'] },
+          { id: 'syntax', label: 'Syntax', description: 'Variables, types, functions, conditionals, loops', x: 16, y: 50 },
+          { id: 'dom', label: 'The DOM', description: 'JS reads and modifies the page structure live', x: 39, y: 58 },
+          { id: 'events', label: 'Events', description: 'Respond to clicks, input, and page load', x: 62, y: 58 },
+          { id: 'sec', label: 'Security', description: 'Client-side code is readable and tamperable — never a control', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'JavaScript is the programming language that runs in the browser and makes pages interactive.',
+          'It declares variables (let, const, var), functions, conditionals, and loops like other languages.',
+          'The DOM (Document Object Model) is the page as objects; JavaScript reads and modifies it live.',
+          'Event handlers respond to user actions such as clicks, key presses, and page load.',
+          'JavaScript can make background HTTP requests (fetch/XHR) without reloading the page.',
+          'Because JS is delivered to and runs in the browser, users can read and tamper with it — client-side checks are not security.'
+        ],
+        quiz: [
+          { id: 'q-js-1', question: 'What does DOM stand for?', type: 'text', correctAnswer: 'Document Object Model', hint: 'The page represented as objects JS can change.' },
+          { id: 'q-js-2', question: 'Which keyword declares a constant in modern JavaScript?', type: 'text', correctAnswer: 'const', hint: 'let is reassignable; this one is not.' },
+          { id: 'q-js-3', question: 'Where does JavaScript run in a normal web page?', type: 'text', correctAnswer: 'The browser', hint: 'Client-side.' },
+          { id: 'q-js-4', question: 'Can client-side JavaScript validation be trusted as a security control?', type: 'text', correctAnswer: 'No', hint: 'The user can read and bypass it.' },
+          { id: 'q-js-5', question: 'What is triggered when a user clicks a button or types in a field?', type: 'text', correctAnswer: 'An event', hint: 'Handled by event handlers.' }
+        ]
+      },
+      {
+        id: 'sql-fundamentals',
+        moduleId: WEB_HACKING_MODULE_ID,
+        title: 'SQL Fundamentals',
+        description: 'How databases power web apps: tables and relationships, the core SQL statements (SELECT/INSERT/UPDATE/DELETE), clauses and operators, and why unsafe queries lead to SQL injection.',
+        status: 'unlocked',
+        iconType: 'sql-basics',
+        content: '',
+        realWorldCallout: {
+          title: 'One Quote Breaks the Query',
+          concept: 'Untrusted Input in a Query',
+          scenario: 'A login form builds its SQL by pasting the username straight into the query string. Entering \' OR \'1\'=\'1 turns the WHERE clause always-true, and the attacker logs in as the first user without a password.',
+          relevance: 'Almost every web back end is a database, so understanding SQL is what lets you both query data correctly and recognise the injection flaws that come from building queries unsafely.'
+        },
+        mindmap: [
+          { id: 'sql', label: 'SQL', description: 'The language of relational databases', x: 50, y: 12, connections: ['tables', 'crud', 'clauses', 'inj'] },
+          { id: 'tables', label: 'Tables', description: 'Rows and columns; databases hold related tables', x: 16, y: 50 },
+          { id: 'crud', label: 'Statements', description: 'SELECT, INSERT, UPDATE, DELETE', x: 39, y: 58 },
+          { id: 'clauses', label: 'Clauses', description: 'WHERE, ORDER BY, LIMIT, LIKE, UNION', x: 62, y: 58 },
+          { id: 'inj', label: 'SQL Injection', description: 'Unsafe input in queries; fix with parameterised queries', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Relational databases store data in tables of rows and columns, queried with SQL.',
+          'The four core statements are SELECT (read), INSERT (add), UPDATE (modify), and DELETE (remove).',
+          'Clauses shape results: WHERE filters, ORDER BY sorts, LIMIT caps, LIKE pattern-matches.',
+          'UNION combines the results of two SELECT statements and is central to injection attacks.',
+          'SQL injection occurs when untrusted user input is concatenated into a query.',
+          'The primary defence is parameterised queries (prepared statements), which separate code from data.'
+        ],
+        quiz: [
+          { id: 'q-sql-1', question: 'Which SQL statement reads rows from a table?', type: 'text', correctAnswer: 'SELECT', hint: 'The read operation.' },
+          { id: 'q-sql-2', question: 'Which clause filters which rows a query returns?', type: 'text', correctAnswer: 'WHERE', hint: 'e.g. WHERE id = 5.' },
+          { id: 'q-sql-3', question: 'Which keyword combines the results of two SELECT queries?', type: 'text', correctAnswer: 'UNION', hint: 'Common in injection attacks.' },
+          { id: 'q-sql-4', question: 'What vulnerability comes from concatenating user input into a query?', type: 'text', correctAnswer: 'SQL injection', hint: 'SQLi.' },
+          { id: 'q-sql-5', question: 'What is the main defence against SQL injection?', type: 'text', correctAnswer: 'Parameterised queries', hint: 'Also called prepared statements.' }
+        ]
+      },
+      {
+        id: 'burp-suite-basics',
+        moduleId: WEB_HACKING_MODULE_ID,
+        title: 'Burp Suite: The Basics',
+        description: 'The web pentester\'s core tool: the intercepting proxy, the Burp browser and scope, and the Proxy, Target, Repeater, Intruder, Decoder, and Comparer tools.',
+        status: 'unlocked',
+        iconType: 'search',
+        content: '',
+        realWorldCallout: {
+          title: 'Editing the Request in Flight',
+          concept: 'Intercept, Modify, Replay',
+          scenario: 'A price field is fixed in the browser, but a tester intercepts the checkout request in Burp Proxy, changes the price to 1, forwards it, and the server — trusting the request — processes the discounted order.',
+          relevance: 'Burp Suite is the standard tool for web testing; intercepting and replaying requests is how nearly every web vulnerability is found and confirmed.'
+        },
+        mindmap: [
+          { id: 'burp', label: 'Burp Suite', description: 'Intercepting proxy for web testing', x: 50, y: 12, connections: ['proxy', 'repeater', 'intruder', 'tools'] },
+          { id: 'proxy', label: 'Proxy', description: 'Intercept and modify requests/responses in transit', x: 16, y: 50 },
+          { id: 'repeater', label: 'Repeater', description: 'Manually tweak and resend a single request', x: 39, y: 58 },
+          { id: 'intruder', label: 'Intruder', description: 'Automate and fuzz a request across payloads', x: 62, y: 58 },
+          { id: 'tools', label: 'Decoder & More', description: 'Target scope, Decoder, Comparer', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Burp Suite is an intercepting proxy that sits between the browser and the web server.',
+          'The Proxy intercepts, views, and modifies requests and responses in transit.',
+          'Target maps the application and defines the scope of testing.',
+          'Repeater resends a single request with manual tweaks; Intruder automates and fuzzes across payloads.',
+          'Decoder encodes/decodes data (URL, Base64, hex) and Comparer diffs two responses.',
+          'Point the browser at Burp (the bundled browser or a proxy add-on) so all traffic flows through it.'
+        ],
+        quiz: [
+          { id: 'q-burp-1', question: 'What type of tool is Burp Suite at its core?', type: 'text', correctAnswer: 'Intercepting proxy', hint: 'It sits between browser and server.' },
+          { id: 'q-burp-2', question: 'Which Burp tool resends a single request with manual edits?', type: 'text', correctAnswer: 'Repeater', hint: 'Tweak and resend one request.' },
+          { id: 'q-burp-3', question: 'Which Burp tool automates/fuzzes a request across many payloads?', type: 'text', correctAnswer: 'Intruder', hint: 'Payload positions.' },
+          { id: 'q-burp-4', question: 'Which Burp tool encodes and decodes data like Base64 and URL?', type: 'text', correctAnswer: 'Decoder', hint: 'Encode/decode utility.' },
+          { id: 'q-burp-5', question: 'Which Burp feature intercepts and modifies traffic in transit?', type: 'text', correctAnswer: 'Proxy', hint: 'The heart of Burp.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-web-hacking',
+        moduleId: WEB_HACKING_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Web Hacking module: web app structure, HTTP, the front-end trio, SQL and injection, and the Burp Suite workflow.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Web Pentest Field Card',
+          concept: 'Fast Recall Under Pressure',
+          scenario: 'Mid-lab, a tester needs the right HTTP status meaning, an SQL clause, or which Burp tool to reach for. Instead of switching to a browser, they glance at one consolidated sheet covering web structure, HTTP, SQL, and Burp.',
+          relevance: 'Web hacking rewards knowing where the trust boundary sits; consolidating the module into a single reference makes the workflow and concepts stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-web', label: 'Web Hacking Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['struct', 'data', 'tool'] },
+          { id: 'struct', label: 'Structure', description: 'Front end (HTML/CSS/JS) vs back end; HTTP methods & codes', x: 20, y: 52 },
+          { id: 'data', label: 'Data', description: 'SQL statements/clauses and SQL injection', x: 50, y: 58 },
+          { id: 'tool', label: 'Tooling', description: 'Burp Suite proxy, Repeater, Intruder', x: 80, y: 52 }
+        ],
+        keyTakeaways: [
+          'A web app is a front end (browser: HTML/CSS/JavaScript) plus a back end (server + database) over HTTP/HTTPS.',
+          'HTTP methods (GET/POST/PUT/DELETE) and status families (2xx/3xx/4xx/5xx) describe every interaction.',
+          'The front end is always visible to the user, so security must be enforced on the back end.',
+          'SQL reads and writes the database with SELECT/INSERT/UPDATE/DELETE plus WHERE, ORDER BY, and UNION.',
+          'SQL injection comes from concatenating input into queries; parameterised queries are the fix.',
+          'Burp Suite is an intercepting proxy (Proxy, Repeater, Intruder, Decoder, Comparer) for testing web traffic.'
+        ],
+        quiz: [
+          { id: 'q-mcw-1', question: 'What are the three front-end browser languages?', type: 'text', correctAnswer: 'HTML, CSS, JavaScript', hint: 'Structure, style, behaviour.' },
+          { id: 'q-mcw-2', question: 'Which HTTP status family means server error?', type: 'text', correctAnswer: '5xx', hint: 'e.g. 500.' },
+          { id: 'q-mcw-3', question: 'What is the main defence against SQL injection?', type: 'text', correctAnswer: 'Parameterised queries', hint: 'Prepared statements.' },
+          { id: 'q-mcw-4', question: 'Which tool is an intercepting proxy for web testing?', type: 'text', correctAnswer: 'Burp Suite', hint: 'Proxy, Repeater, Intruder.' }
         ]
       },
     ],

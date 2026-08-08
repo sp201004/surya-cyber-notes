@@ -135,6 +135,12 @@ import cs101Blue from './tryhackme/cyber-security-101/module7-exploitation-basic
 import cs101TryPwnMeOne from './tryhackme/cyber-security-101/module7-exploitation-basics/trypwnme-one.md?raw';
 import cs101ExploitChest from './tryhackme/cyber-security-101/module7-exploitation-basics/mystery-chest.md?raw';
 
+import cs101WebAppBasics from './tryhackme/cyber-security-101/module8-web-hacking/web-application-basics.md?raw';
+import cs101JavaScriptEssentials from './tryhackme/cyber-security-101/module8-web-hacking/javascript-essentials.md?raw';
+import cs101SqlFundamentals from './tryhackme/cyber-security-101/module8-web-hacking/sql-fundamentals.md?raw';
+import cs101BurpSuiteBasics from './tryhackme/cyber-security-101/module8-web-hacking/burp-suite-basics.md?raw';
+import cs101WebChest from './tryhackme/cyber-security-101/module8-web-hacking/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -270,4 +276,10 @@ export const notesByTopicId: Record<string, string> = {
   'blue': cs101Blue,
   'trypwnme-one': cs101TryPwnMeOne,
   'mystery-chest-exploitation': cs101ExploitChest,
+
+  'web-application-basics': cs101WebAppBasics,
+  'javascript-essentials': cs101JavaScriptEssentials,
+  'sql-fundamentals': cs101SqlFundamentals,
+  'burp-suite-basics': cs101BurpSuiteBasics,
+  'mystery-chest-web-hacking': cs101WebChest,
 };

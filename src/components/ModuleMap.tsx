@@ -1910,6 +1910,79 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // CS101 M8 — Web Application Basics: browser window with address bar (web page)
+    case 'web-application-basics':
+      return (
+        <g id="web-app-basics-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Browser window */}
+          <rect x={x - 12} y={y - 9} width={24} height={19} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Top browser bar */}
+          <rect x={x - 12} y={y - 9} width={24} height={5} rx={2} fill="#111827" />
+          {/* Traffic dots */}
+          <circle cx={x - 9} cy={y - 6.5} r={1} fill="#ef4444" />
+          <circle cx={x - 6} cy={y - 6.5} r={1} fill="#f59e0b" />
+          <circle cx={x - 3} cy={y - 6.5} r={1} fill="#9fef00" />
+          {/* Content lines */}
+          <line x1={x - 8} y1={y} x2={x + 8} y2={y} stroke="#38bdf8" strokeWidth="1.4" strokeLinecap="round" />
+          <line x1={x - 8} y1={y + 4} x2={x + 4} y2={y + 4} stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" opacity="0.8" />
+        </g>
+      );
+
+    // CS101 M8 — JavaScript Essentials: the JS square badge with "JS"
+    case 'javascript-essentials':
+      return (
+        <g id="js-essentials-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* JS square badge */}
+          <rect x={x - 11} y={y - 10} width={22} height={22} rx={3} fill="#eab308" stroke="#facc15" strokeWidth="1.2" />
+          <text x={x + 1} y={y + 8} fontSize="13" fontWeight="bold" fill="#1e293b" textAnchor="middle" fontFamily="monospace">JS</text>
+        </g>
+      );
+
+    // CS101 M8 — SQL Fundamentals: stacked database cylinders
+    case 'sql-fundamentals':
+      return (
+        <g id="sql-fundamentals-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Database cylinder */}
+          <ellipse cx={x} cy={y - 8} rx={11} ry={3.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 11} ${y - 8} L ${x - 11} ${y + 8}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x + 11} ${y - 8} L ${x + 11} ${y + 8}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 11} ${y + 8} C ${x - 11} ${y + 11} ${x + 11} ${y + 11} ${x + 11} ${y + 8}`} fill="none" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Middle band lines (rings) */}
+          <path d={`M ${x - 11} ${y - 2} C ${x - 11} ${y + 1} ${x + 11} ${y + 1} ${x + 11} ${y - 2}`} fill="none" stroke="#38bdf8" strokeWidth="1.2" opacity="0.8" />
+          <path d={`M ${x - 11} ${y + 3} C ${x - 11} ${y + 6} ${x + 11} ${y + 6} ${x + 11} ${y + 3}`} fill="none" stroke="#38bdf8" strokeWidth="1.2" opacity="0.6" />
+        </g>
+      );
+
+    // CS101 M8 — Burp Suite: the Burp hexagon/target motif
+    case 'burp-suite-basics':
+      return (
+        <g id="burp-suite-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Hexagon (Burp / PortSwigger orange) */}
+          <path d={`M ${x} ${y - 11} L ${x + 10} ${y - 5} L ${x + 10} ${y + 6} L ${x} ${y + 12} L ${x - 10} ${y + 6} L ${x - 10} ${y - 5} Z`} fill="#20301a" stroke="#f97316" strokeWidth="1.8" strokeLinejoin="round" />
+          {/* Inner intercept crosshair */}
+          <circle cx={x} cy={y} r={4} fill="none" stroke="#f97316" strokeWidth="1.5" />
+          <circle cx={x} cy={y} r={1.4} fill="#f97316" />
+          <line x1={x} y1={y - 9} x2={x} y2={y - 5} stroke="#f97316" strokeWidth="1.4" strokeLinecap="round" />
+        </g>
+      );
+
+    // CS101 M8 — Mystery Chest: the shared treasure-chest asset
+    case 'mystery-chest-web-hacking':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">
