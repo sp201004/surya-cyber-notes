@@ -366,6 +366,7 @@ const CODE_LANG_LABEL: Record<string, string> = {
   bash: 'Bash Terminal', sh: 'Bash Terminal', shell: 'Bash Terminal',
   spl: 'Splunk SPL', python: 'Python', sql: 'SQL', xml: 'XML', json: 'JSON',
   yaml: 'YAML', yml: 'YAML', http: 'HTTP', yara: 'YARA Rule',
+  javascript: 'JavaScript', js: 'JavaScript',
 };
 const renderCodeLines = (lang: string, content: string): React.ReactNode => {
   switch (lang) {

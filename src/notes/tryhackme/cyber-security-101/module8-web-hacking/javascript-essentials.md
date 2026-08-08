@@ -61,7 +61,7 @@ JavaScript is built from a few fundamental building blocks: variables, data type
 
 A variable is a container used to store data. JavaScript commonly uses `var`, `let`, and `const`.
 
-```text
+```javascript
 let name = "Surya";
 let age = 24;
 ```
@@ -72,7 +72,7 @@ let age = 24;
 
 Common JavaScript data types are String, Number, Boolean, Null, Undefined, and Object.
 
-```text
+```javascript
 let username = "admin";       // String
 let age = 24;                 // Number
 let authenticated = true;     // Boolean
@@ -90,7 +90,7 @@ string
 
 A function is a reusable block of code.
 
-```text
+```javascript
 function greet(name) {
     console.log("Hello " + name);
 }
@@ -110,7 +110,7 @@ Functions matter in security because they may contain authentication logic, vali
 
 A loop executes a block of code repeatedly. Common loops are `for`, `while`, and `do...while`.
 
-```text
+```javascript
 for (let i = 0; i < 5; i++) {
     console.log(i);
 }
@@ -150,7 +150,7 @@ JavaScript is commonly described as an **interpreted language**. The browser con
 
 ### A Basic JavaScript Program
 
-```text
+```javascript
 console.log("Hello, World!");
 
 let age = 25;
@@ -174,13 +174,13 @@ The pieces map cleanly: `console.log()` prints output, `let` creates a variable,
 
 Open Chrome, then press `Ctrl + Shift + I` (or Right Click → Inspect → Console) and run:
 
-```text
+```javascript
 console.log("Hello THM");
 ```
 
 You can interact with JavaScript directly through the browser console. A simple addition shows how values combine:
 
-```text
+```javascript
 let x = 5;
 let y = 10;
 
@@ -255,7 +255,7 @@ The code `document.getElementById("result")` finds the HTML element with `id="re
 
 JavaScript can also be stored in a separate `.js` file — for example `script.js`:
 
-```text
+```javascript
 let x = 5;
 let y = 10;
 let result = x + y;
@@ -302,7 +302,7 @@ JavaScript provides three built-in dialogue functions — `alert()`, `prompt()`,
 
 `alert()` displays a message box, for example `alert("Hello THM");`, and is used to display information, warnings, or notifications. `prompt()` asks the user for input: `let name = prompt("What is your name?");` stores what the user types into `name`, so `alert("Hello " + name);` greets them by name. `confirm()` asks for confirmation and returns `true` for OK and `false` for Cancel:
 
-```text
+```javascript
 let answer = confirm("Are you sure?");
 
 if (answer) {
@@ -322,7 +322,7 @@ if (answer) {
 
 A loop wrapped around `alert()` forces the user to dismiss a popup on every iteration:
 
-```text
+```javascript
 for (let i = 0; i < 5; i++) {
     alert("Hacked");
 }
@@ -346,7 +346,7 @@ Attackers abuse these functions to spam users, disrupt browser interaction, buil
 
 JavaScript uses control-flow statements — `if`, `else`, `switch`, `for`, `while`, `do...while` — to decide which code executes. A basic conditional:
 
-```text
+```javascript
 if (age >= 18) {
     console.log("Adult");
 } else {
@@ -356,7 +356,7 @@ if (age >= 18) {
 
 An age-verification example reads input and updates the page:
 
-```text
+```javascript
 age = prompt("What is your age");
 
 if (age >= 18) {
@@ -382,7 +382,7 @@ This is exactly why client-side checks should **not** be treated as the final se
 
 ### Client-Side Authentication
 
-```text
+```javascript
 let username = prompt("Enter your username:");
 let password = prompt("Enter your password:");
 
@@ -428,7 +428,7 @@ Production JavaScript is often difficult to read because of two related but dist
 
 Minification reduces JavaScript file size by removing unnecessary characters such as spaces, line breaks, comments, and sometimes long variable names. Readable code:
 
-```text
+```javascript
 function hello() {
     console.log("Hello");
 }
@@ -436,7 +436,7 @@ function hello() {
 
 becomes minified:
 
-```text
+```javascript
 function hello(){console.log("Hello")}
 ```
 
@@ -502,7 +502,7 @@ Deobfuscation is the reverse process: obfuscated code → analyse/simplify → h
 
 Obfuscated code often uses hexadecimal literals. For example `0x35 = 53` and `0x2e = 46`, so `0x35 * -0x2e` becomes `53 * -46 = -2438`. A room task asks for the value of `age`:
 
-```text
+```javascript
 age = 0x1 * 0x247e
     + 0x35 * -0x2e
     + -0x1ae3;
