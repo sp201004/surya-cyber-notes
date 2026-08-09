@@ -133,3 +133,9 @@ These notes are my **personal study material**. **TryHackMe** and the **Google C
 `Learning. Building. Securing.`
 
 </div>
+
+---
+
+## 🎨 Credits
+
+- The Module 9 (Offensive Security Tooling) **Gobuster** map icon is a neon-green monochrome silhouette **adapted from the Go Gopher**, the mascot of the Go programming language. The Go Gopher was designed by **Renée French** and is licensed under **[Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)**. This project uses an original hand-drawn adaptation of the gopher's likeness; it is not an official Go asset and is not affiliated with or endorsed by the Go project or Google.

@@ -1988,37 +1988,55 @@ const renderUniqueIsometricObject = (
       return (
         <g id="hydra-scene">
           <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
-          {/* Central body */}
-          <path d={`M ${x} ${y + 10} Q ${x - 3} ${y + 2} ${x} ${y - 3}`} fill="none" stroke="#9fef00" strokeWidth="2" strokeLinecap="round" />
-          {/* Three serpent necks/heads */}
-          <path d={`M ${x} ${y - 2} Q ${x - 9} ${y - 6} ${x - 10} ${y - 12}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
-          <path d={`M ${x} ${y - 2} Q ${x} ${y - 9} ${x} ${y - 13}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
-          <path d={`M ${x} ${y - 2} Q ${x + 9} ${y - 6} ${x + 10} ${y - 12}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
-          {/* Heads */}
-          <circle cx={x - 10} cy={y - 13} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
-          <circle cx={x} cy={y - 14} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
-          <circle cx={x + 10} cy={y - 13} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
-          {/* Eyes */}
-          <circle cx={x - 10} cy={y - 13} r={0.7} fill="#ef4444" />
-          <circle cx={x} cy={y - 14} r={0.7} fill="#ef4444" />
-          <circle cx={x + 10} cy={y - 13} r={0.7} fill="#ef4444" />
+          {/* Coiled serpent body at the base */}
+          <path d={`M ${x - 10} ${y + 9} Q ${x - 12} ${y + 2} ${x - 5} ${y + 1} Q ${x + 3} ${y} ${x + 1} ${y + 7} Q ${x + 10} ${y + 11} ${x + 12} ${y + 3}`} fill="none" stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
+          {/* Three thick serpent necks rising from the body */}
+          <path d={`M ${x - 4} ${y + 4} Q ${x - 12} ${y - 2} ${x - 9} ${y - 10}`} fill="none" stroke="#9fef00" strokeWidth="3" strokeLinecap="round" />
+          <path d={`M ${x} ${y + 4} Q ${x - 1} ${y - 5} ${x} ${y - 13}`} fill="none" stroke="#9fef00" strokeWidth="3" strokeLinecap="round" />
+          <path d={`M ${x + 4} ${y + 4} Q ${x + 12} ${y - 2} ${x + 9} ${y - 10}`} fill="none" stroke="#9fef00" strokeWidth="3" strokeLinecap="round" />
+          {/* Snake heads (elongated snouts) at each neck tip */}
+          <path d={`M ${x - 9} ${y - 8} Q ${x - 12.5} ${y - 9} ${x - 13} ${y - 12} Q ${x - 12.5} ${y - 14.5} ${x - 9.5} ${y - 14} Q ${x - 7.5} ${y - 12.5} ${x - 9} ${y - 8} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" strokeLinejoin="round" />
+          <path d={`M ${x} ${y - 11} Q ${x - 2.6} ${y - 12} ${x - 2.6} ${y - 15} Q ${x - 2.4} ${y - 17.5} ${x} ${y - 17} Q ${x + 2.6} ${y - 17.5} ${x + 2.6} ${y - 15} Q ${x + 2.6} ${y - 12} ${x} ${y - 11} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" strokeLinejoin="round" />
+          <path d={`M ${x + 9} ${y - 8} Q ${x + 12.5} ${y - 9} ${x + 13} ${y - 12} Q ${x + 12.5} ${y - 14.5} ${x + 9.5} ${y - 14} Q ${x + 7.5} ${y - 12.5} ${x + 9} ${y - 8} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" strokeLinejoin="round" />
+          {/* Forked tongues */}
+          <path d={`M ${x - 11.5} ${y - 14} l -1.4 -1.6 m 1.4 1.6 l -1.9 -0.6`} fill="none" stroke="#ef4444" strokeWidth="0.9" strokeLinecap="round" />
+          <path d={`M ${x} ${y - 17} l -0.9 -2 m 0.9 2 l 0.9 -2`} fill="none" stroke="#ef4444" strokeWidth="0.9" strokeLinecap="round" />
+          <path d={`M ${x + 11.5} ${y - 14} l 1.4 -1.6 m -1.4 1.6 l 1.9 -0.6`} fill="none" stroke="#ef4444" strokeWidth="0.9" strokeLinecap="round" />
+          {/* Red eyes */}
+          <circle cx={x - 10.5} cy={y - 12} r={0.8} fill="#ef4444" />
+          <circle cx={x} cy={y - 14.5} r={0.8} fill="#ef4444" />
+          <circle cx={x + 10.5} cy={y - 12} r={0.8} fill="#ef4444" />
         </g>
       );
 
-    // CS101 M9 — Gobuster: a browser/dir-brute magnifier over a directory listing
+    // CS101 M9 — Gobuster: the Go gopher mascot (Gobuster is written in Go).
+    // Neon-green monochrome adaptation of the Go Gopher (design by Renée French,
+    // CC BY 3.0) — hand-authored silhouette, credited in README.
     case 'gobuster-the-basics':
       return (
         <g id="gobuster-scene">
           <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
-          {/* Directory listing panel */}
-          <rect x={x - 12} y={y - 10} width={20} height={20} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
-          {/* Path lines */}
-          <line x1={x - 9} y1={y - 5} x2={x + 3} y2={y - 5} stroke="#38bdf8" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1={x - 9} y1={y - 1} x2={x + 4} y2={y - 1} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
-          <line x1={x - 9} y1={y + 3} x2={x + 1} y2={y + 3} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.6" />
-          {/* Magnifier */}
-          <circle cx={x + 7} cy={y + 5} r={4.5} fill="none" stroke="#9fef00" strokeWidth="1.8" />
-          <line x1={x + 10.2} y1={y + 8.2} x2={x + 13} y2={y + 11} stroke="#9fef00" strokeWidth="2" strokeLinecap="round" />
+          {/* Ears */}
+          <ellipse cx={x - 5.5} cy={y - 12} rx={2} ry={2.6} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" />
+          <ellipse cx={x + 5.5} cy={y - 12} rx={2} ry={2.6} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" />
+          {/* Body */}
+          <path d={`M ${x - 9} ${y - 4} Q ${x - 9} ${y - 13} ${x} ${y - 13} Q ${x + 9} ${y - 13} ${x + 9} ${y - 4} L ${x + 9} ${y + 6} Q ${x + 9} ${y + 11} ${x} ${y + 11} Q ${x - 9} ${y + 11} ${x - 9} ${y + 6} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* Big signature eyes (white) with pupils */}
+          <circle cx={x - 3.4} cy={y - 6} r={3} fill="#eafff0" stroke="#9fef00" strokeWidth="1" />
+          <circle cx={x + 3.4} cy={y - 6} r={3} fill="#eafff0" stroke="#9fef00" strokeWidth="1" />
+          <circle cx={x - 2.6} cy={y - 6} r={1.2} fill="#0b0f19" />
+          <circle cx={x + 2.6} cy={y - 6} r={1.2} fill="#0b0f19" />
+          {/* Nose */}
+          <circle cx={x} cy={y - 2.4} r={1.1} fill="#9fef00" />
+          {/* Buck teeth */}
+          <rect x={x - 1.6} y={y - 1} width={1.5} height={2.6} rx={0.4} fill="#eafff0" stroke="#9fef00" strokeWidth="0.6" />
+          <rect x={x + 0.1} y={y - 1} width={1.5} height={2.6} rx={0.4} fill="#eafff0" stroke="#9fef00" strokeWidth="0.6" />
+          {/* Little arms */}
+          <path d={`M ${x - 9} ${y + 1} q -2.5 1 -2.5 3.5`} fill="none" stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" />
+          <path d={`M ${x + 9} ${y + 1} q 2.5 1 2.5 3.5`} fill="none" stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" />
+          {/* Feet */}
+          <ellipse cx={x - 3.6} cy={y + 11} rx={2.4} ry={1.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.2" />
+          <ellipse cx={x + 3.6} cy={y + 11} rx={2.4} ry={1.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.2" />
         </g>
       );
 
@@ -2038,20 +2056,24 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
-    // CS101 M9 — SQLMap: a database cylinder with an injection/crosshair mark
+    // CS101 M9 — SQLMap: a database cylinder pierced by an SQL-injection arrow.
+    // (The official sqlmap logo is a raster wordmark, unsuited to a tiny
+    // monochrome map glyph, so this depicts the tool's action instead.)
     case 'sqlmap-the-basics':
       return (
         <g id="sqlmap-scene">
           <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
-          {/* Database cylinder */}
-          <ellipse cx={x - 2} cy={y - 8} rx={10} ry={3.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
-          <path d={`M ${x - 12} ${y - 8} L ${x - 12} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
-          <path d={`M ${x + 8} ${y - 8} L ${x + 8} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
-          <path d={`M ${x - 12} ${y + 7} C ${x - 12} ${y + 10} ${x + 8} ${y + 10} ${x + 8} ${y + 7}`} fill="none" stroke="#9fef00" strokeWidth="1.6" />
-          <path d={`M ${x - 12} ${y - 2} C ${x - 12} ${y + 1} ${x + 8} ${y + 1} ${x + 8} ${y - 2}`} fill="none" stroke="#38bdf8" strokeWidth="1.1" opacity="0.7" />
-          {/* Injection needle / crosshair */}
-          <line x1={x + 6} y1={y - 12} x2={x + 13} y2={y - 5} stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx={x + 13} cy={y - 5} r={2.4} fill="none" stroke="#ef4444" strokeWidth="1.5" />
+          {/* Database cylinder (centered) */}
+          <ellipse cx={x} cy={y - 7} rx={9} ry={3} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 9} ${y - 7} L ${x - 9} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x + 9} ${y - 7} L ${x + 9} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 9} ${y + 7} C ${x - 9} ${y + 10} ${x + 9} ${y + 10} ${x + 9} ${y + 7}`} fill="none" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Ring bands */}
+          <path d={`M ${x - 9} ${y - 2} C ${x - 9} ${y + 1} ${x + 9} ${y + 1} ${x + 9} ${y - 2}`} fill="none" stroke="#38bdf8" strokeWidth="1.1" opacity="0.75" />
+          <path d={`M ${x - 9} ${y + 2.5} C ${x - 9} ${y + 5.5} ${x + 9} ${y + 5.5} ${x + 9} ${y + 2.5}`} fill="none" stroke="#38bdf8" strokeWidth="1.1" opacity="0.5" />
+          {/* SQL-injection arrow piercing the database */}
+          <line x1={x - 13} y1={y - 13} x2={x + 4} y2={y + 2} stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" />
+          <path d={`M ${x - 13} ${y - 13} l 0 4 m 0 -4 l 4 0`} fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
       );
 
