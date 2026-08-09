@@ -1983,6 +1983,91 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // CS101 M9 — Hydra: a stylised multi-headed dragon/serpent motif (brute force)
+    case 'hydra':
+      return (
+        <g id="hydra-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Central body */}
+          <path d={`M ${x} ${y + 10} Q ${x - 3} ${y + 2} ${x} ${y - 3}`} fill="none" stroke="#9fef00" strokeWidth="2" strokeLinecap="round" />
+          {/* Three serpent necks/heads */}
+          <path d={`M ${x} ${y - 2} Q ${x - 9} ${y - 6} ${x - 10} ${y - 12}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
+          <path d={`M ${x} ${y - 2} Q ${x} ${y - 9} ${x} ${y - 13}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
+          <path d={`M ${x} ${y - 2} Q ${x + 9} ${y - 6} ${x + 10} ${y - 12}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
+          {/* Heads */}
+          <circle cx={x - 10} cy={y - 13} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          <circle cx={x} cy={y - 14} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          <circle cx={x + 10} cy={y - 13} r={2.4} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          {/* Eyes */}
+          <circle cx={x - 10} cy={y - 13} r={0.7} fill="#ef4444" />
+          <circle cx={x} cy={y - 14} r={0.7} fill="#ef4444" />
+          <circle cx={x + 10} cy={y - 13} r={0.7} fill="#ef4444" />
+        </g>
+      );
+
+    // CS101 M9 — Gobuster: a browser/dir-brute magnifier over a directory listing
+    case 'gobuster-the-basics':
+      return (
+        <g id="gobuster-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Directory listing panel */}
+          <rect x={x - 12} y={y - 10} width={20} height={20} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Path lines */}
+          <line x1={x - 9} y1={y - 5} x2={x + 3} y2={y - 5} stroke="#38bdf8" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1={x - 9} y1={y - 1} x2={x + 4} y2={y - 1} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
+          <line x1={x - 9} y1={y + 3} x2={x + 1} y2={y + 3} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.6" />
+          {/* Magnifier */}
+          <circle cx={x + 7} cy={y + 5} r={4.5} fill="none" stroke="#9fef00" strokeWidth="1.8" />
+          <line x1={x + 10.2} y1={y + 8.2} x2={x + 13} y2={y + 11} stroke="#9fef00" strokeWidth="2" strokeLinecap="round" />
+        </g>
+      );
+
+    // CS101 M9 — Shells Overview: a terminal cube with a prompt (shell)
+    case 'shells-overview':
+      return (
+        <g id="shells-overview-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Terminal window */}
+          <rect x={x - 12} y={y - 9} width={24} height={19} rx={2} fill="#0b0f19" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Title bar */}
+          <rect x={x - 12} y={y - 9} width={24} height={4.5} rx={2} fill="#20301a" />
+          <circle cx={x - 9} cy={y - 6.6} r={0.9} fill="#9fef00" />
+          {/* Prompt: > _ */}
+          <path d={`M ${x - 8} ${y - 1} L ${x - 5} ${y + 1.5} L ${x - 8} ${y + 4}`} fill="none" stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1={x - 3} y1={y + 4} x2={x + 5} y2={y + 4} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
+        </g>
+      );
+
+    // CS101 M9 — SQLMap: a database cylinder with an injection/crosshair mark
+    case 'sqlmap-the-basics':
+      return (
+        <g id="sqlmap-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Database cylinder */}
+          <ellipse cx={x - 2} cy={y - 8} rx={10} ry={3.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 12} ${y - 8} L ${x - 12} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x + 8} ${y - 8} L ${x + 8} ${y + 7}`} stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 12} ${y + 7} C ${x - 12} ${y + 10} ${x + 8} ${y + 10} ${x + 8} ${y + 7}`} fill="none" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 12} ${y - 2} C ${x - 12} ${y + 1} ${x + 8} ${y + 1} ${x + 8} ${y - 2}`} fill="none" stroke="#38bdf8" strokeWidth="1.1" opacity="0.7" />
+          {/* Injection needle / crosshair */}
+          <line x1={x + 6} y1={y - 12} x2={x + 13} y2={y - 5} stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx={x + 13} cy={y - 5} r={2.4} fill="none" stroke="#ef4444" strokeWidth="1.5" />
+        </g>
+      );
+
+    // CS101 M9 — Mystery Chest: the shared treasure-chest asset
+    case 'mystery-chest-offensive-tooling':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

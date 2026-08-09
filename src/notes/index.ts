@@ -141,6 +141,12 @@ import cs101SqlFundamentals from './tryhackme/cyber-security-101/module8-web-hac
 import cs101BurpSuiteBasics from './tryhackme/cyber-security-101/module8-web-hacking/burp-suite-basics.md?raw';
 import cs101WebChest from './tryhackme/cyber-security-101/module8-web-hacking/mystery-chest.md?raw';
 
+import cs101Hydra from './tryhackme/cyber-security-101/module9-offensive-security-tooling/hydra.md?raw';
+import cs101Gobuster from './tryhackme/cyber-security-101/module9-offensive-security-tooling/gobuster-the-basics.md?raw';
+import cs101ShellsOverview from './tryhackme/cyber-security-101/module9-offensive-security-tooling/shells-overview.md?raw';
+import cs101Sqlmap from './tryhackme/cyber-security-101/module9-offensive-security-tooling/sqlmap-the-basics.md?raw';
+import cs101OffToolChest from './tryhackme/cyber-security-101/module9-offensive-security-tooling/mystery-chest.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -282,4 +288,10 @@ export const notesByTopicId: Record<string, string> = {
   'sql-fundamentals': cs101SqlFundamentals,
   'burp-suite-basics': cs101BurpSuiteBasics,
   'mystery-chest-web-hacking': cs101WebChest,
+
+  'hydra': cs101Hydra,
+  'gobuster-the-basics': cs101Gobuster,
+  'shells-overview': cs101ShellsOverview,
+  'sqlmap-the-basics': cs101Sqlmap,
+  'mystery-chest-offensive-tooling': cs101OffToolChest,
 };

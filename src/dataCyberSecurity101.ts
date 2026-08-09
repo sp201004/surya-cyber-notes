@@ -964,6 +964,7 @@ const netChestRoom: Topic = {
 const CRYPTOGRAPHY_MODULE_ID = 'cryptography';
 const EXPLOITATION_MODULE_ID = 'exploitation-basics';
 const WEB_HACKING_MODULE_ID = 'web-hacking';
+const OFFENSIVE_TOOLING_MODULE_ID = 'offensive-security-tooling';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -1689,6 +1690,197 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mcw-2', question: 'Which HTTP status family means server error?', type: 'text', correctAnswer: '5xx', hint: 'e.g. 500.' },
           { id: 'q-mcw-3', question: 'What is the main defence against SQL injection?', type: 'text', correctAnswer: 'Parameterised queries', hint: 'Prepared statements.' },
           { id: 'q-mcw-4', question: 'Which tool is an intercepting proxy for web testing?', type: 'text', correctAnswer: 'Burp Suite', hint: 'Proxy, Repeater, Intruder.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: OFFENSIVE_TOOLING_MODULE_ID,
+    title: 'Offensive Security Tooling',
+    description: 'Get hands-on with the core offensive tools: Hydra for password brute forcing, Gobuster for content and DNS enumeration, an overview of reverse/bind/web shells, and SQLMap for automated SQL injection — across four hands-on rooms plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'hydra',
+        moduleId: OFFENSIVE_TOOLING_MODULE_ID,
+        title: 'Hydra',
+        description: 'Brute-force live login services with Hydra: single vs list credentials, threads and ports, and attacking SSH, FTP, and HTTP POST web forms with placeholders and failure strings.',
+        status: 'unlocked',
+        iconType: 'sword',
+        content: '',
+        realWorldCallout: {
+          title: 'The Password That Was Never Changed',
+          concept: 'Weak and Default Credentials',
+          scenario: 'A service still uses a default or common password. Hydra runs a username against rockyou.txt over SSH and lands a valid login in minutes — no exploit needed, just a guessable credential.',
+          relevance: 'Online password brute force is one of the most common initial-access techniques, and understanding it is what motivates strong passwords, lockout, rate limiting, and MFA.'
+        },
+        mindmap: [
+          { id: 'hydra', label: 'Hydra', description: 'Fast online password brute-force tool', x: 50, y: 12, connections: ['creds', 'services', 'web', 'defend'] },
+          { id: 'creds', label: 'Credentials', description: '-l/-L usernames, -p/-P passwords, wordlists', x: 16, y: 50 },
+          { id: 'services', label: 'Services', description: 'SSH, FTP, and many network login protocols', x: 39, y: 58 },
+          { id: 'web', label: 'Web Forms', description: 'http-post-form with ^USER^/^PASS^ and F= failure string', x: 62, y: 58 },
+          { id: 'defend', label: 'Defence', description: 'Strong passwords, lockout, rate limiting, MFA', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Hydra performs online brute force by trying username/password combinations against a live service.',
+          'Use -l for a single username and -L for a username list; -p for a single password and -P for a password list.',
+          'The rockyou.txt wordlist (/usr/share/wordlists/rockyou.txt) is the classic password list.',
+          'Hydra supports many services including ssh, ftp, and http-post-form.',
+          'Web-form attacks use ^USER^/^PASS^ placeholders and an F= failure string to detect a rejected login.',
+          'Online brute force is defeated by strong passwords, account lockout, rate limiting, and MFA.'
+        ],
+        quiz: [
+          { id: 'q-hydra-1', question: 'Which Hydra flag specifies a password wordlist?', type: 'text', correctAnswer: '-P', hint: 'Uppercase P; lowercase -p is a single password.' },
+          { id: 'q-hydra-2', question: 'Which classic password wordlist is commonly used with Hydra?', type: 'text', correctAnswer: 'rockyou.txt', hint: 'Found under /usr/share/wordlists/.' },
+          { id: 'q-hydra-3', question: 'In an http-post-form attack, what marks the failure condition?', type: 'text', correctAnswer: 'F=', hint: 'Tells Hydra a login attempt was rejected.' },
+          { id: 'q-hydra-4', question: 'Which placeholder does Hydra substitute for the username in a web form?', type: 'text', correctAnswer: '^USER^', hint: 'Password uses ^PASS^.' },
+          { id: 'q-hydra-5', question: 'Name one defence against online password brute force.', type: 'text', correctAnswer: 'MFA', hint: 'Also: strong passwords, lockout, rate limiting.' }
+        ]
+      },
+      {
+        id: 'gobuster-the-basics',
+        moduleId: OFFENSIVE_TOOLING_MODULE_ID,
+        title: 'Gobuster: The Basics',
+        description: 'Enumerate what a target does not advertise: directory and file discovery, DNS subdomain enumeration, and virtual host discovery — wordlists, status codes, and filtering out false positives.',
+        status: 'unlocked',
+        iconType: 'search',
+        content: '',
+        realWorldCallout: {
+          title: 'The Directory That Was Never Linked',
+          concept: 'Content Discovery',
+          scenario: 'A site homepage links nothing sensitive, but Gobuster brute-forces a wordlist and finds /secret, which contains a JavaScript file leaking a flag. None of it was reachable by browsing.',
+          relevance: 'Enumeration maps the real attack surface — the hidden directories, subdomains, and virtual hosts that manual browsing never reveals — which is the foundation of every web engagement.'
+        },
+        mindmap: [
+          { id: 'gob', label: 'Gobuster', description: 'Go-based wordlist enumeration tool', x: 50, y: 12, connections: ['dir', 'dns', 'vhost', 'codes'] },
+          { id: 'dir', label: 'dir mode', description: 'Discover directories and files (-u, -w, -x)', x: 16, y: 50 },
+          { id: 'dns', label: 'dns mode', description: 'Brute-force DNS subdomains (-d, -w)', x: 39, y: 58 },
+          { id: 'vhost', label: 'vhost mode', description: 'Find virtual hosts via the Host header', x: 62, y: 58 },
+          { id: 'codes', label: 'Responses', description: 'Read status codes; filter false positives', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Gobuster combines each wordlist entry with a target, sends a request, and analyses the response.',
+          'dir mode discovers directories and files using -u (URL) and -w (wordlist); -x tests extensions.',
+          'dns mode brute-forces DNS subdomains for a domain using -d and -w.',
+          'vhost mode discovers virtual hosts by sending different Host headers to the same server.',
+          'Gobuster dir mode is not recursive — re-scan discovered directories manually.',
+          'A 403 can mean a resource exists but is protected, while a 200 can be a generic false positive.'
+        ],
+        quiz: [
+          { id: 'q-gob-1', question: 'Which Gobuster flag specifies the wordlist?', type: 'text', correctAnswer: '-w', hint: 'The wordlist to iterate.' },
+          { id: 'q-gob-2', question: 'Which mode enumerates DNS subdomains?', type: 'text', correctAnswer: 'dns', hint: 'Uses -d for the domain.' },
+          { id: 'q-gob-3', question: 'Which mode discovers virtual hosts via the Host header?', type: 'text', correctAnswer: 'vhost', hint: 'Same IP, different Host header.' },
+          { id: 'q-gob-4', question: 'Which flag tests file extensions in dir mode?', type: 'text', correctAnswer: '-x', hint: 'e.g. -x php,js.' },
+          { id: 'q-gob-5', question: 'Is Gobuster dir mode recursive by default?', type: 'text', correctAnswer: 'No', hint: 'Re-scan discovered directories manually.' }
+        ]
+      },
+      {
+        id: 'shells-overview',
+        moduleId: OFFENSIVE_TOOLING_MODULE_ID,
+        title: 'Shells Overview',
+        description: 'Turn a foothold into command execution: reverse vs bind vs web shells, Netcat listeners and payloads, Bash/PHP/Python one-liners, and stabilising a raw shell into a usable PTY.',
+        status: 'unlocked',
+        iconType: 'hacker-terminal',
+        content: '',
+        realWorldCallout: {
+          title: 'Calling Home Through the Firewall',
+          concept: 'Reverse Shells Beat Inbound Filtering',
+          scenario: 'A target blocks all inbound connections, so a bind shell fails. The attacker instead runs a reverse-shell payload; the target connects OUT to a waiting Netcat listener, and outbound traffic sails through the firewall.',
+          relevance: 'A shell is the bridge between exploitation and everything after it — enumeration, privilege escalation, and pivoting — so understanding shell types and listeners is core to offensive work.'
+        },
+        mindmap: [
+          { id: 'shell', label: 'Shells', description: 'Command-line access on a compromised host', x: 50, y: 12, connections: ['rev', 'bind', 'listen', 'stab'] },
+          { id: 'rev', label: 'Reverse Shell', description: 'Target connects back to the attacker (beats firewalls)', x: 16, y: 50 },
+          { id: 'bind', label: 'Bind Shell', description: 'Target listens; attacker connects in', x: 39, y: 58 },
+          { id: 'listen', label: 'Listener + Payload', description: 'nc -lvnp waits; payload runs on the target', x: 62, y: 58 },
+          { id: 'stab', label: 'Stabilisation', description: 'Upgrade raw shell to a PTY with python3 + stty', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A shell interprets commands and runs with the privileges of whatever obtained it — often not root.',
+          'A reverse shell has the target connect back to the attacker, which beats inbound firewall rules.',
+          'A bind shell has the target open a listening port for the attacker to connect to.',
+          'A Netcat listener (nc -lvnp) waits on the attacker; the payload runs on the target.',
+          'Payloads come in Bash (/dev/tcp, mkfifo pipe), PHP (system/exec), and Python (socket/subprocess) forms.',
+          'Stabilise a raw shell into a PTY with python3 -c pty.spawn plus stty raw -echo and TERM.'
+        ],
+        quiz: [
+          { id: 'q-shell-1', question: 'In a reverse shell, who initiates the connection?', type: 'text', correctAnswer: 'The target', hint: 'It connects back to the attacker.' },
+          { id: 'q-shell-2', question: 'Which tool is the classic listener for catching a shell?', type: 'text', correctAnswer: 'Netcat', hint: 'nc -lvnp PORT.' },
+          { id: 'q-shell-3', question: 'What do the flags in nc -lvnp mean (l)?', type: 'text', correctAnswer: 'Listen', hint: 'v=verbose, n=no DNS, p=port.' },
+          { id: 'q-shell-4', question: 'Which Python module spawns a PTY to stabilise a shell?', type: 'text', correctAnswer: 'pty', hint: "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'." },
+          { id: 'q-shell-5', question: 'Does shell stabilisation grant privilege escalation?', type: 'text', correctAnswer: 'No', hint: 'It only improves usability.' }
+        ]
+      },
+      {
+        id: 'sqlmap-the-basics',
+        moduleId: OFFENSIVE_TOOLING_MODULE_ID,
+        title: 'SQLMap: The Basics',
+        description: 'Automate SQL injection with SQLMap: test a target with -u, fingerprint the DBMS, and walk the database from --dbs down to --dump, plus handling POST and authenticated requests.',
+        status: 'unlocked',
+        iconType: 'sql-basics',
+        content: '',
+        realWorldCallout: {
+          title: 'One Parameter, The Whole Database',
+          concept: 'Automated SQL Injection',
+          scenario: 'A search page passes cat=1 straight into a query. SQLMap confirms the injection, fingerprints MySQL, and walks --dbs → --tables → --dump to pull credentials out of the database — automatically.',
+          relevance: 'SQL injection remains one of the highest-impact web flaws, and SQLMap is the standard tool for finding and exploiting it — which makes parameterized queries the defence you must understand.'
+        },
+        mindmap: [
+          { id: 'sqlmap', label: 'SQLMap', description: 'Automated SQL injection tool', x: 50, y: 12, connections: ['test', 'enum', 'dump', 'req'] },
+          { id: 'test', label: 'Test', description: 'sqlmap -u "URL" detects injection and DBMS', x: 16, y: 50 },
+          { id: 'enum', label: 'Enumerate', description: '--dbs → -D → --tables → -T → --columns', x: 39, y: 58 },
+          { id: 'dump', label: 'Dump', description: '-C selects columns; --dump extracts records', x: 62, y: 58 },
+          { id: 'req', label: 'Requests', description: 'POST/auth via -r, --cookie, -H', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'SQLMap automates detecting and exploiting SQL injection and fingerprints the back-end DBMS.',
+          'Test a GET parameter with sqlmap -u "URL" — quote the URL because of special characters.',
+          'The enumeration hierarchy is --dbs → -D → --tables → -T → --columns → -C → --dump.',
+          'The four SQLi techniques are Boolean-based blind, Error-based, Time-based blind, and UNION-based.',
+          'Handle POST and authenticated endpoints with -r (raw request file), --cookie, and -H.',
+          '--level controls testing depth; --risk controls payload riskiness; the fix for SQLi is parameterized queries.'
+        ],
+        quiz: [
+          { id: 'q-sqlmap-1', question: 'Which flag specifies the target URL to test?', type: 'text', correctAnswer: '-u', hint: 'Quote the URL.' },
+          { id: 'q-sqlmap-2', question: 'Which flag enumerates the databases?', type: 'text', correctAnswer: '--dbs', hint: 'The first enumeration step.' },
+          { id: 'q-sqlmap-3', question: 'Which flag extracts records from a selected table?', type: 'text', correctAnswer: '--dump', hint: 'GIVE ME DATA.' },
+          { id: 'q-sqlmap-4', question: 'Which flag loads a raw HTTP request from a file (for POST/auth)?', type: 'text', correctAnswer: '-r', hint: 'Preserves headers, cookies, body.' },
+          { id: 'q-sqlmap-5', question: 'What is the primary defence against SQL injection?', type: 'text', correctAnswer: 'Parameterized queries', hint: 'Prepared statements.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-offensive-tooling',
+        moduleId: OFFENSIVE_TOOLING_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Offensive Security Tooling module: Hydra brute forcing, Gobuster enumeration, reverse/bind/web shells and stabilisation, and the SQLMap injection workflow.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Offensive Tooling Field Card',
+          concept: 'Fast Recall Under Pressure',
+          scenario: 'Mid-lab, a tester needs the right Hydra flag, a Gobuster mode, the reverse-shell one-liner, or the SQLMap enumeration order. Instead of switching tabs, they glance at one consolidated sheet covering all four tools.',
+          relevance: 'Offensive work rewards knowing the exact flag or workflow at the right moment; consolidating the module into one reference makes the whole enumerate-attack-access pipeline stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-off', label: 'Offensive Tooling Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['enum', 'attack', 'access'] },
+          { id: 'enum', label: 'Enumerate', description: 'Gobuster dir/dns/vhost content discovery', x: 20, y: 52 },
+          { id: 'attack', label: 'Attack', description: 'Hydra credential brute force; SQLMap SQL injection', x: 50, y: 58 },
+          { id: 'access', label: 'Access', description: 'Reverse/bind/web shells and stabilisation', x: 80, y: 52 }
+        ],
+        keyTakeaways: [
+          'Hydra brute-forces live login services with -l/-L usernames, -p/-P passwords, and web-form placeholders.',
+          'Gobuster enumerates hidden content in three modes: dir (paths/files), dns (subdomains), vhost (Host header).',
+          'Shells come as reverse (target connects out), bind (target listens), and web (over HTTP), caught with nc -lvnp.',
+          'Stabilise a raw shell into a PTY with python3 -c pty.spawn plus stty raw -echo and the right TERM.',
+          'SQLMap automates SQL injection: test with -u then walk --dbs → -D → --tables → -T → --columns → -C → --dump.',
+          'The offensive workflow is enumerate → attack → gain access → validate impact, always in authorised scope.'
+        ],
+        quiz: [
+          { id: 'q-mco-1', question: 'Which tool brute-forces login credentials against a live service?', type: 'text', correctAnswer: 'Hydra', hint: '-l/-L and -p/-P.' },
+          { id: 'q-mco-2', question: 'Which Gobuster mode finds directories and files?', type: 'text', correctAnswer: 'dir', hint: 'Uses -u and -w.' },
+          { id: 'q-mco-3', question: 'Which shell type has the target connect back to the attacker?', type: 'text', correctAnswer: 'Reverse shell', hint: 'Beats inbound firewalls.' },
+          { id: 'q-mco-4', question: 'What is the SQLMap flag to extract records?', type: 'text', correctAnswer: '--dump', hint: 'After selecting -D/-T.' }
         ]
       },
     ],
