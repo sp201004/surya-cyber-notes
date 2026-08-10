@@ -79,6 +79,7 @@ management strategies, numbered security principles.
 - Terminal blocks tagged with the correct language. Only these tags render in the styled terminal component (header bar + label + highlighting): `bash`, `sh`, `shell`, `python`, `sql`, `xml`, `json`, `yaml`, `http`, `spl`, `yara`. Any other tag — including `text`, `cmd`, and `powershell` — renders as a plain monospace "diagram card". Use `text` ONLY for genuine ASCII diagrams; put real commands/code in a terminal-tagged block (e.g. shell → `bash`, Python/pwntools/C exploit code → `python`, YARA rules → `yara`).
 - Redesigned revision sections (no keyword ↓-chains). Exploded vertical ↓-chains that are process/workflow sequences → compact single-line arrow flows (`A → B → C`); structural/directional diagrams (memory/stack layouts, before/after byte illustrations, box/tree art, side-by-side comparisons) stay as fenced diagram cards.
 - Console output cards must be single-spaced (no blank line between output lines), like a real console.
+- Cheat-sheet/reference blocks (comment + command lists, no output): insert one blank line before each `# comment` group (except the first) for readability. Merged command+output session blocks remain single-spaced.
 - Mobile 375px: tables use horizontal scroll with hidden scrollbar (existing CSS).
 - Additive module adds: git diff = only new files + minimal wiring.
 

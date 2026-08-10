@@ -375,14 +375,19 @@ Reference commands for a file investigation:
 ```bash
 # Identify file type
 file suspicious
+
 # Inspect PDF metadata
 pdfinfo suspicious.pdf
+
 # Extract metadata
 exiftool suspicious
+
 # Calculate SHA-256 hash
 sha256sum suspicious
+
 # Extract readable strings
 strings suspicious
+
 # Find command location
 which pdfinfo
 ```
@@ -477,14 +482,19 @@ An investigation of `evidence.jpg` follows the identify → hash → extract →
 ```bash
 # Step 1 — Identify the file
 file evidence.jpg
+
 # Step 2 — Calculate hash
 sha256sum evidence.jpg
+
 # Step 3 — Extract metadata
 exiftool evidence.jpg
+
 # Step 4 — Look for camera information
 exiftool evidence.jpg | grep -Ei "make|model"
+
 # Step 5 — Look for timestamps
 exiftool evidence.jpg | grep -i "date"
+
 # Step 6 — Look for GPS
 exiftool evidence.jpg | grep -i "GPS"
 ```
@@ -519,16 +529,22 @@ The command-line tools combine into a fast forensic triage: identify a file, has
 ```bash
 # Identify file
 file evidence
+
 # Hash
 sha256sum evidence
+
 # Metadata
 exiftool evidence
+
 # PDF metadata
 pdfinfo evidence.pdf
+
 # Extract strings
 strings evidence
+
 # Search strings
 strings evidence | grep -Ei "flag|password|http"
+
 # Search metadata
 exiftool evidence | grep -Ei "GPS|date|camera|model"
 ```
@@ -538,26 +554,37 @@ exiftool evidence | grep -Ei "GPS|date|camera|model"
 ```bash
 # Identify file
 file <file>
+
 # SHA-256 hash
 sha256sum <file>
+
 # General metadata
 exiftool <file>
+
 # PDF metadata
 pdfinfo <file.pdf>
+
 # Extract strings
 strings <file>
+
 # Search text
 grep -i "keyword" <file>
+
 # Search multiple patterns
 grep -Ei "pattern1|pattern2|pattern3" <file>
+
 # Locate command
 which <command>
+
 # Alternative command lookup
 command -v <command>
+
 # Save output
 command > output.txt
+
 # Append output
 command >> output.txt
+
 # Combine commands
 command1 | command2
 ```
