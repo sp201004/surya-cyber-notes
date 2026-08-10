@@ -147,6 +147,23 @@ import cs101ShellsOverview from './tryhackme/cyber-security-101/module9-offensiv
 import cs101Sqlmap from './tryhackme/cyber-security-101/module9-offensive-security-tooling/sqlmap-the-basics.md?raw';
 import cs101OffToolChest from './tryhackme/cyber-security-101/module9-offensive-security-tooling/mystery-chest.md?raw';
 
+import hhTrail from './tryhackme/hacker-holidays-2026/hh-the-byte-lotus-trail.md?raw';
+import hhOsintWarmup from './tryhackme/hacker-holidays-2026/hh-osint-warmup.md?raw';
+import hhConcierge from './tryhackme/hacker-holidays-2026/hh-concierge-knows-too-much.md?raw';
+import hhRoom404 from './tryhackme/hacker-holidays-2026/hh-room-404.md?raw';
+import hhComplimentary from './tryhackme/hacker-holidays-2026/hh-complimentary.md?raw';
+import hhPackedLight from './tryhackme/hacker-holidays-2026/hh-packed-light.md?raw';
+import hhBeachBar from './tryhackme/hacker-holidays-2026/hh-beach-bar.md?raw';
+import hhOverheard from './tryhackme/hacker-holidays-2026/hh-overheard-at-breakfast.md?raw';
+import hhDoNotDisturb from './tryhackme/hacker-holidays-2026/hh-do-not-disturb.md?raw';
+import hhTowel from './tryhackme/hacker-holidays-2026/hh-towel-on-the-sunbed.md?raw';
+import hhCryptoCabana from './tryhackme/hacker-holidays-2026/hh-cryptocabana.md?raw';
+import hhHollowShell from './tryhackme/hacker-holidays-2026/hh-the-hollow-shell.md?raw';
+import hhInfinityPool from './tryhackme/hacker-holidays-2026/hh-infinity-pool.md?raw';
+import hhAfterHours from './tryhackme/hacker-holidays-2026/hh-after-hours.md?raw';
+import hhGuestbook from './tryhackme/hacker-holidays-2026/hh-the-guestbook.md?raw';
+import hhManagement from './tryhackme/hacker-holidays-2026/hh-management-wants-a-word.md?raw';
+
 export const notesByTopicId: Record<string, string> = {
   'offensive-security-intro': offSecIntro,
   'defensive-security-intro': defSecIntro,
@@ -294,4 +311,21 @@ export const notesByTopicId: Record<string, string> = {
   'shells-overview': cs101ShellsOverview,
   'sqlmap-the-basics': cs101Sqlmap,
   'mystery-chest-offensive-tooling': cs101OffToolChest,
+
+  'hh-the-byte-lotus-trail': hhTrail,
+  'hh-osint-warmup': hhOsintWarmup,
+  'hh-concierge-knows-too-much': hhConcierge,
+  'hh-room-404': hhRoom404,
+  'hh-complimentary': hhComplimentary,
+  'hh-packed-light': hhPackedLight,
+  'hh-beach-bar': hhBeachBar,
+  'hh-overheard-at-breakfast': hhOverheard,
+  'hh-do-not-disturb': hhDoNotDisturb,
+  'hh-towel-on-the-sunbed': hhTowel,
+  'hh-cryptocabana': hhCryptoCabana,
+  'hh-the-hollow-shell': hhHollowShell,
+  'hh-infinity-pool': hhInfinityPool,
+  'hh-after-hours': hhAfterHours,
+  'hh-the-guestbook': hhGuestbook,
+  'hh-management-wants-a-word': hhManagement,
 };

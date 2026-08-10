@@ -2090,6 +2090,137 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // ── CTF / Challenges · Hacker Holidays 2026 — The Byte Lotus ──
+    // Neon-green monochrome motifs matched to each room's theme.
+
+    // Overview — recon trail: a magnifier over a dotted map trail
+    case 'hh-the-byte-lotus-trail':
+      return (
+        <g id="hh-trail-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 11} ${y + 8} Q ${x - 4} ${y + 2} ${x} ${y - 4} Q ${x + 5} ${y - 9} ${x + 11} ${y - 11}`} fill="none" stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="2 2.5" />
+          <circle cx={x - 11} cy={y + 8} r={1.6} fill="#9fef00" />
+          <circle cx={x + 11} cy={y - 11} r={1.6} fill="#ef4444" />
+          <circle cx={x + 2} cy={y - 1} r={4.5} fill="none" stroke="#9fef00" strokeWidth="1.8" />
+          <line x1={x + 5.2} y1={y + 2.2} x2={x + 8} y2={y + 5} stroke="#9fef00" strokeWidth="2" strokeLinecap="round" />
+        </g>
+      );
+
+    // OSINT warm-up + Overheard at Breakfast — magnifier over a person/speech dot
+    case 'hh-osint-warmup':
+    case 'hh-overheard-at-breakfast':
+      return (
+        <g id="hh-osint-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <circle cx={x - 2} cy={y - 3} r={6.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.8" />
+          <circle cx={x - 2} cy={y - 5} r={2} fill="none" stroke="#9fef00" strokeWidth="1.2" />
+          <path d={`M ${x - 6} ${y + 0.5} Q ${x - 2} ${y - 2} ${x + 2} ${y + 0.5}`} fill="none" stroke="#9fef00" strokeWidth="1.2" />
+          <line x1={x + 3} y1={y + 2} x2={x + 9} y2={y + 8} stroke="#9fef00" strokeWidth="2.2" strokeLinecap="round" />
+        </g>
+      );
+
+    // AI concierge (VERA) rooms — a chat bubble with a watching eye
+    case 'hh-concierge-knows-too-much':
+    case 'hh-the-guestbook':
+      return (
+        <g id="hh-ai-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 9} L ${x + 12} ${y - 9} Q ${x + 13} ${y - 9} ${x + 13} ${y - 8} L ${x + 13} ${y + 4} Q ${x + 13} ${y + 5} ${x + 12} ${y + 5} L ${x - 4} ${y + 5} L ${x - 8} ${y + 10} L ${x - 8} ${y + 5} L ${x - 12} ${y + 5} Q ${x - 13} ${y + 5} ${x - 13} ${y + 4} L ${x - 13} ${y - 8} Q ${x - 13} ${y - 9} ${x - 12} ${y - 9} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          <ellipse cx={x} cy={y - 2} rx={5} ry={3.2} fill="none" stroke="#9fef00" strokeWidth="1.3" />
+          <circle cx={x} cy={y - 2} r={1.5} fill="#ef4444" />
+        </g>
+      );
+
+    // Web rooms — browser window with an address bar
+    case 'hh-room-404':
+    case 'hh-towel-on-the-sunbed':
+    case 'hh-the-hollow-shell':
+      return (
+        <g id="hh-web-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <rect x={x - 12} y={y - 9} width={24} height={19} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <rect x={x - 12} y={y - 9} width={24} height={5} rx={2} fill="#111827" />
+          <circle cx={x - 9} cy={y - 6.5} r={1} fill="#ef4444" />
+          <circle cx={x - 6} cy={y - 6.5} r={1} fill="#f59e0b" />
+          <circle cx={x - 3} cy={y - 6.5} r={1} fill="#9fef00" />
+          <line x1={x - 8} y1={y} x2={x + 8} y2={y} stroke="#38bdf8" strokeWidth="1.4" strokeLinecap="round" />
+          <line x1={x - 8} y1={y + 4} x2={x + 4} y2={y + 4} stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" opacity="0.8" />
+        </g>
+      );
+
+    // Cloud room (Complimentary) — a cloud outline
+    case 'hh-complimentary':
+      return (
+        <g id="hh-cloud-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 10} ${y + 5} Q ${x - 14} ${y + 5} ${x - 13} ${y} Q ${x - 13} ${y - 4} ${x - 8} ${y - 4} Q ${x - 7} ${y - 10} ${x} ${y - 9} Q ${x + 7} ${y - 9} ${x + 8} ${y - 3} Q ${x + 13} ${y - 3} ${x + 13} ${y + 1} Q ${x + 13} ${y + 5} ${x + 9} ${y + 5} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d={`M ${x - 5} ${y - 1} l 3 3 l 5 -5`} fill="none" stroke="#38bdf8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      );
+
+    // CryptoCabana — cloud vault as a padlock/key
+    case 'hh-cryptocabana':
+      return (
+        <g id="hh-crypto-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 6} ${y - 2} L ${x - 6} ${y - 6} Q ${x - 6} ${y - 12} ${x} ${y - 12} Q ${x + 6} ${y - 12} ${x + 6} ${y - 6} L ${x + 6} ${y - 2}`} fill="none" stroke="#9fef00" strokeWidth="1.8" />
+          <rect x={x - 9} y={y - 2} width={18} height={13} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <circle cx={x} cy={y + 3} r={2} fill="#38bdf8" />
+          <rect x={x - 1} y={y + 4} width={2} height={4} rx={1} fill="#38bdf8" />
+        </g>
+      );
+
+    // Packed Light — network-forensics packet waveform
+    case 'hh-packed-light':
+      return (
+        <g id="hh-packet-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <rect x={x - 12} y={y - 8} width={24} height={17} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 9} ${y + 1} l 3 0 l 2 -5 l 3 9 l 2 -6 l 2 2 l 4 0`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      );
+
+    // Boot2Root shell rooms — terminal cube with a prompt
+    case 'hh-beach-bar':
+    case 'hh-do-not-disturb':
+      return (
+        <g id="hh-shell-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <rect x={x - 12} y={y - 9} width={24} height={19} rx={2} fill="#0b0f19" stroke="#9fef00" strokeWidth="1.6" />
+          <rect x={x - 12} y={y - 9} width={24} height={4.5} rx={2} fill="#20301a" />
+          <circle cx={x - 9} cy={y - 6.6} r={0.9} fill="#9fef00" />
+          <path d={`M ${x - 8} ${y - 1} L ${x - 5} ${y + 1.5} L ${x - 8} ${y + 4}`} fill="none" stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1={x - 3} y1={y + 4} x2={x + 5} y2={y + 4} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
+        </g>
+      );
+
+    // Infinity Pool — internal network nodes + pivot links
+    case 'hh-infinity-pool':
+      return (
+        <g id="hh-network-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <line x1={x} y1={y - 8} x2={x - 9} y2={y + 6} stroke="#9fef00" strokeWidth="1.3" />
+          <line x1={x} y1={y - 8} x2={x + 9} y2={y + 6} stroke="#9fef00" strokeWidth="1.3" />
+          <line x1={x - 9} y1={y + 6} x2={x + 9} y2={y + 6} stroke="#38bdf8" strokeWidth="1.2" opacity="0.8" />
+          <circle cx={x} cy={y - 8} r={3.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <circle cx={x - 9} cy={y + 6} r={3.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <circle cx={x + 9} cy={y + 6} r={3.2} fill="#20301a" stroke="#ef4444" strokeWidth="1.6" />
+        </g>
+      );
+
+    // Windows forensics rooms (After Hours, Management) — Windows 4-pane glyph
+    case 'hh-after-hours':
+    case 'hh-management-wants-a-word':
+      return (
+        <g id="hh-windows-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <rect x={x - 10} y={y - 9} width={9} height={8} rx={1} fill="#20301a" stroke="#9fef00" strokeWidth="1.5" />
+          <rect x={x + 1} y={y - 9} width={9} height={8} rx={1} fill="#20301a" stroke="#9fef00" strokeWidth="1.5" />
+          <rect x={x - 10} y={y + 1} width={9} height={8} rx={1} fill="#20301a" stroke="#9fef00" strokeWidth="1.5" />
+          <rect x={x + 1} y={y + 1} width={9} height={8} rx={1} fill="#20301a" stroke="#38bdf8" strokeWidth="1.5" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

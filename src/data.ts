@@ -2,6 +2,7 @@ import { Module, Course } from './types';
 import { GOOGLE_CYBER_MODULES } from './dataGoogleCyber';
 import { offensiveSecurityIntroRoom, defensiveSecurityIntroRoom } from './data/sharedIntroRooms';
 import { CYBER_SECURITY_101_MODULES } from './dataCyberSecurity101';
+import { HACKER_HOLIDAYS_MODULES } from './dataHackerHolidays';
 
 export const MODULES_DATA: Module[] = [
   {
@@ -1865,6 +1866,15 @@ export const COURSES_DATA: Course[] = [
     active: true,
     comingSoon: false,
     modules: CYBER_SECURITY_101_MODULES
+  },
+  {
+    id: 'ctf-challenges',
+    name: 'CTF / Challenges',
+    description: 'Capture-the-Flag and challenge writeups — starting with TryHackMe\'s Hacker Holidays 2026 "The Byte Lotus": OSINT, web, cloud, forensics, AI prompt-injection and boot2root, adapted from Varun Patkar\'s MIT-licensed findings log.',
+    slug: 'ctf-challenges',
+    active: true,
+    comingSoon: false,
+    modules: HACKER_HOLIDAYS_MODULES
   },
   {
     id: 'soc-level-1',

@@ -367,6 +367,7 @@ const CODE_LANG_LABEL: Record<string, string> = {
   spl: 'Splunk SPL', python: 'Python', sql: 'SQL', xml: 'XML', json: 'JSON',
   yaml: 'YAML', yml: 'YAML', http: 'HTTP', yara: 'YARA Rule',
   javascript: 'JavaScript', js: 'JavaScript',
+  powershell: 'PowerShell', ps: 'PowerShell', ps1: 'PowerShell',
 };
 const renderCodeLines = (lang: string, content: string): React.ReactNode => {
   switch (lang) {
