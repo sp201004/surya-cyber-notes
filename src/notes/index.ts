@@ -147,6 +147,12 @@ import cs101ShellsOverview from './tryhackme/cyber-security-101/module9-offensiv
 import cs101Sqlmap from './tryhackme/cyber-security-101/module9-offensive-security-tooling/sqlmap-the-basics.md?raw';
 import cs101OffToolChest from './tryhackme/cyber-security-101/module9-offensive-security-tooling/mystery-chest.md?raw';
 
+import cs101SocFund from './tryhackme/cyber-security-101/module10-defensive-security/soc-fundamentals.md?raw';
+import cs101DigitalForensics from './tryhackme/cyber-security-101/module10-defensive-security/digital-forensics-fundamentals.md?raw';
+import cs101IncidentResponse from './tryhackme/cyber-security-101/module10-defensive-security/incident-response-fundamentals.md?raw';
+import cs101LogsFund from './tryhackme/cyber-security-101/module10-defensive-security/logs-fundamentals.md?raw';
+import cs101DefSecChest from './tryhackme/cyber-security-101/module10-defensive-security/mystery-chest.md?raw';
+
 import hhTrail from './tryhackme/hacker-holidays-2026/hh-the-byte-lotus-trail.md?raw';
 import hhOsintWarmup from './tryhackme/hacker-holidays-2026/hh-osint-warmup.md?raw';
 import hhConcierge from './tryhackme/hacker-holidays-2026/hh-concierge-knows-too-much.md?raw';
@@ -311,6 +317,12 @@ export const notesByTopicId: Record<string, string> = {
   'shells-overview': cs101ShellsOverview,
   'sqlmap-the-basics': cs101Sqlmap,
   'mystery-chest-offensive-tooling': cs101OffToolChest,
+
+  'soc-fundamentals': cs101SocFund,
+  'digital-forensics-fundamentals': cs101DigitalForensics,
+  'incident-response-fundamentals': cs101IncidentResponse,
+  'logs-fundamentals': cs101LogsFund,
+  'mystery-chest-defensive-security': cs101DefSecChest,
 
   'hh-the-byte-lotus-trail': hhTrail,
   'hh-osint-warmup': hhOsintWarmup,

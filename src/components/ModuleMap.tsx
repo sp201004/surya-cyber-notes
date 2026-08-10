@@ -2221,6 +2221,86 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // ── CS101 Module 10 · Defensive Security ──
+    // (defensive-security-intro reuses the existing blue shield case above.)
+
+    // SOC Fundamentals — a monitoring screen with a pulse/alert line
+    case 'soc-fundamentals':
+      return (
+        <g id="soc-fundamentals-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Monitor */}
+          <rect x={x - 12} y={y - 10} width={24} height={17} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Pulse / alert line */}
+          <path d={`M ${x - 9} ${y - 1} l 3 0 l 2 -5 l 2 9 l 2 -5 l 2 1 l 5 0`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Alert dot */}
+          <circle cx={x + 8} cy={y - 6} r={1.6} fill="#ef4444" />
+          {/* Stand */}
+          <rect x={x - 3} y={y + 7} width={6} height={3} fill="#20301a" stroke="#9fef00" strokeWidth="1.2" />
+          <line x1={x - 6} y1={y + 11} x2={x + 6} y2={y + 11} stroke="#9fef00" strokeWidth="1.6" strokeLinecap="round" />
+        </g>
+      );
+
+    // Digital Forensics — a laptop with a magnifier (evidence examination)
+    case 'digital-forensics-fundamentals':
+      return (
+        <g id="digital-forensics-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Laptop screen */}
+          <rect x={x - 11} y={y - 10} width={22} height={14} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Laptop base */}
+          <path d={`M ${x - 13} ${y + 6} L ${x + 13} ${y + 6} L ${x + 11} ${y + 4} L ${x - 11} ${y + 4} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Magnifier over the screen */}
+          <circle cx={x + 1} cy={y - 3} r={4.5} fill="none" stroke="#38bdf8" strokeWidth="1.8" />
+          <line x1={x + 4.2} y1={y + 0.2} x2={x + 7} y2={y + 3} stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
+        </g>
+      );
+
+    // Incident Response — a fingerprint (identification / attribution)
+    case 'incident-response-fundamentals':
+      return (
+        <g id="incident-response-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Concentric fingerprint arcs */}
+          <path d={`M ${x - 9} ${y - 1} A 9 10 0 0 1 ${x + 9} ${y - 1}`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+          <path d={`M ${x - 6.5} ${y + 1} A 6.5 7.5 0 0 1 ${x + 6.5} ${y + 1}`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+          <path d={`M ${x - 4} ${y + 2.5} A 4 5 0 0 1 ${x + 4} ${y + 2.5}`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+          <path d={`M ${x - 1.5} ${y + 3.5} A 1.5 2.5 0 0 1 ${x + 1.5} ${y + 3.5}`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+          {/* Lower ridges */}
+          <path d={`M ${x - 8.5} ${y + 3} A 9 10 0 0 0 ${x - 6} ${y + 9}`} fill="none" stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" opacity="0.85" />
+          <path d={`M ${x + 8.5} ${y + 3} A 9 10 0 0 1 ${x + 6} ${y + 9}`} fill="none" stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" opacity="0.85" />
+        </g>
+      );
+
+    // Logs Fundamentals — a log document with text lines
+    case 'logs-fundamentals':
+      return (
+        <g id="logs-fundamentals-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Document with a folded corner */}
+          <path d={`M ${x - 9} ${y - 11} L ${x + 5} ${y - 11} L ${x + 10} ${y - 6} L ${x + 10} ${y + 11} L ${x - 9} ${y + 11} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d={`M ${x + 5} ${y - 11} L ${x + 5} ${y - 6} L ${x + 10} ${y - 6}`} fill="none" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Log lines */}
+          <line x1={x - 6} y1={y - 5} x2={x + 6} y2={y - 5} stroke="#38bdf8" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1={x - 6} y1={y - 1} x2={x + 7} y2={y - 1} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
+          <line x1={x - 6} y1={y + 3} x2={x + 7} y2={y + 3} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.7" />
+          <line x1={x - 6} y1={y + 7} x2={x + 2} y2={y + 7} stroke="#9fef00" strokeWidth="1.3" strokeLinecap="round" opacity="0.55" />
+        </g>
+      );
+
+    // Mystery Chest — the shared treasure-chest asset
+    case 'mystery-chest-defensive-security':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

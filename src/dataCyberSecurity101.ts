@@ -965,6 +965,7 @@ const CRYPTOGRAPHY_MODULE_ID = 'cryptography';
 const EXPLOITATION_MODULE_ID = 'exploitation-basics';
 const WEB_HACKING_MODULE_ID = 'web-hacking';
 const OFFENSIVE_TOOLING_MODULE_ID = 'offensive-security-tooling';
+const DEFENSIVE_SECURITY_MODULE_ID = 'defensive-security';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -1881,6 +1882,194 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mco-2', question: 'Which Gobuster mode finds directories and files?', type: 'text', correctAnswer: 'dir', hint: 'Uses -u and -w.' },
           { id: 'q-mco-3', question: 'Which shell type has the target connect back to the attacker?', type: 'text', correctAnswer: 'Reverse shell', hint: 'Beats inbound firewalls.' },
           { id: 'q-mco-4', question: 'What is the SQLMap flag to extract records?', type: 'text', correctAnswer: '--dump', hint: 'After selecting -D/-T.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: DEFENSIVE_SECURITY_MODULE_ID,
+    title: 'Defensive Security',
+    description: 'The blue-team fundamentals: the SOC and its detection/response workflow, digital forensics and evidence handling, the incident-response lifecycle, and reading the logs that tie it all together — plus the reused Defensive Security Intro and a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      { ...defensiveSecurityIntroRoom, moduleId: DEFENSIVE_SECURITY_MODULE_ID },
+      {
+        id: 'soc-fundamentals',
+        moduleId: DEFENSIVE_SECURITY_MODULE_ID,
+        title: 'SOC Fundamentals',
+        description: 'What a Security Operations Center is: the People/Process/Technology pillars, detection and response, SOC roles and tiers, alert triage with the 5 Ws, and the core tooling (SIEM, EDR, IDS/IPS, SOAR).',
+        status: 'unlocked',
+        iconType: 'network',
+        content: '',
+        realWorldCallout: {
+          title: 'The 2 AM Port Scan',
+          concept: 'Alert Triage — Evidence Over Assumption',
+          scenario: 'A SOC receives a "Possible Port Scan" alert from 10.10.10.50. Instead of assuming an attack, the L1 analyst applies the 5 Ws, discovers the source is the scheduled VULN-SCANNER-01 owned by the security team, documents it as an authorised scan, and closes it — no escalation needed.',
+          relevance: 'An alert is the beginning of an investigation, not the conclusion — the same activity can be benign or malicious depending on context.'
+        },
+        mindmap: [
+          { id: 'soc', label: 'SOC', description: '24/7 monitoring, detection and response', x: 50, y: 12, connections: ['people', 'process', 'tech', 'detect'] },
+          { id: 'people', label: 'People', description: 'CISO → SOC Manager → L1 → L2 → L3', x: 16, y: 50 },
+          { id: 'process', label: 'Process', description: 'Alert triage, the 5 Ws, escalation, IR', x: 39, y: 58 },
+          { id: 'tech', label: 'Technology', description: 'SIEM, EDR, IDS/IPS, XDR, SOAR', x: 62, y: 58 },
+          { id: 'detect', label: 'Detect + Respond', description: 'Find the threat, then handle it', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A SOC continuously monitors and rests on three pillars — People, Process, Technology.',
+          'Its two core capabilities are Detection (find the threat) and Response (handle it).',
+          'Roles run CISO → SOC Manager → L1 (triage) → L2 (investigate) → L3 (hunt/forensics).',
+          'Alert triage uses the 5 Ws — Who, What, When, Where, Why — and an alert is not a confirmed attack.',
+          'SIEM centralises and correlates logs; EDR watches endpoints; IDS detects, IPS prevents; SOAR automates.'
+        ],
+        quiz: [
+          { id: 'q-soc-1', question: 'What does SOC stand for?', type: 'text', correctAnswer: 'Security Operations Center', hint: 'The 24/7 monitoring team.' },
+          { id: 'q-soc-2', question: 'What are the three pillars of a SOC?', type: 'text', correctAnswer: 'People, Process, Technology', hint: 'All three are required.' },
+          { id: 'q-soc-3', question: 'Which SOC tier performs initial alert triage?', type: 'text', correctAnswer: 'L1', hint: 'L2 investigates, L3 hunts.' },
+          { id: 'q-soc-4', question: 'What are the 5 Ws of alert triage?', type: 'text', correctAnswer: 'Who, What, When, Where, Why', hint: 'A structured investigation framework.' },
+          { id: 'q-soc-5', question: 'What tool centralises and correlates logs from many sources?', type: 'text', correctAnswer: 'SIEM', hint: 'Security Information and Event Management.' }
+        ]
+      },
+      {
+        id: 'digital-forensics-fundamentals',
+        moduleId: DEFENSIVE_SECURITY_MODULE_ID,
+        title: 'Digital Forensics Fundamentals',
+        description: 'Collecting and analysing digital evidence: the NIST methodology, types of forensics, legal acquisition with chain of custody and write blockers, Windows artifacts, and CLI tooling (file, pdfinfo, exiftool, sha256sum, strings).',
+        status: 'unlocked',
+        iconType: 'search',
+        content: '',
+        realWorldCallout: {
+          title: 'The Ransom Letter\'s Author',
+          concept: 'Metadata Is a Lead, Not Proof',
+          scenario: 'Investigating ransom-letter.pdf, an analyst runs pdfinfo and finds Author: Ann Gree Shepherd. Rather than concluding guilt, they treat it as an investigative lead to correlate with user accounts, login records and file-system activity.',
+          relevance: 'Digital evidence must be preserved (work on copies), tracked in chain of custody, and corroborated — metadata can be forged.'
+        },
+        mindmap: [
+          { id: 'df', label: 'Digital Forensics', description: 'Collect, preserve, examine, analyse evidence', x: 50, y: 12, connections: ['nist', 'coc', 'volatility', 'tools'] },
+          { id: 'nist', label: 'NIST Phases', description: 'Collection → Examination → Analysis → Reporting', x: 16, y: 50 },
+          { id: 'coc', label: 'Chain of Custody', description: 'Who/when/where; write blockers protect integrity', x: 39, y: 58 },
+          { id: 'volatility', label: 'Order of Volatility', description: 'RAM before disk — capture volatile first', x: 62, y: 58 },
+          { id: 'tools', label: 'Tools', description: 'FTK Imager, Autopsy, DumpIt, Volatility; file/exiftool/strings', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'The NIST methodology is Collection → Examination → Analysis → Reporting.',
+          'Examination extracts/filters relevant data; Analysis correlates it to draw conclusions.',
+          'Evidence acquisition needs authorization, a chain of custody, and a write blocker to protect integrity.',
+          'Follow the order of volatility — capture RAM and volatile data before disk.',
+          'CLI triage uses file, pdfinfo, exiftool, sha256sum, strings and grep — but metadata is a lead, not proof.'
+        ],
+        quiz: [
+          { id: 'q-df-1', question: 'What are the four NIST digital forensics phases?', type: 'text', correctAnswer: 'Collection, Examination, Analysis, Reporting', hint: 'C → E → A → R.' },
+          { id: 'q-df-2', question: 'Which phase correlates the data to draw conclusions?', type: 'text', correctAnswer: 'Analysis', hint: 'Examination extracts; Analysis interprets.' },
+          { id: 'q-df-3', question: 'What document records the full history of collected evidence?', type: 'text', correctAnswer: 'Chain of custody', hint: 'Who handled it, when and where.' },
+          { id: 'q-df-4', question: 'What tool prevents writes to a device during acquisition?', type: 'text', correctAnswer: 'Write blocker', hint: 'Protects evidence integrity.' },
+          { id: 'q-df-5', question: 'Which command identifies a file\'s type from its contents?', type: 'text', correctAnswer: 'file', hint: 'Useful when the extension is missing/misleading.' }
+        ]
+      },
+      {
+        id: 'incident-response-fundamentals',
+        moduleId: DEFENSIVE_SECURITY_MODULE_ID,
+        title: 'Incident Response Fundamentals',
+        description: 'Handling an attack end to end: events/alerts/incidents and severity, incident types, the SANS PICERL and NIST lifecycles, IR plans/playbooks/runbooks, IR tooling, and investigation with the WHO/WHAT/WHEN/WHERE/HOW/WHY framework.',
+        status: 'unlocked',
+        iconType: 'sword',
+        content: '',
+        realWorldCallout: {
+          title: 'Deleting the Malware Isn\'t Enough',
+          concept: 'Containment → Eradication → Recovery',
+          scenario: 'After isolating a malware-infected host (containment), the team removes the malware but the attacker returns — because the unpatched vulnerability and stolen credentials remained. True eradication must address the root cause before recovery.',
+          relevance: 'IR is a lifecycle, not a single action: contain (stop), eradicate (remove + root cause), recover (restore + validate), then learn.'
+        },
+        mindmap: [
+          { id: 'ir', label: 'Incident Response', description: 'Handle an attack from detection to learning', x: 50, y: 12, connections: ['event', 'sans', 'nist', 'docs'] },
+          { id: 'event', label: 'Event → Incident', description: 'Event → Log → Alert → FP / TP (incident)', x: 16, y: 50 },
+          { id: 'sans', label: 'SANS PICERL', description: 'Prep → Identify → Contain → Eradicate → Recover → Learn', x: 39, y: 58 },
+          { id: 'nist', label: 'NIST', description: 'Prep → Detect & Analyse → C/E/R → Post-Incident', x: 62, y: 58 },
+          { id: 'docs', label: 'Plan/Playbook/Runbook', description: 'Strategy → per-incident → technical steps', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Incident Response is both proactive (preparation) and reactive (handling the attack).',
+          'An event becomes an incident only after investigation confirms a true positive.',
+          'SANS PICERL: Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned.',
+          'NIST groups Containment/Eradication/Recovery into one phase, but the three stay distinct.',
+          'Containment stops/limits, Eradication removes the threat and root cause, Recovery restores and validates.'
+        ],
+        quiz: [
+          { id: 'q-ir-1', question: 'What does the SANS PICERL lifecycle stand for?', type: 'text', correctAnswer: 'Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned', hint: 'Six phases that loop back to preparation.' },
+          { id: 'q-ir-2', question: 'What is the difference between containment and eradication?', type: 'text', correctAnswer: 'Containment stops/limits; eradication removes the threat and root cause', hint: 'Then recovery restores.' },
+          { id: 'q-ir-3', question: 'When does an alert become an incident?', type: 'text', correctAnswer: 'When investigation confirms it is a true positive', hint: 'Not every alert is an incident.' },
+          { id: 'q-ir-4', question: 'Which document gives step-by-step technical instructions for one task?', type: 'text', correctAnswer: 'Runbook', hint: 'Plan → Playbook → Runbook.' },
+          { id: 'q-ir-5', question: 'What does IOC stand for?', type: 'text', correctAnswer: 'Indicator of Compromise', hint: 'IOA = Indicator of Attack.' }
+        ]
+      },
+      {
+        id: 'logs-fundamentals',
+        moduleId: DEFENSIVE_SECURITY_MODULE_ID,
+        title: 'Logs Fundamentals',
+        description: 'Logs as the digital footprints of a system: the six log types, Windows Event Logs and key Event IDs, Apache access-log structure, and analysing logs on Linux with cat, grep, less and the pipe.',
+        status: 'unlocked',
+        iconType: 'clipboard',
+        content: '',
+        realWorldCallout: {
+          title: 'The Account Named "hacked"',
+          concept: 'Correlate, Don\'t Assume',
+          scenario: 'Investigating a breach in Windows Event Viewer, an analyst finds account "hacked" (Event 4720) created by Administrator, enabled 6/7/2024, with a password reset (4724). The suspicious name is a lead — but they correlate creator, timestamps and logon activity before concluding.',
+          relevance: 'Logs are the evidence behind every investigation; build a timeline and correlate sources rather than trusting a single indicator.'
+        },
+        mindmap: [
+          { id: 'logs', label: 'Logs', description: 'Digital footprints of system activity', x: 50, y: 12, connections: ['types', 'win', 'web', 'linux'] },
+          { id: 'types', label: 'Six Types', description: 'System, Security, Application, Audit, Network, Access', x: 16, y: 50 },
+          { id: 'win', label: 'Windows Events', description: 'Event Viewer; 4624 logon, 4625 fail, 4720 create', x: 39, y: 58 },
+          { id: 'web', label: 'Access Logs', description: '/var/log/apache2/access.log — IP, time, method, URL, status', x: 62, y: 58 },
+          { id: 'linux', label: 'Linux Tools', description: 'cat, grep, less and the pipe to filter logs', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Logs are the digital footprints of a system — the evidence behind detection and investigation.',
+          'The six log types are System, Security, Application, Audit, Network and Access (S S A A N A).',
+          'Windows Event IDs: 4624 logon, 4625 failed logon, 4720 account created, 4724 password reset.',
+          'Apache access logs at /var/log/apache2/access.log record IP, timestamp, method, URL, status and User-Agent.',
+          'Analyse logs on Linux with cat, less and grep, chaining filters with the pipe; check rotated logs and correlate.'
+        ],
+        quiz: [
+          { id: 'q-log-1', question: 'What are the six main types of logs?', type: 'text', correctAnswer: 'System, Security, Application, Audit, Network, Access', hint: 'Mnemonic: S S A A N A.' },
+          { id: 'q-log-2', question: 'Which Windows Event ID indicates a successful logon?', type: 'text', correctAnswer: '4624', hint: '4625 is a failed logon.' },
+          { id: 'q-log-3', question: 'Which Windows Event ID indicates an account was created?', type: 'text', correctAnswer: '4720', hint: '4724 is a password reset.' },
+          { id: 'q-log-4', question: 'Where do Apache access logs typically live on Debian/Ubuntu?', type: 'text', correctAnswer: '/var/log/apache2/access.log', hint: 'error.log sits alongside it.' },
+          { id: 'q-log-5', question: 'Which Linux command searches a file for a pattern?', type: 'text', correctAnswer: 'grep', hint: 'Chain filters with the pipe |.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-defensive-security',
+        moduleId: DEFENSIVE_SECURITY_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Defensive Security module: the SOC workflow, digital forensics and evidence handling, the incident-response lifecycle, and reading logs.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Blue-Team Field Card',
+          concept: 'Fast Recall Under Pressure',
+          scenario: 'Mid-incident, an analyst needs the SANS phases, a Windows Event ID, the NIST forensics order, or the right grep filter. Instead of switching tabs, they glance at one consolidated sheet covering SOC, forensics, IR and logs.',
+          relevance: 'Defensive work rewards knowing the right framework, Event ID or command at the right moment; consolidating the module makes it stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-def', label: 'Defensive Security Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['soc', 'df', 'ir', 'logs'] },
+          { id: 'soc', label: 'SOC', description: 'People/Process/Technology; detect + respond', x: 18, y: 55 },
+          { id: 'df', label: 'Forensics', description: 'NIST C→E→A→R; chain of custody', x: 39, y: 60 },
+          { id: 'ir', label: 'Incident Response', description: 'PICERL / NIST; contain, eradicate, recover', x: 61, y: 60 },
+          { id: 'logs', label: 'Logs', description: 'Six types; Windows Event IDs; grep/less', x: 82, y: 55 }
+        ],
+        keyTakeaways: [
+          'A SOC rests on People/Process/Technology and delivers Detection + Response.',
+          'Digital forensics follows NIST Collection → Examination → Analysis → Reporting with chain of custody.',
+          'Incident response (SANS PICERL / NIST) separates containment, eradication and recovery.',
+          'Logs are the shared evidence — six types, Windows Event IDs, and Linux grep/less filtering.',
+          'The blue-team discipline: investigate, correlate, determine scope, then respond — suspicious is not malicious.'
+        ],
+        quiz: [
+          { id: 'q-mcd-1', question: 'What are the three pillars of a SOC?', type: 'text', correctAnswer: 'People, Process, Technology', hint: 'All three required.' },
+          { id: 'q-mcd-2', question: 'What is the NIST digital forensics order?', type: 'text', correctAnswer: 'Collection, Examination, Analysis, Reporting', hint: 'C → E → A → R.' },
+          { id: 'q-mcd-3', question: 'In IR, what does containment do versus eradication?', type: 'text', correctAnswer: 'Containment stops/limits; eradication removes the threat', hint: 'Recovery then restores.' },
+          { id: 'q-mcd-4', question: 'Which Windows Event ID is a successful logon?', type: 'text', correctAnswer: '4624', hint: '4625 is a failed logon.' }
         ]
       },
     ],
