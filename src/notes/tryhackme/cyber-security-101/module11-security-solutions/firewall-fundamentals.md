@@ -222,10 +222,10 @@ A simplified state table gives the firewall context:
 
 | Firewall | OSI Layer | Connection State | Content Inspection | Advanced Security |
 |---|---|---|---|---|
-| Stateless | L3/L4 | ❌ No | ❌ Limited | ❌ Basic |
-| Stateful | L3/L4 | ✅ Yes | ❌ Limited | ⚠️ Moderate |
-| Proxy | L7 | Application-aware | ✅ Yes | ✅ Yes |
-| NGFW | L3–L7 | ✅ Yes | ✅ Deep inspection | ✅ Advanced |
+| Stateless | L3/L4 | No | Limited | Basic |
+| Stateful | L3/L4 | Yes | Limited | Moderate |
+| Proxy | L7 | Application-aware | Yes | Yes |
+| NGFW | L3–L7 | Yes | Deep inspection | Advanced |
 
 ### Characteristics from the Room
 
@@ -414,11 +414,11 @@ When creating a Windows Firewall rule you can choose from four rule types:
 
 ### Blocking a Port — Example
 
-To block `TCP/80` (HTTP), a simplified rule is `Rule Type: Port`, `Protocol: TCP`, `Local Port: 80`, `Action: Block the connection`, `Profile: Appropriate profile`, `Name: Block HTTP`. If outbound `TCP/80` is blocked, browser HTTP requests are blocked while HTTPS on `TCP/443` may still be allowed if no rule blocks it. A rule can be tied to one or more profiles — e.g. `Allow File Sharing` might be Domain → ✅ Allow, Private → ✅ Allow, Public → ❌ Block, reducing exposure on public networks.
+To block `TCP/80` (HTTP), a simplified rule is `Rule Type: Port`, `Protocol: TCP`, `Local Port: 80`, `Action: Block the connection`, `Profile: Appropriate profile`, `Name: Block HTTP`. If outbound `TCP/80` is blocked, browser HTTP requests are blocked while HTTPS on `TCP/443` may still be allowed if no rule blocks it. A rule can be tied to one or more profiles — e.g. `Allow File Sharing` might be Domain → Allow, Private → Allow, Public → Block, reducing exposure on public networks.
 
 ### Why Outbound Rules Matter
 
-Many beginners focus only on incoming traffic, but outbound filtering matters too. If malware executes and tries to connect out, restricted outbound traffic can block the attempt (`Malware → Connection Attempt → Firewall → ❌ BLOCK`), potentially disrupting **command-and-control, data exfiltration, and malware communication**. Combining a network firewall with a host firewall (`Internet → Network Firewall → Windows Firewall → Application`) is an example of **defence in depth**: `Attacker → Network Firewall → Endpoint Firewall → Endpoint Security → Application`.
+Many beginners focus only on incoming traffic, but outbound filtering matters too. If malware executes and tries to connect out, restricted outbound traffic can block the attempt (`Malware → Connection Attempt → Firewall → BLOCK`), potentially disrupting **command-and-control, data exfiltration, and malware communication**. Combining a network firewall with a host firewall (`Internet → Network Firewall → Windows Firewall → Application`) is an example of **defence in depth**: `Attacker → Network Firewall → Endpoint Firewall → Endpoint Security → Application`.
 
 ### Command-Line Management
 

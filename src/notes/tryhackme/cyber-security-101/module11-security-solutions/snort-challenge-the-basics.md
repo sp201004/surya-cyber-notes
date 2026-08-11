@@ -40,10 +40,10 @@ The whole room follows one repeated workflow: `Network Traffic → PCAP → Snor
 The distinction is the single most important concept to keep straight:
 
 > **1. IDS — Intrusion Detection System**
-> Passive monitoring. It analyses packets and, on suspicious traffic, raises an alert — but it does **not** necessarily block the traffic. Malicious → **ALERT 🚨**.
+> Passive monitoring. It analyses packets and, on suspicious traffic, raises an alert — but it does **not** necessarily block the traffic. Malicious → **ALERT**.
 
 > **2. IPS — Intrusion Prevention System**
-> Active. It can take action against matching traffic. Malicious → **BLOCK ❌**.
+> Active. It can take action against matching traffic. Malicious → **BLOCK**.
 
 > **Memory trick:** `IDS → "I Detect Something"`, `IPS → "I Prevent Something"`.
 

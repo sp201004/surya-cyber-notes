@@ -84,7 +84,7 @@ The scan returned **5 guest records**, each carrying `email`, `phone`, `location
 |---|---|---|
 | `guest-vibe` | `email`, `phone`, `location`, `password`, `notes` | — |
 | `guest-lambo` | `email`, `phone`, `location`, `password`, `notes` | — |
-| `guest-vip-042` | `email`, `phone`, `location`, `password`, `notes` | ✅ in `notes` |
+| `guest-vip-042` | `email`, `phone`, `location`, `password`, `notes` | Yes, in `notes` |
 | `guest-patch` | `email`, `phone`, `location`, `password`, `notes` | — |
 | `guest-ponzi` | `email`, `phone`, `location`, `password`, `notes` | — |
 

@@ -104,7 +104,7 @@ tshark -r traffic.pcapng -Y "http.request && tcp.dstport==8080" -T fields -e htt
 
 (CyberChef alternative: `From Base64` → `XOR Brute Force` with key length 1 and crib `THM{`.)
 
-**8. Submit** the recovered flag. ✅
+**8. Submit** the recovered flag.
 
 ---
 

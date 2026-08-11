@@ -80,7 +80,7 @@ PS C:\> [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("VEhNe1MzY3J
 # -> THM{S3creT_Pr0fil3_H4s_b33n_Ident1fi3d}
 ```
 
-**5. Submit** the flag. ✅ (Difficulty: very easy — a straight OSINT read-and-hash pivot.)
+**5. Submit** the flag. (Difficulty: very easy — a straight OSINT read-and-hash pivot.)
 
 ---
 

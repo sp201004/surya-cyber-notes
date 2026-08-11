@@ -221,9 +221,9 @@ A **Hybrid IDS** combines **Signature-Based Detection + Anomaly-Based Detection*
 
 | Detection Type | Detects Known Threats | Potential Zero-Day Detection | False Positives |
 |---|---|---|---|
-| Signature-Based | ✅ Excellent | ❌ Limited | Generally lower |
-| Anomaly-Based | ✅ Possible | ✅ Yes | Generally higher |
-| Hybrid | ✅ Yes | ✅ Yes | Depends on configuration |
+| Signature-Based | Excellent | Limited | Generally lower |
+| Anomaly-Based | Possible | Yes | Generally higher |
+| Hybrid | Yes | Yes | Depends on configuration |
 
 > **Memory trick:** `SIGNATURE = Stored signature → Known attack` · `ANOMALY = Abnormal → Deviation from normal` · `HYBRID = Both → Signature + Anomaly`.
 
@@ -275,9 +275,9 @@ Snort can operate in multiple modes; the three important ones covered in this ro
 
 | Mode | Main Purpose | Detection? | Output |
 |---|---|---|---|
-| Packet Sniffer Mode | Read/display packets | ❌ | Console/file |
+| Packet Sniffer Mode | Read/display packets | No | Console/file |
 | Packet Logging Mode | Store traffic | Detection not primary purpose | PCAP |
-| NIDS Mode | Detect malicious traffic | ✅ | Alerts |
+| NIDS Mode | Detect malicious traffic | Yes | Alerts |
 
 > **Memory trick:** `Sniffer → SEE 👀` · `Logger → SAVE 💾` · `NIDS → DETECT 🚨`. Although Snort supports multiple modes, the most relevant mode for its use as an IDS is **NIDS Mode**.
 

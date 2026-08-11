@@ -75,7 +75,7 @@ $ grep -rniE 'thm\{' room404_src
 # room404_src/README.md: Staging flag (remove before launch): THM{...}
 ```
 
-**5. Submit** the recovered flag in the room's "What is the flag?" box. ✅
+**5. Submit** the recovered flag in the room's "What is the flag?" box.
 
 > **Note:** Local dump saved at `C:\Users\varun\Desktop\room404_src` (contains `.git`, `app.js`, `index.html`, `README.md`).
 

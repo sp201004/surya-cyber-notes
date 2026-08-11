@@ -80,6 +80,7 @@ management strategies, numbered security principles.
 - Redesigned revision sections (no keyword ↓-chains). Exploded vertical ↓-chains that are process/workflow sequences → compact single-line arrow flows (`A → B → C`); structural/directional diagrams (memory/stack layouts, before/after byte illustrations, box/tree art, side-by-side comparisons) stay as fenced diagram cards.
 - Console output cards must be single-spaced (no blank line between output lines), like a real console.
 - Cheat-sheet/reference blocks (comment + command lists, no output): insert one blank line before each `# comment` group (except the first) for readability. Merged command+output session blocks remain single-spaced.
+- No status emojis (✅ ❌ ⚠️ etc.) in tables or notes — use plain text (Yes / No / Limited / Moderate). Warning/note callouts (`> **⚠️ ...**`) are the established exception and stay.
 - Mobile 375px: tables use horizontal scroll with hidden scrollbar (existing CSS).
 - Additive module adds: git diff = only new files + minimal wiring.
 
