@@ -79,6 +79,18 @@ const extractText = (children: React.ReactNode): string => {
 
 const renderBashLines = (code: string) => {
   return code.split('\n').map((line, idx) => {
+    // Preserve blank lines inside terminal blocks (e.g. the readability gap
+    // between cheat-sheet "# comment" groups). An empty <div> collapses to
+    // zero height, so emit a non-breaking space to keep one line of height.
+    // Merged command+output sessions contain no blank lines, so they are
+    // unaffected.
+    if (line.trim() === '') {
+      return (
+        <div key={idx} className="font-mono select-none" aria-hidden="true">
+          {'\u00A0'}
+        </div>
+      );
+    }
     if (line.trim().startsWith('#')) {
       return (
         <div key={idx} className="text-gray-500 font-mono select-none">
