@@ -153,6 +153,13 @@ import cs101IncidentResponse from './tryhackme/cyber-security-101/module10-defen
 import cs101LogsFund from './tryhackme/cyber-security-101/module10-defensive-security/logs-fundamentals.md?raw';
 import cs101DefSecChest from './tryhackme/cyber-security-101/module10-defensive-security/mystery-chest.md?raw';
 
+import cs101Siem from './tryhackme/cyber-security-101/module11-security-solutions/introduction-to-siem.md?raw';
+import cs101Firewall from './tryhackme/cyber-security-101/module11-security-solutions/firewall-fundamentals.md?raw';
+import cs101Ids from './tryhackme/cyber-security-101/module11-security-solutions/ids-fundamentals.md?raw';
+import cs101VulnScanner from './tryhackme/cyber-security-101/module11-security-solutions/vulnerability-scanner-overview.md?raw';
+import cs101Snort from './tryhackme/cyber-security-101/module11-security-solutions/snort-challenge-the-basics.md?raw';
+import cs101SecSolChest from './tryhackme/cyber-security-101/module11-security-solutions/mystery-chest-security-solutions.md?raw';
+
 import hhTrail from './tryhackme/hacker-holidays-2026/hh-the-byte-lotus-trail.md?raw';
 import hhOsintWarmup from './tryhackme/hacker-holidays-2026/hh-osint-warmup.md?raw';
 import hhConcierge from './tryhackme/hacker-holidays-2026/hh-concierge-knows-too-much.md?raw';
@@ -323,6 +330,13 @@ export const notesByTopicId: Record<string, string> = {
   'incident-response-fundamentals': cs101IncidentResponse,
   'logs-fundamentals': cs101LogsFund,
   'mystery-chest-defensive-security': cs101DefSecChest,
+
+  'introduction-to-siem': cs101Siem,
+  'firewall-fundamentals': cs101Firewall,
+  'ids-fundamentals': cs101Ids,
+  'vulnerability-scanner-overview': cs101VulnScanner,
+  'snort-challenge-the-basics': cs101Snort,
+  'mystery-chest-security-solutions': cs101SecSolChest,
 
   'hh-the-byte-lotus-trail': hhTrail,
   'hh-osint-warmup': hhOsintWarmup,

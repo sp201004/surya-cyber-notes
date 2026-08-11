@@ -2301,6 +2301,127 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // Introduction to SIEM — a multi-monitor dashboard with a bar chart
+    case 'introduction-to-siem':
+      return (
+        <g id="introduction-to-siem-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Left side monitor */}
+          <rect x={x - 13} y={y - 10} width={10} height={8} rx={1.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          <line x1={x - 11} y1={y - 5} x2={x - 5} y2={y - 5} stroke="#38bdf8" strokeWidth="1.1" strokeLinecap="round" />
+          {/* Right side monitor */}
+          <rect x={x + 3} y={y - 10} width={10} height={8} rx={1.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          <line x1={x + 5} y1={y - 5} x2={x + 11} y2={y - 5} stroke="#9fef00" strokeWidth="1.1" strokeLinecap="round" opacity="0.8" />
+          {/* Central dashboard monitor */}
+          <rect x={x - 7} y={y - 3} width={14} height={11} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Bar chart on the central screen */}
+          <rect x={x - 4.5} y={y + 2} width={2} height={4} fill="#9fef00" />
+          <rect x={x - 1} y={y - 0.5} width={2} height={6.5} fill="#9fef00" />
+          <rect x={x + 2.5} y={y + 0.5} width={2} height={5.5} fill="#38bdf8" />
+          {/* Stand */}
+          <rect x={x - 2} y={y + 8} width={4} height={2.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x - 5} y1={y + 11} x2={x + 5} y2={y + 11} stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+        </g>
+      );
+
+    // Firewall Fundamentals — a brick wall guarding against a flame
+    case 'firewall-fundamentals':
+      return (
+        <g id="firewall-fundamentals-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Flame above the wall */}
+          <path d={`M ${x} ${y - 12} q 4 4 2 7 q 3 -1 2 -4 q 3 3 1 7 q -1 3 -5 3 q -5 0 -5 -4 q 0 -3 2 -5 q 0 2 1.5 2.5 q -1.5 -3 1.5 -6.5 Z`} fill="#f97316" stroke="#fb923c" strokeWidth="1" strokeLinejoin="round" />
+          {/* Brick wall */}
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Horizontal mortar lines */}
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.2" />
+          <line x1={x - 12} y1={y + 6} x2={x + 12} y2={y + 6} stroke="#9fef00" strokeWidth="1.2" />
+          {/* Vertical brick seams (offset per row) */}
+          <line x1={x - 4} y1={y - 2} x2={x - 4} y2={y + 2} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x + 4} y1={y - 2} x2={x + 4} y2={y + 2} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x} y1={y + 2} x2={x} y2={y + 6} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x - 8} y1={y + 2} x2={x - 8} y2={y + 6} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x + 8} y1={y + 2} x2={x + 8} y2={y + 6} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x - 4} y1={y + 6} x2={x - 4} y2={y + 10} stroke="#9fef00" strokeWidth="1.1" />
+          <line x1={x + 4} y1={y + 6} x2={x + 4} y2={y + 10} stroke="#9fef00" strokeWidth="1.1" />
+        </g>
+      );
+
+    // IDS Fundamentals — the Snort pig mascot head
+    case 'ids-fundamentals':
+      return (
+        <g id="ids-fundamentals-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Ears */}
+          <path d={`M ${x - 9} ${y - 8} L ${x - 5} ${y - 3} L ${x - 11} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          <path d={`M ${x + 9} ${y - 8} L ${x + 5} ${y - 3} L ${x + 11} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Head */}
+          <circle cx={x} cy={y + 1} r={9} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Eyes */}
+          <circle cx={x - 3.5} cy={y - 2} r={1.3} fill="#9fef00" />
+          <circle cx={x + 3.5} cy={y - 2} r={1.3} fill="#9fef00" />
+          {/* Snout */}
+          <ellipse cx={x} cy={y + 4} rx={5} ry={3.5} fill="#20301a" stroke="#f9a8d4" strokeWidth="1.4" />
+          <ellipse cx={x - 1.6} cy={y + 4} rx={0.9} ry={1.4} fill="#f9a8d4" />
+          <ellipse cx={x + 1.6} cy={y + 4} rx={0.9} ry={1.4} fill="#f9a8d4" />
+        </g>
+      );
+
+    // Vulnerability Scanner — a magnifier examining a bug
+    case 'vulnerability-scanner-overview':
+      return (
+        <g id="vulnerability-scanner-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Bug body */}
+          <ellipse cx={x - 2} cy={y + 4} rx={5} ry={6} fill="#20301a" stroke="#9fef00" strokeWidth="1.5" />
+          <line x1={x - 2} y1={y - 2} x2={x - 2} y2={y + 10} stroke="#9fef00" strokeWidth="1.2" />
+          {/* Bug head */}
+          <circle cx={x - 2} cy={y - 3} r={2.2} fill="#20301a" stroke="#9fef00" strokeWidth="1.3" />
+          {/* Bug legs */}
+          <line x1={x - 7} y1={y + 1} x2={x - 11} y2={y - 1} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" />
+          <line x1={x - 7} y1={y + 4} x2={x - 11} y2={y + 4} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" />
+          <line x1={x - 7} y1={y + 7} x2={x - 11} y2={y + 9} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" />
+          <line x1={x + 3} y1={y + 1} x2={x + 6} y2={y - 1} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
+          {/* Magnifier over the bug */}
+          <circle cx={x + 4} cy={y + 2} r={5} fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" strokeWidth="1.8" />
+          <line x1={x + 7.6} y1={y + 5.6} x2={x + 11} y2={y + 9} stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" />
+        </g>
+      );
+
+    // Snort Challenge — a pig snout scanned by a detection beam
+    case 'snort-challenge-the-basics':
+      return (
+        <g id="snort-challenge-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Detection beam sweeping across */}
+          <path d={`M ${x - 12} ${y - 9} L ${x + 11} ${y - 6} L ${x + 11} ${y - 10} Z`} fill="rgba(56, 189, 248, 0.18)" stroke="#38bdf8" strokeWidth="1.1" strokeLinejoin="round" />
+          {/* Pig snout */}
+          <ellipse cx={x} cy={y + 2} rx={9} ry={7} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <ellipse cx={x} cy={y + 2} rx={5.5} ry={4.5} fill="#20301a" stroke="#f9a8d4" strokeWidth="1.4" />
+          <ellipse cx={x - 2} cy={y + 2} rx={1} ry={1.7} fill="#f9a8d4" />
+          <ellipse cx={x + 2} cy={y + 2} rx={1} ry={1.7} fill="#f9a8d4" />
+          {/* Scan dot */}
+          <circle cx={x + 9} cy={y - 6} r={1.6} fill="#38bdf8" />
+        </g>
+      );
+
+    // Mystery Chest — the treasure chest marked with binary
+    case 'mystery-chest-security-solutions':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Binary digits on the lid */}
+          <text x={x - 7} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <text x={x - 1} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">0</text>
+          <text x={x + 5} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

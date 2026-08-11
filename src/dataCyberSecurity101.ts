@@ -966,6 +966,7 @@ const EXPLOITATION_MODULE_ID = 'exploitation-basics';
 const WEB_HACKING_MODULE_ID = 'web-hacking';
 const OFFENSIVE_TOOLING_MODULE_ID = 'offensive-security-tooling';
 const DEFENSIVE_SECURITY_MODULE_ID = 'defensive-security';
+const SECURITY_SOLUTIONS_MODULE_ID = 'security-solutions';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -2070,6 +2071,229 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mcd-2', question: 'What is the NIST digital forensics order?', type: 'text', correctAnswer: 'Collection, Examination, Analysis, Reporting', hint: 'C → E → A → R.' },
           { id: 'q-mcd-3', question: 'In IR, what does containment do versus eradication?', type: 'text', correctAnswer: 'Containment stops/limits; eradication removes the threat', hint: 'Recovery then restores.' },
           { id: 'q-mcd-4', question: 'Which Windows Event ID is a successful logon?', type: 'text', correctAnswer: '4624', hint: '4625 is a failed logon.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: SECURITY_SOLUTIONS_MODULE_ID,
+    title: 'Security Solutions',
+    description: 'The defensive toolset that keeps networks safe: SIEM for centralized log correlation, firewalls for traffic control, IDS/IPS for intrusion detection, vulnerability scanners for finding weaknesses, and a hands-on Snort challenge — plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'introduction-to-siem',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'Introduction to SIEM',
+        description: 'What a SIEM is and why scattered logs are hard to use: host-centric vs network-centric sources, the five core features, log ingestion (Agent, Syslog, Manual, Port Forwarding), detection rules and alerts, true vs false positives, and the log sources analysts investigate.',
+        status: 'unlocked',
+        iconType: 'network',
+        content: '',
+        realWorldCallout: {
+          title: 'Logs Everywhere, Answers Nowhere',
+          concept: 'Correlation Over Isolation',
+          scenario: 'An attacker compromises an employee account. The VPN log shows a login, the Windows log a suspicious process, the file server a sensitive-file access, and the network log an outbound connection. Each event looks normal alone — correlated in the SIEM they become Potential Data Exfiltration.',
+          relevance: 'A SIEM turns thousands of scattered, differently-formatted logs into a single correlated picture, which is exactly the visibility a SOC needs to detect real attacks.'
+        },
+        mindmap: [
+          { id: 'siem', label: 'SIEM', description: 'Centralize, normalize, correlate and alert on logs', x: 50, y: 12, connections: ['sources', 'features', 'ingest', 'detect'] },
+          { id: 'sources', label: 'Log Sources', description: 'Host-centric (on the host) vs network-centric (through the net)', x: 16, y: 50 },
+          { id: 'features', label: 'Five Features', description: 'Collection, Normalization, Correlation, Alerting, Dashboards', x: 39, y: 58 },
+          { id: 'ingest', label: 'Ingestion (ASMP)', description: 'Agent, Syslog (514/6514), Manual Upload, Port Forwarding', x: 62, y: 58 },
+          { id: 'detect', label: 'Detect + Alert', description: 'Detection rules; TP vs FP; ALERT ≠ CONFIRMED ATTACK', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'SIEM stands for Security Information and Event Management and centralizes logs onto one platform.',
+          'Host-centric logs record activity on a machine (file, process, registry); network-centric logs record activity through the network (SSH, VPN, FTP, web).',
+          'The five core features are Centralized Collection, Normalization, Correlation, Real-Time Alerting, and Dashboards & Reporting.',
+          'Log ingestion methods (ASMP) are Agent/Forwarder, Syslog (UDP/TCP 514, TLS 6514), Manual Upload, and Port Forwarding.',
+          'A detection rule turns matching events into an alert, but an alert is not a confirmed attack — investigate for true vs false positive.'
+        ],
+        quiz: [
+          { id: 'q-siem-1', question: 'What does SIEM stand for?', type: 'text', correctAnswer: 'Security Information and Event Management', hint: 'A centralized security platform.' },
+          { id: 'q-siem-2', question: 'Is registry-related activity host-centric or network-centric?', type: 'text', correctAnswer: 'host-centric', hint: 'It happens inside the host OS.' },
+          { id: 'q-siem-3', question: 'Which Syslog port is used for TLS-secured messages?', type: 'text', correctAnswer: '6514', hint: 'Plain Syslog uses 514.' },
+          { id: 'q-siem-4', question: 'What is the SIEM value that connects events from different sources?', type: 'text', correctAnswer: 'Correlation', hint: 'It reveals the bigger attack picture.' },
+          { id: 'q-siem-5', question: 'Does every alert mean a confirmed attack?', type: 'text', correctAnswer: 'No', hint: 'It could be a false positive.' }
+        ]
+      },
+      {
+        id: 'firewall-fundamentals',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'Firewall Fundamentals',
+        description: 'What a firewall is and how it inspects incoming and outgoing traffic: the four types (Stateless, Stateful, Proxy, NGFW) and their OSI layers, the anatomy of a rule (source, destination, port, protocol, action, direction), and hands-on config on Windows Defender Firewall and the Linux Netfilter/iptables/UFW stack.',
+        status: 'unlocked',
+        iconType: 'shield',
+        content: '',
+        realWorldCallout: {
+          title: 'The Digital Security Guard',
+          concept: 'Allow Legitimate, Block Unwanted',
+          scenario: 'A web server should only serve HTTPS. The firewall allows TCP/443 and denies everything unnecessary, so TCP/22 (SSH) and TCP/23 (Telnet) are blocked — reducing the exposed attack surface to just the one service the server actually needs.',
+          relevance: 'A firewall is only as effective as its configuration; controlling both inbound and outbound traffic limits exposure and can cut off malware command-and-control and data exfiltration.'
+        },
+        mindmap: [
+          { id: 'fw', label: 'Firewall', description: 'Allow or block traffic against rules', x: 50, y: 12, connections: ['types', 'rule', 'win', 'linux'] },
+          { id: 'types', label: 'Four Types', description: 'Stateless, Stateful, Proxy (L7), NGFW (L3–L7)', x: 16, y: 50 },
+          { id: 'rule', label: 'Rule Anatomy', description: 'Source, Destination, Port, Protocol, Action, Direction', x: 39, y: 58 },
+          { id: 'win', label: 'Windows Firewall', description: 'Domain/Private/Public profiles; wf.msc; Get-NetFirewallRule', x: 62, y: 58 },
+          { id: 'linux', label: 'Linux Stack', description: 'Netfilter → iptables → chains; UFW', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A firewall inspects incoming and outgoing traffic and allows or blocks it based on configured rules.',
+          'The four types are Stateless (L3/4, forgets), Stateful (L3/4, tracks connections), Proxy (L7), and NGFW (L3–L7 with DPI, IPS, heuristics, TLS inspection).',
+          'A firewall rule has six components: Source, Destination, Port, Protocol, Action (Allow/Deny/Forward), and Direction (Inbound/Outbound/Forward).',
+          'Windows Defender Firewall is host-based with three profiles — Domain, Private, Public — managed via wf.msc or Get-NetFirewallRule.',
+          'Linux uses Netfilter (kernel framework) configured by iptables with INPUT/OUTPUT/FORWARD chains and ACCEPT/DROP/REJECT targets.'
+        ],
+        quiz: [
+          { id: 'q-fw-1', question: 'Which security solution inspects the incoming and outgoing traffic of a device or network?', type: 'text', correctAnswer: 'Firewall', hint: 'The digital security guard.' },
+          { id: 'q-fw-2', question: 'Which firewall type maintains the state of connections?', type: 'text', correctAnswer: 'stateful firewall', hint: 'It remembers connections in a state table.' },
+          { id: 'q-fw-3', question: 'Which firewall type offers heuristic analysis of traffic?', type: 'text', correctAnswer: 'next-generation firewall', hint: 'NGFW spans L3–L7.' },
+          { id: 'q-fw-4', question: 'What is the direction of a rule created for traffic leaving our network?', type: 'text', correctAnswer: 'outbound', hint: 'Out of me.' },
+          { id: 'q-fw-5', question: 'Which iptables chain handles packets destined for the local machine?', type: 'text', correctAnswer: 'INPUT', hint: 'Into me.' }
+        ]
+      },
+      {
+        id: 'ids-fundamentals',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'IDS Fundamentals',
+        description: 'What an IDS is and why it complements a firewall: IDS vs IPS (detect vs prevent), deployment mode (HIDS vs NIDS), detection mode (signature, anomaly, hybrid), false positives, baselines and zero-days, and a hands-on look at Snort — its modes, rule syntax, and command-line usage.',
+        status: 'unlocked',
+        iconType: 'defender-shield',
+        content: '',
+        realWorldCallout: {
+          title: 'The Threat That Slipped Past',
+          concept: 'Detection Inside the Network',
+          scenario: 'An attacker uses a legitimate-looking connection the firewall allows, then behaves maliciously once inside. The firewall never blocks it — but the IDS spots the suspicious pattern and alerts the security team, who investigate and respond.',
+          relevance: 'A firewall cannot guarantee every malicious connection is blocked, so an IDS provides a second detection layer inside the network — it detects and reports, but does not stop the threat itself.'
+        },
+        mindmap: [
+          { id: 'ids', label: 'IDS', description: 'Detect suspicious activity inside the network', x: 50, y: 12, connections: ['ips', 'deploy', 'detect', 'snort'] },
+          { id: 'ips', label: 'IDS vs IPS', description: 'IDS detects + alerts; IPS detects + blocks', x: 16, y: 50 },
+          { id: 'deploy', label: 'Deployment', description: 'HIDS (host-based) vs NIDS (network-based)', x: 39, y: 58 },
+          { id: 'detect', label: 'Detection Mode', description: 'Signature, Anomaly (zero-days), Hybrid', x: 62, y: 58 },
+          { id: 'snort', label: 'Snort', description: 'Open-source IDS: sniffer, logging, NIDS modes', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'An IDS detects suspicious activity inside a network and alerts — it does not automatically stop the threat.',
+          'Firewall = Allow/Deny; IDS = Detect + Alert; IPS = Detect + Prevent/Block.',
+          'By deployment: HIDS is host-based, NIDS is network-based.',
+          'By detection: signature-based catches known attacks, anomaly-based baselines normal and can catch zero-days (more false positives), hybrid combines both.',
+          'Snort is an open-source IDS with three modes — Packet Sniffer, Packet Logging, and NIDS.'
+        ],
+        quiz: [
+          { id: 'q-ids-1', question: 'Does an IDS prevent the threat it detects?', type: 'text', correctAnswer: 'No', hint: 'It detects and alerts; an IPS prevents.' },
+          { id: 'q-ids-2', question: 'What does IPS add compared to an IDS?', type: 'text', correctAnswer: 'Prevention/blocking', hint: 'I Prevent Something.' },
+          { id: 'q-ids-3', question: 'Which IDS deployment type runs on an individual host?', type: 'text', correctAnswer: 'HIDS', hint: 'NIDS is network-based.' },
+          { id: 'q-ids-4', question: 'Which detection method can potentially catch a zero-day attack?', type: 'text', correctAnswer: 'Anomaly-based', hint: 'It flags deviations from a baseline.' },
+          { id: 'q-ids-5', question: 'Which open-source IDS is used in this module?', type: 'text', correctAnswer: 'Snort', hint: 'It has a pig mascot.' }
+        ]
+      },
+      {
+        id: 'vulnerability-scanner-overview',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'Vulnerability Scanner Overview',
+        description: 'The whole vulnerability-management picture: vulnerability vs exploit vs attack, patching and the vulnerability lifecycle, how automated scanning works, authenticated vs unauthenticated and internal vs external scans, the major tools (Nessus, Qualys, Nexpose, OpenVAS), and reading CVE and CVSS.',
+        status: 'unlocked',
+        iconType: 'search',
+        content: '',
+        realWorldCallout: {
+          title: 'Find It Before They Do',
+          concept: 'Scan, Patch, Rescan',
+          scenario: 'An organization with 10,000 hosts cannot check every system by hand, so an automated scanner discovers services, identifies software versions, compares them against a vulnerability database, and reports weaknesses with CVE identifiers and CVSS scores for the team to prioritize and patch.',
+          relevance: 'Scanning shrinks the attack surface before an attacker connects; it answers "is there a weakness?" while a pentest answers "can it actually be exploited, and what is the impact?"'
+        },
+        mindmap: [
+          { id: 'vuln', label: 'Vulnerability Scanning', description: 'Find known weaknesses automatically', x: 50, y: 12, connections: ['chain', 'class', 'tools', 'ids'] },
+          { id: 'chain', label: 'The Chain', description: 'Vulnerability → Exploit → Attack → Impact', x: 16, y: 50 },
+          { id: 'class', label: 'Scan Types', description: 'Authenticated/Unauthenticated; Internal/External', x: 39, y: 58 },
+          { id: 'tools', label: 'Tools', description: 'Nessus, Qualys, Nexpose, OpenVAS', x: 62, y: 58 },
+          { id: 'ids', label: 'CVE & CVSS', description: 'CVE-YEAR-NUMBER identifies; CVSS 0–10 scores', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A vulnerability is a weakness that can be exploited: Vulnerability → Exploit → Attack → Impact.',
+          'Vulnerability management is a loop: SCAN = find, PATCH = fix, RESCAN = verify.',
+          'Scans classify by credentials (Authenticated vs Unauthenticated) and by location (Internal vs External).',
+          'Common scanners are Nessus (Tenable), Qualys, Nexpose (Rapid7), and OpenVAS (Greenbone).',
+          'CVE (CVE-YEAR-NUMBER) uniquely identifies a known vulnerability; CVSS gives a 0–10 severity score with a vector.'
+        ],
+        quiz: [
+          { id: 'q-vuln-1', question: 'What is a vulnerability?', type: 'text', correctAnswer: 'A weakness that can be exploited', hint: 'Not the attack itself.' },
+          { id: 'q-vuln-2', question: 'What is the process of applying fixes to vulnerabilities called?', type: 'text', correctAnswer: 'Patching', hint: 'Vendor releases an update.' },
+          { id: 'q-vuln-3', question: 'Which scan type uses login credentials for a deeper view?', type: 'text', correctAnswer: 'Authenticated', hint: 'The opposite is unauthenticated.' },
+          { id: 'q-vuln-4', question: 'Name an open-source vulnerability scanner by Greenbone.', type: 'text', correctAnswer: 'OpenVAS', hint: 'Nessus/Qualys/Nexpose are commercial.' },
+          { id: 'q-vuln-5', question: 'What standard gives a vulnerability its 0–10 severity score?', type: 'text', correctAnswer: 'CVSS', hint: 'CVE identifies; CVSS scores.' }
+        ]
+      },
+      {
+        id: 'snort-challenge-the-basics',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'Snort Challenge: The Basics',
+        description: 'A hands-on Snort challenge: write real rules and run them against PCAPs with snort -c ... -r ... -A console, detect HTTP/FTP by port and payload, identify files by magic bytes, fix broken rules (syntax and logic), and use external rules to detect MS17-010 (EternalBlue) and Log4j (Log4Shell).',
+        status: 'unlocked',
+        iconType: 'hacker-terminal',
+        content: '',
+        realWorldCallout: {
+          title: 'From Rule to Alert',
+          concept: 'Offline PCAP Analysis',
+          scenario: 'A SOC analyst receives a PCAP after an incident, writes a Snort rule to match the suspicious traffic, clears old logs, runs it with -r against the capture, and counts the fresh alerts — then investigates each matching packet down to its header fields and payload.',
+          relevance: 'Turning detection logic into concrete alerts on captured traffic is the core IDS skill; it links rule-writing, packet analysis, and real-world exploit detection like EternalBlue and Log4Shell.'
+        },
+        mindmap: [
+          { id: 'snort', label: 'Snort Challenge', description: 'Write rules, run on PCAPs, investigate alerts', x: 50, y: 12, connections: ['rule', 'run', 'content', 'exploits'] },
+          { id: 'rule', label: 'Rule Anatomy', description: 'action protocol src port -> dst port (options)', x: 16, y: 50 },
+          { id: 'run', label: 'Run on PCAP', description: '-c rules, -r pcap (offline), -A console', x: 39, y: 58 },
+          { id: 'content', label: 'Content Match', description: 'By port; content:"..." ASCII/hex; magic bytes', x: 62, y: 58 },
+          { id: 'exploits', label: 'Famous Exploits', description: 'MS17-010 EternalBlue; Log4j Log4Shell', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Snort is an open-source IDS/IPS that compares packets against rules and alerts on a match.',
+          'A rule is a header — action protocol src_ip src_port direction dst_ip dst_port — plus options like msg, sid, and content.',
+          'Run against a PCAP with sudo snort -c local.rules -r traffic.pcap -A console for offline analysis.',
+          'Detect traffic by port (any 80, any 21) or payload (content), and identify files by magic bytes (PNG, GIF89a, BitTorrent).',
+          'Clear old logs before re-running (packet count ≠ alert count), keep each sid unique, and bump rev when a rule changes.'
+        ],
+        quiz: [
+          { id: 'q-snort-1', question: 'Which Snort flag reads captured traffic from a PCAP file?', type: 'text', correctAnswer: '-r', hint: 'It enables offline analysis.' },
+          { id: 'q-snort-2', question: 'Which Snort flag prints alerts to the console?', type: 'text', correctAnswer: '-A console', hint: 'The alert output mode.' },
+          { id: 'q-snort-3', question: 'Which rule option holds the alert message?', type: 'text', correctAnswer: 'msg', hint: 'e.g. msg:"HTTP Traffic".' },
+          { id: 'q-snort-4', question: 'What must you bump when you modify an existing rule?', type: 'text', correctAnswer: 'rev', hint: 'The revision number; keep sid unique.' },
+          { id: 'q-snort-5', question: 'Which famous SMBv1 exploit is detected in this room?', type: 'text', correctAnswer: 'MS17-010', hint: 'Also known as EternalBlue.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-security-solutions',
+        moduleId: SECURITY_SOLUTIONS_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Security Solutions module: SIEM log correlation, firewall traffic control, IDS/IPS detection, vulnerability scanning, and Snort rule-writing.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Blue-Team Toolset Field Card',
+          concept: 'Fast Recall Under Pressure',
+          scenario: 'Mid-lab, an analyst needs the Snort run command, a Syslog port, the four firewall types, or the difference between IDS and IPS. Instead of switching tabs, they glance at one consolidated sheet covering SIEM, firewalls, IDS/IPS, scanning, and Snort.',
+          relevance: 'Security solutions work best layered as defence in depth; consolidating the module makes the tools, ports, and commands stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-sec', label: 'Security Solutions Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['siem', 'fw', 'ids', 'vuln'] },
+          { id: 'siem', label: 'SIEM', description: 'Collect → Normalize → Correlate → Alert', x: 18, y: 55 },
+          { id: 'fw', label: 'Firewall', description: 'Allow/Deny/Forward; Stateless/Stateful/Proxy/NGFW', x: 39, y: 60 },
+          { id: 'ids', label: 'IDS / IPS', description: 'Detect + Alert vs Detect + Prevent; Snort', x: 61, y: 60 },
+          { id: 'vuln', label: 'Vuln Scanning', description: 'Scan → Patch → Rescan; CVE & CVSS', x: 82, y: 55 }
+        ],
+        keyTakeaways: [
+          'A SIEM centralizes and correlates logs: Collect → Normalize → Correlate → Detect → Alert → Investigate → Respond.',
+          'Firewalls allow/deny/forward traffic in four types — Stateless, Stateful, Proxy, NGFW — using rules of source/destination/port/protocol/action/direction.',
+          'IDS detects and alerts; IPS detects and prevents; classify by deployment (HIDS/NIDS) and detection (signature/anomaly/hybrid).',
+          'Vulnerability management is a loop — SCAN, PATCH, RESCAN — with CVE identifying and CVSS scoring; tools include Nessus, Qualys, Nexpose, OpenVAS.',
+          'Snort runs rules against traffic (snort -c rules -r pcap -A console); the discipline throughout is defence in depth and investigating every alert.'
+        ],
+        quiz: [
+          { id: 'q-mcs-1', question: 'What is the core value a SIEM provides beyond storing logs?', type: 'text', correctAnswer: 'Correlation', hint: 'Connecting events from many sources.' },
+          { id: 'q-mcs-2', question: 'What are the four main firewall types?', type: 'text', correctAnswer: 'Stateless, Stateful, Proxy, NGFW', hint: 'S S P N.' },
+          { id: 'q-mcs-3', question: 'What is the difference between an IDS and an IPS?', type: 'text', correctAnswer: 'IDS detects and alerts; IPS detects and prevents', hint: 'Detect vs prevent.' },
+          { id: 'q-mcs-4', question: 'What does the vulnerability loop SCAN, PATCH, RESCAN verify?', type: 'text', correctAnswer: 'That the weakness is fixed', hint: 'Rescan confirms the fix.' }
         ]
       },
     ],
