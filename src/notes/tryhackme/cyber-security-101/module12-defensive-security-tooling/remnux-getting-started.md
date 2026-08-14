@@ -83,6 +83,30 @@ The two complementary approaches to examining a sample:
 
 > **Memory trick:** `Static = STudy (don't run)` · `Dynamic = DO (run and watch)`. A full investigation usually combines both — static findings guide what to watch for dynamically.
 
+```text
+    ┌───────────────────────────┐
+    │       Suspicious File     │
+    └─────────────┬─────────────┘
+                  │
+          ┌───────┴────────┐
+          │                │
+          v                v
+    STATIC ANALYSIS    DYNAMIC ANALYSIS
+          │                │
+          v                v
+    What is inside?   What does it do?
+          │                │
+          └───────┬────────┘
+                  v
+           Combine Evidence
+                  |
+                  v
+           Understand Malware
+                  |
+                  v
+            Extract IOCs
+```
+
 ### Important terms
 
 | Term | Meaning |
@@ -138,6 +162,24 @@ The room's sample drops `doc-3737122PDF.EXE` — a filename masquerading as a PD
 
 **INetSim** (Internet Services Simulation Suite) provides a controlled **fake network**: it emulates Internet services (HTTP, HTTPS, DNS and more) so that when malware tries to "phone home" or download a payload, the request is answered by the simulator and recorded — without giving the sample real Internet access.
 
+```text
+                    Malware
+                       |
+                       v
+                Network Request
+                       |
+                       v
+                    INetSim
+                       |
+          ┌────────────┼────────────┐
+          v            v            v
+         DNS          HTTP       Other
+          |            |         Services
+          └────────────┼────────────┘
+                       v
+                 Simulated Reply
+```
+
 INetSim records connections while running, and writes a report per session. Fetch a file through the fake network and read the resulting report:
 
 ```bash
@@ -173,6 +215,49 @@ Basic syntax (the launcher may be `vol3` or `python3 vol.py`):
 ```bash
 $ python3 vol.py -f <memory_image> <plugin>
 $ vol3 -f wcry.mem windows.pslist.PsList
+```
+
+The core Volatility 3 plugins at a glance:
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                 VOLATILITY 3                               │
+├─────────────────────────────────────────────────────────────┤
+│ PsList      → Process listing                              │
+│ PsTree      → Parent/child process hierarchy               │
+│ CmdLine     → Command-line arguments                       │
+│ FileScan    → File objects                                 │
+│ DllList     → Loaded DLLs                                  │
+│ PsScan      → Process structure scanning                   │
+│ Malfind     → Suspicious memory regions                    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+The memory-forensics workflow chains the plugins from a memory image to deeper investigation:
+
+```text
+                 MEMORY IMAGE
+                      |
+                      v
+                Volatility 3
+                      |
+          ┌───────────┼───────────┐
+          v           v           v
+       PsList      PsTree      CmdLine
+          |           |           |
+          v           v           v
+      Processes    Relations    Commands
+          |           |           |
+          └───────────┼───────────┘
+                      |
+                      v
+                  FileScan
+                      |
+                      v
+                File Evidence
+                      |
+                      v
+              Deeper Investigation
 ```
 
 ### Core plugins
@@ -216,6 +301,28 @@ strings -e b wcry.mem
 ```
 
 `-e l` extracts 16-bit little-endian and `-e b` extracts 16-bit big-endian strings. Save output to a file (`strings wcry.mem > strings.txt`) so it can be searched. Remember: **a string found ≠ execution confirmed** — it must be correlated.
+
+```text
+             MEMORY IMAGE
+                  |
+                  v
+               strings
+                  |
+       ┌──────────┼──────────┐
+       v          v          v
+     ASCII      UTF-16LE   UTF-16BE
+       |          |          |
+       └──────────┼──────────┘
+                  v
+             Readable Data
+                  |
+                  v
+          Search for Indicators
+                  |
+          ┌───────┼────────┐
+          v       v        v
+         URL      IP      Filename
+```
 
 ### Evidence preprocessing with grep
 
