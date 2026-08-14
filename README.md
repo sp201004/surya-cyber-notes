@@ -30,9 +30,21 @@
 
 ## 🧠 About
 
-This is my personal collection of cybersecurity study notes from the **TryHackMe Pre Security path** and the **Google Cybersecurity Professional Certificate**, rebuilt as an interactive, gamified learning site.
+This is my personal collection of cybersecurity study notes from the **TryHackMe Pre-Security** and **Cyber Security 101** paths, the **Google Cybersecurity Professional Certificate**, and a hands-on **CTF / Challenges** series — all rebuilt as an interactive, gamified learning site.
 
 Instead of a folder of markdown files, every topic is a "room" on a course map — with notes, diagrams, an interactive mindmap, and practice questions — all wrapped in a terminal/hacker aesthetic.
+
+### 🗂️ Learning paths
+
+| Path | Modules / Courses | Rooms |
+|------|------|------|
+| **TryHackMe · Pre-Security** | 7 modules | 38 |
+| **TryHackMe · Cyber Security 101** | 14 modules | 69 |
+| **Google Cybersecurity Professional Certificate** | 8 courses | 41 |
+| **CTF / Challenges** (Hacker Holidays 2026) | 1 series | 16 |
+| **Total** | | **164 rooms** |
+
+The Cyber Security 101 path covers: Start Your Cyber Security Journey, Linux Fundamentals, Windows & AD Fundamentals, Command Line, Networking, Cryptography, Exploitation Basics, Web Hacking, Offensive Security Tooling, Defensive Security, Security Solutions, Defensive Security Tooling, Build Your Cyber Security Career, and OWASP Top 10 (2025).
 
 ---
 
@@ -44,7 +56,7 @@ Instead of a folder of markdown files, every topic is a "room" on a course map �
 - 🎯 **Practice questions with hints**, key takeaways, and real-world scenario case studies
 - 💻 **Terminal/hacker dark theme** — neon-green accents, animated details, ligature-free code
 - 🔗 **Real URL routing** — deep-linkable rooms, refresh-safe, with scroll-position restore
-- 📚 **79 rooms total** — **7 TryHackMe modules** (38 rooms) + **8 Google Cybersecurity courses** (41 rooms)
+- 📚 **164 rooms** across four tracks — **TryHackMe Pre-Security** (7 modules) + **TryHackMe Cyber Security 101** (14 modules) + **Google Cybersecurity** (8 courses) + a **CTF / Challenges** series
 
 ---
 
@@ -97,8 +109,9 @@ src/
 ├── index.css               # Theme + animations (Tailwind)
 ├── types.ts                # Shared types (Topic, MindmapNode, ...)
 ├── data.ts                 # TryHackMe Pre-Security course/module/room data
-├── dataCyberSecurity101.ts # Cyber Security 101 course data
+├── dataCyberSecurity101.ts # Cyber Security 101 course data (14 modules)
 ├── dataGoogleCyber.ts      # Google Cybersecurity course data
+├── dataHackerHolidays.ts   # CTF / Challenges (Hacker Holidays 2026) data
 ├── data/
 │   └── sharedIntroRooms.ts # Rooms shared across courses
 ├── components/
@@ -108,10 +121,11 @@ src/
 │   ├── BinaryBackground.tsx
 │   └── ErrorBoundary.tsx
 └── notes/
-    ├── index.ts                     # Maps every room id → its markdown notes
-    ├── tryhackme/pre-security/       # TryHackMe Pre-Security notes (.md)
-    ├── tryhackme/cyber-security-101/ # Cyber Security 101 notes (.md)
-    └── google-cybersecurity/         # Google Cybersecurity notes (.md)
+    ├── index.ts                       # Maps every room id → its markdown notes
+    ├── tryhackme/pre-security/         # TryHackMe Pre-Security notes (.md)
+    ├── tryhackme/cyber-security-101/   # Cyber Security 101 notes (.md)
+    ├── tryhackme/hacker-holidays-2026/ # CTF / Challenges notes (.md)
+    └── google-cybersecurity/           # Google Cybersecurity notes (.md)
 ```
 
 ---
