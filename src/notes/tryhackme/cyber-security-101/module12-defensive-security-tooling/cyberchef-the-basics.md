@@ -162,19 +162,19 @@ CyberChef's interface is divided into **four main areas**: **Operations, Recipe,
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         CYBERCHEF                                  │
+│                          CYBERCHEF                                  │
 ├──────────────────┬──────────────────────┬───────────────────────────┤
 │                  │                      │                           │
-│   OPERATIONS     │       RECIPE         │          INPUT            │
+│   OPERATIONS:    │       RECIPE:        │          INPUT:           │
 │                  │                      │                           │
-│  Search          │  Operations placed  │  Paste / type / upload   │
-│  Operations      │  here are executed  │  your data here          │
-│                  │  in sequence        │                           │
+│  Search          │  Operations placed   │   Paste / type / upload   │
+│  Operations      │  here are executed   │   your data here          │
+│                  │  in sequence         │                           │
 │                  │                      ├───────────────────────────┤
 │                  │                      │                           │
-│                  │                      │          OUTPUT           │
+│                  │                      │          OUTPUT:          │
 │                  │                      │                           │
-│                  │                      │  Processed result        │
+│                  │                      │     Processed result      │
 │                  │                      │                           │
 └──────────────────┴──────────────────────┴───────────────────────────┘
 ```
