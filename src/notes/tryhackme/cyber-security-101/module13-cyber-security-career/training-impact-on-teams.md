@@ -46,6 +46,29 @@ Training is the most efficient way to raise a team's skills, and its benefits co
 
 The chain: `Train → Practise → Build skills → Increase capacity → Better security`.
 
+The complete impact of training on a team:
+
+```text
+                    CYBER SECURITY TRAINING
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+          ▼                   ▼                   ▼
+      Knowledge           Practical Skills     Experience
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              ▼
+                       Better Employees
+                              │
+               ┌──────────────┼──────────────┐
+               ▼              ▼              ▼
+          Productivity     Capacity       Confidence
+               │              │              │
+               └──────────────┼──────────────┘
+                              ▼
+                     Stronger Security Team
+```
+
 ---
 
 ## Training for Different Organisation Sizes
@@ -77,6 +100,35 @@ To justify training, treat it as an **investment** and calculate its financial i
 | **ROI** | $40,000 / $10,000 × 100 | 400% |
 
 The room's first illustrative example uses Gain = $32,000 and Cost = $5,000, giving `ROI = 32,000 / 5,000 × 100 = 640%`.
+
+The full Task 3 calculation worked through:
+
+```text
+┌─────────────────────────────────────────┐
+│       TASK 3 CALCULATION                │
+├─────────────────────────────────────────┤
+│ Employees               = 20            │
+│ Cost / Employee / Year  = $50,000       │
+│ Productivity Increase   = 4%            │
+│ Training Cost / Employee = $500         │
+│                                         │
+│ Total Employee Cost                     │
+│ = 20 × $50,000                          │
+│ = $1,000,000                            │
+│                                         │
+│ Productivity Savings                    │
+│ = $1,000,000 × 4%                       │
+│ = $40,000                               │
+│                                         │
+│ Training Cost                           │
+│ = 20 × $500                             │
+│ = $10,000                               │
+│                                         │
+│ ROI                                     │
+│ = $40,000 / $10,000 × 100               │
+│ = 400%                                  │
+└─────────────────────────────────────────┘
+```
 
 > **Don't confuse savings and ROI:** savings (the productivity gain, e.g. $40,000) is the money benefit; ROI (e.g. 400%) expresses that gain relative to the training cost. They are different numbers.
 

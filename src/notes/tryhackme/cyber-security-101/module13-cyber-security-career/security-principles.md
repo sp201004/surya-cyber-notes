@@ -29,6 +29,22 @@ By the end of this room you will be able to:
 
 The **CIA Triad** is the foundation of information security — three goals every control serves.
 
+```text
+        ┌─────────────────────┐
+        │   CONFIDENTIALITY   │
+        └──────────┬──────────┘
+                   │
+                   ▼
+              ┌─────────┐
+              │   CIA   │
+              └────┬────┘
+             ┌─────┴─────┐
+             ▼           ▼
+      ┌───────────┐ ┌─────────────┐
+      │ INTEGRITY │ │ AVAILABILITY│
+      └───────────┘ └─────────────┘
+```
+
 | Goal | Protects against | Question it answers |
 |---|---|---|
 | **Confidentiality** | Unauthorised disclosure | *Who can SEE the data?* |
@@ -48,6 +64,19 @@ The **CIA Triad** is the foundation of information security — three goals ever
 The **DAD Triad** is the attacker's mirror of CIA — the three ways security fails:
 
 `Confidentiality ↔ Disclosure` · `Integrity ↔ Alteration` · `Availability ↔ Destruction`
+
+```text
+                 DAD TRIAD
+                     │
+       ┌─────────────┼─────────────┐
+       ▼             ▼             ▼
+  DISCLOSURE      ALTERATION   DESTRUCTION/
+                                DENIAL
+       │             │             │
+       ▼             ▼             ▼
+Confidentiality   Integrity    Availability
+    attacked       attacked       attacked
+```
 
 | DAD | Attacks the CIA goal | Meaning |
 |---|---|---|
@@ -72,6 +101,50 @@ Security models formalise how access should be controlled. The three classic mod
 > **3. Clark-Wilson Model**
 > Focuses on **integrity** through **well-formed transactions** and **separation of duties**. Core components: **CDI** (Constrained Data Items), **UDI** (Unconstrained Data Items), **TP** (Transformation Procedures), and **IVP** (Integrity Verification Procedures). Users never touch data directly — only through validated transformation procedures.
 
+Bell-LaPadula and Biba are mirror images — confidentiality vs integrity:
+
+```text
+┌─────────────────────────────────────┐
+│          BELL-LaPADULA              │
+│                                     │
+│ Focus → CONFIDENTIALITY             │
+│                                     │
+│ No Read Up                          │
+│ No Write Down                       │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│               BIBA                  │
+│                                     │
+│ Focus → INTEGRITY                   │
+│                                     │
+│ No Read Down                        │
+│ No Write Up                         │
+└─────────────────────────────────────┘
+```
+
+Clark-Wilson routes every change through a validated transformation procedure (banking example):
+
+```text
+User
+ │
+ ▼
+Transfer Request
+ │
+ ▼
+Transformation Procedure
+ │
+ ├── Check balance
+ ├── Validate account
+ ├── Validate amount
+ └── Perform transaction
+ │
+ ▼
+CDI updated
+ │
+ ▼
+Integrity Verification
+```
+
 ### Model rules at a glance
 
 | Model | Focus | Read rule | Write rule |
@@ -86,7 +159,36 @@ Security models formalise how access should be controlled. The three classic mod
 
 ## Defence-in-Depth & Architectural Principles
 
-**Defence-in-Depth** layers multiple independent controls so that if one fails, others still protect the asset — there is no single point of failure. The **ISO/IEC 19249** standard describes five architectural principles:
+**Defence-in-Depth** layers multiple independent controls so that if one fails, others still protect the asset — there is no single point of failure. An attacker must defeat every layer in turn:
+
+```text
+                ATTACKER
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Physical Security│
+          └────────┬────────┘
+                   ▼
+          ┌─────────────────┐
+          │ Network Security│
+          └────────┬────────┘
+                   ▼
+          ┌─────────────────┐
+          │ Host Security   │
+          └────────┬────────┘
+                   ▼
+          ┌─────────────────┐
+          │ Application Sec.│
+          └────────┬────────┘
+                   ▼
+          ┌─────────────────┐
+          │ Data Security   │
+          └────────┬────────┘
+                   ▼
+                 DATA
+```
+
+The **ISO/IEC 19249** standard describes five architectural principles:
 
 > **1. Domain Separation**
 > Group components with the same trust/security requirements into a domain and separate them, so a compromise in one domain does not spread.
@@ -103,6 +205,27 @@ Security models formalise how access should be controlled. The three classic mod
 > **5. Virtualization**
 > Use virtual environments to isolate and contain workloads, aiding separation and recovery.
 
+ISO/IEC 19249 groups its guidance into architectural and design principles:
+
+```text
+                 ISO/IEC 19249
+                       │
+          ┌────────────┴────────────┐
+          ▼                         ▼
+   ARCHITECTURAL                 DESIGN
+    PRINCIPLES                 PRINCIPLES
+          │                         │
+    ┌─────┼─────┐             ┌─────┼─────┐
+    ▼     ▼     ▼             ▼     ▼     ▼
+ Domain Layer Encaps.       Least Attack  Centralized
+ Separation ingulation      Priv. Surface Validation
+    │                         │
+    ├── Redundancy            ├── Centralized Security
+    │                         │   Services
+    └── Virtualization        │
+                              └── Error Handling
+```
+
 > **Security relevance:** the layers stack — physical, network, host, application, data — so an attacker must defeat many controls, not one.
 
 ---
@@ -111,6 +234,31 @@ Security models formalise how access should be controlled. The three classic mod
 
 **Zero Trust** replaces implicit network trust with **"never trust, always verify"** — every request is authenticated, authorised and continuously validated regardless of where it originates. It builds on **"trust but verify"** but goes further: no user or device is trusted by default.
 
+```text
+                 ACCESS REQUEST
+                       │
+                       ▼
+              ┌──────────────────┐
+              │ Verify Identity  │
+              └────────┬─────────┘
+                       ▼
+              ┌──────────────────┐
+              │ Verify Device    │
+              └────────┬─────────┘
+                       ▼
+              ┌──────────────────┐
+              │ Check Context    │
+              └────────┬─────────┘
+                       ▼
+              ┌──────────────────┐
+              │ Check Policy     │
+              └────────┬─────────┘
+                       ▼
+                 ┌─────┴─────┐
+                 ▼           ▼
+              ALLOW         DENY
+```
+
 The three terms that are often confused:
 
 | Term | Meaning |
@@ -118,6 +266,22 @@ The three terms that are often confused:
 | **Vulnerability** | A weakness that could be exploited |
 | **Threat** | A potential event or actor that could exploit a vulnerability |
 | **Risk** | The likelihood and impact of a threat exploiting a vulnerability |
+
+```text
+Vulnerable server
+     │
+     ├── Internet exposed?
+     │       │
+     │       └── YES → Higher likelihood
+     │
+     ├── Critical data?
+     │       │
+     │       └── YES → Higher impact
+     │
+     └── Strong controls?
+             │
+             └── YES → Risk may be reduced
+```
 
 > **Relationship:** `Threat + Vulnerability → Risk`. You reduce risk by removing vulnerabilities (patching/hardening) or reducing a threat's opportunity (controls).
 

@@ -59,6 +59,31 @@ Careers progress from entry-level (e.g. SOC Analyst, junior roles) to senior/spe
 
 ## Major Roles
 
+The cyber security career tree branches into offensive, defensive and research paths, with engineering underpinning them:
+
+```text
+                         CYBERSECURITY
+                               │
+          ┌────────────────────┼────────────────────┐
+          │                    │                    │
+          ↓                    ↓                    ↓
+      OFFENSIVE             DEFENSIVE            RESEARCH
+          │                    │                    │
+          ↓                    ↓                    ↓
+    Pentesting              SOC              Threat Intel
+    Red Teaming             Incident         Security Research
+    Security Testing        Response
+          │                    │
+          └────────────┬───────┘
+                       ↓
+                SECURITY ENGINEERING
+                       │
+                       ↓
+              Secure Infrastructure
+              Cloud Security
+              Architecture
+```
+
 > **1. Penetration Tester**
 > Commonly called a **pentester**, evaluates systems for security weaknesses by simulating attacks (offensive / red-team focus).
 
