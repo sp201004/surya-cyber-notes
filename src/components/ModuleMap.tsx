@@ -2422,6 +2422,92 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // CyberChef: The Basics — a chef hat on a laptop
+    case 'cyberchef-the-basics':
+      return (
+        <g id="cyberchef-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Laptop screen */}
+          <rect x={x - 11} y={y - 6} width={22} height={13} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Laptop base */}
+          <path d={`M ${x - 13} ${y + 9} L ${x + 13} ${y + 9} L ${x + 11} ${y + 7} L ${x - 11} ${y + 7} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Chef hat on the screen */}
+          <path d={`M ${x - 5} ${y + 1} L ${x + 5} ${y + 1} L ${x + 4} ${y - 4} Q ${x + 8} ${y - 5} ${x + 6} ${y - 9} Q ${x + 3} ${y - 12} ${x} ${y - 9} Q ${x - 3} ${y - 12} ${x - 6} ${y - 9} Q ${x - 8} ${y - 5} ${x - 4} ${y - 4} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.5" strokeLinejoin="round" />
+          <line x1={x - 4} y1={y - 1} x2={x + 4} y2={y - 1} stroke="#38bdf8" strokeWidth="1.2" strokeLinecap="round" />
+        </g>
+      );
+
+    // CAPA: The Basics — a magnifier over a binary window (capability detection)
+    case 'capa-the-basics':
+      return (
+        <g id="capa-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Window pane */}
+          <rect x={x - 12} y={y - 10} width={24} height={20} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y - 5} x2={x + 12} y2={y - 5} stroke="#9fef00" strokeWidth="1.3" />
+          {/* Binary bits */}
+          <text x={x - 9} y={y - 0.5} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1011</text>
+          <text x={x - 9} y={y + 5} fontSize="4.5" fill="#9fef00" fontFamily="monospace" opacity="0.7">0110</text>
+          {/* Magnifier */}
+          <circle cx={x + 4} cy={y + 3} r={5} fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" strokeWidth="1.8" />
+          <line x1={x + 7.6} y1={y + 6.6} x2={x + 11} y2={y + 10} stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" />
+        </g>
+      );
+
+    // REMnux: Getting Started — an open toolkit with a magnifier
+    case 'remnux-getting-started':
+      return (
+        <g id="remnux-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Open toolbox body */}
+          <rect x={x - 12} y={y - 1} width={24} height={11} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Open lid */}
+          <path d={`M ${x - 12} ${y - 1} L ${x - 10} ${y - 8} L ${x + 10} ${y - 8} L ${x + 12} ${y - 1} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Tools sticking out */}
+          <line x1={x - 6} y1={y + 1} x2={x - 6} y2={y + 8} stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" />
+          <circle cx={x - 6} cy={y + 1} r={1.4} fill="none" stroke="#9fef00" strokeWidth="1.2" />
+          <line x1={x} y1={y + 1} x2={x} y2={y + 8} stroke="#9fef00" strokeWidth="1.4" strokeLinecap="round" />
+          {/* Magnifier accent */}
+          <circle cx={x + 6} cy={y + 3} r={3.2} fill="none" stroke="#38bdf8" strokeWidth="1.6" />
+          <line x1={x + 8.3} y1={y + 5.3} x2={x + 10.5} y2={y + 7.5} stroke="#38bdf8" strokeWidth="1.8" strokeLinecap="round" />
+        </g>
+      );
+
+    // FlareVM: Arsenal of Tools — a toolbox with a wrench and screwdriver
+    case 'flarevm-arsenal-of-tools':
+      return (
+        <g id="flarevm-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Toolbox body */}
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Handle */}
+          <path d={`M ${x - 6} ${y - 2} L ${x - 6} ${y - 6} L ${x + 6} ${y - 6} L ${x + 6} ${y - 2}`} fill="none" stroke="#9fef00" strokeWidth="1.5" strokeLinejoin="round" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.2" />
+          {/* Wrench */}
+          <path d={`M ${x - 6} ${y + 4} l 4 4 M ${x - 6} ${y + 4} a 2 2 0 1 0 0.1 0 Z`} stroke="#38bdf8" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          {/* Screwdriver */}
+          <line x1={x + 3} y1={y + 8} x2={x + 7} y2={y + 4} stroke="#9fef00" strokeWidth="1.5" strokeLinecap="round" />
+          <rect x={x + 6} y={y + 2.5} width={3} height={2} rx={0.5} fill="#9fef00" transform={`rotate(45 ${x + 7.5} ${y + 3.5})`} />
+        </g>
+      );
+
+    // Mystery Chest — the treasure chest marked with binary
+    case 'mystery-chest-defensive-tooling':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Binary digits on the lid */}
+          <text x={x - 7} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <text x={x - 1} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">0</text>
+          <text x={x + 5} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

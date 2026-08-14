@@ -967,6 +967,7 @@ const WEB_HACKING_MODULE_ID = 'web-hacking';
 const OFFENSIVE_TOOLING_MODULE_ID = 'offensive-security-tooling';
 const DEFENSIVE_SECURITY_MODULE_ID = 'defensive-security';
 const SECURITY_SOLUTIONS_MODULE_ID = 'security-solutions';
+const DEFENSIVE_TOOLING_MODULE_ID = 'defensive-security-tooling';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -2294,6 +2295,190 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mcs-2', question: 'What are the four main firewall types?', type: 'text', correctAnswer: 'Stateless, Stateful, Proxy, NGFW', hint: 'S S P N.' },
           { id: 'q-mcs-3', question: 'What is the difference between an IDS and an IPS?', type: 'text', correctAnswer: 'IDS detects and alerts; IPS detects and prevents', hint: 'Detect vs prevent.' },
           { id: 'q-mcs-4', question: 'What does the vulnerability loop SCAN, PATCH, RESCAN verify?', type: 'text', correctAnswer: 'That the weakness is fixed', hint: 'Rescan confirms the fix.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: DEFENSIVE_TOOLING_MODULE_ID,
+    title: 'Defensive Security Tooling',
+    description: 'The blue-team malware-analysis toolkit: CyberChef for decoding and deobfuscation, CAPA for capability detection, REMnux as a Linux malware-analysis workstation, and FlareVM as the Windows analysis arsenal — plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'cyberchef-the-basics',
+        moduleId: DEFENSIVE_TOOLING_MODULE_ID,
+        title: 'CyberChef: The Basics',
+        description: 'The "Cyber Swiss Army Knife": how CyberChef decodes, deobfuscates and transforms data using recipes of operations — the four interface areas, common operations (From Base64, URL Decode, From Hex, ROT13, Magic), extractors (IP/URL/email), and online vs offline use.',
+        status: 'unlocked',
+        iconType: 'crypto-laptop',
+        content: '',
+        realWorldCallout: {
+          title: 'The Suspicious Base64 Blob',
+          concept: 'Decode Before You Judge',
+          scenario: 'An analyst pulls a long Base64 string out of a phishing email. Dropping it into CyberChef with a From Base64 operation reveals a PowerShell download command — turning an opaque blob into a readable IOC in seconds.',
+          relevance: 'Malware hides payloads behind layers of encoding and obfuscation; CyberChef reverses them quickly, but decoding reveals what data is, not that it executed.'
+        },
+        mindmap: [
+          { id: 'cc', label: 'CyberChef', description: 'Decode, deobfuscate and transform data', x: 50, y: 12, connections: ['recipe', 'ops', 'extract', 'access'] },
+          { id: 'recipe', label: 'Recipes', description: 'Ordered chain of operations applied top to bottom', x: 16, y: 50 },
+          { id: 'ops', label: 'Operations', description: 'From Base64, URL Decode, From Hex, ROT13, Magic', x: 39, y: 58 },
+          { id: 'extract', label: 'Extractors', description: 'Extract IP addresses, URLs, email addresses', x: 62, y: 58 },
+          { id: 'access', label: 'Online / Offline', description: 'Hosted or local copy; offline suits sensitive data', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'CyberChef is a browser-based tool for decoding, deobfuscating and transforming data.',
+          'A recipe is an ordered chain of operations applied to the input, top to bottom.',
+          'The interface has four areas: Operations, Recipe, Input, Output.',
+          'Common operations include From Base64, URL Decode, From Hex, ROT13, Morse Code and Magic.',
+          'Extractors pull IP addresses, URLs and email addresses out of data; it runs online or as an offline local copy.'
+        ],
+        quiz: [
+          { id: 'q-cc-1', question: 'What is an ordered chain of CyberChef operations called?', type: 'text', correctAnswer: 'Recipe', hint: 'Applied top to bottom.' },
+          { id: 'q-cc-2', question: 'Which operation decodes Base64 data?', type: 'text', correctAnswer: 'From Base64', hint: 'The reverse of To Base64.' },
+          { id: 'q-cc-3', question: 'How many main areas does the CyberChef interface have?', type: 'text', correctAnswer: '4', hint: 'Operations, Recipe, Input, Output.' },
+          { id: 'q-cc-4', question: 'Does decoding a string in CyberChef prove it was executed?', type: 'text', correctAnswer: 'No', hint: 'It reveals what the data is, not that it ran.' }
+        ]
+      },
+      {
+        id: 'capa-the-basics',
+        moduleId: DEFENSIVE_TOOLING_MODULE_ID,
+        title: 'CAPA: The Basics',
+        description: 'Detecting a program\'s capabilities: what CAPA is, how it matches code against rules to identify behaviours, mapping to MITRE ATT&CK and MAEC, the command-line options (-v, -vv, -j), the Web Explorer, and why a capability is not proof of maliciousness.',
+        status: 'unlocked',
+        iconType: 'search',
+        content: '',
+        realWorldCallout: {
+          title: 'What Can This Binary Actually Do?',
+          concept: 'Capabilities, Not Verdicts',
+          scenario: 'Facing an unknown executable, an analyst runs capa.exe against it and instantly sees it can write files, create processes and communicate over HTTP — each mapped to a MITRE ATT&CK technique. This triage focuses the deeper investigation.',
+          relevance: 'CAPA summarises what a program is capable of and ties it to known adversary techniques, but a capability alone does not prove malice — legitimate software shares many.'
+        },
+        mindmap: [
+          { id: 'capa', label: 'CAPA', description: 'Identify a program\'s capabilities', x: 50, y: 12, connections: ['rules', 'attack', 'cli', 'triage'] },
+          { id: 'rules', label: 'Rules', description: 'Match code against community rules to find capabilities', x: 16, y: 50 },
+          { id: 'attack', label: 'ATT&CK + MAEC', description: 'Maps findings to MITRE ATT&CK and MAEC', x: 39, y: 58 },
+          { id: 'cli', label: 'CLI Options', description: 'capa.exe file; -v, -vv, -j; > redirect', x: 62, y: 58 },
+          { id: 'triage', label: 'Triage Tool', description: 'Capability ≠ maliciousness', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'CAPA identifies the capabilities of a program — what it is able to do — by matching code against rules.',
+          'It maps detected capabilities to MITRE ATT&CK techniques and MAEC attributes.',
+          'Run it as capa.exe <file>; -v is verbose, -vv is very verbose (more v = more detail).',
+          'Use -j for JSON output and > to redirect large output to a file.',
+          'A capability is not proof of maliciousness — CAPA is a triage tool; the analyst determines intent.'
+        ],
+        quiz: [
+          { id: 'q-capa-1', question: 'What does CAPA identify in a program?', type: 'text', correctAnswer: 'Its capabilities', hint: 'What the program is able to do.' },
+          { id: 'q-capa-2', question: 'Which two frameworks does CAPA map capabilities to?', type: 'text', correctAnswer: 'MITRE ATT&CK and MAEC', hint: 'Techniques and malware attributes.' },
+          { id: 'q-capa-3', question: 'Which flag produces very verbose output?', type: 'text', correctAnswer: '-vv', hint: 'More v characters = more detail.' },
+          { id: 'q-capa-4', question: 'Does a detected capability prove a file is malicious?', type: 'text', correctAnswer: 'No', hint: 'Legitimate software shares many capabilities.' }
+        ]
+      },
+      {
+        id: 'remnux-getting-started',
+        moduleId: DEFENSIVE_TOOLING_MODULE_ID,
+        title: 'REMnux: Getting Started',
+        description: 'A Linux malware-analysis workstation: static vs dynamic analysis, inspecting malicious Office documents with oledump.py and VBA macros, simulating a network with INetSim, and memory forensics with Volatility 3 plugins and strings.',
+        status: 'unlocked',
+        iconType: 'linux-cli',
+        content: '',
+        realWorldCallout: {
+          title: 'The Malicious Word Document',
+          concept: 'From Macro to IOC',
+          scenario: 'A suspicious .doc arrives. On REMnux, oledump.py lists its streams, --vbadecompress reveals a VBA macro launching PowerShell Invoke-WebRequest to download and Start-Process to run doc-3737122PDF.EXE — a full attack chain reconstructed without ever executing the file.',
+          relevance: 'REMnux bundles the tools to dissect documents, simulate the network and analyse memory in isolation, so analysts extract IOCs safely.'
+        },
+        mindmap: [
+          { id: 'rem', label: 'REMnux', description: 'Linux malware-analysis workstation', x: 50, y: 12, connections: ['sd', 'ole', 'inet', 'vol'] },
+          { id: 'sd', label: 'Static / Dynamic', description: 'Examine without running vs run and observe', x: 16, y: 50 },
+          { id: 'ole', label: 'oledump.py', description: 'List streams (-s), decompress VBA (--vbadecompress)', x: 39, y: 58 },
+          { id: 'inet', label: 'INetSim', description: 'Fake Internet; reports in /var/log/inetsim/report/', x: 62, y: 58 },
+          { id: 'vol', label: 'Volatility 3', description: 'pslist, pstree, cmdline, filescan, dlllist, psscan, malfind', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'REMnux is a Linux distribution pre-loaded with malware-analysis, forensics, network and memory tools.',
+          'Static analysis examines a file without running it; dynamic analysis runs it and observes behaviour.',
+          'oledump.py lists document streams, -s N selects one, and --vbadecompress decompresses VBA macros.',
+          'INetSim simulates Internet services (a fake network) and logs connections under /var/log/inetsim/report/.',
+          'Volatility 3 analyses memory images with plugins pslist, pstree, cmdline, filescan, dlllist, psscan and malfind; strings -e l/-e b extract Unicode strings.'
+        ],
+        quiz: [
+          { id: 'q-rem-1', question: 'What is REMnux?', type: 'text', correctAnswer: 'A Linux distribution for malware analysis', hint: 'A ready-made analysis workstation.' },
+          { id: 'q-rem-2', question: 'Which oledump.py option decompresses VBA macros?', type: 'text', correctAnswer: '--vbadecompress', hint: 'Makes the VBA source readable.' },
+          { id: 'q-rem-3', question: 'Which tool simulates Internet services on REMnux?', type: 'text', correctAnswer: 'INetSim', hint: 'A fake network.' },
+          { id: 'q-rem-4', question: 'Which Volatility plugin flags injected/suspicious memory?', type: 'text', correctAnswer: 'Malfind', hint: 'windows.malfind.Malfind.' },
+          { id: 'q-rem-5', question: 'Which strings flag extracts 16-bit little-endian (Windows Unicode) strings?', type: 'text', correctAnswer: '-e l', hint: '-e b is big-endian.' }
+        ]
+      },
+      {
+        id: 'flarevm-arsenal-of-tools',
+        moduleId: DEFENSIVE_TOOLING_MODULE_ID,
+        title: 'FlareVM: Arsenal of Tools',
+        description: 'The Windows malware-analysis arsenal: the core tools (Wireshark, PEStudio, FLOSS, Process Explorer, Procmon, CFF Explorer), static vs dynamic analysis, PE concepts (headers, sections, entropy, imported APIs), and a hands-on investigation of a suspicious windows.exe.',
+        status: 'unlocked',
+        iconType: 'windows',
+        content: '',
+        realWorldCallout: {
+          title: 'The Executable That Phones Home',
+          concept: 'Static Triage, Dynamic Confirmation',
+          scenario: 'On FlareVM, PEStudio flags windows.exe with high entropy and suspicious imported APIs, FLOSS recovers obfuscated strings, and running it under Process Explorer and Procmon reveals an outbound connection to an unknown IP — a C2 indicator confirmed by correlating static and dynamic evidence.',
+          relevance: 'FlareVM bundles the Windows toolkit so analysts can triage a binary statically then confirm behaviour dynamically, extracting IOCs without a hunt for individual tools.'
+        },
+        mindmap: [
+          { id: 'flare', label: 'FlareVM', description: 'Windows malware-analysis arsenal', x: 50, y: 12, connections: ['static', 'dynamic', 'pe', 'floss'] },
+          { id: 'static', label: 'Static Tools', description: 'PEStudio, FLOSS, CFF Explorer', x: 16, y: 50 },
+          { id: 'dynamic', label: 'Dynamic Tools', description: 'Process Explorer, Procmon, Wireshark', x: 39, y: 58 },
+          { id: 'pe', label: 'PE Concepts', description: 'Headers, sections, entropy, imported APIs, hashes', x: 62, y: 58 },
+          { id: 'floss', label: 'FLOSS', description: 'Recovers obfuscated strings from a binary', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'FlareVM is a customized Windows environment bundling tools for malware analysis, forensics and reverse engineering.',
+          'The six core tools are Wireshark, PEStudio, FLOSS, Process Explorer, Process Monitor (Procmon) and CFF Explorer.',
+          'Static tools (PEStudio, FLOSS, CFF Explorer) examine a file without running it; dynamic tools (Process Explorer, Procmon, Wireshark) observe it running.',
+          'Key PE concepts include headers, sections, entropy, the Rich Header, imported APIs and hashes.',
+          'FLOSS recovers obfuscated strings (FLOSS.exe .\\windows.exe > windows.txt); a suspicious API, high entropy or unknown IP is an indicator, not proof.'
+        ],
+        quiz: [
+          { id: 'q-flare-1', question: 'What kind of environment is FlareVM?', type: 'text', correctAnswer: 'A Windows malware-analysis environment', hint: 'The Windows counterpart to REMnux.' },
+          { id: 'q-flare-2', question: 'Which FlareVM tool recovers obfuscated strings?', type: 'text', correctAnswer: 'FLOSS', hint: 'FLOSS.exe .\\windows.exe > windows.txt.' },
+          { id: 'q-flare-3', question: 'Which tool inspects static PE metadata?', type: 'text', correctAnswer: 'PEStudio', hint: 'Headers, sections, imported APIs.' },
+          { id: 'q-flare-4', question: 'What does high entropy in a PE section suggest?', type: 'text', correctAnswer: 'Packing or encryption', hint: 'An indicator, not proof.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-defensive-tooling',
+        moduleId: DEFENSIVE_TOOLING_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Defensive Security Tooling module: CyberChef recipes and decoding, CAPA capability detection, REMnux document/network/memory analysis, and the FlareVM Windows arsenal.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Malware-Analyst Field Card',
+          concept: 'Right Tool, Right Question',
+          scenario: 'Mid-analysis, an analyst needs the capa verbosity flag, the oledump VBA option, a Volatility plugin name, or which FlareVM tool shows live network connections. Instead of switching tabs, they glance at one consolidated sheet covering CyberChef, CAPA, REMnux and FlareVM.',
+          relevance: 'Malware analysis rewards knowing which tool answers which question; consolidating the module makes the commands and workflow stick for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-dt', label: 'Defensive Tooling Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['cc', 'capa', 'rem', 'flare'] },
+          { id: 'cc', label: 'CyberChef', description: 'Recipes; decode/deobfuscate; extractors', x: 18, y: 55 },
+          { id: 'capa', label: 'CAPA', description: 'Capabilities; MITRE ATT&CK/MAEC; -v/-vv/-j', x: 39, y: 60 },
+          { id: 'rem', label: 'REMnux', description: 'oledump, INetSim, Volatility, strings', x: 61, y: 60 },
+          { id: 'flare', label: 'FlareVM', description: 'PEStudio, FLOSS, Procmon, CFF Explorer', x: 82, y: 55 }
+        ],
+        keyTakeaways: [
+          'CyberChef transforms data through a recipe of operations (From Base64, URL Decode, From Hex, ROT13, extractors).',
+          'CAPA identifies a program\'s capabilities and maps them to MITRE ATT&CK and MAEC; capability is not proof of malice.',
+          'REMnux is the Linux workstation: oledump.py/VBA, INetSim, Volatility 3 plugins and strings.',
+          'FlareVM is the Windows arsenal: Wireshark, PEStudio, FLOSS, Process Explorer, Procmon, CFF Explorer.',
+          'The workflow is constant: triage, analyse statically, observe dynamically, correlate, then extract IOCs.'
+        ],
+        quiz: [
+          { id: 'q-mcdt-1', question: 'What is a CyberChef recipe?', type: 'text', correctAnswer: 'An ordered chain of operations', hint: 'Applied top to bottom.' },
+          { id: 'q-mcdt-2', question: 'What does CAPA identify?', type: 'text', correctAnswer: 'A program\'s capabilities', hint: 'Mapped to MITRE ATT&CK.' },
+          { id: 'q-mcdt-3', question: 'Which distro is the Linux malware-analysis workstation?', type: 'text', correctAnswer: 'REMnux', hint: 'FlareVM is the Windows one.' },
+          { id: 'q-mcdt-4', question: 'Name a FlareVM tool that recovers obfuscated strings.', type: 'text', correctAnswer: 'FLOSS', hint: 'Better than plain strings.' }
         ]
       },
     ],
