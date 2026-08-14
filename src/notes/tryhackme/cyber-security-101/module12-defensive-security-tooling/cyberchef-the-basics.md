@@ -64,12 +64,16 @@ One of the most important concepts in CyberChef is the idea of a **recipe** — 
 During security investigations, CTFs, malware analysis, forensic analysis, or general security work, we frequently encounter data that is not immediately readable. Examples:
 
 ```text
+# Base64
 SGVsbG8=
 
+# Hex
 54 68 69 73 20 69 73 20 48 65 78
 
+# URL encoding
 %68%74%74%70%73%3A%2F%2F
 
+# Morse code
 .... . .-.. .-.. ---
 ```
 
