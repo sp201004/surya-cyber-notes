@@ -166,7 +166,7 @@ Integrity Verification
                    │
                    ▼
           ┌─────────────────┐
-          │ Physical Security│
+          │Physical Security│
           └────────┬────────┘
                    ▼
           ┌─────────────────┐

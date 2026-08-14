@@ -220,9 +220,9 @@ $ vol3 -f wcry.mem windows.pslist.PsList
 The core Volatility 3 plugins at a glance:
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                 VOLATILITY 3                               │
-├─────────────────────────────────────────────────────────────┤
+┌────────────────────────────────────────────────────────────┐
+│                     VOLATILITY 3                           │
+├────────────────────────────────────────────────────────────┤
 │ PsList      → Process listing                              │
 │ PsTree      → Parent/child process hierarchy               │
 │ CmdLine     → Command-line arguments                       │
@@ -230,7 +230,7 @@ The core Volatility 3 plugins at a glance:
 │ DllList     → Loaded DLLs                                  │
 │ PsScan      → Process structure scanning                   │
 │ Malfind     → Suspicious memory regions                    │
-└─────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────┘
 ```
 
 The memory-forensics workflow chains the plugins from a memory image to deeper investigation:
