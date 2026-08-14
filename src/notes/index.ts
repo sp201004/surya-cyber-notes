@@ -166,6 +166,11 @@ import cs101Remnux from './tryhackme/cyber-security-101/module12-defensive-secur
 import cs101FlareVM from './tryhackme/cyber-security-101/module12-defensive-security-tooling/flarevm-arsenal-of-tools.md?raw';
 import cs101DefToolChest from './tryhackme/cyber-security-101/module12-defensive-security-tooling/mystery-chest-defensive-tooling.md?raw';
 
+import cs101SecPrinciples from './tryhackme/cyber-security-101/module13-cyber-security-career/security-principles.md?raw';
+import cs101CareersCyber from './tryhackme/cyber-security-101/module13-cyber-security-career/careers-in-cyber-101.md?raw';
+import cs101TrainingImpact from './tryhackme/cyber-security-101/module13-cyber-security-career/training-impact-on-teams.md?raw';
+import cs101CareerChest from './tryhackme/cyber-security-101/module13-cyber-security-career/mystery-chest-cyber-career.md?raw';
+
 import hhTrail from './tryhackme/hacker-holidays-2026/hh-the-byte-lotus-trail.md?raw';
 import hhOsintWarmup from './tryhackme/hacker-holidays-2026/hh-osint-warmup.md?raw';
 import hhConcierge from './tryhackme/hacker-holidays-2026/hh-concierge-knows-too-much.md?raw';
@@ -349,6 +354,11 @@ export const notesByTopicId: Record<string, string> = {
   'remnux-getting-started': cs101Remnux,
   'flarevm-arsenal-of-tools': cs101FlareVM,
   'mystery-chest-defensive-tooling': cs101DefToolChest,
+
+  'security-principles': cs101SecPrinciples,
+  'careers-in-cyber-101': cs101CareersCyber,
+  'training-impact-on-teams': cs101TrainingImpact,
+  'mystery-chest-cyber-career': cs101CareerChest,
 
   'hh-the-byte-lotus-trail': hhTrail,
   'hh-osint-warmup': hhOsintWarmup,

@@ -968,6 +968,7 @@ const OFFENSIVE_TOOLING_MODULE_ID = 'offensive-security-tooling';
 const DEFENSIVE_SECURITY_MODULE_ID = 'defensive-security';
 const SECURITY_SOLUTIONS_MODULE_ID = 'security-solutions';
 const DEFENSIVE_TOOLING_MODULE_ID = 'defensive-security-tooling';
+const CYBER_CAREER_MODULE_ID = 'build-cyber-security-career';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -2479,6 +2480,154 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mcdt-2', question: 'What does CAPA identify?', type: 'text', correctAnswer: 'A program\'s capabilities', hint: 'Mapped to MITRE ATT&CK.' },
           { id: 'q-mcdt-3', question: 'Which distro is the Linux malware-analysis workstation?', type: 'text', correctAnswer: 'REMnux', hint: 'FlareVM is the Windows one.' },
           { id: 'q-mcdt-4', question: 'Name a FlareVM tool that recovers obfuscated strings.', type: 'text', correctAnswer: 'FLOSS', hint: 'Better than plain strings.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: CYBER_CAREER_MODULE_ID,
+    title: 'Build Your Cyber Security Career',
+    description: 'Turn foundations into a career: the core security principles (CIA/DAD, security models, defence-in-depth, Zero Trust), the cyber career landscape and major roles, and how training builds team capability and measurable ROI — plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'security-principles',
+        moduleId: CYBER_CAREER_MODULE_ID,
+        title: 'Security Principles',
+        description: 'The foundational ideas of security: the CIA and DAD triads, the classic security models (Bell-LaPadula, Biba, Clark-Wilson), defence-in-depth and the ISO/IEC 19249 architectural principles, and Zero Trust plus the threat/risk/vulnerability distinction.',
+        status: 'unlocked',
+        iconType: 'shield',
+        content: '',
+        realWorldCallout: {
+          title: 'The Balance Behind Every Control',
+          concept: 'CIA Is a Trade-off',
+          scenario: 'Locking data in an offline vault maximises confidentiality but destroys availability; publishing it freely maximises availability but kills confidentiality. Every real security decision balances the three CIA goals for its context.',
+          relevance: 'Security principles are not abstract — they explain why controls exist and how models like Bell-LaPadula and Biba formalise the trade-offs between protecting and using information.'
+        },
+        mindmap: [
+          { id: 'sp', label: 'Security Principles', description: 'The foundations security rests on', x: 50, y: 12, connections: ['cia', 'dad', 'models', 'zt'] },
+          { id: 'cia', label: 'CIA Triad', description: 'Confidentiality, Integrity, Availability', x: 16, y: 50 },
+          { id: 'dad', label: 'DAD Triad', description: 'Disclosure, Alteration, Destruction (attacker mirror)', x: 39, y: 58 },
+          { id: 'models', label: 'Security Models', description: 'Bell-LaPadula, Biba, Clark-Wilson', x: 62, y: 58 },
+          { id: 'zt', label: 'Defence & Zero Trust', description: 'Defence-in-depth, ISO/IEC 19249, never trust always verify', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'The CIA Triad — Confidentiality, Integrity, Availability — is the foundation of security and is always a balance.',
+          'The DAD Triad — Disclosure, Alteration, Destruction — is the attacker mirror of CIA.',
+          'Bell-LaPadula protects confidentiality: No Read Up, No Write Down.',
+          'Biba protects integrity: No Read Down, No Write Up; Clark-Wilson uses well-formed transactions and separation of duties.',
+          'Defence-in-depth layers controls (ISO/IEC 19249: domain separation, layering, encapsulation, redundancy, virtualization); Zero Trust means never trust, always verify.'
+        ],
+        quiz: [
+          { id: 'q-sp-1', question: 'What do the three letters of the CIA Triad stand for?', type: 'text', correctAnswer: 'Confidentiality, Integrity, Availability', hint: 'The three security goals.' },
+          { id: 'q-sp-2', question: 'What does the DAD Triad stand for?', type: 'text', correctAnswer: 'Disclosure, Alteration, Destruction', hint: 'The attacker mirror of CIA.' },
+          { id: 'q-sp-3', question: 'Which model states "No Read Up, No Write Down"?', type: 'text', correctAnswer: 'Bell-LaPadula', hint: 'It protects confidentiality.' },
+          { id: 'q-sp-4', question: 'Which model states "No Read Down, No Write Up"?', type: 'text', correctAnswer: 'Biba', hint: 'It protects integrity.' },
+          { id: 'q-sp-5', question: 'What phrase summarises Zero Trust?', type: 'text', correctAnswer: 'Never trust, always verify', hint: 'No implicit trust.' }
+        ]
+      },
+      {
+        id: 'careers-in-cyber-101',
+        moduleId: CYBER_CAREER_MODULE_ID,
+        title: 'Careers in Cyber',
+        description: 'The cyber security career landscape: the skills gap, transferable and non-technical skills, entry-level vs senior roles, how certifications and labs accelerate entry, and the major roles (Penetration Tester, Incident Responder, SOC Analyst, Security Engineer).',
+        status: 'unlocked',
+        iconType: 'clipboard',
+        content: '',
+        realWorldCallout: {
+          title: 'The Open Door',
+          concept: 'A Field That Needs People',
+          scenario: 'Millions of cyber security roles sit unfilled across companies, hospitals, banks, governments and more. A career-changer who learns fundamentals, practises in labs and earns a certification can break in — the field rewards varied backgrounds, not just CS degrees.',
+          relevance: 'Understanding the skills gap and the range of roles helps newcomers see a realistic, flexible path into the field.'
+        },
+        mindmap: [
+          { id: 'car', label: 'Careers in Cyber', description: 'An open field with many paths', x: 50, y: 12, connections: ['gap', 'skills', 'roles', 'path'] },
+          { id: 'gap', label: 'Skills Gap', description: 'Millions of unfilled roles across every sector', x: 16, y: 50 },
+          { id: 'skills', label: 'Skills', description: 'Transferable + technical + soft skills all matter', x: 39, y: 58 },
+          { id: 'roles', label: 'Roles', description: 'Pentester, Incident Responder, SOC Analyst, Security Engineer', x: 62, y: 58 },
+          { id: 'path', label: 'Path', description: 'Fundamentals → labs → projects → certs → specialise', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A large skills gap means cyber security actively needs more skilled people across nearly every sector.',
+          'The field rewards diverse backgrounds; transferable and soft skills matter as much as technical ones.',
+          'Certifications validate fundamentals while hands-on labs and projects prove practical ability.',
+          'Major roles include Penetration Tester, Incident Responder, SOC Analyst and Security Engineer.',
+          'There is no single "best" role, and your first role does not fix your path — careers are flexible.'
+        ],
+        quiz: [
+          { id: 'q-car-1', question: 'Why is there a cyber security skills gap?', type: 'text', correctAnswer: 'There are more open roles than qualified people to fill them', hint: 'Demand exceeds supply.' },
+          { id: 'q-car-2', question: 'Besides technical skills, what kind of skills are essential?', type: 'text', correctAnswer: 'Soft skills', hint: 'Communication, explaining risk, teamwork.' },
+          { id: 'q-car-3', question: 'Which role monitors security events and investigates suspicious activity?', type: 'text', correctAnswer: 'SOC Analyst', hint: 'A common entry-level defensive role.' },
+          { id: 'q-car-4', question: 'Does your first cyber security role determine your entire career?', type: 'text', correctAnswer: 'No', hint: 'Careers are flexible.' }
+        ]
+      },
+      {
+        id: 'training-impact-on-teams',
+        moduleId: CYBER_CAREER_MODULE_ID,
+        title: 'Training Impact on Teams',
+        description: 'How training shapes team and organisational effectiveness: increasing team capacity, preparing before attacks, ramping up juniors, training for different organisation sizes, and justifying training as an investment with ROI (ROI = Gain / Cost × 100).',
+        status: 'unlocked',
+        iconType: 'sword',
+        content: '',
+        realWorldCallout: {
+          title: 'From Cost to Investment',
+          concept: 'Training ROI',
+          scenario: 'A manager justifies a training budget by showing that training 20 staff (each costing $50,000/year) for $500 each lifts productivity 4% — a $40,000 gain on a $10,000 cost, a 400% ROI. Training becomes an easy "yes".',
+          relevance: 'Framing training as a measurable investment, not a cost, is how teams secure the budget to keep building skills.'
+        },
+        mindmap: [
+          { id: 'tr', label: 'Training Impact', description: 'Training shapes team effectiveness', x: 50, y: 12, connections: ['cap', 'size', 'roi', 'prop'] },
+          { id: 'cap', label: 'Team Capacity', description: 'Raises skills, prepares before attacks, ramps juniors', x: 16, y: 50 },
+          { id: 'size', label: 'Org Size', description: 'Small = broad/flexible; large = role-specific/centralised', x: 39, y: 58 },
+          { id: 'roi', label: 'ROI', description: 'ROI = Gain / Cost × 100; savings ≠ ROI', x: 62, y: 58 },
+          { id: 'prop', label: 'Proposal', description: 'Business case; select content/hands-on/relevance', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'Training is the most efficient way to raise skills and increase team capacity.',
+          'It prepares teams before an attack, ramps up juniors fastest, and builds teamwork (e.g. via CTFs).',
+          'Training requirements depend on organisation size and should be customised — avoid one-size-fits-none.',
+          'Justify training as an investment: ROI = Gain / Cost × 100.',
+          'In the task scenario, savings are $40,000 on a $10,000 training cost, giving a 400% ROI; savings and ROI are different.'
+        ],
+        quiz: [
+          { id: 'q-tr-1', question: 'What is the most efficient way to ramp up a junior hire\'s skills?', type: 'text', correctAnswer: 'Training', hint: 'The core message of the room.' },
+          { id: 'q-tr-2', question: 'What is the ROI formula used in this room?', type: 'text', correctAnswer: 'ROI = Gain / Cost × 100', hint: 'Gain relative to cost, as a percentage.' },
+          { id: 'q-tr-3', question: 'In the task scenario, what is the ROI?', type: 'text', correctAnswer: '400%', hint: '$40,000 gain / $10,000 cost × 100.' },
+          { id: 'q-tr-4', question: 'Are savings and ROI the same thing?', type: 'text', correctAnswer: 'No', hint: 'Savings is the benefit; ROI is that benefit relative to cost.' }
+        ]
+      },
+      {
+        id: 'mystery-chest-cyber-career',
+        moduleId: CYBER_CAREER_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole Build Your Cyber Security Career module: security principles (CIA/DAD, models, defence-in-depth, Zero Trust), the careers landscape and roles, and the impact and ROI of training.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The Career Field Card',
+          concept: 'Foundations to Career',
+          scenario: 'Preparing for an interview, a candidate needs the CIA/DAD definitions, which model does "no write up", the four core roles, and the training ROI formula. One consolidated sheet covers principles, careers and training together.',
+          relevance: 'Consolidating the module ties the knowledge base (principles) to the destinations (roles) and the growth engine (training) for fast recall.'
+        },
+        mindmap: [
+          { id: 'chest-cc', label: 'Career Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['sp', 'car', 'tr'] },
+          { id: 'sp', label: 'Principles', description: 'CIA/DAD, models, defence-in-depth, Zero Trust', x: 22, y: 55 },
+          { id: 'car', label: 'Careers', description: 'Skills gap, roles, flexible progression', x: 50, y: 60 },
+          { id: 'tr', label: 'Training', description: 'Capacity, customisation, ROI', x: 78, y: 55 }
+        ],
+        keyTakeaways: [
+          'CIA (Confidentiality/Integrity/Availability) is protected; DAD (Disclosure/Alteration/Destruction) is caused by attackers.',
+          'Bell-LaPadula protects confidentiality (no read up/write down); Biba protects integrity (no read down/write up); Clark-Wilson uses transactions + separation of duties.',
+          'Defence-in-depth and Zero Trust (never trust, always verify) guide modern architecture.',
+          'Cyber roles include Pentester, Incident Responder, SOC Analyst, Security Engineer; there is no single best, and paths are flexible.',
+          'Training raises team capacity and is justified by ROI = Gain / Cost × 100 (task: $40,000 savings, 400% ROI).'
+        ],
+        quiz: [
+          { id: 'q-mccc-1', question: 'What does the CIA Triad stand for?', type: 'text', correctAnswer: 'Confidentiality, Integrity, Availability', hint: 'The three security goals.' },
+          { id: 'q-mccc-2', question: 'Which model protects integrity with "No Write Up"?', type: 'text', correctAnswer: 'Biba', hint: 'Bell-LaPadula is the confidentiality one.' },
+          { id: 'q-mccc-3', question: 'Name a common entry-level defensive role.', type: 'text', correctAnswer: 'SOC Analyst', hint: 'Monitors and investigates security events.' },
+          { id: 'q-mccc-4', question: 'What is the training ROI formula?', type: 'text', correctAnswer: 'ROI = Gain / Cost × 100', hint: 'Task result was 400%.' }
         ]
       },
     ],

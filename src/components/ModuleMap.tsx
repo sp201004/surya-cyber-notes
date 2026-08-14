@@ -2508,6 +2508,74 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // Security Principles — a padlock
+    case 'security-principles':
+      return (
+        <g id="security-principles-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Shackle */}
+          <path d={`M ${x - 6} ${y - 1} L ${x - 6} ${y - 5} A 6 6 0 0 1 ${x + 6} ${y - 5} L ${x + 6} ${y - 1}`} fill="none" stroke="#9fef00" strokeWidth="1.8" strokeLinecap="round" />
+          {/* Body */}
+          <rect x={x - 9} y={y - 1} width={18} height={13} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Keyhole */}
+          <circle cx={x} cy={y + 4} r={2} fill="#9fef00" />
+          <rect x={x - 1} y={y + 5} width={2} height={4} fill="#9fef00" />
+        </g>
+      );
+
+    // Careers in Cyber — a clipboard with a pair of glasses
+    case 'careers-in-cyber-101':
+      return (
+        <g id="careers-cyber-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Clipboard board */}
+          <rect x={x - 9} y={y - 9} width={18} height={20} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Clip */}
+          <rect x={x - 3} y={y - 12} width={6} height={4} rx={1} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" />
+          {/* Lines */}
+          <line x1={x - 6} y1={y - 4} x2={x + 6} y2={y - 4} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
+          <line x1={x - 6} y1={y - 1} x2={x + 4} y2={y - 1} stroke="#9fef00" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+          {/* Glasses */}
+          <circle cx={x - 3} cy={y + 5} r={2.6} fill="none" stroke="#38bdf8" strokeWidth="1.5" />
+          <circle cx={x + 4} cy={y + 5} r={2.6} fill="none" stroke="#38bdf8" strokeWidth="1.5" />
+          <line x1={x - 0.4} y1={y + 5} x2={x + 1.4} y2={y + 5} stroke="#38bdf8" strokeWidth="1.3" />
+        </g>
+      );
+
+    // Training Impact on Teams — a rising rocket
+    case 'training-impact-on-teams':
+      return (
+        <g id="training-impact-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Rocket body */}
+          <path d={`M ${x} ${y - 12} Q ${x + 5} ${y - 4} ${x + 4} ${y + 5} L ${x - 4} ${y + 5} Q ${x - 5} ${y - 4} ${x} ${y - 12} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* Window */}
+          <circle cx={x} cy={y - 3} r={2.2} fill="#38bdf8" />
+          {/* Fins */}
+          <path d={`M ${x - 4} ${y + 1} L ${x - 8} ${y + 6} L ${x - 4} ${y + 5} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          <path d={`M ${x + 4} ${y + 1} L ${x + 8} ${y + 6} L ${x + 4} ${y + 5} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Flame */}
+          <path d={`M ${x - 2.5} ${y + 5} Q ${x} ${y + 12} ${x + 2.5} ${y + 5} Z`} fill="#f97316" stroke="#fb923c" strokeWidth="1" strokeLinejoin="round" />
+        </g>
+      );
+
+    // Mystery Chest — the treasure chest marked with binary
+    case 'mystery-chest-cyber-career':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Binary digits on the lid */}
+          <text x={x - 7} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <text x={x - 1} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">0</text>
+          <text x={x + 5} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">
