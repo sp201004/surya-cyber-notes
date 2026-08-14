@@ -2576,6 +2576,80 @@ const renderUniqueIsometricObject = (
         </g>
       );
 
+    // OWASP IAAA Failures — a broken key over an ID badge
+    case 'owasp-iaaa-failures':
+      return (
+        <g id="owasp-iaaa-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* ID badge */}
+          <rect x={x - 11} y={y - 10} width={15} height={19} rx={2} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <circle cx={x - 3.5} cy={y - 4} r={2.6} fill="#9fef00" />
+          <path d={`M ${x - 8} ${y + 4} Q ${x - 3.5} ${y - 1} ${x + 1} ${y + 4}`} fill="none" stroke="#9fef00" strokeWidth="1.3" />
+          <line x1={x - 8} y1={y + 7} x2={x + 1} y2={y + 7} stroke="#9fef00" strokeWidth="1.1" opacity="0.7" />
+          {/* Broken key — bow + snapped shaft */}
+          <circle cx={x + 8} cy={y - 5} r={3.2} fill="none" stroke="#38bdf8" strokeWidth="1.6" />
+          <line x1={x + 8} y1={y - 2} x2={x + 6.5} y2={y + 1.5} stroke="#38bdf8" strokeWidth="1.6" strokeLinecap="round" />
+          {/* gap = break */}
+          <line x1={x + 6} y1={y + 3.5} x2={x + 4.5} y2={y + 7} stroke="#38bdf8" strokeWidth="1.6" strokeLinecap="round" />
+          <line x1={x + 4.5} y1={y + 7} x2={x + 7} y2={y + 7} stroke="#38bdf8" strokeWidth="1.6" strokeLinecap="round" />
+        </g>
+      );
+
+    // OWASP Application Design Flaws — a cracked blueprint with a gear
+    case 'owasp-application-design-flaws':
+      return (
+        <g id="owasp-design-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* Blueprint sheet */}
+          <rect x={x - 11} y={y - 10} width={22} height={20} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Blueprint grid lines */}
+          <line x1={x - 11} y1={y - 3} x2={x + 11} y2={y - 3} stroke="#9fef00" strokeWidth="0.8" opacity="0.4" />
+          <line x1={x - 11} y1={y + 4} x2={x + 11} y2={y + 4} stroke="#9fef00" strokeWidth="0.8" opacity="0.4" />
+          <line x1={x - 4} y1={y - 10} x2={x - 4} y2={y + 10} stroke="#9fef00" strokeWidth="0.8" opacity="0.4" />
+          {/* Crack running down the plan */}
+          <path d={`M ${x + 2} ${y - 10} l -3 5 l 3 3 l -3 5 l 2 4`} fill="none" stroke="#ef4444" strokeWidth="1.4" strokeLinejoin="round" />
+          {/* Gear */}
+          <g transform={`translate(${x + 5}, ${y + 4})`}>
+            <circle r={3.4} fill="#20301a" stroke="#38bdf8" strokeWidth="1.5" />
+            <circle r={1.2} fill="#38bdf8" />
+            {[0, 60, 120, 180, 240, 300].map((d, i) => (<rect key={i} x={-0.7} y={-4.8} width={1.4} height={2} fill="#38bdf8" transform={`rotate(${d})`} />))}
+          </g>
+        </g>
+      );
+
+    // OWASP Insecure Data Handling — a leaking database cylinder
+    case 'owasp-insecure-data-handling':
+      return (
+        <g id="owasp-data-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          {/* DB cylinder */}
+          <ellipse cx={x} cy={y - 8} rx={9} ry={3} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 9} ${y - 8} L ${x - 9} ${y + 6} Q ${x} ${y + 9} ${x + 9} ${y + 6} L ${x + 9} ${y - 8}`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <path d={`M ${x - 9} ${y - 3} Q ${x} ${y} ${x + 9} ${y - 3}`} fill="none" stroke="#9fef00" strokeWidth="1.2" opacity="0.7" />
+          <path d={`M ${x - 9} ${y + 1.5} Q ${x} ${y + 4.5} ${x + 9} ${y + 1.5}`} fill="none" stroke="#9fef00" strokeWidth="1.2" opacity="0.5" />
+          {/* Leaking drops */}
+          <path d={`M ${x + 9} ${y + 3} q 3 2 1 5 q -2 2 -3 0 q -1 -2 2 -5 Z`} fill="#38bdf8" />
+          <circle cx={x + 11} cy={y + 11} r={1.3} fill="#38bdf8" opacity="0.8" />
+        </g>
+      );
+
+    // Mystery Chest — the treasure chest marked with binary
+    case 'mystery-chest-owasp-top-10':
+      return (
+        <g id="mystery-chest-scene">
+          <ellipse cx={x} cy={y + 17} rx={18} ry={6} fill="rgba(159, 239, 0, 0.18)" filter="blur(3px)" />
+          <path d={`M ${x - 12} ${y - 2} Q ${x - 12} ${y - 9} ${x} ${y - 9} Q ${x + 12} ${y - 9} ${x + 12} ${y - 2} Z`} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          {/* Binary digits on the lid */}
+          <text x={x - 7} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <text x={x - 1} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">0</text>
+          <text x={x + 5} y={y - 4} fontSize="4.5" fill="#9fef00" fontFamily="monospace">1</text>
+          <rect x={x - 12} y={y - 2} width={24} height={12} rx={1.5} fill="#20301a" stroke="#9fef00" strokeWidth="1.6" />
+          <line x1={x - 12} y1={y + 2} x2={x + 12} y2={y + 2} stroke="#9fef00" strokeWidth="1.4" />
+          <rect x={x - 2.5} y={y - 1} width={5} height={7} rx={1} fill="#9fef00" />
+          <circle cx={x} cy={y + 1.5} r={1.3} fill="#20301a" />
+        </g>
+      );
+
     default:
       return (
         <g id="default-device">

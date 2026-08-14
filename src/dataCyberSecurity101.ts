@@ -969,6 +969,7 @@ const DEFENSIVE_SECURITY_MODULE_ID = 'defensive-security';
 const SECURITY_SOLUTIONS_MODULE_ID = 'security-solutions';
 const DEFENSIVE_TOOLING_MODULE_ID = 'defensive-security-tooling';
 const CYBER_CAREER_MODULE_ID = 'build-cyber-security-career';
+const OWASP_TOP_10_MODULE_ID = 'owasp-top-10-2025';
 
 // Module 6 · Room 1 — Cryptography Basics.
 const cryptoBasicsRoom: Topic = {
@@ -2628,6 +2629,153 @@ export const CYBER_SECURITY_101_MODULES: Module[] = [
           { id: 'q-mccc-2', question: 'Which model protects integrity with "No Write Up"?', type: 'text', correctAnswer: 'Biba', hint: 'Bell-LaPadula is the confidentiality one.' },
           { id: 'q-mccc-3', question: 'Name a common entry-level defensive role.', type: 'text', correctAnswer: 'SOC Analyst', hint: 'Monitors and investigates security events.' },
           { id: 'q-mccc-4', question: 'What is the training ROI formula?', type: 'text', correctAnswer: 'ROI = Gain / Cost × 100', hint: 'Task result was 400%.' }
+        ]
+      },
+    ],
+  },
+  {
+    id: OWASP_TOP_10_MODULE_ID,
+    title: 'OWASP Top 10 (2025)',
+    description: 'The 2025 OWASP Top 10 web risks in three practical rooms: IAAA-based access and identity failures (A01/A07/A09), application design and configuration flaws (A02/A03/A04/A06), and insecure data handling (A04/A05/A08) — plus a bonus revision chest.',
+    isFuture: false,
+    topics: [
+      {
+        id: 'owasp-iaaa-failures',
+        moduleId: OWASP_TOP_10_MODULE_ID,
+        title: 'OWASP Top 10 2025: IAAA Failures',
+        description: 'Access and identity failures through the IAAA model: A01 Broken Access Control (IDOR, horizontal vs vertical escalation), A07 Authentication Failures (weak passwords, brute force, sessions), and A09 Logging & Alerting Failures.',
+        status: 'unlocked',
+        iconType: 'shield',
+        content: '',
+        realWorldCallout: {
+          title: 'Changing One Number in the URL',
+          concept: 'IDOR & Broken Access Control',
+          scenario: 'A banking app shows your account at /account?id=1001. Changing the id to 1002 returns another customer\'s data because the server never checks that you own that account — a textbook IDOR and the #1 OWASP risk in action.',
+          relevance: 'A01, A07 and A09 map onto the IAAA chain — authentication proves identity, authorisation controls access, accountability records it; a break in any link is exploitable.'
+        },
+        mindmap: [
+          { id: 'iaaa', label: 'IAAA Failures', description: 'Access & identity via the IAAA model', x: 50, y: 12, connections: ['id', 'a01', 'a07', 'a09'] },
+          { id: 'id', label: 'IAAA Model', description: 'Identification → Authentication → Authorisation → Accountability', x: 16, y: 50 },
+          { id: 'a01', label: 'A01 Access Control', description: 'IDOR; horizontal vs vertical escalation', x: 39, y: 58 },
+          { id: 'a07', label: 'A07 Auth Failures', description: 'Weak passwords, brute force, sessions', x: 62, y: 58 },
+          { id: 'a09', label: 'A09 Logging', description: 'No logs/alerts → attacks undetected', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'IAAA is a sequential chain: Identification, Authentication, Authorisation, Accountability.',
+          'A01 Broken Access Control is the #1 OWASP risk; IDOR is the classic example.',
+          'Horizontal escalation accesses another user\'s data at the same level; vertical gains higher privilege.',
+          'A07 Authentication Failures come from weak passwords, brute force, and poor session handling; defend with MFA, rate limiting and secure sessions.',
+          'A09 Logging & Alerting Failures let attacks go undetected; map A07↔Authentication, A01↔Authorisation, A09↔Accountability.'
+        ],
+        quiz: [
+          { id: 'q-iaaa-1', question: 'What does IAAA stand for?', type: 'text', correctAnswer: 'Identification, Authentication, Authorisation, Accountability', hint: 'A sequential access chain.' },
+          { id: 'q-iaaa-2', question: 'What is the #1 OWASP risk?', type: 'text', correctAnswer: 'Broken Access Control', hint: 'A01; IDOR is the classic case.' },
+          { id: 'q-iaaa-3', question: 'Viewing another user\'s data at the same privilege level is which escalation?', type: 'text', correctAnswer: 'Horizontal', hint: 'Vertical means gaining higher privilege.' },
+          { id: 'q-iaaa-4', question: 'Which OWASP category maps to Accountability?', type: 'text', correctAnswer: 'A09 Logging & Alerting Failures', hint: 'No logs, no detection.' }
+        ]
+      },
+      {
+        id: 'owasp-application-design-flaws',
+        moduleId: OWASP_TOP_10_MODULE_ID,
+        title: 'OWASP Top 10 2025: Application Design Flaws',
+        description: 'Design and configuration failures: A02 Security Misconfigurations (defaults, verbose errors, exposed storage), A03 Software Supply Chain Failures (third-party libraries/APIs/AI models), A04 Cryptographic Failures (weak crypto, hardcoded keys), and A06 Insecure Design (including prompt injection).',
+        status: 'unlocked',
+        iconType: 'clipboard',
+        content: '',
+        realWorldCallout: {
+          title: 'The Error Message That Talks Too Much',
+          concept: 'Security Misconfiguration',
+          scenario: 'A production app throws a verbose stack trace revealing its framework version and internal paths. An attacker reads it, looks up a known exploit for that version, and walks in — no code bug required, just a misconfiguration.',
+          relevance: 'These are design and deployment failures — you cannot patch an insecure design or an inherited supply-chain risk; security must be built in and configured correctly.'
+        },
+        mindmap: [
+          { id: 'des', label: 'Design Flaws', description: 'Design & configuration failures', x: 50, y: 12, connections: ['a02', 'a03', 'a04', 'a06'] },
+          { id: 'a02', label: 'A02 Misconfig', description: 'Defaults, verbose errors, exposed cloud storage', x: 16, y: 50 },
+          { id: 'a03', label: 'A03 Supply Chain', description: 'Risky third-party libraries, APIs, AI models', x: 39, y: 58 },
+          { id: 'a04', label: 'A04 Crypto', description: 'Weak encryption, hardcoded keys', x: 62, y: 58 },
+          { id: 'a06', label: 'A06 Insecure Design', description: 'Security missing by design; prompt injection', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A02 Security Misconfigurations come from defaults, verbose errors, and exposed cloud storage.',
+          'A03 Software Supply Chain Failures mean you inherit the risk of third-party libraries, APIs and AI models.',
+          'A04 Cryptographic Failures include weak/absent encryption and hardcoded keys.',
+          'A06 Insecure Design is a flaw built into the architecture; it includes AI-era prompt injection.',
+          'You cannot patch an insecure design — build security in, verify dependencies, and harden configuration.'
+        ],
+        quiz: [
+          { id: 'q-des-1', question: 'Verbose errors and exposed cloud storage are examples of which category?', type: 'text', correctAnswer: 'A02 Security Misconfigurations', hint: 'Configuration, not a code bug.' },
+          { id: 'q-des-2', question: 'Risky third-party libraries and AI models fall under which category?', type: 'text', correctAnswer: 'A03 Software Supply Chain Failures', hint: 'You inherit their risk.' },
+          { id: 'q-des-3', question: 'Hardcoded keys are an example of which failure?', type: 'text', correctAnswer: 'A04 Cryptographic Failures', hint: 'Never embed secrets in code.' },
+          { id: 'q-des-4', question: 'What AI-era attack is an example of insecure design (A06)?', type: 'text', correctAnswer: 'Prompt injection', hint: 'Attacker input manipulates an LLM.' }
+        ]
+      },
+      {
+        id: 'owasp-insecure-data-handling',
+        moduleId: OWASP_TOP_10_MODULE_ID,
+        title: 'OWASP Top 10 2025: Insecure Data Handling',
+        description: 'Unsafe data handling: A04 Cryptographic Failures, A05 Injection (SQL, command, prompt and template injection with prevention), and A08 Software or Data Integrity Failures (integrity vs authenticity, insecure deserialization, CI/CD integrity).',
+        status: 'unlocked',
+        iconType: 'sql-basics',
+        content: '',
+        realWorldCallout: {
+          title: 'When Input Becomes Code',
+          concept: 'Injection',
+          scenario: 'An app builds a query as SELECT * FROM users WHERE username = \'<input>\'. Because it concatenates user input directly, the input becomes part of the SQL syntax instead of data — the root cause of injection, fixed by parameterized queries.',
+          relevance: 'Injection is one idea in many forms (SQL, command, prompt, template); the defence is always to keep data as data and verify everything you accept.'
+        },
+        mindmap: [
+          { id: 'data', label: 'Insecure Data Handling', description: 'Unsafe handling of data', x: 50, y: 12, connections: ['a04', 'a05', 'types', 'a08'] },
+          { id: 'a04', label: 'A04 Crypto', description: 'Encrypt in transit/at rest; manage keys', x: 16, y: 50 },
+          { id: 'a05', label: 'A05 Injection', description: 'Untrusted input treated as code/query', x: 39, y: 58 },
+          { id: 'types', label: 'Injection Types', description: 'SQL, Command, Prompt, SSTI', x: 62, y: 58 },
+          { id: 'a08', label: 'A08 Integrity', description: 'Verify integrity; insecure deserialization', x: 84, y: 50 }
+        ],
+        keyTakeaways: [
+          'A04 Cryptographic Failures are defended by encrypting in transit and at rest with strong algorithms and secure key management.',
+          'A05 Injection occurs when untrusted input is treated as code or query; forms include SQL, command, AI prompt and server-side template (SSTI) injection.',
+          'The SQL injection fix is prepared statements and parameterized queries, so input stays data rather than syntax.',
+          'A08 Software/Data Integrity Failures accept content without verifying it is unaltered; integrity means not altered, authenticity means genuinely from the source.',
+          'Insecure deserialization of untrusted data can lead to code execution; defend with signatures/checksums and secure CI/CD.'
+        ],
+        quiz: [
+          { id: 'q-data-1', question: 'What is the recommended fix for SQL injection?', type: 'text', correctAnswer: 'Prepared statements and parameterized queries', hint: 'Keep input as data, not syntax.' },
+          { id: 'q-data-2', question: 'Name the four forms of injection covered.', type: 'text', correctAnswer: 'SQL, command, prompt, template (SSTI)', hint: 'One idea, many forms.' },
+          { id: 'q-data-3', question: 'What is the difference between integrity and authenticity?', type: 'text', correctAnswer: 'Integrity = not altered; authenticity = genuinely from the claimed source', hint: 'Both are needed.' },
+          { id: 'q-data-4', question: 'Deserializing untrusted data can lead to what?', type: 'text', correctAnswer: 'Code execution', hint: 'Insecure deserialization (A08).' }
+        ]
+      },
+      {
+        id: 'mystery-chest-owasp-top-10',
+        moduleId: OWASP_TOP_10_MODULE_ID,
+        title: 'Mystery Chest',
+        description: 'A bonus revision vault for the whole OWASP Top 10 (2025) module: IAAA-based access failures (A01/A07/A09), design flaws (A02/A03/A04/A06), and insecure data handling (A04/A05/A08), with every challenge flag.',
+        status: 'unlocked',
+        iconType: 'mystery-chest',
+        content: '',
+        realWorldCallout: {
+          title: 'The OWASP Field Card',
+          concept: 'Two Mistakes, Ten Categories',
+          scenario: 'Mid-lab, an analyst needs which category IDOR belongs to, the injection fix, or the difference between integrity and authenticity. One consolidated sheet covers all ten 2025 categories and their eight challenge flags.',
+          relevance: 'Almost every OWASP category reduces to failing to enforce a control or trusting something unverified; one reference ties them together for labs and interviews.'
+        },
+        mindmap: [
+          { id: 'chest-owasp', label: 'OWASP Cheat Sheet', description: 'The whole module at a glance', x: 50, y: 15, connections: ['iaaa', 'design', 'data'] },
+          { id: 'iaaa', label: 'IAAA Failures', description: 'A01, A07, A09', x: 22, y: 55 },
+          { id: 'design', label: 'Design Flaws', description: 'A02, A03, A04, A06', x: 50, y: 60 },
+          { id: 'data', label: 'Data Handling', description: 'A04, A05, A08', x: 78, y: 55 }
+        ],
+        keyTakeaways: [
+          'Access/identity failures map to IAAA: A01 Broken Access Control, A07 Authentication Failures, A09 Logging & Alerting Failures.',
+          'Design/config failures: A02 Misconfigurations, A03 Supply Chain, A04 Cryptographic, A06 Insecure Design (incl. prompt injection).',
+          'Data-handling failures: A05 Injection (SQL/command/prompt/SSTI) and A08 Software/Data Integrity Failures.',
+          'IDOR = unchecked object reference; injection fix = keep data as data (parameterize); A08 = verify integrity and authenticity.',
+          'Every OWASP category reduces to failing to enforce a control or trusting something unverified.'
+        ],
+        quiz: [
+          { id: 'q-mcow-1', question: 'Which OWASP category is Broken Access Control?', type: 'text', correctAnswer: 'A01', hint: 'The #1 risk.' },
+          { id: 'q-mcow-2', question: 'Which category covers injection?', type: 'text', correctAnswer: 'A05', hint: 'SQL, command, prompt, SSTI.' },
+          { id: 'q-mcow-3', question: 'What single principle prevents most injection?', type: 'text', correctAnswer: 'Keep data as data', hint: 'Parameterize queries; validate input.' },
+          { id: 'q-mcow-4', question: 'Which model do A01, A07 and A09 map onto?', type: 'text', correctAnswer: 'IAAA', hint: 'Authentication/Authorisation/Accountability.' }
         ]
       },
     ],

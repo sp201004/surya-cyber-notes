@@ -171,6 +171,11 @@ import cs101CareersCyber from './tryhackme/cyber-security-101/module13-cyber-sec
 import cs101TrainingImpact from './tryhackme/cyber-security-101/module13-cyber-security-career/training-impact-on-teams.md?raw';
 import cs101CareerChest from './tryhackme/cyber-security-101/module13-cyber-security-career/mystery-chest-cyber-career.md?raw';
 
+import cs101OwaspIaaa from './tryhackme/cyber-security-101/module14-owasp-top-10-2025/owasp-iaaa-failures.md?raw';
+import cs101OwaspDesign from './tryhackme/cyber-security-101/module14-owasp-top-10-2025/owasp-application-design-flaws.md?raw';
+import cs101OwaspData from './tryhackme/cyber-security-101/module14-owasp-top-10-2025/owasp-insecure-data-handling.md?raw';
+import cs101OwaspChest from './tryhackme/cyber-security-101/module14-owasp-top-10-2025/mystery-chest-owasp-top-10.md?raw';
+
 import hhTrail from './tryhackme/hacker-holidays-2026/hh-the-byte-lotus-trail.md?raw';
 import hhOsintWarmup from './tryhackme/hacker-holidays-2026/hh-osint-warmup.md?raw';
 import hhConcierge from './tryhackme/hacker-holidays-2026/hh-concierge-knows-too-much.md?raw';
@@ -359,6 +364,11 @@ export const notesByTopicId: Record<string, string> = {
   'careers-in-cyber-101': cs101CareersCyber,
   'training-impact-on-teams': cs101TrainingImpact,
   'mystery-chest-cyber-career': cs101CareerChest,
+
+  'owasp-iaaa-failures': cs101OwaspIaaa,
+  'owasp-application-design-flaws': cs101OwaspDesign,
+  'owasp-insecure-data-handling': cs101OwaspData,
+  'mystery-chest-owasp-top-10': cs101OwaspChest,
 
   'hh-the-byte-lotus-trail': hhTrail,
   'hh-osint-warmup': hhOsintWarmup,
